@@ -1,0 +1,115 @@
+<basis core="group" name="DelayOne">
+    <meta charset="utf-8">
+
+  
+
+    <basis core="dbsource" source="trust_login" mid="24" name="db" lid="1" ownerid="[##cms.cms.ownerid##]" >
+        <member name="dmnid" type="scalar" request="getdmnid" preview=""/>
+    </basis>
+
+   
+        <basis core="group" name="DelayTwo">
+          
+            <basis core="external.fly.ws" source="cmsDbService2" name="db" procedurename="dbsource">
+                <member name="agencycatid" method="cms" query='{
+                      "name": "db",
+                      "mid": "20",
+                      "member": [
+                          {
+                              "type": "scalar",
+                              "name": "q",
+                              "request": "agencycatid",
+                              "dmnid": "[##db.dmnid.dmnid##]"
+                          }
+                      ]
+                  } ' preview="" />
+            </basis>
+
+            <basis core="group" name="DelayTree">
+                <basis core="dbsource" source="trust_login" lid="1" name="db" catid="[##db.agencycatid.result##]" userid="[##cms.query.userid##]" ownerid="[##cms.cms.ownerid##]">
+                    <member name="checkuser" type="scalar" request="checkagencyuser" preview="" />
+                </basis>
+                <basis name="conter" core="group" if="'[##db.checkuser.Column1##]' <> '1'">
+                    <basis core="external.fly.ws" source="cmsDbService2" name="db" procedurename="dbsource">
+                        <member name="commission" method="panel" query='{
+                            "name": "db",
+                            "mid": "20",
+                            "member": [
+                                {
+                                    "type": "list",
+                                    "name": "q",
+                                    "request": "Panel_Comgroup_User",
+                                    "userid": "[##cms.query.userid##]",
+                                    "ownerid": "[##cms.cms.ownerid##]",
+                                    "dmnid": "[##db.dmnid.dmnid##]"
+                                }
+                            ]
+                        } ' preview="" />
+                    </basis>
+                    <basis core="group" if="'[##db.commission.result##]' = '[]'">
+                          <basis core="external.fly.ws" source="cmsDbService2" name="db" procedurename="dbsource">
+                            <member name="moninvoice" method="panel" query='{
+                                "name": "db",
+                                "mid": "20",
+                                "member": [
+                                    {
+                                        "type": "list",
+                                        "name": "q",
+                                        "request": "Panel_Commission_Addcounter",
+                                        "commissonid": "[##cms.query.groupid##]",
+                                        "counterid": "[##cms.query.userid##]",
+                                        "companyid": "[##cms.query.id##]",
+                                        "dmnid": "[##db.dmnid.dmnid##]",
+"userid":"[##cms.form.userid##]"
+                                    }
+                                ]
+                            } ' preview="" />
+                        </basis>
+
+                        <p class="Success">نام کاربری [##cms.form.email##] اضافه شد.</p>
+                    </basis>
+                    <basis core="group" if="'[##db.commission.result##]' <> '[]'">
+                        <basis core="external.fly.ws" source="cmsDbService2" name="db" procedurename="dbsource">
+                            <member name="commission2" method="panel" query='{
+                                "name": "db",
+                                "mid": "20",
+                                "member": [
+                                    {
+                                        "type": "list",
+                                        "name": "q",
+                                        "request": "Panel_Comgroup_Agency",
+                                        "userid": "[##cms.query.userid##]",
+                                        "ownerid": "[##cms.cms.ownerid##]",
+                                        "dmnid": "[##db.dmnid.dmnid##]"
+                                    }
+                                ]
+                            } ' preview="" />
+                        </basis>
+
+                        <basis core="group" name="g4">
+                            <basis core='inlinesource' name='db'>
+                                <member name='com' format="json">{"root":[##db.commission2.result##]}</member>
+                            </basis>
+
+                            <basis core="tree" datamembername="db.com" idcol="id" parentidcol="ParentId" nullvalue="null">
+                                <layout>
+                                    <p class="Error">نام کاربری [##cms.form.email##] @Child می باشد</p>
+                                </layout>
+                                <face filter="Field in ('null')">@Child</face>
+                                <face filter="field = 'title'">عضو گروه @value</face>
+                                <face filter="field = 'agency'">و آژانس @Child</face>
+                                <face filter="field = 'name'">@value</face>
+                                <face filter="type in ('array','object')">@child</face>
+                            </basis>
+                        </basis>
+                    </basis>
+                </basis>
+                <basis name="noconter" core="group" if="'[##db.checkuser.Column1##]' = '1'">
+                    <p class="Error">این نام کاربر به عنوان کانتر خودم ذخیره شده است.</p>
+                </basis>
+            </basis>
+        </basis>
+    
+
+  
+</basis>
