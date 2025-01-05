@@ -130,19 +130,19 @@
                             <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
                             <ul class="flight_type font_15 color_gray font-weight">
                                 <li id="oneway"
-                                    onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search.bc';"
+                                    onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search.bc?lid=2';"
                                     class="active cursor-pointer">One-Way
 
                                 </li>
                                 <li id="backtoback"
-                                    onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search.bc';"
+                                    onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search.bc?lid=2';"
                                     class="cursor-pointer">Round-Trip
                                 </li>
 
                                 <div class="clr"></div>
                             </ul>
                             <div class="searched-items width_100 background-color_white">
-                                <form method="get" action="/Tem3_Oneway_Search.bc" class="form-research"
+                                <form method="get" action="/Tem3_Oneway_Search.bc?lid=2" class="form-research"
                                     id="flight-form">
                                     <input type="hidden" value="[##cms.query.select-age##]" name="select-age"
                                         class="select-age-value" />
@@ -1394,7 +1394,7 @@
                         }
                         return library[currentPage - 1].map((item, i) => (
                             <div className={`result-item ${this.renderIsSelected(item)}`} data-scrolled={item.isScrolled} id={`item-${item.index}`}>
-                                <form method="post" action="/Client_Show_Oneway_ver.2.bc" key={item._id}>
+                                <form method="post" action="/Client_Show_Oneway_ver.2.bc?lid=2" key={item._id}>
                                     <input type="hidden" value={this.state.state_currency_unit} name="rate-unit" className="rate-unit" />
                                     <input type="hidden" value={this.state.state_currency_cost} name="rate-cost" className="rate-cost" />
                                     <input type="hidden" value={this.state.state_floatdigit} name="rate-floatdigit" className="rate-floatdigit" />

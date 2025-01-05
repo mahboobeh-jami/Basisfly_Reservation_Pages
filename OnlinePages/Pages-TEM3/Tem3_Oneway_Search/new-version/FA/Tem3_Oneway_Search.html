@@ -122,7 +122,7 @@
                             </span>
                             <span class="after-btn cursor-pointer background-color_white">روز بعد
                                 <i class="fa fa-angle-left color_1"></i></span>
-                            <form method="get" action="/Tem3_Oneway_Search.bc" class="form_research_date"><input type="hidden" value="[##cms.query.persiancurrent##]" class="persiancurrent" name="persiancurrent"> <input type="hidden" value="[##cms.query.from##]" name="from"> <input type="hidden" value="[##cms.query.to##]" name="to"> <input type="hidden" value="[##cms.query.fdate##]" name="fdate" class="departuredate"> <input type="hidden" value="[##cms.query.tdate##]" name="tdate" class="returndate"> <input type="hidden" value="[##cms.query.mstring_fdate##]" name="mstring_fdate" class="departureMdate"> <input type="hidden" value="[##cms.query.mstring_tdate##]" name="mstring_tdate" class="returnMdate"> <input type="hidden" value="[##cms.query.adult##]" name="adult"> <input type="hidden" value="[##cms.query.child##]" name="child"> <input type="hidden" value="[##cms.query.select-age##]" name="select-age"> <input type="hidden" value="[##cms.query.share|(0)##]" name="share"> <input type="hidden" value="[##cms.query.FlightClass##]" name="FlightClass"></form>
+                            <form method="get" action="/Tem3_Oneway_Search.bc?lid=1" class="form_research_date"><input type="hidden" value="[##cms.query.persiancurrent##]" class="persiancurrent" name="persiancurrent"> <input type="hidden" value="[##cms.query.from##]" name="from"> <input type="hidden" value="[##cms.query.to##]" name="to"> <input type="hidden" value="[##cms.query.fdate##]" name="fdate" class="departuredate"> <input type="hidden" value="[##cms.query.tdate##]" name="tdate" class="returndate"> <input type="hidden" value="[##cms.query.mstring_fdate##]" name="mstring_fdate" class="departureMdate"> <input type="hidden" value="[##cms.query.mstring_tdate##]" name="mstring_tdate" class="returnMdate"> <input type="hidden" value="[##cms.query.adult##]" name="adult"> <input type="hidden" value="[##cms.query.child##]" name="child"> <input type="hidden" value="[##cms.query.select-age##]" name="select-age"> <input type="hidden" value="[##cms.query.share|(0)##]" name="share"> <input type="hidden" value="[##cms.query.FlightClass##]" name="FlightClass"></form>
                         </div>
                         <div class="clr"></div>
                         <div class="searched-items-container unvisible" data-load="0" data-from="[##cms.query.from##]"
@@ -1118,7 +1118,7 @@ JalaliDate.jalaliToGregorian = function (j_y, j_m, j_d) {
                         }
                         return library[currentPage - 1].map((item, i) => (
                             <div className={`result-item ${this.renderIsSelected(item)}`} data-scrolled={item.isScrolled} id={`item-${item.index}`}>
-                                <form method="post" action="/Client_Show_Oneway_ver.2.bc" key={item._id}>
+                                <form method="post" action="/Client_Show_Oneway_ver.2.bc?lid=1" key={item._id}>
                                     <input type="hidden" value={this.state.state_currency_unit} name="rate-unit" className="rate-unit" />
                                     <input type="hidden" value={this.state.state_currency_cost} name="rate-cost" className="rate-cost" />
                                     <input type="hidden" value={this.state.state_floatdigit} name="rate-floatdigit" className="rate-floatdigit" />
