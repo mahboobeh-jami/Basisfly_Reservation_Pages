@@ -1056,7 +1056,7 @@
                         }
                         return library[currentPage - 1].map((item, i) => (
                             <div className={`result-item ${this.renderIsSelected(item)}`} data-scrolled={item.isScrolled} id={`item-${item.index}`}>
-                                <form method="post" action="/Client_Show_Oneway_Ar_ver.2.bc" key={item._id}>
+                                <form method="post" action="/Client_Show_Oneway_ver.2.bc" key={item._id}>
                                     <input type="hidden" value={this.state.state_currency_unit} name="rate-unit" className="rate-unit" />
                                     <input type="hidden" value={this.state.state_currency_cost} name="rate-cost" className="rate-cost" />
                                     <input type="hidden" value={this.state.state_floatdigit} name="rate-floatdigit" className="rate-floatdigit" />
