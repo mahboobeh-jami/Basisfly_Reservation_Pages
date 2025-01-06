@@ -1,20 +1,20 @@
-<script src="https://cdn.basiscore.net/basisfly.com/js/reservation_Basis_Calendar_js.js"
+<script src="https://cdn.basiscore.net/basisfly.com/js/reservation_Basis_Calendar_en_js.js"
     type="text/javascript"></script>
-<script src="https://cdn.basiscore.net/basisfly.com/js/reservation_tem3_reSearch.js" type="text/javascript"></script>
+<script src="https://cdn.basiscore.net/basisfly.com/js/reservation_tem3_reSearch_ar.js" type="text/javascript"></script>
 <link href="https://cdn.basiscore.net/basisfly.com/css/reservation_tem3_calendar.css" type="text/css"
     rel="stylesheet" />
 <link href="https://cdn.basiscore.net/basisfly.com/css/reservation_tem3_datepicker.css" type="text/css"
     rel="stylesheet" />
-<basis core="call" lid="1" file="Client_Basis_Calendar.inc" />
+<basis core="call" file="Client_Basis_Calendar_EN.inc" />
 <basis core="group" name="oneway-flight" if="'[##cms.form.type##]' = '1'">
     <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
         <member method="cms" name="dep_city"
-            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch",  "functype": "0", "title": "[##cms.form.from##]", "status": "city", "lid": "1"}]}'
+            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch",  "functype": "0", "title": "[##cms.form.from##]", "status": "city", "lid": "3"}]}'
             preview="" />
     </basis>
     <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
         <member method="cms" name="des_city"
-            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch", "functype": "0", "title": "[##cms.form.to##]",   "status": "city", "lid": "1"}]}'
+            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch", "functype": "0", "title": "[##cms.form.to##]",   "status": "city", "lid": "3"}]}'
             preview="" />
     </basis>
     <basis core="group" name="Delay_1">
@@ -24,18 +24,18 @@
         </basis>
         <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
         <ul class="flight_type font_15 color_gray font-weight">
-            <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search.bc?lid=1';"
-                class="active cursor-pointer">یک طرفه
+            <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search_Ar.bc';"
+                class="active cursor-pointer">طريقة واحدة
 
             </li>
-            <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search.bc?lid=1';"
-                class="cursor-pointer">رفت و برگشت
+            <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search_Ar.bc';"
+                class="cursor-pointer">ذهابا وايابا
             </li>
 
             <div class="clr"></div>
         </ul>
         <div class="searched-items width_100 background-color_white">
-            <form method="get" action="/Tem3_Oneway_Search.bc?lid=1" class="form-research" id="flight-form">
+            <form method="get" action="/Tem3_Oneway_Search_Ar.bc" class="form-research" id="flight-form">
                 <input type="hidden" value="[##cms.form.selectage##]" name="select-age" class="select-age-value" />
                 <input type="hidden" class="child_count" value="[##cms.form.child##]" />
                 <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent"
@@ -55,92 +55,83 @@
                         <div class="countryFlight font_12 background-color_white"></div>
                         <div class="searchList font_12 p-absolute unvisible">
                             <ul>
-                                <li class="category-title"><span>مسیرهای
-                                        پرتردد</span></li>
+                                <li class="category-title"><span>طرق مزدحمة</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                        class="flaticon-map-marker"></i><span>تهران - Tehran
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>طهران - Tehran
+                                            - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1177676"><i
-                                        class="flaticon-map-marker"></i><span>استانبول -
-                                        Istanbul - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>اسطنبول -
+                                        Istanbul -
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1192689"><i
-                                        class="flaticon-map-marker"></i><span>ایروان -
-                                        Yerevan - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>يريفان -
+                                        Yerevan -
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211083"><i
                                         class="flaticon-map-marker"></i><span>مشهد - Mashhad
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211110"><i
                                         class="flaticon-map-marker"></i><span>کیش - Kish -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                     </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1173505"><i
-                                        class="flaticon-map-marker"></i><span>دبی - Dubai -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>دبي - Dubai -
+                                        جميع المطارات
+                                    </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1168092"><i
-                                        class="flaticon-map-marker"></i><span>آنتالیا -
-                                        Antalya - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أنطاليا -
+                                        Antalya -
+                                         جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1189731"><i
-                                        class="flaticon-map-marker"></i><span>تفلیس -
-                                        Tbilisi - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تبليسي -
+                                        Tbilisi -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211086"><i
                                         class="flaticon-map-marker"></i><span>شیراز - Shiraz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                        class="flaticon-map-marker"></i><span>اصفهان -
-                                        Isfahan - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أصفهان -
+                                        Isfahan -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1178542"><i
-                                        class="flaticon-map-marker"></i><span>کوالالامپور -
+                                        class="flaticon-map-marker"></i><span>كوالا لمبور -
                                         Kuala Lumpur
-                                        - همه فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196609"><i
-                                        class="flaticon-map-marker"></i><span>اهواز - Ahvaz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>الأهواز - Ahvaz
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211091"><i
                                         class="flaticon-map-marker"></i><span>کرمان - Kerman
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196620"><i
-                                        class="flaticon-map-marker"></i><span>کرمانشاه -
+                                        class="flaticon-map-marker"></i><span>كرمنشاه -
                                         Kermanshah -
-                                        همه فرودگاه ها</span></li>
+                                     جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1184034"><i
-                                        class="flaticon-map-marker"></i><span>پاریس - Paris
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>باريس - Paris
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196639"><i
                                         class="flaticon-map-marker"></i><span>قشم - Qeshm -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211085"><i
                                         class="flaticon-map-marker"></i><span>تبریز - Tabriz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196659"><i
-                                        class="flaticon-map-marker"></i><span>چابهار -
-                                        Chabahar - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تشابهار -
+                                        Chabahar -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211090"><i
                                         class="flaticon-map-marker"></i><span>یزد - Yazd -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                    </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196635"><i
                                         class="flaticon-map-marker"></i><span>بندرعباس -
                                         Bandar Abbas -
-                                        همه فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211104"><i
-                                        class="flaticon-map-marker"></i><span>رامسر - Ramsar
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>رامسار - Ramsar
+                                        - جميع المطارات</span></li>
                             </ul>
                         </div>
                         <i class="fas fa-exchange-alt exchange-icon p-absolute cursor-pointer"></i>
@@ -160,98 +151,90 @@
                         <div class="countryFlight font_12 background-color_white"></div>
                         <div class="searchList font_12 p-absolute unvisible">
                             <ul>
-                                <li class="category-title"><span>مسیرهای
+                                <li class="category-title"><span>طرق مزدحمة
                                         پرتردد</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                        class="flaticon-map-marker"></i><span>تهران - Tehran
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>طهران - Tehran
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1177676"><i
-                                        class="flaticon-map-marker"></i><span>استانبول -
-                                        Istanbul - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>اسطنبول -
+                                        Istanbul -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1192689"><i
-                                        class="flaticon-map-marker"></i><span>ایروان -
-                                        Yerevan - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>يريفان -
+                                        Yerevan -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211083"><i
                                         class="flaticon-map-marker"></i><span>مشهد - Mashhad
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211110"><i
                                         class="flaticon-map-marker"></i><span>کیش - Kish -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1173505"><i
-                                        class="flaticon-map-marker"></i><span>دبی - Dubai -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>دبي - Dubai -
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1168092"><i
-                                        class="flaticon-map-marker"></i><span>آنتالیا -
-                                        Antalya - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أنطاليا -
+                                        Antalya -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1189731"><i
-                                        class="flaticon-map-marker"></i><span>تفلیس -
-                                        Tbilisi - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تبليسي -
+                                        Tbilisi -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211086"><i
                                         class="flaticon-map-marker"></i><span>شیراز - Shiraz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                        class="flaticon-map-marker"></i><span>اصفهان -
-                                        Isfahan - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أصفهان -
+                                        Isfahan -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1178542"><i
-                                        class="flaticon-map-marker"></i><span>کوالالامپور -
+                                        class="flaticon-map-marker"></i><span>كوالا لمبور -
                                         Kuala Lumpur
-                                        - همه فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196609"><i
-                                        class="flaticon-map-marker"></i><span>اهواز - Ahvaz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>الأهواز - Ahvaz
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211091"><i
                                         class="flaticon-map-marker"></i><span>کرمان - Kerman
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196620"><i
-                                        class="flaticon-map-marker"></i><span>کرمانشاه -
+                                        class="flaticon-map-marker"></i><span>كرمنشاه -
                                         Kermanshah -
-                                        همه فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1184034"><i
-                                        class="flaticon-map-marker"></i><span>پاریس - Paris
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>باريس - Paris
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196639"><i
                                         class="flaticon-map-marker"></i><span>قشم - Qeshm -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211085"><i
                                         class="flaticon-map-marker"></i><span>تبریز - Tabriz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196659"><i
-                                        class="flaticon-map-marker"></i><span>چابهار -
-                                        Chabahar - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تشابهار -
+                                        Chabahar -
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211090"><i
                                         class="flaticon-map-marker"></i><span>یزد - Yazd -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                    </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196635"><i
                                         class="flaticon-map-marker"></i><span>بندرعباس -
                                         Bandar Abbas -
-                                        همه فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211104"><i
-                                        class="flaticon-map-marker"></i><span>رامسر - Ramsar
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>رامسار - Ramsar
+                                        - جميع المطارات</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="clr"></div>
                 </div>
-                <div class="searched-item width_30 float-right has-border Basis_Date_Box">
+                <div class="searched-item width_30 float-right has-border Basis_Date_Box ar_Basis_Date_Box">
                     <div class="inner width_50 float-right p-relative has-border_">
                         <input type="text" value="[##cms.form.fdate##]" name="fdate" class="Basis_Date start_date"
                             onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -271,31 +254,31 @@
                     <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
                         <span class="count-adult">
                             <span class="count">[##cms.form.adult##]</span>
-                            <span>بزرگسال</span>
+                            <span>بالغ</span>
                         </span>
                         <span class="count-child unvisible">
                             <span class="count split_num_1"></span>
-                            <span>کودک</span>
+                            <span>طفل</span>
                         </span>
                         <div class="clr"></div>
                     </div>
                     <div class="CountPassenger unvisible p-absolute font_11">
                         <div class="item-CountPassenger">
-                            <div class="first-part-CountPassenger width_50 float-right">کلاس پروازی</div>
+                            <div class="first-part-CountPassenger width_50 float-right">فئة الطيران</div>
                             <div class="second-part-CountPassenger p-relative  width_50 float-left">
                                 <select name="FlightClass" class="FlightClass">
                                     <option value="[##cms.form.FlightClass##]">
                                         [##cms.form.FlightClass##]</option>
-                                    <option value="Economy">Economy</option>
-                                    <option value="BusinessClass">Business</option>
-                                    <option value="FirstClass">First</option>
+                                    <option value="Economy">الإقتصادية</option>
+                                    <option value="BusinessClass">رجال الأعمال</option>
+                                    <option value="FirstClass">الأولی</option>
                                 </select>
                             </div>
                             <div class="clr"></div>
                         </div>
                         <div class="item-CountPassenger">
                             <div class="first-part-CountPassenger width_50 float-right">
-                                بزرگسال (+12)
+                                بالغ (+12)
                             </div>
                             <div class="second-part-CountPassenger width_50 float-left">
                                 <div class="passenger-button plus-minus"><span
@@ -308,7 +291,7 @@
                             <div class="clr"></div>
                         </div>
                         <div class="item-CountPassenger">
-                            <div class="first-part-CountPassenger width_50 float-right">کودک
+                            <div class="first-part-CountPassenger width_50 float-right">طفل
                                 (-12)</div>
                             <div class="second-part-CountPassenger width_50 float-left">
                                 <div class="passenger-button plus-minus-ch" data-type="0"><span
@@ -324,7 +307,7 @@
                             <div class="clr"></div>
                         </div>
                         <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                            onclick="confirm_search(this)">تایید</div>
+                            onclick="confirm_search(this)">تأكيد</div>
                     </div>
                     <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24">
@@ -336,26 +319,24 @@
                     </i>
                 </div>
                 <div class="searched-item width_20 float-right">
-                    <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                        مجدد</button>
+                    <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">ابحث مرة أخرى</button>
                 </div>
                 <div class="clr"></div>
             </form>
             <div class="clr"></div>
         </div>
-        <div class="warning font_12 unvisible"><span>تعداد نوزادان بیشتر از
-                تعداد بزرگسال است و یا تعداد مسافران بیش از حد مجاز است.</span></div>
+        <div class="warning font_12 unvisible"><span>عدد الأطفال أكبر من عدد البالغين أو عدد الركاب أكثر من المسموح به.</span></div>
     </basis>
 </basis>
 <basis core="group" name="roundtrip-flight" if="'[##cms.form.type##]' = '2'">
     <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
         <member method="cms" name="dep_city"
-            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch",  "functype": "0", "title": "[##cms.form.from##]", "status": "city", "lid": "1"}]}'
+            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch",  "functype": "0", "title": "[##cms.form.from##]", "status": "city", "lid": "3"}]}'
             preview="" />
     </basis>
     <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
         <member method="cms" name="des_city"
-            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch", "functype": "0", "title": "[##cms.form.to##]",   "status": "city", "lid": "1"}]}'
+            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch", "functype": "0", "title": "[##cms.form.to##]",   "status": "city", "lid": "3"}]}'
             preview="" />
     </basis>
     <basis core="group" name="Delay_1">
@@ -365,18 +346,18 @@
         </basis>
         <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
         <ul class="flight_type font_15 color_gray font-weight">
-            <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search.bc?lid=1';"
-                class="cursor-pointer">یک طرفه
+            <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search_Ar.bc';"
+                class="active cursor-pointer">طريقة واحدة
 
             </li>
-            <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search.bc?lid=1';"
-                class="active cursor-pointer">رفت و برگشت
+            <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search_Ar.bc';"
+                class="cursor-pointer">ذهابا وايابا
             </li>
 
             <div class="clr"></div>
         </ul>
         <div class="searched-items width_100 background-color_white">
-            <form method="get" action="/Tem3_Roundtrip_Search.bc?lid=1" class="form-research" id="flight-form">
+            <form method="get" action="/Tem3_Roundtrip_Search_Ar.bc" class="form-research" id="flight-form">
                 <input type="hidden" value="[##cms.form.selectage##]" name="select-age" class="select-age-value" />
                 <input type="hidden" class="child_count" value="[##cms.form.child##]" />
                 <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent"
@@ -396,92 +377,84 @@
                         <div class="countryFlight font_12 background-color_white"></div>
                         <div class="searchList font_12 p-absolute unvisible">
                             <ul>
-                                <li class="category-title"><span>مسیرهای
-                                        پرتردد</span></li>
+                                <li class="category-title"><span>طرق مزدحمة
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                        class="flaticon-map-marker"></i><span>تهران - Tehran
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>طهران - Tehran
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1177676"><i
-                                        class="flaticon-map-marker"></i><span>استانبول -
-                                        Istanbul - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>اسطنبول -
+                                        Istanbul -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1192689"><i
-                                        class="flaticon-map-marker"></i><span>ایروان -
-                                        Yerevan - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>يريفان -
+                                        Yerevan -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211083"><i
                                         class="flaticon-map-marker"></i><span>مشهد - Mashhad
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211110"><i
                                         class="flaticon-map-marker"></i><span>کیش - Kish -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1173505"><i
-                                        class="flaticon-map-marker"></i><span>دبی - Dubai -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>دبي - Dubai -
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1168092"><i
-                                        class="flaticon-map-marker"></i><span>آنتالیا -
-                                        Antalya - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أنطاليا -
+                                        Antalya -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1189731"><i
-                                        class="flaticon-map-marker"></i><span>تفلیس -
-                                        Tbilisi - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تبليسي -
+                                        Tbilisi -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211086"><i
                                         class="flaticon-map-marker"></i><span>شیراز - Shiraz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                        class="flaticon-map-marker"></i><span>اصفهان -
-                                        Isfahan - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أصفهان -
+                                        Isfahan -
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1178542"><i
-                                        class="flaticon-map-marker"></i><span>کوالالامپور -
+                                        class="flaticon-map-marker"></i><span>كوالا لمبور -
                                         Kuala Lumpur
-                                        - همه فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196609"><i
-                                        class="flaticon-map-marker"></i><span>اهواز - Ahvaz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>الأهواز - Ahvaz
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211091"><i
                                         class="flaticon-map-marker"></i><span>کرمان - Kerman
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196620"><i
-                                        class="flaticon-map-marker"></i><span>کرمانشاه -
+                                        class="flaticon-map-marker"></i><span>كرمنشاه -
                                         Kermanshah -
-                                        همه فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1184034"><i
-                                        class="flaticon-map-marker"></i><span>پاریس - Paris
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>باريس - Paris
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196639"><i
                                         class="flaticon-map-marker"></i><span>قشم - Qeshm -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211085"><i
                                         class="flaticon-map-marker"></i><span>تبریز - Tabriz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196659"><i
-                                        class="flaticon-map-marker"></i><span>چابهار -
-                                        Chabahar - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تشابهار -
+                                        Chabahar -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211090"><i
                                         class="flaticon-map-marker"></i><span>یزد - Yazd -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196635"><i
                                         class="flaticon-map-marker"></i><span>بندرعباس -
                                         Bandar Abbas -
-                                        همه فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211104"><i
-                                        class="flaticon-map-marker"></i><span>رامسر - Ramsar
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>رامسار - Ramsar
+                                        - جميع المطارات</span></li>
                             </ul>
                         </div>
                         <i class="fas fa-exchange-alt exchange-icon p-absolute cursor-pointer"></i>
@@ -501,98 +474,90 @@
                         <div class="countryFlight font_12 background-color_white"></div>
                         <div class="searchList font_12 p-absolute unvisible">
                             <ul>
-                                <li class="category-title"><span>مسیرهای
-                                        پرتردد</span></li>
+                                <li class="category-title"><span>طرق مزدحمة
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                        class="flaticon-map-marker"></i><span>تهران - Tehran
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>طهران - Tehran
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1177676"><i
-                                        class="flaticon-map-marker"></i><span>استانبول -
-                                        Istanbul - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>اسطنبول -
+                                        Istanbul -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1192689"><i
-                                        class="flaticon-map-marker"></i><span>ایروان -
-                                        Yerevan - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>يريفان -
+                                        Yerevan -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211083"><i
                                         class="flaticon-map-marker"></i><span>مشهد - Mashhad
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211110"><i
                                         class="flaticon-map-marker"></i><span>کیش - Kish -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1173505"><i
-                                        class="flaticon-map-marker"></i><span>دبی - Dubai -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>دبي - Dubai -
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1168092"><i
-                                        class="flaticon-map-marker"></i><span>آنتالیا -
-                                        Antalya - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أنطاليا -
+                                        Antalya -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1189731"><i
-                                        class="flaticon-map-marker"></i><span>تفلیس -
-                                        Tbilisi - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تبليسي -
+                                        Tbilisi -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211086"><i
                                         class="flaticon-map-marker"></i><span>شیراز - Shiraz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                        class="flaticon-map-marker"></i><span>اصفهان -
-                                        Isfahan - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أصفهان -
+                                        Isfahan -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1178542"><i
-                                        class="flaticon-map-marker"></i><span>کوالالامپور -
+                                        class="flaticon-map-marker"></i><span>كوالا لمبور -
                                         Kuala Lumpur
-                                        - همه فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196609"><i
-                                        class="flaticon-map-marker"></i><span>اهواز - Ahvaz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>الأهواز - Ahvaz
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211091"><i
                                         class="flaticon-map-marker"></i><span>کرمان - Kerman
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196620"><i
-                                        class="flaticon-map-marker"></i><span>کرمانشاه -
+                                        class="flaticon-map-marker"></i><span>كرمنشاه -
                                         Kermanshah -
-                                        همه فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1184034"><i
-                                        class="flaticon-map-marker"></i><span>پاریس - Paris
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>باريس - Paris
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196639"><i
                                         class="flaticon-map-marker"></i><span>قشم - Qeshm -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211085"><i
                                         class="flaticon-map-marker"></i><span>تبریز - Tabriz
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196659"><i
-                                        class="flaticon-map-marker"></i><span>چابهار -
-                                        Chabahar - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تشابهار -
+                                        Chabahar -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211090"><i
                                         class="flaticon-map-marker"></i><span>یزد - Yazd -
-                                        همه فرودگاه
-                                        ها</span></li>
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196635"><i
                                         class="flaticon-map-marker"></i><span>بندرعباس -
                                         Bandar Abbas -
-                                        همه فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211104"><i
-                                        class="flaticon-map-marker"></i><span>رامسر - Ramsar
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>رامسار - Ramsar
+                                        - جميع المطارات</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="clr"></div>
                 </div>
-                <div class="searched-item width_30 float-right has-border Basis_Date_Box">
+                <div class="searched-item width_30 float-right has-border Basis_Date_Box ar_Basis_Date_Box">
                     <div class="inner width_50 float-right p-relative has-border_">
                         <input type="text" value="[##cms.form.fdate##]" name="fdate" class="Basis_Date start_date"
                             onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -602,7 +567,7 @@
                     </div>
                     <div class="inner width_50 float-right p-relative">
                         <input type="text" value="[##cms.form.tdate##]" name="tdate"
-                            class="Basis_Date end_date sp-end end_date_filled"
+                            class="Basis_Date end_date end_date_filled"
                             onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
                             readonly="true" autocomplete="off" />
 
@@ -613,31 +578,31 @@
                     <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
                         <span class="count-adult">
                             <span class="count">[##cms.form.adult##]</span>
-                            <span>بزرگسال</span>
+                            <span>بالغ</span>
                         </span>
                         <span class="count-child unvisible">
                             <span class="count split_num_1"></span>
-                            <span>کودک</span>
+                            <span>طفل</span>
                         </span>
                         <div class="clr"></div>
                     </div>
                     <div class="CountPassenger unvisible p-absolute font_11">
                         <div class="item-CountPassenger">
-                            <div class="first-part-CountPassenger width_50 float-right">کلاس پروازی</div>
+                            <div class="first-part-CountPassenger width_50 float-right">فئة الطيران</div>
                             <div class="second-part-CountPassenger p-relative  width_50 float-left">
                                 <select name="FlightClass" class="FlightClass">
                                     <option value="[##cms.form.FlightClass##]">
                                         [##cms.form.FlightClass##]</option>
-                                    <option value="Economy">Economy</option>
-                                    <option value="BusinessClass">Business</option>
-                                    <option value="FirstClass">First</option>
+                                    <option value="Economy">الإقتصادية</option>
+                                    <option value="BusinessClass">رجال الأعمال</option>
+                                    <option value="FirstClass">الأولی</option>
                                 </select>
                             </div>
                             <div class="clr"></div>
                         </div>
                         <div class="item-CountPassenger">
                             <div class="first-part-CountPassenger width_50 float-right">
-                                بزرگسال (+12)
+                                بالغ (+12)
                             </div>
                             <div class="second-part-CountPassenger width_50 float-left">
                                 <div class="passenger-button plus-minus"><span
@@ -650,7 +615,7 @@
                             <div class="clr"></div>
                         </div>
                         <div class="item-CountPassenger">
-                            <div class="first-part-CountPassenger width_50 float-right">کودک
+                            <div class="first-part-CountPassenger width_50 float-right">طفل
                                 (-12)</div>
                             <div class="second-part-CountPassenger width_50 float-left">
                                 <div class="passenger-button plus-minus-ch" data-type="0"><span
@@ -666,7 +631,7 @@
                             <div class="clr"></div>
                         </div>
                         <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                            onclick="confirm_search(this)">تایید</div>
+                            onclick="confirm_search(this)">تأكيد</div>
                     </div>
                     <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24">
@@ -678,15 +643,14 @@
                     </i>
                 </div>
                 <div class="searched-item width_20 float-right">
-                    <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                        مجدد</button>
+                    <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">
+                        ابحث مرة أخرى</button>
                 </div>
                 <div class="clr"></div>
             </form>
             <div class="clr"></div>
         </div>
-        <div class="warning font_12 unvisible"><span>تعداد نوزادان بیشتر از
-                تعداد بزرگسال است و یا تعداد مسافران بیش از حد مجاز است.</span></div>
+        <div class="warning font_12 unvisible"><span>عدد الأطفال أكبر من عدد البالغين أو عدد الركاب أكثر من المسموح به.</span></div>
     </basis>
 </basis>
 <basis core="group" name="multi-flight" if="'[##cms.form.type##]' = '7'">
@@ -697,17 +661,17 @@
     </basis>
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <ul class="flight_type font_15 color_gray font-weight">
-        <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search.bc?lid=1';"
-            class="cursor-pointer">رفت و برگشت
+        <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search_Ar.bc';"
+            class="cursor-pointer">ذهابا وايابا
         </li>
-        <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search.bc?lid=1';"
-            class="cursor-pointer">یک طرفه
+        <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search_Ar.bc';"
+            class="cursor-pointer">طريقة واحدة
         </li>
-        <li id="multiflight" class="active cursor-pointer">چند مسیره </li>
+        <li id="multiflight" class="active cursor-pointer">متعدد المسارات</li>
         <div class="clr"></div>
     </ul>
     <div class="searched-items width_100 background-color_white unvisible" id="flight-searched-items">
-        <form method="get" action="/Tem3_Roundtrip_Search.bc?lid=1" class="form-research" id="flight-form">
+        <form method="get" action="/Tem3_Roundtrip_Search_Ar.bc" class="form-research" id="flight-form">
             <input type="hidden" value="[##cms.form.select-age##]" name="select-age" class="select-age-value" />
             <input type="hidden" class="child_count" value="[##cms.form.child##]" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
@@ -720,92 +684,84 @@
                     <div class="countryFlight font_12 background-color_white"></div>
                     <div class="searchList font_12 p-absolute unvisible">
                         <ul>
-                            <li class="category-title"><span>مسیرهای
-                                    پرتردد</span></li>
+                            <li class="category-title"><span>طرق مزدحمة
+                                    </span></li>
                             <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                    class="flaticon-map-marker"></i><span>تهران - Tehran
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>طهران - Tehran
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1177676"><i
-                                    class="flaticon-map-marker"></i><span>استانبول -
-                                    Istanbul - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>اسطنبول -
+                                    Istanbul -
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1192689"><i
-                                    class="flaticon-map-marker"></i><span>ایروان -
-                                    Yerevan - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>يريفان -
+                                    Yerevan -
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211083"><i
                                     class="flaticon-map-marker"></i><span>مشهد - Mashhad
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211110"><i
                                     class="flaticon-map-marker"></i><span>کیش - Kish -
-                                    همه فرودگاه
-                                    ها</span></li>
+                                    جميع المطارات
+                                    </span></li>
                             <li onclick="SelectPlace(this)" data-id="1173505"><i
-                                    class="flaticon-map-marker"></i><span>دبی - Dubai -
-                                    همه فرودگاه
-                                    ها</span></li>
+                                    class="flaticon-map-marker"></i><span>دبي - Dubai -
+                                    جميع المطارات
+                                    </span></li>
                             <li onclick="SelectPlace(this)" data-id="1168092"><i
-                                    class="flaticon-map-marker"></i><span>آنتالیا -
-                                    Antalya - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>أنطاليا -
+                                    Antalya -
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1189731"><i
-                                    class="flaticon-map-marker"></i><span>تفلیس -
-                                    Tbilisi - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>تبليسي -
+                                    Tbilisi -
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211086"><i
                                     class="flaticon-map-marker"></i><span>شیراز - Shiraz
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                    class="flaticon-map-marker"></i><span>اصفهان -
-                                    Isfahan - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>أصفهان -
+                                    Isfahan -
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1178542"><i
-                                    class="flaticon-map-marker"></i><span>کوالالامپور -
+                                    class="flaticon-map-marker"></i><span>كوالا لمبور -
                                     Kuala Lumpur
-                                    - همه فرودگاه ها</span></li>
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1196609"><i
-                                    class="flaticon-map-marker"></i><span>اهواز - Ahvaz
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>الأهواز - Ahvaz
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211091"><i
                                     class="flaticon-map-marker"></i><span>کرمان - Kerman
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1196620"><i
-                                    class="flaticon-map-marker"></i><span>کرمانشاه -
+                                    class="flaticon-map-marker"></i><span>كرمنشاه -
                                     Kermanshah -
-                                    همه فرودگاه ها</span></li>
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1184034"><i
-                                    class="flaticon-map-marker"></i><span>پاریس - Paris
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>باريس - Paris
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1196639"><i
                                     class="flaticon-map-marker"></i><span>قشم - Qeshm -
-                                    همه فرودگاه
-                                    ها</span></li>
+                                    جميع المطارات
+                                    </span></li>
                             <li onclick="SelectPlace(this)" data-id="1211085"><i
                                     class="flaticon-map-marker"></i><span>تبریز - Tabriz
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1196659"><i
-                                    class="flaticon-map-marker"></i><span>چابهار -
-                                    Chabahar - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>تشابهار -
+                                    Chabahar -
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211090"><i
                                     class="flaticon-map-marker"></i><span>یزد - Yazd -
-                                    همه فرودگاه
-                                    ها</span></li>
+                                    جميع المطارات
+                                    </span></li>
                             <li onclick="SelectPlace(this)" data-id="1196635"><i
                                     class="flaticon-map-marker"></i><span>بندرعباس -
                                     Bandar Abbas -
-                                    همه فرودگاه ها</span></li>
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211104"><i
-                                    class="flaticon-map-marker"></i><span>رامسر - Ramsar
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>رامسار - Ramsar
+                                    - جميع المطارات</span></li>
                         </ul>
                     </div>
                     <i class="fas fa-exchange-alt exchange-icon p-absolute cursor-pointer"></i>
@@ -818,98 +774,90 @@
                     <div class="countryFlight font_12 background-color_white"></div>
                     <div class="searchList font_12 p-absolute unvisible">
                         <ul>
-                            <li class="category-title"><span>مسیرهای
-                                    پرتردد</span></li>
+                            <li class="category-title"><span>طرق مزدحمة
+                                    </span></li>
                             <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                    class="flaticon-map-marker"></i><span>تهران - Tehran
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>طهران - Tehran
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1177676"><i
-                                    class="flaticon-map-marker"></i><span>استانبول -
-                                    Istanbul - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>اسطنبول -
+                                    Istanbul -
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1192689"><i
-                                    class="flaticon-map-marker"></i><span>ایروان -
-                                    Yerevan - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>يريفان -
+                                    Yerevan -
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211083"><i
                                     class="flaticon-map-marker"></i><span>مشهد - Mashhad
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211110"><i
                                     class="flaticon-map-marker"></i><span>کیش - Kish -
-                                    همه فرودگاه
-                                    ها</span></li>
+                                    جميع المطارات
+                                    </span></li>
                             <li onclick="SelectPlace(this)" data-id="1173505"><i
-                                    class="flaticon-map-marker"></i><span>دبی - Dubai -
-                                    همه فرودگاه
-                                    ها</span></li>
+                                    class="flaticon-map-marker"></i><span>دبي - Dubai -
+                                    جميع المطارات
+                                </span></li>
                             <li onclick="SelectPlace(this)" data-id="1168092"><i
-                                    class="flaticon-map-marker"></i><span>آنتالیا -
-                                    Antalya - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>أنطاليا -
+                                    Antalya -
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1189731"><i
-                                    class="flaticon-map-marker"></i><span>تفلیس -
-                                    Tbilisi - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>تبليسي -
+                                    Tbilisi -
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211086"><i
                                     class="flaticon-map-marker"></i><span>شیراز - Shiraz
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                    class="flaticon-map-marker"></i><span>اصفهان -
-                                    Isfahan - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>أصفهان -
+                                    Isfahan -
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1178542"><i
-                                    class="flaticon-map-marker"></i><span>کوالالامپور -
+                                    class="flaticon-map-marker"></i><span>كوالا لمبور -
                                     Kuala Lumpur
-                                    - همه فرودگاه ها</span></li>
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1196609"><i
-                                    class="flaticon-map-marker"></i><span>اهواز - Ahvaz
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>الأهواز - Ahvaz
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211091"><i
                                     class="flaticon-map-marker"></i><span>کرمان - Kerman
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1196620"><i
-                                    class="flaticon-map-marker"></i><span>کرمانشاه -
+                                    class="flaticon-map-marker"></i><span>كرمنشاه -
                                     Kermanshah -
-                                    همه فرودگاه ها</span></li>
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1184034"><i
-                                    class="flaticon-map-marker"></i><span>پاریس - Paris
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>باريس - Paris
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1196639"><i
                                     class="flaticon-map-marker"></i><span>قشم - Qeshm -
-                                    همه فرودگاه
-                                    ها</span></li>
+                                    جميع المطارات
+                                    </span></li>
                             <li onclick="SelectPlace(this)" data-id="1211085"><i
                                     class="flaticon-map-marker"></i><span>تبریز - Tabriz
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    - جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1196659"><i
-                                    class="flaticon-map-marker"></i><span>چابهار -
-                                    Chabahar - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>تشابهار -
+                                    Chabahar -
+                                   جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211090"><i
                                     class="flaticon-map-marker"></i><span>یزد - Yazd -
-                                    همه فرودگاه
-                                    ها</span></li>
+                                    جميع المطارات
+                                    </span></li>
                             <li onclick="SelectPlace(this)" data-id="1196635"><i
                                     class="flaticon-map-marker"></i><span>بندرعباس -
                                     Bandar Abbas -
-                                    همه فرودگاه ها</span></li>
+                                    جميع المطارات</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211104"><i
-                                    class="flaticon-map-marker"></i><span>رامسر - Ramsar
-                                    - همه
-                                    فرودگاه ها</span></li>
+                                    class="flaticon-map-marker"></i><span>رامسار - Ramsar
+                                    - جميع المطارات</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="clr"></div>
             </div>
-            <div class="searched-item width_30 float-right has-border Basis_Date_Box">
+            <div class="searched-item width_30 float-right has-border Basis_Date_Box ar_Basis_Date_Box">
                 <div class="inner width_50 float-right p-relative has-border_">
                     <input type="text" value="" name="fdate" class="Basis_Date start_date"
                         onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -927,33 +875,32 @@
                 <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
                     <span class="count-adult">
                         <span class="count">[##cms.form.adult##]</span>
-                        <span>بزرگسال</span>
+                        <span>بالغ</span>
                     </span>
                     <span class="count-child unvisible">
                         <span class="count split_num_1"></span>
-                        <span>کودک</span>
+                        <span>طفل</span>
                     </span>
                     <div class="clr"></div>
                 </div>
                 <div class="CountPassenger unvisible p-absolute font_11">
                     <div class="item-CountPassenger">
-                        <div class="first-part-CountPassenger width_50 float-right">کلاس
-                            پروازی
+                        <div class="first-part-CountPassenger width_50 float-right">فئة الطيران
                         </div>
                         <div class="second-part-CountPassenger p-relative width_50 float-left">
                             <select name="FlightClass" class="FlightClass">
                                 <option value="[##cms.form.FlightClass##]">
                                     [##cms.form.FlightClass##]</option>
-                                <option value="Economy">Economy</option>
-                                <option value="BusinessClass">Business</option>
-                                <option value="FirstClass">First</option>
+                                <option value="Economy">الإقتصادية</option>
+                                <option value="BusinessClass">رجال الأعمال</option>
+                                <option value="FirstClass">الأولی</option>
                             </select>
                         </div>
                         <div class="clr"></div>
                     </div>
                     <div class="item-CountPassenger">
                         <div class="first-part-CountPassenger width_50 float-right">
-                            بزرگسال (+12)
+                            بالغ (+12)
                         </div>
                         <div class="second-part-CountPassenger width_50 float-left">
                             <div class="passenger-button plus-minus"><span class="background-color_2  plus-btn">+</span>
@@ -967,7 +914,7 @@
                         <div class="clr"></div>
                     </div>
                     <div class="item-CountPassenger">
-                        <div class="first-part-CountPassenger width_50 float-right">کودک
+                        <div class="first-part-CountPassenger width_50 float-right">طفل
                             (-12)</div>
                         <div class="second-part-CountPassenger width_50 float-left">
                             <div class="passenger-button plus-minus-ch" data-type="0"><span
@@ -985,7 +932,7 @@
                         <div class="clr"></div>
                     </div>
                     <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                        onclick="confirm_search(this)">تایید</div>
+                        onclick="confirm_search(this)">تأكيد</div>
                 </div>
                 <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24">
@@ -997,15 +944,15 @@
                 </i>
             </div>
             <div class="searched-item width_20 float-right">
-                <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                    مجدد</button>
+                <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">
+                    ابحث مرة أخرى</button>
             </div>
             <div class="clr"></div>
         </form>
         <div class="clr"></div>
     </div>
     <div class="searched-items width_100 multicity-research">
-        <form method="post" action="/Tem3_Multicity_Search.bc?lid=1" class="form-research" id="multi-flight-form">
+        <form method="post" action="/Tem3_Multicity_Search_Ar.bc" class="form-research" id="multi-flight-form">
             <input type="hidden" value="[##cms.form.select-age##]" name="select-age" class="select-age-value" />
             <input type="hidden" class="child_count" value="[##cms.form.child##]" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
@@ -1036,125 +983,117 @@
                                 <div class="countryFlight font_12 background-color_white"></div>
                                 <div class="searchList font_12 p-absolute unvisible">
                                     <ul>
-                                        <li class="category-title"><span>مسیرهای
+                                        <li class="category-title"><span>طرق مزدحمة
                                                 پرتردد</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                                class="flaticon-map-marker"></i><span>تهران
+                                                class="flaticon-map-marker"></i><span>طهران
                                                 -
                                                 Tehran
-                                                - همه
-                                                فرودگاه ها</span></li>
+                                                - جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1177676"><i
-                                                class="flaticon-map-marker"></i><span>استانبول
+                                                class="flaticon-map-marker"></i><span>اسطنبول
                                                 -
-                                                Istanbul - همه
-                                                فرودگاه ها</span></li>
+                                                Istanbul -
+                                                جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1192689"><i
-                                                class="flaticon-map-marker"></i><span>ایروان
+                                                class="flaticon-map-marker"></i><span>يريفان
                                                 -
-                                                Yerevan - همه
-                                                فرودگاه ها</span></li>
+                                                Yerevan -
+                                                جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1211083"><i
                                                 class="flaticon-map-marker"></i><span>مشهد
                                                 -
                                                 Mashhad
-                                                - همه
-                                                فرودگاه ها</span></li>
+                                                - جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1211110"><i
                                                 class="flaticon-map-marker"></i><span>کیش
                                                 - Kish
-                                                -
-                                                همه فرودگاه
+                                                جميع المطارات
                                                 ها</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1173505"><i
-                                                class="flaticon-map-marker"></i><span>دبی
+                                                class="flaticon-map-marker"></i><span>دبي
                                                 -
                                                 Dubai -
-                                                همه فرودگاه
-                                                ها</span></li>
+                                                جميع المطارات
+                                                </span></li>
                                         <li onclick="SelectPlace(this)" data-id="1168092"><i
-                                                class="flaticon-map-marker"></i><span>آنتالیا
+                                                class="flaticon-map-marker"></i><span>أنطاليا
                                                 -
-                                                Antalya - همه
-                                                فرودگاه ها</span></li>
+                                                Antalya -
+                                               جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1189731"><i
-                                                class="flaticon-map-marker"></i><span>تفلیس
+                                                class="flaticon-map-marker"></i><span>تبليسي
                                                 -
-                                                Tbilisi - همه
-                                                فرودگاه ها</span></li>
+                                                Tbilisi -
+                                               جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1211086"><i
                                                 class="flaticon-map-marker"></i><span>شیراز
                                                 -
                                                 Shiraz
-                                                - همه
-                                                فرودگاه ها</span></li>
+                                                - جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                                class="flaticon-map-marker"></i><span>اصفهان
+                                                class="flaticon-map-marker"></i><span>أصفهان
                                                 -
-                                                Isfahan - همه
-                                                فرودگاه ها</span></li>
+                                                Isfahan -
+                                                - جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1178542"><i
-                                                class="flaticon-map-marker"></i><span>کوالالامپور
+                                                class="flaticon-map-marker"></i><span>كوالا لمبور
                                                 -
                                                 Kuala Lumpur
-                                                - همه فرودگاه ها</span></li>
+                                                - جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1196609"><i
-                                                class="flaticon-map-marker"></i><span>اهواز
+                                                class="flaticon-map-marker"></i><span>الأهواز
                                                 -
                                                 Ahvaz
-                                                - همه
-                                                فرودگاه ها</span></li>
+                                                - جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1211091"><i
                                                 class="flaticon-map-marker"></i><span>کرمان
                                                 -
                                                 Kerman
-                                                - همه
-                                                فرودگاه ها</span></li>
+                                                - جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1196620"><i
-                                                class="flaticon-map-marker"></i><span>کرمانشاه
+                                                class="flaticon-map-marker"></i><span>كرمنشاه
                                                 -
                                                 Kermanshah -
-                                                همه فرودگاه ها</span></li>
+                                                جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1184034"><i
-                                                class="flaticon-map-marker"></i><span>پاریس
+                                                class="flaticon-map-marker"></i><span>باريس
                                                 -
                                                 Paris
-                                                - همه
-                                                فرودگاه ها</span></li>
+                                                -
+                                               جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1196639"><i
                                                 class="flaticon-map-marker"></i><span>قشم
                                                 -
                                                 Qeshm -
-                                                همه فرودگاه
-                                                ها</span></li>
+                                                جميع المطارات
+                                                </span></li>
                                         <li onclick="SelectPlace(this)" data-id="1211085"><i
                                                 class="flaticon-map-marker"></i><span>تبریز
                                                 -
                                                 Tabriz
-                                                - همه
-                                                فرودگاه ها</span></li>
+                                                - جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1196659"><i
-                                                class="flaticon-map-marker"></i><span>چابهار
+                                                class="flaticon-map-marker"></i><span>تشابهار
                                                 -
-                                                Chabahar - همه
-                                                فرودگاه ها</span></li>
+                                                Chabahar -
+                                                - جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1211090"><i
                                                 class="flaticon-map-marker"></i><span>یزد
                                                 - Yazd
                                                 -
-                                                همه فرودگاه
-                                                ها</span></li>
+                                                جميع المطارات
+                                                </span></li>
                                         <li onclick="SelectPlace(this)" data-id="1196635"><i
                                                 class="flaticon-map-marker"></i><span>بندرعباس
                                                 -
                                                 Bandar Abbas -
-                                                همه فرودگاه ها</span></li>
+                                                جميع المطارات</span></li>
                                         <li onclick="SelectPlace(this)" data-id="1211104"><i
-                                                class="flaticon-map-marker"></i><span>رامسر
+                                                class="flaticon-map-marker"></i><span>رامسار
                                                 -
                                                 Ramsar
-                                                - همه
-                                                فرودگاه ها</span></li>
+                                                - جميع المطارات</span></li>
                                     </ul>
                                 </div>
                                 <i class="fas fa-exchange-alt exchange-icon p-absolute cursor-pointer"></i>
@@ -1173,99 +1112,95 @@
             <div class="countryFlight font_12 background-color_white"></div>
             <div class="searchList font_12 p-absolute unvisible">
                 <ul>
-                    <li class="category-title"><span>مسیرهای
-                            پرتردد</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1203548"><i class="flaticon-map-marker"></i><span>تهران
+                    <li class="category-title"><span>طرق مزدحمة
+                            </span></li>
+                    <li onclick="SelectPlace(this)" data-id="1203548"><i class="flaticon-map-marker"></i><span>طهران
                             -
                             Tehran
-                            - همه
-                            فرودگاه ها</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1177676"><i class="flaticon-map-marker"></i><span>استانبول
+                            - جميع المطارات</span></li>
+                    <li onclick="SelectPlace(this)" data-id="1177676"><i class="flaticon-map-marker"></i><span>اسطنبول
                             -
-                            Istanbul - همه
-                            فرودگاه ها</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1192689"><i class="flaticon-map-marker"></i><span>ایروان -
-                            Yerevan - همه
-                            فرودگاه ها</span></li>
+                            Istanbul -
+                           جميع المطارات</span></li>
+                    <li onclick="SelectPlace(this)" data-id="1192689"><i class="flaticon-map-marker"></i><span>يريفان -
+                            Yerevan -
+                           جميع المطارات</span></li>
                     <li onclick="SelectPlace(this)" data-id="1211083"><i class="flaticon-map-marker"></i><span>مشهد
                             -
                             Mashhad
-                            - همه
-                            فرودگاه ها</span></li>
+                            -
+                            - جميع المطارات</span></li>
                     <li onclick="SelectPlace(this)" data-id="1211110"><i class="flaticon-map-marker"></i><span>کیش -
                             Kish
                             -
-                            همه فرودگاه
-                            ها</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1173505"><i class="flaticon-map-marker"></i><span>دبی -
+                            جميع المطارات
+                            </span></li>
+                    <li onclick="SelectPlace(this)" data-id="1173505"><i class="flaticon-map-marker"></i><span>دبي -
                             Dubai -
-                            همه فرودگاه
-                            ها</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1168092"><i class="flaticon-map-marker"></i><span>آنتالیا -
-                            Antalya - همه
-                            فرودگاه ها</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1189731"><i class="flaticon-map-marker"></i><span>تفلیس
+                            جميع المطارات
+                            </span></li>
+                    <li onclick="SelectPlace(this)" data-id="1168092"><i class="flaticon-map-marker"></i><span>أنطاليا -
+                            Antalya -
+                            - جميع المطارات</span></li>
+                    <li onclick="SelectPlace(this)" data-id="1189731"><i class="flaticon-map-marker"></i><span>تبليسي
                             -
-                            Tbilisi - همه
-                            فرودگاه ها</span></li>
+                            Tbilisi -
+                            جميع المطارات</span></li>
                     <li onclick="SelectPlace(this)" data-id="1211086"><i class="flaticon-map-marker"></i><span>شیراز
                             -
                             Shiraz
-                            - همه
-                            فرودگاه ها</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1211084"><i class="flaticon-map-marker"></i><span>اصفهان -
-                            Isfahan - همه
-                            فرودگاه ها</span></li>
+                            -
+                            جميع المطارات</span></li>
+                    <li onclick="SelectPlace(this)" data-id="1211084"><i class="flaticon-map-marker"></i><span>أصفهان -
+                            Isfahan -
+                            جميع المطارات</span></li>
                     <li onclick="SelectPlace(this)" data-id="1178542"><i
-                            class="flaticon-map-marker"></i><span>کوالالامپور
+                            class="flaticon-map-marker"></i><span>كوالا لمبور
                             -
                             Kuala Lumpur
-                            - همه فرودگاه ها</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1196609"><i class="flaticon-map-marker"></i><span>اهواز
+                            - جميع المطارات</span></li>
+                    <li onclick="SelectPlace(this)" data-id="1196609"><i class="flaticon-map-marker"></i><span>الأهواز
                             -
                             Ahvaz
-                            - همه
-                            فرودگاه ها</span></li>
+                            - جميع المطارات</span></li>
                     <li onclick="SelectPlace(this)" data-id="1211091"><i class="flaticon-map-marker"></i><span>کرمان
                             -
                             Kerman
-                            - همه
-                            فرودگاه ها</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1196620"><i class="flaticon-map-marker"></i><span>کرمانشاه
+                            - جميع المطارات</span></li>
+                    <li onclick="SelectPlace(this)" data-id="1196620"><i class="flaticon-map-marker"></i><span>كرمنشاه
                             -
                             Kermanshah -
-                            همه فرودگاه ها</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1184034"><i class="flaticon-map-marker"></i><span>پاریس
+                            جميع المطارات</span></li>
+                    <li onclick="SelectPlace(this)" data-id="1184034"><i class="flaticon-map-marker"></i><span>باريس
                             -
                             Paris
-                            - همه
-                            فرودگاه ها</span></li>
+                            -
+                            جميع المطارات</span></li>
                     <li onclick="SelectPlace(this)" data-id="1196639"><i class="flaticon-map-marker"></i><span>قشم -
                             Qeshm -
-                            همه فرودگاه
-                            ها</span></li>
+                            جميع المطارات
+                            </span></li>
                     <li onclick="SelectPlace(this)" data-id="1211085"><i class="flaticon-map-marker"></i><span>تبریز
                             -
                             Tabriz
-                            - همه
-                            فرودگاه ها</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1196659"><i class="flaticon-map-marker"></i><span>چابهار -
-                            Chabahar - همه
-                            فرودگاه ها</span></li>
+                            - جميع المطارات</span></li>
+                    <li onclick="SelectPlace(this)" data-id="1196659"><i class="flaticon-map-marker"></i><span>تشابهار -
+                            Chabahar -
+                            جميع المطارات</span></li>
                     <li onclick="SelectPlace(this)" data-id="1211090"><i class="flaticon-map-marker"></i><span>یزد -
                             Yazd
                             -
-                            همه فرودگاه
-                            ها</span></li>
+                            جميع المطارات
+                            </span></li>
                     <li onclick="SelectPlace(this)" data-id="1196635"><i class="flaticon-map-marker"></i><span>بندرعباس
                             -
                             Bandar Abbas -
-                            همه فرودگاه ها</span></li>
-                    <li onclick="SelectPlace(this)" data-id="1211104"><i class="flaticon-map-marker"></i><span>رامسر
+                            جميع المطارات</span></li>
+                    <li onclick="SelectPlace(this)" data-id="1211104"><i class="flaticon-map-marker"></i><span>رامسار
                             -
                             Ramsar
-                            - همه
-                            فرودگاه ها</span></li>
+                            -
+                           جميع المطارات</span></li>
                 </ul>
             </div>
 
@@ -1277,7 +1212,7 @@
         </div>
     </face>
     <face filter="Field in ('departuredate')">
-        <div class="searched-item width_50 float-right Basis_Date_Box">
+        <div class="searched-item width_50 float-right Basis_Date_Box ar_Basis_Date_Box">
             <div class="inner width_100 float-right p-relative">
                 <input type="text" value="@value" name="fdate" class="Basis_Date start_date"
                     onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -1300,34 +1235,33 @@
         <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
             <span class="count-adult">
                 <span class="count">[##cms.form.adult##]</span>
-                <span>بزرگسال</span>
+                <span>بالغ</span>
             </span>
             <span class="count-child unvisible">
                 <span class="count split_num_1"></span>
-                <span>کودک</span>
+                <span>طفل</span>
             </span>
             <div class="clr"></div>
         </div>
         <div class="CountPassenger unvisible p-absolute font_11">
             <div class="item-CountPassenger">
                 <div class="first-part-CountPassenger width_50 float-right">
-                    کلاس
-                    پروازی
+                    فئة الطيران
                 </div>
                 <div class="second-part-CountPassenger p-relative width_50 float-left">
                     <select name="FlightClass" class="FlightClass">
                         <option value="[##cms.form.FlightClass##]">
                             [##cms.form.FlightClass##]</option>
-                        <option value="Economy">Economy</option>
-                        <option value="BusinessClass">Business</option>
-                        <option value="FirstClass">First</option>
+                        <option value="Economy">الإقتصادية</option>
+                        <option value="BusinessClass">رجال الأعمال</option>
+                        <option value="FirstClass">الأولی</option>
                     </select>
                 </div>
                 <div class="clr"></div>
             </div>
             <div class="item-CountPassenger">
                 <div class="first-part-CountPassenger width_50 float-right">
-                    بزرگسال (+12)
+                    بالغ (+12)
                 </div>
                 <div class="second-part-CountPassenger width_50 float-left">
                     <div class="passenger-button plus-minus"><span class="background-color_2  plus-btn">+</span></div>
@@ -1341,7 +1275,7 @@
             </div>
             <div class="item-CountPassenger">
                 <div class="first-part-CountPassenger width_50 float-right">
-                    کودک
+                    طفل
                     (-12)</div>
                 <div class="second-part-CountPassenger width_50 float-left">
                     <div class="passenger-button plus-minus-ch" data-type="0"><span
@@ -1359,7 +1293,7 @@
                 <div class="clr"></div>
             </div>
             <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                onclick="confirm_search(this)">تایید</div>
+                onclick="confirm_search(this)">تأكيد</div>
         </div>
         <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24">
@@ -1371,14 +1305,14 @@
         </i>
     </div>
     <div class="searched-item width_50 float-right">
-        <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-            مجدد</button>
+        <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">
+            ابحث مرة أخرى</button>
     </div>
     <div class="clr"></div>
 </div>
 <div class="width_50 float-right">
     <button class="route-plus-btn font_13 cursor-pointer color_white background-color_2" type="button"
-        onclick="addMulticityRoute(this)">افزودن مقصد</button>
+        onclick="addMulticityRoute(this)">أضف الوجهة</button>
 </div>
 
 <div class="clr"></div>
@@ -1386,15 +1320,14 @@
 <div class="clr"></div>
 </div>
 
-<div class="warning font_12 unvisible"><span>تعداد نوزادان بیشتر از
-        تعداد بزرگسال است و یا تعداد مسافران بیش از حد مجاز است.</span></div>
+<div class="warning font_12 unvisible"><span>عدد الأطفال أكبر من عدد البالغين أو عدد الركاب أكثر من المسموح به.</span></div>
 
 </div>
 </basis>
 <basis core="group" name="hotel" if="'[##cms.form.type##]' = '3'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <div class="searched-items width_100 background-color_white">
-        <form method="post" action="/Tem3_Hotel_Search.bc?lid=1" class="form-research has-room" id="hotel-form">
+        <form method="post" action="/Tem3_Hotel_Search_Ar.bc" class="form-research has-room" id="hotel-form">
             <input type="hidden" value='[##cms.form.roomSearch##]' class="json" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
             <div class="searched-item width_30 float-right has-border">
@@ -1406,10 +1339,9 @@
                     <div class="countryFlight font_12 background-color_white"></div>
                     <div class="searchList font_12 p-absolute unvisible">
                         <ul>
-                            <li class="category-title"><span>شهرهای پر
-                                    تردد</span></li>
+                            <li class="category-title"><span>مدن مزدحمة</span></li>
                             <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                    class="flaticon-map-marker"></i><span>تهران
+                                    class="flaticon-map-marker"></i><span>طهران
                                     -
                                     Tehran</span>
                             </li>
@@ -1417,29 +1349,25 @@
                                     class="flaticon-map-marker"></i><span>کیش -
                                     Kish </span>
                             </li>
-                            <li onclick="SelectPlace(this)" data-id="1211083"><i
-                                class="flaticon-map-marker"></i><span>مشهد
-                                -
-                                Mashhad</span>
-                            </li>
-                            <li onclick="SelectPlace(this)" data-id="1190996"><i
-                                class="flaticon-map-marker"></i><span>وان -
-                                Van</span>
-                            </li>
                             <li onclick="SelectPlace(this)" data-id="1177676"><i
-                                    class="flaticon-map-marker"></i><span>استانبول -
+                                    class="flaticon-map-marker"></i><span>اسطنبول -
                                     Istanbul</span>
                             </li>
+                            <li onclick="SelectPlace(this)" data-id="1211083"><i
+                                    class="flaticon-map-marker"></i><span>مشهد
+                                    -
+                                    Mashhad</span>
+                            </li>
                             <li onclick="SelectPlace(this)" data-id="1173505"><i
-                                    class="flaticon-map-marker"></i><span>دبی -
+                                    class="flaticon-map-marker"></i><span>دبي -
                                     Dubai</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1168092"><i
-                                    class="flaticon-map-marker"></i><span>آنتالیا -
+                                    class="flaticon-map-marker"></i><span>أنطاليا -
                                     Antalya</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1189731"><i
-                                    class="flaticon-map-marker"></i><span>تفلیس
+                                    class="flaticon-map-marker"></i><span>تبليسي
                                     - Tbilisi
                                 </span>
                             </li>
@@ -1449,11 +1377,11 @@
                                     Shiraz</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                    class="flaticon-map-marker"></i><span>اصفهان -
+                                    class="flaticon-map-marker"></i><span>أصفهان -
                                     Isfahan</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1182348"><i
-                                    class="flaticon-map-marker"></i><span>مسکو
+                                    class="flaticon-map-marker"></i><span>موسكو
                                     -
                                     Moscow</span>
                             </li>
@@ -1471,7 +1399,7 @@
                 </div>
                 <div class="clr"></div>
             </div>
-            <div class="searched-item width_30 float-right has-border Basis_Date_Box">
+            <div class="searched-item width_30 float-right has-border Basis_Date_Box ar_Basis_Date_Box">
                 <div class="inner width_50 float-right p-relative has-border_">
                     <input type="text" value="[##cms.form.fdate##]" name="fdate" class="Basis_Date start_date"
                         onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -1495,27 +1423,27 @@
                 <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
                     <span class="count-room">
                         <span class="count">1</span>
-                        <span>اتاق</span>
+                        <span>الغرفة</span>
                     </span>
                     <span class="count-adult">
                         <span class="count">1</span>
-                        <span>بزرگسال</span>
+                        <span>بالغ</span>
                     </span>
                     <span class="count-child unvisible">
                         <span class="count split_num_1"></span>
-                        <span>کودک</span>
+                        <span>طفل</span>
                     </span>
                     <div class="clr"></div>
                 </div>
                 <div class="CountPassenger room unvisible p-absolute font_11">
-                    <div class="add-room" onclick="AddRoom(this)">اضافه کردن اتاق
+                    <div class="add-room" onclick="AddRoom(this)">أضف غرفة
                     </div>
                     <div class="ShowRow">
                         <div class="contentRoom">
-                            <div class="RoomRow">اتاق 1</div>
+                            <div class="RoomRow">الغرفة 1</div>
                             <div class="item-CountPassenger">
                                 <div class="first-part-CountPassenger width_50 float-right">
-                                    بزرگسال
+                                    بالغ
                                     (+12)</div>
                                 <div class="second-part-CountPassenger width_50 float-left">
                                     <div class="passenger-button plus-minus"><span class="plus-btn">+</span></div>
@@ -1529,7 +1457,7 @@
                             </div>
                             <div class="item-CountPassenger">
                                 <div class="first-part-CountPassenger width_50 float-right">
-                                    کودک
+                                    طفل
                                     (-12)</div>
                                 <div class="second-part-CountPassenger width_50 float-left">
                                     <div class="passenger-button plus-minus-ch"><span class="plus-btn">+</span></div>
@@ -1547,7 +1475,7 @@
                         </div>
                     </div>
                     <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                        onclick="confirm_search(this)">تایید</div>
+                        onclick="confirm_search(this)">تأكيد</div>
                 </div>
                 <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24">
@@ -1560,8 +1488,8 @@
             </div>
             <div class="searched-item width_20 float-right">
                 <button type="submit"
-                    class="submit-form  font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                    مجدد</button>
+                    class="submit-form  font_13 cursor-pointer color_white background-color_1 width_100">
+                    ابحث مرة أخرى</button>
             </div>
             <div class="clr"></div>
         </form>
@@ -1571,12 +1499,12 @@
 <basis core="group" name="flight-hotel" if="'[##cms.form.type##]' = '6'">
     <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
         <member method="cms" name="dep_city"
-            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch",  "functype": "0", "title": "[##cms.form.from##]", "status": "city", "lid": "1"}]}'
+            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch",  "functype": "0", "title": "[##cms.form.from##]", "status": "city", "lid": "3"}]}'
             preview="" />
     </basis>
     <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
         <member method="cms" name="des_city"
-            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch", "functype": "0", "title": "[##cms.form.to##]",   "status": "city", "lid": "1"}]}'
+            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch", "functype": "0", "title": "[##cms.form.to##]",   "status": "city", "lid": "3"}]}'
             preview="" />
     </basis>
     <basis core="group" name="Delay_1">
@@ -1585,7 +1513,7 @@
             <member name="des_city_tree" format="json" preview=""> {"root":[##db.des_city.result##]}</member>
         </basis>
         <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
-        <form method="post" action="/Tem3_FlightHotel_Search.bc?lid=1" class="form-research has-room" id="flightHotel-form">
+        <form method="post" action="/Tem3_FlightHotel_Search_Ar.bc" class="form-research has-room" id="flightHotel-form">
             <div class="searched-items width_100 background-color_white">
                 <input type="hidden" value='[##cms.form.roomSearch##]' class="json" />
                 <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent"
@@ -1605,92 +1533,80 @@
                         <div class="countryFlight font_12 background-color_white"></div>
                         <div class="searchList font_12 p-absolute unvisible">
                             <ul>
-                                <li class="category-title"><span>مسیرهای
-                                        پرتردد</span></li>
+                                <li class="category-title"><span>طرق مزدحمة
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                        class="flaticon-map-marker"></i><span>تهران - Tehran -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>طهران - Tehran -
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1177676"><i
-                                        class="flaticon-map-marker"></i><span>استانبول -
-                                        Istanbul - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>اسطنبول -
+                                        Istanbul -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1192689"><i
-                                        class="flaticon-map-marker"></i><span>ایروان - Yerevan -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>يريفان - Yerevan -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211083"><i
                                         class="flaticon-map-marker"></i><span>مشهد - Mashhad -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211110"><i
-                                        class="flaticon-map-marker"></i><span>کیش - Kish - همه
-                                        فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>کیش - Kish -
+                                         جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1173505"><i
-                                        class="flaticon-map-marker"></i><span>دبی - Dubai - همه
-                                        فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>دبي - Dubai -
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1168092"><i
-                                        class="flaticon-map-marker"></i><span>آنتالیا - Antalya
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أنطاليا - Antalya
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1189731"><i
-                                        class="flaticon-map-marker"></i><span>تفلیس - Tbilisi -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تبليسي - Tbilisi -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211086"><i
                                         class="flaticon-map-marker"></i><span>شیراز - Shiraz -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                        class="flaticon-map-marker"></i><span>اصفهان - Isfahan -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أصفهان - Isfahan -
+                                         جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1178542"><i
-                                        class="flaticon-map-marker"></i><span>کوالالامپور -
+                                        class="flaticon-map-marker"></i><span>كوالا لمبور -
                                         Kuala Lumpur
-                                        - همه فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196609"><i
-                                        class="flaticon-map-marker"></i><span>اهواز - Ahvaz -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>الأهواز - Ahvaz -
+                                      جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211091"><i
                                         class="flaticon-map-marker"></i><span>کرمان - Kerman -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196620"><i
-                                        class="flaticon-map-marker"></i><span>کرمانشاه -
+                                        class="flaticon-map-marker"></i><span>كرمنشاه -
                                         Kermanshah -
-                                        همه فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1184034"><i
-                                        class="flaticon-map-marker"></i><span>پاریس - Paris -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>باريس - Paris -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196639"><i
-                                        class="flaticon-map-marker"></i><span>قشم - Qeshm - همه
-                                        فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>قشم - Qeshm -
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211085"><i
                                         class="flaticon-map-marker"></i><span>تبریز - Tabriz -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196659"><i
-                                        class="flaticon-map-marker"></i><span>چابهار - Chabahar
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تشابهار - Chabahar
+                                        -
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211090"><i
-                                        class="flaticon-map-marker"></i><span>یزد - Yazd - همه
-                                        فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>یزد - Yazd -
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196635"><i
                                         class="flaticon-map-marker"></i><span>بندرعباس - Bandar
                                         Abbas -
-                                        همه فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211104"><i
-                                        class="flaticon-map-marker"></i><span>رامسر - Ramsar -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>رامسار - Ramsar -
+                                       جميع المطارات</span></li>
                             </ul>
                         </div>
                         <i class="fas fa-exchange-alt exchange-icon p-absolute cursor-pointer"></i>
@@ -1710,98 +1626,86 @@
                         <div class="countryFlight font_12 background-color_white"></div>
                         <div class="searchList font_12 p-absolute unvisible">
                             <ul>
-                                <li class="category-title"><span>مسیرهای
-                                        پرتردد</span></li>
+                                <li class="category-title"><span>طرق مزدحمة
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                        class="flaticon-map-marker"></i><span>تهران - Tehran -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>طهران - Tehran -
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1177676"><i
-                                        class="flaticon-map-marker"></i><span>استانبول -
-                                        Istanbul - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>اسطنبول -
+                                        Istanbul -
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1192689"><i
-                                        class="flaticon-map-marker"></i><span>ایروان - Yerevan -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>يريفان - Yerevan -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211083"><i
                                         class="flaticon-map-marker"></i><span>مشهد - Mashhad -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211110"><i
-                                        class="flaticon-map-marker"></i><span>کیش - Kish - همه
-                                        فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>کیش - Kish -
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1173505"><i
-                                        class="flaticon-map-marker"></i><span>دبی - Dubai - همه
-                                        فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>دبي - Dubai -
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1168092"><i
-                                        class="flaticon-map-marker"></i><span>آنتالیا - Antalya
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أنطاليا - Antalya
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1189731"><i
-                                        class="flaticon-map-marker"></i><span>تفلیس - Tbilisi -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تبليسي - Tbilisi -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211086"><i
                                         class="flaticon-map-marker"></i><span>شیراز - Shiraz -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                        class="flaticon-map-marker"></i><span>اصفهان - Isfahan -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أصفهان - Isfahan -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1178542"><i
-                                        class="flaticon-map-marker"></i><span>کوالالامپور -
+                                        class="flaticon-map-marker"></i><span>كوالا لمبور -
                                         Kuala Lumpur
-                                        - همه فرودگاه ها</span></li>
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196609"><i
-                                        class="flaticon-map-marker"></i><span>اهواز - Ahvaz -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>الأهواز - Ahvaz -
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211091"><i
                                         class="flaticon-map-marker"></i><span>کرمان - Kerman -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                      جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196620"><i
-                                        class="flaticon-map-marker"></i><span>کرمانشاه -
+                                        class="flaticon-map-marker"></i><span>كرمنشاه -
                                         Kermanshah -
-                                        همه فرودگاه ها</span></li>
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1184034"><i
-                                        class="flaticon-map-marker"></i><span>پاریس - Paris -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>باريس - Paris -
+                                        الجميع
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196639"><i
-                                        class="flaticon-map-marker"></i><span>قشم - Qeshm - همه
-                                        فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>قشم - Qeshm -
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211085"><i
                                         class="flaticon-map-marker"></i><span>تبریز - Tabriz -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196659"><i
-                                        class="flaticon-map-marker"></i><span>چابهار - Chabahar
-                                        - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تشابهار - Chabahar
+                                        - جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211090"><i
-                                        class="flaticon-map-marker"></i><span>یزد - Yazd - همه
-                                        فرودگاه
-                                        ها</span></li>
+                                        class="flaticon-map-marker"></i><span>یزد - Yazd -
+                                        جميع المطارات
+                                        </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196635"><i
                                         class="flaticon-map-marker"></i><span>بندرعباس - Bandar
                                         Abbas -
-                                        همه فرودگاه ها</span></li>
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211104"><i
-                                        class="flaticon-map-marker"></i><span>رامسر - Ramsar -
-                                        همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>رامسار - Ramsar -
+                                        جميع المطارات</span></li>
                             </ul>
                         </div>
                     </div>
                     <div class="clr"></div>
                 </div>
-                <div class="searched-item width_30 float-right has-border Basis_Date_Box">
+                <div class="searched-item width_30 float-right has-border Basis_Date_Box ar_Basis_Date_Box">
                     <div class="inner width_50 float-right p-relative has-border_">
                         <input type="text" value="[##cms.form.fdate##]" name="fdate" class="Basis_Date start_date"
                             onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -1825,41 +1729,41 @@
                     <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
                         <span class="count-room">
                             <span class="count">1</span>
-                            <span>اتاق</span>
+                            <span>الغرفة</span>
                         </span>
                         <span class="count-adult">
                             <span class="count">1</span>
-                            <span>بزرگسال</span>
+                            <span>بالغ</span>
                         </span>
                         <span class="count-child unvisible">
                             <span class="count split_num_1"></span>
-                            <span>کودک</span>
+                            <span>طفل</span>
                         </span>
                         <div class="clr"></div>
                     </div>
                     <div class="CountPassenger room unvisible p-absolute font_11">
                         <div class="item-CountPassenger">
-                            <div class="first-part-CountPassenger width_50 float-right">کلاس پروازی
+                            <div class="first-part-CountPassenger width_50 float-right">فئة الطيران
                             </div>
                             <div class="second-part-CountPassenger p-relative width_50 float-left">
                                 <select name="FlightClass" class="FlightClass">
                                     <option value="[##cms.form.FlightClass##]">
                                         [##cms.form.FlightClass##]</option>
-                                    <option value="Economy">Economy</option>
-                                    <option value="BusinessClass">Business</option>
-                                    <option value="FirstClass">First</option>
+                                    <option value="Economy">الإقتصادية</option>
+                                    <option value="BusinessClass">رجال الأعمال</option>
+                                    <option value="FirstClass">الأولی</option>
                                 </select>
                             </div>
                             <div class="clr"></div>
                         </div>
-                        <div class="add-room" onclick="AddRoom(this)">اضافه کردن اتاق
+                        <div class="add-room" onclick="AddRoom(this)">أضف غرفة
                         </div>
                         <div class="ShowRow">
                             <div class="contentRoom">
-                                <div class="RoomRow">اتاق 1</div>
+                                <div class="RoomRow">الغرفة 1</div>
                                 <div class="item-CountPassenger">
                                     <div class="first-part-CountPassenger width_50 float-right">
-                                        بزرگسال
+                                        بالغ
                                         (+12)</div>
                                     <div class="second-part-CountPassenger width_50 float-left">
                                         <div class="passenger-button plus-minus"><span class="plus-btn">+</span></div>
@@ -1872,7 +1776,7 @@
                                     <div class="clr"></div>
                                 </div>
                                 <div class="item-CountPassenger">
-                                    <div class="first-part-CountPassenger width_50 float-right">کودک
+                                    <div class="first-part-CountPassenger width_50 float-right">طفل
                                         (-12)</div>
                                     <div class="second-part-CountPassenger width_50 float-left">
                                         <div class="passenger-button plus-minus-ch"><span class="plus-btn">+</span>
@@ -1892,7 +1796,7 @@
                             </div>
                         </div>
                         <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                            onclick="confirm_search(this)">تایید</div>
+                            onclick="confirm_search(this)">تأكيد</div>
                     </div>
                     <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24">
@@ -1905,8 +1809,8 @@
                 </div>
                 <div class="searched-item width_20 float-right">
                     <button type="submit"
-                        class="submit-form font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                        مجدد</button>
+                        class="submit-form font_13 cursor-pointer color_white background-color_1 width_100">
+                        ابحث مرة أخرى</button>
                 </div>
 
                 <div class="clr"></div>
@@ -1917,11 +1821,10 @@
                     <input type="checkbox" onchange="CheckExteraHoteldate(this)" name="Hotel-Date"
                         class="Hotel-Date p-absolute" value="[##cms.form.hoteldate##]">
                     <label><span class="checkbox">
-                            <div class="text-checkbox color_gray">من فقط برای بخشی از سفر به هتل
-                                نیاز دارم</div>
+                            <div class="text-checkbox color_gray">أحتاج فقط إلى فندق لجزء من الرحلة</div>
                         </span></label>
                 </div>
-                <div class="check-hotelDate searched-item width_30 float-right background-color_white Basis_Date_Box">
+                <div class="check-hotelDate searched-item width_30 float-right background-color_white Basis_Date_Box ar_Basis_Date_Box">
                     <div class="inner width_50 float-right p-relative has-border_">
                         <input type="text" value="[##cms.form.checkin##]" name="checkin" class="Basis_Date start_date"
                             onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -1944,7 +1847,7 @@
 <basis core="group" name="tour" if="'[##cms.form.type##]' = '4'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <div class="searched-items width_100 background-color_white">
-        <form method="post" action="/Tem3_Tour_Search.bc?lid=1" class="form-research has-room" id="tour-form">
+        <form method="post" action="/Tem3_Tour_Search_Ar.bc" class="form-research has-room" id="tour-form">
             <input type="hidden" value='[##cms.form.roomSearch##]' class="json" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
             <input type="hidden" value="[##cms.form.typetour##]" name="data_type_tour" />
@@ -1961,7 +1864,7 @@
                 </div>
                 <div class="clr"></div>
             </div>
-            <div class="searched-item width_30 float-right has-border Basis_Date_Box">
+            <div class="searched-item width_30 float-right has-border Basis_Date_Box ar_Basis_Date_Box">
                 <div class="inner width_50 float-right p-relative has-border_">
                     <input type="text" value="[##cms.form.fdate##]" name="fdate" class="Basis_Date start_date"
                         onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -1985,26 +1888,26 @@
                 <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
                     <span class="count-room">
                         <span class="count">1</span>
-                        <span>اتاق</span>
+                        <span>الغرفة</span>
                     </span>
                     <span class="count-adult">
                         <span class="count">1</span>
-                        <span>بزرگسال</span>
+                        <span>بالغ</span>
                     </span>
                     <span class="count-child unvisible">
                         <span class="count split_num_1"></span>
-                        <span>کودک</span>
+                        <span>طفل</span>
                     </span>
                     <div class="clr"></div>
                 </div>
                 <div class="CountPassenger room unvisible p-absolute font_11">
-                    <div class="add-room" onclick="AddRoom(this)">اضافه کردن اتاق
+                    <div class="add-room" onclick="AddRoom(this)">أضف غرفة
                     </div>
                     <div class="ShowRow">
                         <div class="contentRoom">
-                            <div class="RoomRow">اتاق 1</div>
+                            <div class="RoomRow">الغرفة 1</div>
                             <div class="item-CountPassenger">
-                                <div class="first-part-CountPassenger width_50 float-right">بزرگسال
+                                <div class="first-part-CountPassenger width_50 float-right">بالغ
                                     (+12)</div>
                                 <div class="second-part-CountPassenger width_50 float-left">
                                     <div class="passenger-button plus-minus"><span class="plus-btn">+</span></div>
@@ -2015,7 +1918,7 @@
                                 <div class="clr"></div>
                             </div>
                             <div class="item-CountPassenger">
-                                <div class="first-part-CountPassenger width_50 float-right">کودک
+                                <div class="first-part-CountPassenger width_50 float-right">طفل
                                     (-12)</div>
                                 <div class="second-part-CountPassenger width_50 float-left">
                                     <div class="passenger-button plus-minus-ch"><span class="plus-btn">+</span></div>
@@ -2032,7 +1935,7 @@
                         </div>
                     </div>
                     <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                        onclick="confirm_search(this)">تایید</div>
+                        onclick="confirm_search(this)">تأكيد</div>
                 </div>
                 <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24">
@@ -2045,8 +1948,8 @@
             </div>
             <div class="searched-item width_20 float-right">
                 <button type="submit"
-                    class="submit-form  font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                    مجدد</button>
+                    class="submit-form  font_13 cursor-pointer color_white background-color_1 width_100">
+                    ابحث مرة أخرى</button>
             </div>
             <div class="clr"></div>
         </form>
@@ -2056,7 +1959,7 @@
 <basis core="group" name="insurance" if="'[##cms.form.type##]' = '5'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <div class="searched-items width_100 background-color_white">
-        <form method="post" action="/Tem3_Insurance_Search.bc?lid=1" class="form-research" id="insurance-form">
+        <form method="post" action="/Tem3_Insurance_Search_Ar.bc" class="form-research" id="insurance-form">
             <input value='[##cms.form.birthday##]' name="birthday" class="birthday" type="hidden" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
             <div class="searched-item width_30 float-right has-border">
@@ -2071,7 +1974,7 @@
                 </div>
                 <div class="clr"></div>
             </div>
-            <div class="searched-item width_30 float-right has-border Basis_Date_Box">
+            <div class="searched-item width_30 float-right has-border Basis_Date_Box ar_Basis_Date_Box">
                 <div class="inner width_50 float-right p-relative has-border_">
                     <input type="text" value="[##cms.form.fdate##]" name="fdate" class="Basis_Date start_date"
                         onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -2095,13 +1998,13 @@
                 <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
                     <span class="count-adult">
                         <span class="count">[##cms.form.passengercount##]</span>
-                        <span>مسافر</span>
+                        <span>راکب</span>
                     </span>
                     <div class="clr"></div>
                 </div>
                 <div class="CountPassenger room unvisible p-absolute font_11">
                     <div class="item-CountPassenger">
-                        <div class="first-part-CountPassenger width_50 float-right">مسافر </div>
+                        <div class="first-part-CountPassenger width_50 float-right">راکب </div>
                         <div class="second-part-CountPassenger width_50 float-left">
                             <div class="passenger-button plus-minus-ins"><span class="plus-btn">+</span></div>
                             <div class="passenger-button">
@@ -2117,7 +2020,7 @@
                         <div class="clr"></div>
                     </div>
                     <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                        onclick="confirm_search(this)">تایید</div>
+                        onclick="confirm_search(this)">تأكيد</div>
                 </div>
                 <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24">
@@ -2129,8 +2032,8 @@
                 </i>
             </div>
             <div class="searched-item width_20 float-right">
-                <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                    مجدد</button>
+                <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">
+                    ابحث مرة أخرى</button>
             </div>
 
 
@@ -2150,13 +2053,13 @@
 <basis core="group" name="visa" if="'[##cms.form.type##]' = '13'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <div class="searched-items width_100 background-color_white">
-        <form method="post" action="/Tem3_Visa_Search.bc?lid=1" class="form-research" id="visa-form">
+        <form method="post" action="/Tem3_Visa_Search_Ar.bc" class="form-research" id="visa-form">
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
-            <div class="searched-item width_80 float-right has-border">
+            <div class="searched-item width_40 float-right has-border">
                 <div class="inner width_100 p-relative city">
                     <input type="text" oninput="city_search(this)" onclick="empty_value(this)" required data-type='5'
                         autocomplete="off" value="[##cms.form.from##]" name="visa-country"
-                        class="country" />
+                        class="country  text-center" />
                     <input value="[##cms.form.countryid##]" class="co-id" type="hidden" name="countryid" />
                     <span class="mini-loading p-absolute unvisible"><i class="fas fa-spinner"></i></span>
                     <div class="countryFlight font_12 background-color_white"></div>
@@ -2164,8 +2067,8 @@
                 <div class="clr"></div>
             </div>
             <div class="searched-item width_20 float-right">
-                <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                    مجدد</button>
+                <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">
+                    ابحث مرة أخرى</button>
             </div>
             <div class="clr"></div>
         </form>
@@ -2175,7 +2078,7 @@
 <basis core="group" name="cip" if="'[##cms.form.type##]' = '11'">
     <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
         <member method="cms" name="dep_city"
-            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch",  "functype": "0", "title": "[##cms.form.from##]", "status": "city", "lid": "1"}]}'
+            query='{ "name": "db", "mid": "20", "member":[ { "type":"list", "name": "q", "request": "citySearch",  "functype": "0", "title": "[##cms.form.from##]", "status": "city", "lid": "3"}]}'
             preview="" />
     </basis>
     <basis core="group" name="Delay_3">
@@ -2184,7 +2087,7 @@
         </basis>
         <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
         <div class="searched-items width_100 background-color_white">
-            <form method="post" action="/Tem3_Cip_Search.bc?lid=1" class="form-research" id="cip-form">
+            <form method="post" action="/Tem3_Cip_Search_Ar.bc" class="form-research" id="cip-form">
                 <input type="hidden" value="[##cms.form.selectage##]" name="select-age" class="select-age-value" />
                 <input type="hidden" class="child_count" value="[##cms.form.child##]" />
                 <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent"
@@ -2204,35 +2107,35 @@
                         <div class="countryFlight font_12 background-color_white"></div>
                         <div class="searchList font_12 p-absolute unvisible">
                             <ul>
-                                <li class="category-title"><span>مسیرهای پرتردد</span></li>
+                                <li class="category-title"><span>طرق مزدحمة </span></li>
                                 <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                        class="flaticon-map-marker"></i><span>تهران - Tehran - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>طهران - Tehran -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211110"><i
-                                        class="flaticon-map-marker"></i><span>کیش - Kish - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>کیش - Kish -
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211083"><i
-                                        class="flaticon-map-marker"></i><span>مشهد - Mashhad - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>مشهد - Mashhad -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196609"><i
-                                        class="flaticon-map-marker"></i><span>اهواز - Ahvaz - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>الأهواز - Ahvaz -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211085"><i
-                                        class="flaticon-map-marker"></i><span>تبریز - Tabriz - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>تبریز - Tabriz -
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                        class="flaticon-map-marker"></i><span>اصفهان - Isfahan - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>أصفهان - Isfahan -
+                                       جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1203561"><i
-                                        class="flaticon-map-marker"></i><span>رشت - Rasht - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>رشت - Rasht -
+                                        جميع المطارات</span></li>
                                 <li onclick="SelectPlace(this)" data-id="1196620"><i
-                                        class="flaticon-map-marker"></i><span>کرمانشاه - Kermanshah
-                                        - همه فرودگاه ها</span>
+                                        class="flaticon-map-marker"></i><span>كرمنشاه - Kermanshah
+                                        - جميع المطارات</span>
                                 </li>
                                 <li onclick="SelectPlace(this)" data-id="1211118"><i
-                                        class="flaticon-map-marker"></i><span>اردبیل - Ardabil - همه
-                                        فرودگاه ها</span></li>
+                                        class="flaticon-map-marker"></i><span>اردبيل - Ardabil -
+                                        جميع المطارات</span></li>
                             </ul>
 
                         </div>
@@ -2240,7 +2143,7 @@
                     </div>
                     <div class="clr"></div>
                 </div>
-                <div class="searched-item width_15 float-right has-border Basis_Date_Box">
+                <div class="searched-item width_15 float-right has-border Basis_Date_Box ar_Basis_Date_Box">
                     <div class="inner width_100 p-relative">
                         <input type="text" value="[##cms.form.fdate##]" name="fdate" class="Basis_Date start_date"
                             onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -2255,9 +2158,9 @@
                 <div class="searched-item width_15 float-right has-border">
                     <div class="inner width_100 p-relative">
                         <select name="traveltype" class="cip-select" data-value="[##cms.form.traveltype##]">
-                            <option value="0" class="not-selected">همه</option>
-                            <option value="1" class="not-selected">سفر داخلی</option>
-                            <option value="2" class="not-selected">سفر خارجی</option>
+                            <option value="0" class="not-selected">الجميع</option>
+                            <option value="1" class="not-selected">السفر المحلي</option>
+                            <option value="2" class="not-selected">السفر إلى الخارج</option>
                         </select>
                     </div>
 
@@ -2265,9 +2168,9 @@
                 <div class="searched-item width_15 float-right has-border">
                     <div class="inner width_100 p-relative">
                         <select name="flighttype" class="cip-select" data-value="[##cms.form.flighttype##]">
-                            <option value="0" class="not-selected"> همه پروازها</option>
-                            <option value="1" class="not-selected">پرواز ورودی</option>
-                            <option value="2" class="not-selected">پرواز خروجی</option>
+                            <option value="0" class="not-selected"> جميع الرحلات الجوية</option>
+                            <option value="1" class="not-selected">رحلة قادمة</option>
+                            <option value="2" class="not-selected">رحلة خارجية</option>
                         </select>
                     </div>
 
@@ -2276,18 +2179,18 @@
                     <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
                         <span class="count-adult">
                             <span class="count">[##cms.form.adult##]</span>
-                            <span>بزرگسال</span>
+                            <span>بالغ</span>
                         </span>
                         <span class="count-child unvisible">
                             <span class="count split_num_1"></span>
-                            <span>کودک</span>
+                            <span>طفل</span>
                         </span>
                         <div class="clr"></div>
                     </div>
                     <div class="CountPassenger unvisible p-absolute font_11">
                         <div class="item-CountPassenger">
                             <div class="first-part-CountPassenger width_50 float-right">
-                                بزرگسال (+12)
+                                بالغ (+12)
                             </div>
                             <div class="second-part-CountPassenger width_50 float-left">
                                 <div class="passenger-button plus-minus"><span
@@ -2303,7 +2206,7 @@
                             <div class="clr"></div>
                         </div>
                         <div class="item-CountPassenger">
-                            <div class="first-part-CountPassenger width_50 float-right">کودک
+                            <div class="first-part-CountPassenger width_50 float-right">طفل
                                 (-12)</div>
                             <div class="second-part-CountPassenger width_50 float-left">
                                 <div class="passenger-button plus-minus-ch" data-type="0"><span
@@ -2320,7 +2223,7 @@
                             <div class="clr"></div>
                         </div>
                         <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                            onclick="confirm_search(this)">تایید</div>
+                            onclick="confirm_search(this)">تأكيد</div>
                     </div>
                     <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24">
@@ -2332,8 +2235,8 @@
                     </i>
                 </div>
                 <div class="searched-item width_20 float-right">
-                    <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                        مجدد</button>
+                    <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">
+                        ابحث مرة أخرى</button>
                 </div>
                 <div class="clr"></div>
             </form>
@@ -2344,18 +2247,18 @@
 <basis core="group" name="oneway-train" if="'[##cms.form.type##]' = '8'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <ul class="flight_type font_15 color_gray font-weight">
-        <li id="oneway" onclick="document.getElementById('train-form').action='/Tem3_Train_Oneway_Search.bc?lid=1';"
-            class="active cursor-pointer">یک طرفه
+        <li id="oneway" onclick="document.getElementById('train-form').action='/Tem3_Train_Oneway_Search_Ar.bc';"
+            class="active cursor-pointer">طريقة واحدة
 
         </li>
-        <li id="backtoback" onclick="document.getElementById('train-form').action='/Tem3_Train_Roundtrip_Search.bc?lid=1';"
-            class="cursor-pointer">رفت و برگشت
+        <li id="backtoback" onclick="document.getElementById('train-form').action='/Tem3_Train_Roundtrip_Search_Ar.bc';"
+            class="cursor-pointer">ذهابا وايابا
         </li>
 
         <div class="clr"></div>
     </ul>
 
-    <form method="post" action="/Tem3_Train_Oneway_Search.bc?lid=1" class="form-research" id="train-form">
+    <form method="post" action="/Tem3_Train_Oneway_Search_Ar.bc" class="form-research" id="train-form">
         <div class="searched-items width_100 background-color_white">
             <input type="hidden" value="[##cms.form.select-age##]" name="select-age" class="select-age-value" />
             <input type="hidden" class="child_count" value="[##cms.form.child##]" />
@@ -2370,9 +2273,9 @@
                     <div class="countryFlight font_12 background-color_white"></div>
                     <div class="searchList font_12 p-absolute unvisible">
                         <ul>
-                            <li class="category-title"><span>شهرهای پر تردد</span></li>
+                            <li class="category-title"><span>مدن مزدحمة </span></li>
                             <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                    class="flaticon-map-marker"></i><span>تهران -
+                                    class="flaticon-map-marker"></i><span>طهران -
                                     Tehran</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211083"><i
                                     class="flaticon-map-marker"></i><span>مشهد -
@@ -2388,7 +2291,7 @@
                                     class="flaticon-map-marker"></i><span>قزوین -
                                     Qazvin</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211087"><i
-                                    class="flaticon-map-marker"></i><span>اهواز -
+                                    class="flaticon-map-marker"></i><span>الأهواز -
                                     Ahvaz</span></li>
                             <li onclick="SelectPlace(this)" data-id="1270594"><i
                                     class="flaticon-map-marker"></i><span>خرمشهر -
@@ -2410,9 +2313,9 @@
                     <div class="countryFlight font_12 background-color_white"></div>
                     <div class="searchList font_12 p-absolute unvisible">
                         <ul>
-                            <li class="category-title"><span>شهرهای پر تردد</span></li>
+                            <li class="category-title"><span>مدن مزدحمة </span></li>
                             <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                    class="flaticon-map-marker"></i><span>تهران -
+                                    class="flaticon-map-marker"></i><span>طهران -
                                     Tehran</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211083"><i
                                     class="flaticon-map-marker"></i><span>مشهد -
@@ -2428,7 +2331,7 @@
                                     class="flaticon-map-marker"></i><span>قزوین -
                                     Qazvin</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211087"><i
-                                    class="flaticon-map-marker"></i><span>اهواز -
+                                    class="flaticon-map-marker"></i><span>الأهواز -
                                     Ahvaz</span></li>
                             <li onclick="SelectPlace(this)" data-id="1270594"><i
                                     class="flaticon-map-marker"></i><span>خرمشهر -
@@ -2441,7 +2344,7 @@
                 </div>
                 <div class="clr"></div>
             </div>
-            <div class="searched-item width_30 float-right has-border Basis_Date_Box">
+            <div class="searched-item width_30 float-right has-border Basis_Date_Box ar_Basis_Date_Box">
                 <div class="inner width_50 float-right p-relative has-border_">
                     <input type="text" value="[##cms.form.fdate##]" name="fdate" class="Basis_Date start_date"
                         onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -2464,31 +2367,31 @@
                 <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
                     <span class="count-adult">
                         <span class="count">[##cms.form.adult##]</span>
-                        <span>بزرگسال</span>
+                        <span>بالغ</span>
                     </span>
                     <span class="count-child unvisible">
                         <span class="count split_num_1"></span>
-                        <span>کودک</span>
+                        <span>طفل</span>
                     </span>
                     <div class="clr"></div>
                 </div>
                 <div class="CountPassenger unvisible p-absolute font_11">
                     <div class="item-CountPassenger">
-                        <div class="first-part-CountPassenger width_50 float-right">نوع کابین</div>
+                        <div class="first-part-CountPassenger width_50 float-right">نوع المقصورة</div>
                         <div class="second-part-CountPassenger p-relative  width_50 float-left">
                             <select name="CompartmentType" class="CompartmentType">
                                 <option value="[##cms.form.CompartmentType##]">
                                     [##cms.form.CompartmentType##]</option>
-                                <option value="1">ویژه خواهران</option>
-                                <option value="2">ویژه برادران</option>
-                                <option value="3">مسافر عادی(خانواده)</option>
+                                <option value="1">خاص للأخوات</option>
+                                <option value="2">خاص بالاخوة</option>
+                                <option value="3">راکب عادي(عائلة)</option>
                             </select>
                         </div>
                         <div class="clr"></div>
                     </div>
                     <div class="item-CountPassenger">
                         <div class="first-part-CountPassenger width_50 float-right">
-                            بزرگسال (+12)
+                            بالغ (+12)
                         </div>
                         <div class="second-part-CountPassenger width_50 float-left">
                             <div class="passenger-button plus-minus"><span class="background-color_2  plus-btn">+</span>
@@ -2501,7 +2404,7 @@
                         <div class="clr"></div>
                     </div>
                     <div class="item-CountPassenger">
-                        <div class="first-part-CountPassenger width_50 float-right">کودک
+                        <div class="first-part-CountPassenger width_50 float-right">طفل
                             (-12)</div>
                         <div class="second-part-CountPassenger width_50 float-left">
                             <div class="passenger-button plus-minus-ch" data-type="0"><span
@@ -2517,7 +2420,7 @@
                         <div class="clr"></div>
                     </div>
                     <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                        onclick="confirm_search(this)">تایید</div>
+                        onclick="confirm_search(this)">تأكيد</div>
                 </div>
                 <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24">
@@ -2529,8 +2432,8 @@
                 </i>
             </div>
             <div class="searched-item width_20 float-right">
-                <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                    مجدد</button>
+                <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">
+                    ابحث مرة أخرى</button>
             </div>
             <div class="clr"></div>
         </div>
@@ -2539,7 +2442,7 @@
             <input type="checkbox" onchange="CheckPrivateCompartment(this)" name="PrivateCompartment"
                 class="PrivateCompartment p-absolute" value="[##cms.form.PrivateCompartment|(0)##]">
             <label><span class="checkbox">
-                    <div class="text-checkbox color_gray">کوپه دربست</div>
+                    <div class="text-checkbox color_gray">كوبيه مغلقة</div>
                 </span></label>
         </div>
         <div class="clr"></div>
@@ -2548,18 +2451,18 @@
 <basis core="group" name="roundtrip-train" if="'[##cms.form.type##]' = '9'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <ul class="flight_type font_15 color_gray font-weight">
-        <li id="oneway" onclick="document.getElementById('train-form').action='/Tem3_Train_Oneway_Search.bc?lid=1';"
-            class="cursor-pointer">یک طرفه
+        <li id="oneway" onclick="document.getElementById('train-form').action='/Tem3_Train_Oneway_Search_Ar.bc';"
+            class="cursor-pointer">طريقة واحدة
 
         </li>
-        <li id="backtoback" onclick="document.getElementById('train-form').action='/Tem3_Train_Roundtrip_Search.bc?lid=1';"
-            class="active cursor-pointer">رفت و برگشت
+        <li id="backtoback" onclick="document.getElementById('train-form').action='/Tem3_Train_Roundtrip_Search_Ar.bc';"
+            class="active cursor-pointer">ذهابا وايابا
         </li>
 
         <div class="clr"></div>
     </ul>
 
-    <form method="post" action="/Tem3_Train_Roundtrip_Search.bc?lid=1" class="form-research" id="train-form">
+    <form method="post" action="/Tem3_Train_Roundtrip_Search_Ar.bc" class="form-research" id="train-form">
         <div class="searched-items width_100 background-color_white">
             <input type="hidden" value="[##cms.form.select-age##]" name="select-age" class="select-age-value" />
             <input type="hidden" class="child_count" value="[##cms.form.child##]" />
@@ -2574,9 +2477,9 @@
                     <div class="countryFlight font_12 background-color_white"></div>
                     <div class="searchList font_12 p-absolute unvisible">
                         <ul>
-                            <li class="category-title"><span>شهرهای پر تردد</span></li>
+                            <li class="category-title"><span>مدن مزدحمة </span></li>
                             <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                    class="flaticon-map-marker"></i><span>تهران -
+                                    class="flaticon-map-marker"></i><span>طهران -
                                     Tehran</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211083"><i
                                     class="flaticon-map-marker"></i><span>مشهد -
@@ -2592,7 +2495,7 @@
                                     class="flaticon-map-marker"></i><span>قزوین -
                                     Qazvin</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211087"><i
-                                    class="flaticon-map-marker"></i><span>اهواز -
+                                    class="flaticon-map-marker"></i><span>الأهواز -
                                     Ahvaz</span></li>
                             <li onclick="SelectPlace(this)" data-id="1270594"><i
                                     class="flaticon-map-marker"></i><span>خرمشهر -
@@ -2613,9 +2516,9 @@
                     <div class="countryFlight font_12 background-color_white"></div>
                     <div class="searchList font_12 p-absolute unvisible">
                         <ul>
-                            <li class="category-title"><span>شهرهای پر تردد</span></li>
+                            <li class="category-title"><span>مدن مزدحمة </span></li>
                             <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                    class="flaticon-map-marker"></i><span>تهران -
+                                    class="flaticon-map-marker"></i><span>طهران -
                                     Tehran</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211083"><i
                                     class="flaticon-map-marker"></i><span>مشهد -
@@ -2631,7 +2534,7 @@
                                     class="flaticon-map-marker"></i><span>قزوین -
                                     Qazvin</span></li>
                             <li onclick="SelectPlace(this)" data-id="1211087"><i
-                                    class="flaticon-map-marker"></i><span>اهواز -
+                                    class="flaticon-map-marker"></i><span>الأهواز -
                                     Ahvaz</span></li>
                             <li onclick="SelectPlace(this)" data-id="1270594"><i
                                     class="flaticon-map-marker"></i><span>خرمشهر -
@@ -2644,7 +2547,7 @@
                 </div>
                 <div class="clr"></div>
             </div>
-            <div class="searched-item width_30 float-right has-border Basis_Date_Box">
+            <div class="searched-item width_30 float-right has-border Basis_Date_Box ar_Basis_Date_Box">
                 <div class="inner width_50 float-right p-relative has-border_">
                     <input type="text" value="[##cms.form.fdate##]" name="fdate" class="Basis_Date start_date"
                         onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -2669,31 +2572,31 @@
                 <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
                     <span class="count-adult">
                         <span class="count">[##cms.form.adult##]</span>
-                        <span>بزرگسال</span>
+                        <span>بالغ</span>
                     </span>
                     <span class="count-child unvisible">
                         <span class="count split_num_1"></span>
-                        <span>کودک</span>
+                        <span>طفل</span>
                     </span>
                     <div class="clr"></div>
                 </div>
                 <div class="CountPassenger unvisible p-absolute font_11">
                     <div class="item-CountPassenger">
-                        <div class="first-part-CountPassenger width_50 float-right">نوع کابین</div>
+                        <div class="first-part-CountPassenger width_50 float-right">نوع المقصورة</div>
                         <div class="second-part-CountPassenger p-relative  width_50 float-left">
                             <select name="CompartmentType" class="CompartmentType">
                                 <option value="[##cms.form.CompartmentType##]">
                                     [##cms.form.CompartmentType##]</option>
-                                <option value="3">مسافر عادی(خانواده)</option>
-                                <option value="1">ویژه خواهران</option>
-                                <option value="2">ویژه برادران</option>
+                                <option value="3">راکب عادي(عائلة)</option>
+                                <option value="1">خاص للأخوات</option>
+                                <option value="2">خاص بالاخوة</option>
                             </select>
                         </div>
                         <div class="clr"></div>
                     </div>
                     <div class="item-CountPassenger">
                         <div class="first-part-CountPassenger width_50 float-right">
-                            بزرگسال (+12)
+                            بالغ (+12)
                         </div>
                         <div class="second-part-CountPassenger width_50 float-left">
                             <div class="passenger-button plus-minus"><span class="background-color_2  plus-btn">+</span>
@@ -2706,7 +2609,7 @@
                         <div class="clr"></div>
                     </div>
                     <div class="item-CountPassenger">
-                        <div class="first-part-CountPassenger width_50 float-right">کودک
+                        <div class="first-part-CountPassenger width_50 float-right">طفل
                             (-12)</div>
                         <div class="second-part-CountPassenger width_50 float-left">
                             <div class="passenger-button plus-minus-ch" data-type="0"><span
@@ -2722,7 +2625,7 @@
                         <div class="clr"></div>
                     </div>
                     <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                        onclick="confirm_search(this)">تایید</div>
+                        onclick="confirm_search(this)">تأكيد</div>
                 </div>
                 <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24">
@@ -2734,8 +2637,8 @@
                 </i>
             </div>
             <div class="searched-item width_20 float-right">
-                <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                    مجدد</button>
+                <button type="submit" class="font_13 cursor-pointer color_white background-color_1 width_100">
+                    ابحث مرة أخرى</button>
             </div>
             <div class="clr"></div>
         </div>
@@ -2744,7 +2647,7 @@
             <input type="checkbox" onchange="CheckPrivateCompartment(this)" name="PrivateCompartment"
                 class="PrivateCompartment p-absolute" value="[##cms.form.PrivateCompartment|(0)##]">
             <label><span class="checkbox">
-                    <div class="text-checkbox color_gray">کوپه دربست</div>
+                    <div class="text-checkbox color_gray">كوبيه مغلقة</div>
                 </span></label>
         </div>
         <div class="clr"></div>
@@ -2753,7 +2656,7 @@
 <basis core="group" name="touristPanel" if="'[##cms.form.type##]' = '12'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <div class="searched-items width_100 background-color_white">
-        <form method="post" action="/Tem3_TouristPanel_Search.bc?lid=1" class="form-research" id="service-form">
+        <form method="post" action="/Tem3_TouristPanel_Search_Ar.bc" class="form-research" id="service-form">
             <input type="hidden" value="[##cms.form.selectage##]" name="select-age" class="select-age-value" />
             <input type="hidden" class="child_count" value="[##cms.form.child##]" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
@@ -2766,41 +2669,41 @@
                     <div class="countryFlight font_12 background-color_white"></div>
                     <div class="searchList font_12 p-absolute unvisible">
                         <ul>
-                            <li class="category-title"><span>شهرهای پر
-                                    تردد</span></li>
+                            <li class="category-title"><span>مدن مزدحمة
+                                    </span></li>
                             <li onclick="SelectPlace(this)" data-id="1203548"><i
-                                    class="flaticon-map-marker"></i><span>تهران - Tehran</span>
+                                    class="flaticon-map-marker"></i><span>طهران - Tehran</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1211110"><i
                                     class="flaticon-map-marker"></i><span>کیش - Kish </span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1177676"><i
-                                    class="flaticon-map-marker"></i><span>استانبول -
+                                    class="flaticon-map-marker"></i><span>اسطنبول -
                                     Istanbul</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1211083"><i
                                     class="flaticon-map-marker"></i><span>مشهد - Mashhad</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1173505"><i
-                                    class="flaticon-map-marker"></i><span>دبی - Dubai</span>
+                                    class="flaticon-map-marker"></i><span>دبي - Dubai</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1168092"><i
-                                    class="flaticon-map-marker"></i><span>آنتالیا -
+                                    class="flaticon-map-marker"></i><span>أنطاليا -
                                     Antalya</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1189731"><i
-                                    class="flaticon-map-marker"></i><span>تفلیس - Tbilisi
+                                    class="flaticon-map-marker"></i><span>تبليسي - Tbilisi
                                 </span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1211086"><i
                                     class="flaticon-map-marker"></i><span>شیراز - Shiraz</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1211084"><i
-                                    class="flaticon-map-marker"></i><span>اصفهان -
+                                    class="flaticon-map-marker"></i><span>أصفهان -
                                     Isfahan</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1182348"><i
-                                    class="flaticon-map-marker"></i><span>مسکو - Moscow</span>
+                                    class="flaticon-map-marker"></i><span>موسكو - Moscow</span>
                             </li>
                             <li onclick="SelectPlace(this)" data-id="1211085"><i
                                     class="flaticon-map-marker"></i><span>تبریز - Tabriz</span>
@@ -2813,7 +2716,7 @@
                 </div>
                 <div class="clr"></div>
             </div>
-            <div class="searched-item width_30 float-right has-border Basis_Date_Box">
+            <div class="searched-item width_30 float-right has-border Basis_Date_Box ar_Basis_Date_Box">
                 <div class="inner width_100 float-right p-relative has-border_">
                     <input type="text" value="[##cms.form.fdate##]" name="fdate" class="Basis_Date start_date"
                         onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0" data-cache="0"
@@ -2834,18 +2737,18 @@
                 <div class="Wrapper-CountPassenger font_13 cursor-pointer" onclick="show_passengers(this)">
                     <span class="count-adult">
                         <span class="count">[##cms.form.adult##]</span>
-                        <span>بزرگسال</span>
+                        <span>بالغ</span>
                     </span>
                     <span class="count-child unvisible">
                         <span class="count split_num_1"></span>
-                        <span>کودک</span>
+                        <span>طفل</span>
                     </span>
                     <div class="clr"></div>
                 </div>
                 <div class="CountPassenger unvisible p-absolute font_11">
                     <div class="item-CountPassenger">
                         <div class="first-part-CountPassenger width_50 float-right">
-                            بزرگسال (+12)
+                            بالغ (+12)
                         </div>
                         <div class="second-part-CountPassenger width_50 float-left">
                             <div class="passenger-button plus-minus"><span class="background-color_2  plus-btn">+</span>
@@ -2858,7 +2761,7 @@
                         <div class="clr"></div>
                     </div>
                     <div class="item-CountPassenger">
-                        <div class="first-part-CountPassenger width_50 float-right">کودک
+                        <div class="first-part-CountPassenger width_50 float-right">طفل
                             (-12)</div>
                         <div class="second-part-CountPassenger width_50 float-left">
                             <div class="passenger-button plus-minus-ch" data-type="0"><span
@@ -2874,7 +2777,7 @@
                         <div class="clr"></div>
                     </div>
                     <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                        onclick="confirm_search(this)">تایید</div>
+                        onclick="confirm_search(this)">تأكيد</div>
                 </div>
                 <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24">
@@ -2887,8 +2790,8 @@
             </div>
             <div class="searched-item width_20 float-right">
                 <button type="submit"
-                    class="submit-form  font_13 cursor-pointer color_white background-color_1 width_100">جستجو
-                    مجدد</button>
+                    class="submit-form  font_13 cursor-pointer color_white background-color_1 width_100">
+                    ابحث مرة أخرى</button>
             </div>
             <div class="clr"></div>
         </form>

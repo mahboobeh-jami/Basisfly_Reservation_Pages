@@ -1,0 +1,17 @@
+<basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+    <member name="hotel_Information" method="cms" postsql="select replace(replace(replace(replace(replace(replace(result,'None','null'),'undefined','null'),'\xa0','null'),'nan','null'),' inf','null'),' -inf' , 'null') as 'result' from [db.hotel_Information]" query='{
+    "name": "db",
+    "mid": "20",
+    "member": [
+        {
+            "type": "list",
+            "name": "hotel_Information",
+            "request": "HotelInformation",
+            "optionid":"[##cms.form.optionId##]",
+            "lid": "[##cms.form.clid|(1)##]",
+            "trackingNo":"[##cms.cookie.trackingid##]",
+        }
+    ]
+}' />
+</basis>
+[##db.hotel_Information.result##]

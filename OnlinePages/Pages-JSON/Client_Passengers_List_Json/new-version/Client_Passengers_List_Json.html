@@ -1,0 +1,17 @@
+<basis  core="external.fly.ws"  source="cmsDbService2"  procedurename="dbsource"  name="db">
+    <member name="PassengersList" postsql="select replace(replace(replace(replace(replace(replace(replace(replace(result,'None','null'),'undefined','null'),'\xa0',' '),'/x',' '),'\x',' '),'nan','null'),' inf','null'),' -inf' , 'null') as 'result' from [db.PassengersList]"  method="cms"
+      query='{
+              "name": "db",
+              "mid": "20",
+              "member": [ {
+                  "type": "list",
+                  "name": "q",
+                  "request": "PassengersList",
+                  "dmnid": "[##cms.form.dmnid##]",
+                  "userid": "[##cms.form.userid##]"
+  
+              } ] } '
+      preview=""
+    />
+  </basis>
+  [##db.PassengersList.result##]

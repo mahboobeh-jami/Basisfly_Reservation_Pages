@@ -5,7 +5,7 @@
     rel="stylesheet" />
 <link href="https://cdn.basiscore.net/basisfly.com/css/reservation_tem3_datepicker.css" type="text/css"
     rel="stylesheet" />
-<basis core="call" lid="1" file="Client_Basis_Calendar.inc" />
+<basis core="call" file="Client_Basis_Calendar.inc" />
 <basis core="group" name="oneway-flight" if="'[##cms.form.type##]' = '1'">
     <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
         <member method="cms" name="dep_city"
@@ -24,18 +24,18 @@
         </basis>
         <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
         <ul class="flight_type font_15 color_gray font-weight">
-            <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search.bc?lid=1';"
+            <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search.bc';"
                 class="active cursor-pointer">یک طرفه
 
             </li>
-            <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search.bc?lid=1';"
+            <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search.bc';"
                 class="cursor-pointer">رفت و برگشت
             </li>
 
             <div class="clr"></div>
         </ul>
         <div class="searched-items width_100 background-color_white">
-            <form method="get" action="/Tem3_Oneway_Search.bc?lid=1" class="form-research" id="flight-form">
+            <form method="get" action="/Tem3_Oneway_Search.bc" class="form-research" id="flight-form">
                 <input type="hidden" value="[##cms.form.selectage##]" name="select-age" class="select-age-value" />
                 <input type="hidden" class="child_count" value="[##cms.form.child##]" />
                 <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent"
@@ -365,18 +365,18 @@
         </basis>
         <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
         <ul class="flight_type font_15 color_gray font-weight">
-            <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search.bc?lid=1';"
+            <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search.bc';"
                 class="cursor-pointer">یک طرفه
 
             </li>
-            <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search.bc?lid=1';"
+            <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search.bc';"
                 class="active cursor-pointer">رفت و برگشت
             </li>
 
             <div class="clr"></div>
         </ul>
         <div class="searched-items width_100 background-color_white">
-            <form method="get" action="/Tem3_Roundtrip_Search.bc?lid=1" class="form-research" id="flight-form">
+            <form method="get" action="/Tem3_Roundtrip_Search.bc" class="form-research" id="flight-form">
                 <input type="hidden" value="[##cms.form.selectage##]" name="select-age" class="select-age-value" />
                 <input type="hidden" class="child_count" value="[##cms.form.child##]" />
                 <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent"
@@ -697,17 +697,17 @@
     </basis>
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <ul class="flight_type font_15 color_gray font-weight">
-        <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search.bc?lid=1';"
+        <li id="backtoback" onclick="document.getElementById('flight-form').action='/Tem3_Roundtrip_Search.bc';"
             class="cursor-pointer">رفت و برگشت
         </li>
-        <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search.bc?lid=1';"
+        <li id="oneway" onclick="document.getElementById('flight-form').action='/Tem3_Oneway_Search.bc';"
             class="cursor-pointer">یک طرفه
         </li>
         <li id="multiflight" class="active cursor-pointer">چند مسیره </li>
         <div class="clr"></div>
     </ul>
     <div class="searched-items width_100 background-color_white unvisible" id="flight-searched-items">
-        <form method="get" action="/Tem3_Roundtrip_Search.bc?lid=1" class="form-research" id="flight-form">
+        <form method="get" action="/Tem3_Roundtrip_Search.bc" class="form-research" id="flight-form">
             <input type="hidden" value="[##cms.form.select-age##]" name="select-age" class="select-age-value" />
             <input type="hidden" class="child_count" value="[##cms.form.child##]" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
@@ -1005,7 +1005,7 @@
         <div class="clr"></div>
     </div>
     <div class="searched-items width_100 multicity-research">
-        <form method="post" action="/Tem3_Multicity_Search.bc?lid=1" class="form-research" id="multi-flight-form">
+        <form method="post" action="/Tem3_Multicity_Search.bc" class="form-research" id="multi-flight-form">
             <input type="hidden" value="[##cms.form.select-age##]" name="select-age" class="select-age-value" />
             <input type="hidden" class="child_count" value="[##cms.form.child##]" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
@@ -1394,7 +1394,7 @@
 <basis core="group" name="hotel" if="'[##cms.form.type##]' = '3'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <div class="searched-items width_100 background-color_white">
-        <form method="post" action="/Tem3_Hotel_Search.bc?lid=1" class="form-research has-room" id="hotel-form">
+        <form method="post" action="/Tem3_Hotel_Search.bc" class="form-research has-room" id="hotel-form">
             <input type="hidden" value='[##cms.form.roomSearch##]' class="json" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
             <div class="searched-item width_30 float-right has-border">
@@ -1585,7 +1585,7 @@
             <member name="des_city_tree" format="json" preview=""> {"root":[##db.des_city.result##]}</member>
         </basis>
         <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
-        <form method="post" action="/Tem3_FlightHotel_Search.bc?lid=1" class="form-research has-room" id="flightHotel-form">
+        <form method="post" action="/Tem3_FlightHotel_Search.bc" class="form-research has-room" id="flightHotel-form">
             <div class="searched-items width_100 background-color_white">
                 <input type="hidden" value='[##cms.form.roomSearch##]' class="json" />
                 <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent"
@@ -1944,7 +1944,7 @@
 <basis core="group" name="tour" if="'[##cms.form.type##]' = '4'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <div class="searched-items width_100 background-color_white">
-        <form method="post" action="/Tem3_Tour_Search.bc?lid=1" class="form-research has-room" id="tour-form">
+        <form method="post" action="/Tem3_Tour_Search.bc" class="form-research has-room" id="tour-form">
             <input type="hidden" value='[##cms.form.roomSearch##]' class="json" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
             <input type="hidden" value="[##cms.form.typetour##]" name="data_type_tour" />
@@ -2056,7 +2056,7 @@
 <basis core="group" name="insurance" if="'[##cms.form.type##]' = '5'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <div class="searched-items width_100 background-color_white">
-        <form method="post" action="/Tem3_Insurance_Search.bc?lid=1" class="form-research" id="insurance-form">
+        <form method="post" action="/Tem3_Insurance_Search.bc" class="form-research" id="insurance-form">
             <input value='[##cms.form.birthday##]' name="birthday" class="birthday" type="hidden" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
             <div class="searched-item width_30 float-right has-border">
@@ -2150,7 +2150,7 @@
 <basis core="group" name="visa" if="'[##cms.form.type##]' = '13'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <div class="searched-items width_100 background-color_white">
-        <form method="post" action="/Tem3_Visa_Search.bc?lid=1" class="form-research" id="visa-form">
+        <form method="post" action="/Tem3_Visa_Search.bc" class="form-research" id="visa-form">
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
             <div class="searched-item width_80 float-right has-border">
                 <div class="inner width_100 p-relative city">
@@ -2184,7 +2184,7 @@
         </basis>
         <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
         <div class="searched-items width_100 background-color_white">
-            <form method="post" action="/Tem3_Cip_Search.bc?lid=1" class="form-research" id="cip-form">
+            <form method="post" action="/Tem3_Cip_Search.bc" class="form-research" id="cip-form">
                 <input type="hidden" value="[##cms.form.selectage##]" name="select-age" class="select-age-value" />
                 <input type="hidden" class="child_count" value="[##cms.form.child##]" />
                 <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent"
@@ -2344,18 +2344,18 @@
 <basis core="group" name="oneway-train" if="'[##cms.form.type##]' = '8'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <ul class="flight_type font_15 color_gray font-weight">
-        <li id="oneway" onclick="document.getElementById('train-form').action='/Tem3_Train_Oneway_Search.bc?lid=1';"
+        <li id="oneway" onclick="document.getElementById('train-form').action='/Tem3_Train_Oneway_Search.bc';"
             class="active cursor-pointer">یک طرفه
 
         </li>
-        <li id="backtoback" onclick="document.getElementById('train-form').action='/Tem3_Train_Roundtrip_Search.bc?lid=1';"
+        <li id="backtoback" onclick="document.getElementById('train-form').action='/Tem3_Train_Roundtrip_Search.bc';"
             class="cursor-pointer">رفت و برگشت
         </li>
 
         <div class="clr"></div>
     </ul>
 
-    <form method="post" action="/Tem3_Train_Oneway_Search.bc?lid=1" class="form-research" id="train-form">
+    <form method="post" action="/Tem3_Train_Oneway_Search.bc" class="form-research" id="train-form">
         <div class="searched-items width_100 background-color_white">
             <input type="hidden" value="[##cms.form.select-age##]" name="select-age" class="select-age-value" />
             <input type="hidden" class="child_count" value="[##cms.form.child##]" />
@@ -2548,18 +2548,18 @@
 <basis core="group" name="roundtrip-train" if="'[##cms.form.type##]' = '9'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <ul class="flight_type font_15 color_gray font-weight">
-        <li id="oneway" onclick="document.getElementById('train-form').action='/Tem3_Train_Oneway_Search.bc?lid=1';"
+        <li id="oneway" onclick="document.getElementById('train-form').action='/Tem3_Train_Oneway_Search.bc';"
             class="cursor-pointer">یک طرفه
 
         </li>
-        <li id="backtoback" onclick="document.getElementById('train-form').action='/Tem3_Train_Roundtrip_Search.bc?lid=1';"
+        <li id="backtoback" onclick="document.getElementById('train-form').action='/Tem3_Train_Roundtrip_Search.bc';"
             class="active cursor-pointer">رفت و برگشت
         </li>
 
         <div class="clr"></div>
     </ul>
 
-    <form method="post" action="/Tem3_Train_Roundtrip_Search.bc?lid=1" class="form-research" id="train-form">
+    <form method="post" action="/Tem3_Train_Roundtrip_Search.bc" class="form-research" id="train-form">
         <div class="searched-items width_100 background-color_white">
             <input type="hidden" value="[##cms.form.select-age##]" name="select-age" class="select-age-value" />
             <input type="hidden" class="child_count" value="[##cms.form.child##]" />
@@ -2753,7 +2753,7 @@
 <basis core="group" name="touristPanel" if="'[##cms.form.type##]' = '12'">
     <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
     <div class="searched-items width_100 background-color_white">
-        <form method="post" action="/Tem3_TouristPanel_Search.bc?lid=1" class="form-research" id="service-form">
+        <form method="post" action="/Tem3_TouristPanel_Search.bc" class="form-research" id="service-form">
             <input type="hidden" value="[##cms.form.selectage##]" name="select-age" class="select-age-value" />
             <input type="hidden" class="child_count" value="[##cms.form.child##]" />
             <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />

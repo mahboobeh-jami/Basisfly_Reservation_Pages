@@ -1,0 +1,29 @@
+<basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+    <member name="Panel_Tour_List" method="panel" query='{
+        "member": [
+          {
+            "type": "list",
+            "name": "q",
+            "request": "Panel_Tour_List",
+            "pageindex": "1",
+            "perpage": "1000",
+            "dmnid": "[##cms.cms.domainid##]",
+            "deleted": "0",
+            "enable": "1",
+            "begindate": "[##cms.form.begindate##]",
+            "enddate": "",
+            "tourname": "",
+            "basiscore_id": "[##cms.form.basiscore_id##]",
+            "cityid": "[##cms.form.cityid##]",
+            "countryid": "[##cms.form.countryid##]",
+            "startroutecode": "",
+            "returnroutecode": "",
+            "startairline": "",
+            "returnairline": "",
+            "staying": ""
+          }
+        ]
+      }
+       ' preview="" />
+  </basis>
+  [##db.Panel_Tour_List.result##]
