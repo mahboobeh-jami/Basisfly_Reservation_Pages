@@ -1,0 +1,1302 @@
+<basis core="tracking" name="tracking" source="Monitoring" collectionname="activity" dbname="tracking"
+    addcookie="true" />
+<basis core="cookie" name="trackingid" value="[##tracking.inserted.id|(0)##]" />
+
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <title>قطار یکطرفه</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="robots" content="index, nofollow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="[##cms.cms.cdn##]/images/icon-logo.png" />
+    <meta property="og:image:width" content="" />
+    <meta property="og:image:height" content="" />
+    <meta property="og:image:secure_url" content="[##cms.cms.cdn##]/images/icon-logo.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="" />
+    <meta name="author" content="BasisCore" />
+    <!----------------CSS FILE---------------->
+    <!----CSS MAIN STYLE---->
+    <link href="https://cdn.basiscore.net/basisfly.com/css/reservation_tem3_style_res.css" type="text/css"
+        rel="stylesheet" />
+    <link href="[##cms.cms.cdn##]/css/style_tem.css" type="text/css" rel="stylesheet" />
+
+
+</head>
+
+<body onload="onloadFunc();">
+    <main class="dir-rtl">
+        <basis core="call" file="header.inc" />
+        <section class="content">
+            <section class="loginRegister"></section>
+            <div id="bg-popup" class="unvisible"></div>
+            <div class="message-box unvisible">
+                <i class="icon-message-box">
+                    <svg width="50pt" height="50pt" fill="#666" version="1.0" viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(0 512) scale(.1 -.1)">
+                            <path
+                                d="m1958 5059c-518-43-1e3 -273-1362-649-741-772-795-1960-128-2804 30-39 105-121 166-181 338-337 774-546 1256-605 123-15 398-12 519 5 57 8 105 14 106 12 2-1 15-27 30-57 118-235 344-454 600-582 403-202 889-190 1280 32 141 81 174 132 120 185-32 33-60 31-115-6-25-16-83-50-130-73-388-197-846-171-1215 68-119 77-291 251-363 369-303 490-231 1110 175 1512 101 100 186 160 318 225 404 200 875 163 1242-96 87-62 225-200 286-285 222-314 284-722 166-1089-41-126-140-303-219-394-42-47-51-76-35-114 15-34 48-48 89-38 37 9 162 179 229 313 154 304 186 664 92 999-35 120-140 330-219 435-129 171-323 329-509 415l-85 39 5 170c16 517-142 993-465 1403-92 116-135 155-173 155-21 0-38-7-51-22-34-43-24-72 58-167 144-168 276-388 353-588 88-230 124-429 125-693 1-105-2-194-6-198s-44 0-90 9c-46 8-115 18-154 22l-71 6-6 187c-4 135-11 213-27 286-144 676-673 1185-1350 1302-64 11-153 17-270 17s-206-6-270-17c-683-118-1209-630-1352-1315-30-146-33-456-4-607 25-137 63-256 88-277 28-25 70-22 96 5 28 30 28 48-2 151-71 243-75 531-11 782 195 770 974 1261 1749 1103 144-29 233-60 381-134 414-206 703-586 801-1055 13-62 18-132 19-259v-175l-100-17c-410-73-756-315-963-674-90-157-156-367-169-537-3-47-9-91-12-97-3-5-61-15-129-21-334-31-681 63-976 263-127 85-303 264-396 402-71 104-77 110-112 113-27 2-43-3-57-17-36-36-27-71 48-183 342-509 932-786 1547-725l82 8 7-53c3-29 18-100 31-156 14-57 24-105 22-107-11-11-183-25-311-25-167 0-269 10-422 42-354 72-712 266-975 528-704 700-787 1795-197 2587 568 762 1591 1015 2445 603 119-57 248-136 341-206 26-20 55-34 72-34 39 0 69 32 69 74 0 41-31 71-171 163-307 201-630 311-1004 343-134 11-195 11-337-1z" />
+                            <path
+                                d="m2080 4260c-17-17-20-33-20-105s3-88 20-105c25-25 71-26 99-2 41 33 41 172 0 213-25 25-74 24-99-1z" />
+                            <path
+                                d="m1186 3889c-44-35-36-73 31-141 47-47 63-58 90-58 42 0 73 30 73 72 0 25-12 43-58 90-65 64-92 72-136 37z" />
+                            <path
+                                d="m2938 3852c-46-47-58-65-58-90 0-43 31-72 76-72 29 0 44 9 90 54 63 63 72 106 31 144-40 38-73 29-139-36z" />
+                            <path
+                                d="m2082 3670c-22-20-22-26-22-300 0-154-4-280-8-280s-37 30-72 66c-36 36-76 70-89 75-46 18-101-24-101-78 0-22 275-298 311-314 40-16 84 3 98 43 15 43 15 714 0 757-19 53-77 68-117 31z" />
+                            <path
+                                d="m810 2990c-30-30-27-83 6-109 22-17 41-21 101-21 65 0 77 3 98 25 30 30 32 64 4 99-19 24-26 26-105 26-71 0-87-3-104-20z" />
+                            <path
+                                d="m3245 2985c-14-13-25-36-25-50s11-37 25-50c21-22 33-25 94-25 39 0 81 5 95 11 49 23 53 104 7 128-11 6-54 11-96 11-67 0-79-3-100-25z" />
+                            <path
+                                d="m3653 2359c-48-23-89-67-110-116-10-26-13-136-13-533 0-490 0-501 21-546 35-73 118-124 204-124 81 0 157 47 198 124 22 40 22 48 25 516 2 324 0 491-8 526-13 63-67 129-124 155-56 26-140 25-193-2zm153-150c18-20 19-43 19-501v-480l-24-19c-31-25-69-24-98 3l-23 21v479c0 465 1 479 20 498 27 27 81 26 106-1z" />
+                            <path
+                                d="m1265 2172c-16-11-47-38-67-60-58-64-50-125 20-147 29-8 80 22 127 78 42 49 46 87 10 122-29 30-50 31-90 7z" />
+                            <path
+                                d="m2140 1813c-43-16-50-34-50-123 0-78 2-89 23-108 44-41 107-19 123 43 12 48-1 144-22 164-22 22-53 32-74 24z" />
+                            <path
+                                d="m3653 979c-91-45-123-109-123-249 0-115 20-174 74-215 123-94 281-63 347 68 27 51 36 175 20 245-15 62-69 128-125 153-56 26-140 25-193-2zm153-150c15-17 19-36 19-101 0-72-2-82-24-99-31-25-69-24-98 3-20 19-23 31-23 100 0 65 3 81 20 98 27 27 81 26 106-1z" />
+                        </g>
+                    </svg>
+                </i>
+                <div class="line-one font_20 font-weight">
+                    اعتبار نتایج به پایان رسید
+                </div>
+                <div class="line-two">
+                    برای دریافت آخرین نرخ‌ها لطفا صفحه را مجددا بارگذاری کنید
+                </div>
+                <button class="background-color_2 color_white font_16 border-radius cursor-pointer"
+                    onclick="window.location='[##cms.Host.FA_redirect|(/)##]'">صفحه اصلی</button>
+                <button class="background-color_1 color_white font_16 border-radius cursor-pointer"
+                    onclick=" location.reload()">جستجوی مجدد</button>
+            </div>
+            <section class="searched-container">
+                <div class="bc-main">
+                    <div class="width_85 float-right text-right">
+                        <div class="flight-summary-info">
+                            <div class="item font_16">
+                                <span class="departure"><span class="title">مبدا :
+                                    </span>[##cms.form.departure##]</span>
+                                <span class="dash"><i class="fa fa-arrow-left"></i></span>
+                                <span class="arrival"> <span class="title">مقصد :
+                                    </span>[##cms.form.destination##]</span>
+                            </div>
+                            <div class="item font_15">
+                                <span class="dash"><i class="far fa-calendar-check"></i></span>
+                                <span class="title">تاریخ رفت : </span><span class="persian-date-search">[##cms.form.fdate##]</span>
+                            </div>
+                            <div class="item font_13 cursor-pointer color_white background-color_1 border-radius btn"
+                                onclick="show_research(this,'8')">
+                                <i class="fa fa-search"></i> تغییر جستجو
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                    <div class="width_15 float-left font_13 next-prev-container text-left">
+                        <span class="before-btn cursor-pointer background-color_white"><i
+                                class="fa fa-angle-right color_1"></i>روز قبل
+                        </span>
+                        <span class="after-btn cursor-pointer background-color_white">روز بعد
+                            <i class="fa fa-angle-left color_1"></i></span>
+                        <form method="post" action="/Tem3_Train_Oneway_Search.bc" class="form_research_date"><input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent"> <input type="hidden" value="[##cms.form.from##]" name="from"> <input type="hidden" value="[##cms.form.to##]" name="to"> <input type="hidden" value="[##cms.form.fdate##]" name="fdate" class="departuredate"> <input type="hidden" value="[##cms.form.tdate##]" name="tdate" class="returndate"> <input type="hidden" value="[##cms.form.mstring_fdate##]" name="mstring_fdate" class="departureMdate"> <input type="hidden" value="[##cms.form.mstring_tdate##]" name="mstring_tdate" class="returnMdate"> <input type="hidden" value="[##cms.form.adult##]" name="adult"> <input type="hidden" value="[##cms.form.child##]" name="child"> <input type="hidden" value="[##cms.form.select-age##]" name="select-age"> <input type="hidden" value="[##cms.form.share|(0)##]" name="share"> <input type="hidden" value="[##cms.form.CompartmentType##]" name="CompartmentType"> <input type="hidden" value="[##cms.form.PrivateCompartment|(0)##]" name="PrivateCompartment"></form>
+                    </div>
+                    <div class="clr"></div>
+                    <div class="searched-items-container unvisible" data-load="0" data-from="[##cms.form.from##]"
+                        data-departure="[##cms.form.departure##]" data-destination="[##cms.form.destination##]"
+                        data-to="[##cms.form.to##]" data-fdate="[##cms.form.fdate##]" data-child="[##cms.form.child##]"
+                        data-persiancurrent="[##cms.form.persiancurrent##]" data-selectage="[##cms.form.select-age##]"
+                        data-privatecompartment="[##cms.form.PrivateCompartment##]"
+                        data-compartmenttype="[##cms.form.compartmenttype##]" data-adult="[##cms.form.adult##]">
+                        <div class="text-center">
+                            <div class="lds-ring">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clr"></div>
+            </section>
+            <section class="result-search-container">
+                <div class="bc-main">
+                    <div class="waiting-search">
+                        <div class="loading-container">
+                            <div class="loading"></div>
+                            <div class="loading-img"><img src="[##cms.cms.cdn##]/images/logo.png" width="" height=""
+                                    alt="logo" /></div>
+                        </div>
+                        <p class="loading-text">در حال جستجوی بهترین قطارها ...</p>
+                        <div class="waiting-content width_30 float-right">
+                            <div class="stract-filters float-right width_95 ">
+                                <div class="stract-filter stract-effect">
+                                    <div class="stract-filter-head"></div>
+                                    <div class="stract-filter-row">
+                                        <div class="stract-filter-item"></div>
+                                        <div class="stract-filter-item"></div>
+                                    </div>
+                                </div>
+                                <div class="stract-filter stract-effect">
+                                    <div class="stract-filter-head"></div>
+                                    <div class="stract-filter-row">
+                                        <div class="stract-filter-item"></div>
+                                        <div class="stract-filter-item"></div>
+                                    </div>
+                                </div>
+                                <div class="stract-filter stract-effect">
+                                    <div class="stract-filter-head"></div>
+                                    <div class="stract-filter-row">
+                                        <div class="stract-filter-item"></div>
+                                        <div class="stract-filter-item"></div>
+                                    </div>
+                                </div>
+                                <div class="stract-filter stract-effect">
+                                    <div class="stract-filter-head"></div>
+                                    <div class="stract-filter-row">
+                                        <div class="stract-filter-item"></div>
+                                        <div class="stract-filter-item"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="waiting-content width_70 float-left ">
+                            <div class="stract-sort-box">
+                                <div class="stract-sort-title float-right stract-effect"></div>
+                                <ul class="stract-sort-items d-flex border-radius float-left stract-effect">
+                                    <li class="p-relative width_20"></li>
+                                    <li class="p-relative width_20"></li>
+                                    <li class="p-relative width_20"></li>
+                                    <li class="p-relative width_20"></li>
+                                    <li class="p-relative width_20"></li>
+                                </ul>
+                            </div>
+                            <div class="stract-result-item stract-effect">
+                                <div class="stract-first-col width_70 float-right p-relative">
+                                    <div class="d-flex p-relative">
+                                        <div class="stract-img-item float-right"></div>
+                                        <div class="stract-infoes-item width_100">
+                                            <div class="stract-info-item float-right"></div>
+                                            <div class="stract-duration-item width_70 p-relative float-right">
+                                                <div class="stract-duration-line p-relative no-stop"></div>
+                                            </div>
+                                            <div class="stract-info-item float-left"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="width_30 float-left p-relative">
+                                    <div class="stract-seat-item p-absolute"></div>
+                                    <div class="stract-cost-item">
+                                        <div class="stract-cost"></div>
+                                        <div class="stract-btn-item"></div>
+                                    </div>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="stract-result-item stract-effect">
+                                <div class="stract-first-col width_70 float-right p-relative">
+                                    <div class="d-flex p-relative">
+                                        <div class="stract-img-item float-right"></div>
+                                        <div class="stract-infoes-item width_100">
+                                            <div class="stract-info-item float-right"></div>
+                                            <div class="stract-duration-item width_70 p-relative float-right">
+                                                <div class="stract-duration-line p-relative no-stop"></div>
+                                            </div>
+                                            <div class="stract-info-item float-left"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="width_30 float-left p-relative">
+                                    <div class="stract-seat-item p-absolute"></div>
+                                    <div class="stract-cost-item">
+                                        <div class="stract-cost"></div>
+                                        <div class="stract-btn-item"></div>
+                                    </div>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="stract-result-item stract-effect">
+                                <div class="stract-first-col width_70 float-right p-relative">
+                                    <div class="d-flex p-relative">
+                                        <div class="stract-img-item float-right"></div>
+                                        <div class="stract-infoes-item width_100">
+                                            <div class="stract-info-item float-right"></div>
+                                            <div class="stract-duration-item width_70 p-relative float-right">
+                                                <div class="stract-duration-line p-relative no-stop"></div>
+                                            </div>
+                                            <div class="stract-info-item float-left"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="width_30 float-left p-relative">
+                                    <div class="stract-seat-item p-absolute"></div>
+                                    <div class="stract-cost-item">
+                                        <div class="stract-cost"></div>
+                                        <div class="stract-btn-item"></div>
+                                    </div>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div id="app" class="unvisible"></div>
+                    <div class="clr"></div>
+                </div>
+            </section>
+        </section>
+        <!----------------JS FILE---------------->
+        <script src="[##cms.cms.cdn##]/_js/jquery/jquery-3.6.3.min.js" type="text/javascript"></script>
+
+        <basis core="call" file="footer.inc" />
+
+    </main>
+    <script>
+        var JalaliDate={g_days_in_month:[31,28,31,30,31,30,31,31,30,31,30,31],j_days_in_month:[31,31,31,31,31,31,30,30,30,30,30,29]};
+        JalaliDate.jalaliToGregorian = function (j_y, j_m, j_d) {
+              j_y = parseInt(j_y);
+              j_m = parseInt(j_m);
+              j_d = parseInt(j_d);
+              var jy = j_y - 979;
+              var jm = j_m - 1;
+              var jd = j_d - 1;
+              var j_day_no = 365 * jy + parseInt(jy / 33) * 8 + parseInt((jy % 33 + 3) / 4);
+              for (var i = 0; i < jm; ++i) j_day_no += JalaliDate.j_days_in_month[i];
+              j_day_no += jd;
+              var g_day_no = j_day_no + 79;
+              var gy = 1600 + 400 * parseInt(g_day_no / 146097); /* 146097 = 365*400 + 400/4 - 400/100 + 400/400 */
+              g_day_no = g_day_no % 146097;
+              var leap = true;
+              if (g_day_no >= 36525) /* 36525 = 365*100 + 100/4 */ {
+                g_day_no--;
+                gy += 100 * parseInt(g_day_no / 36524); /* 36524 = 365*100 + 100/4 - 100/100 */
+                g_day_no = g_day_no % 36524;
+                if (g_day_no >= 365) g_day_no++;
+                else leap = false;
+              }
+              gy += 4 * parseInt(g_day_no / 1461); /* 1461 = 365*4 + 4/4 */
+              g_day_no %= 1461;
+              if (g_day_no >= 366) {
+                leap = false;
+                g_day_no--;
+                gy += parseInt(g_day_no / 365);
+                g_day_no = g_day_no % 365;
+              }
+              for (var i = 0; g_day_no >= JalaliDate.g_days_in_month[i] + (i == 1 && leap); i++)
+                g_day_no -= JalaliDate.g_days_in_month[i] + (i == 1 && leap);
+              var gm = i + 1;
+              var gd = g_day_no + 1;
+              gm = gm < 10 ? "0" + gm : gm;
+              gd = gd < 10 ? "0" + gd : gd;
+              return [gy, gm, gd];
+            };
+        
+            const persianDates = document.querySelectorAll('.persian-date-search');
+    persianDates.forEach(persianDateElement => {
+        var persian = persianDateElement.innerHTML
+        const check_year = parseInt(persian.split("-")[0]);
+       if(check_year >= 1400 && check_year <= 1499){
+        var gregorian =convert_jalali_toGregorian(persian)
+        const gregorianSpan = document.createElement('span');
+        gregorianSpan.classList.add('gregorian-date-search');
+        gregorianSpan.textContent = ` (${gregorian})`;
+        persianDateElement.after(gregorianSpan);
+       }
+    })
+            function convert_jalali_toGregorian(element) {
+                var date = element;
+                date_splited = date.split("-"),
+                gregorian_date = JalaliDate.jalaliToGregorian(date_splited[0], date_splited[1], date_splited[2]);
+                date_converted = gregorian_date[0] + "-" + gregorian_date[1] + "-" + gregorian_date[2];
+                return date_converted;
+            };
+    </script>
+    <script
+        type="text/javascript">$(document).ready(function () { fetch('/Client_Train_Oneway_Json.bc', { method: 'post', body: 'from=[##cms.form.from##]&to=[##cms.form.to##]&fdate=[##cms.form.fdate##]&tdate=[##cms.form.tdate##]&adult=[##cms.form.adult##]&child=[##cms.form.child##]&select-age=[##cms.form.select-age##]&share=[##cms.form.share|(0)##]&CompartmentType=[##cms.form.CompartmentType##]&PrivateCompartment=[##cms.form.PrivateCompartment|(0)##]&sid=[##cms.query.sid|(2)##]' }).then(response => response.text()).then(text => { let Maindata = JSON.parse(text.replace(/\'/g, '"')); $('.waiting-search').hide(); $('#app').show(); load_data(Maindata); }).catch(error => console.error(error)) })</script>
+    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_react.production.min.js"></script>
+    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_react_dom.production.min.js"></script>
+    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_babel.min.js"></script>
+    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_react_paging.js"></script>
+    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_tem3_commonJs.js"
+        type="text/javascript"></script>
+    <script type="text/babel">
+        function load_data(load_data) {
+            class App extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        data: [],
+                        library: null,
+                        librarySecond: null,
+                        perPage: 20,
+                        currentPage: 1,
+                        currentPage2: 2,
+                        currentPage3: 3,
+                        maxPage: null,
+                        filterTotalF: "",
+                        filterTotalS: "",
+                        rangevalTotalF: "",
+                        rangevalTotalS: "",
+                        visibleDetails: {},
+                        visibleAll: {},
+                        visibleStation: {},
+                        visibleRule: {},
+                        priceS: {},
+                        defaultactive: {},
+                        priceactive: {},
+                        checkkeyprice: 0,
+                        activedefault: "active",
+                        activeprice: "",
+                        activeTab_details: {},
+                        activeTab_rule: {},
+                        activeTab_station: {},
+                        state_checktype: "",
+                        state_checkkey: "",
+                        state_comapanyname: "",
+                        state_trainclass: "",
+                    };
+                    this.comapanyname = [];
+                    this.trainclass = [];
+                    this.handleClick = this.handleClick.bind(this);
+                    this.handleReset = this.handleReset.bind(this);
+                }
+                componentDidMount() {
+                    this.setState(state => ({
+                        ...state,
+                        data: load_data
+                    }), () => {
+                        this.reorganiseLibrary()
+                    })
+
+                    $(document).on('update_result', (event, comapanyname, trainclass, checktype, checkkey) => {
+                        this.reorganiseLibrary(comapanyname, trainclass, checktype, checkkey)
+                    })
+
+                }
+                componentDidUpdate() {
+                    $(".unit_content").each(function () {
+                        if ($(this).text() == 'ریالريال' || $(this).text() == 'ريالریال') {
+                            $(this).text('ریال')
+                        }
+                    })
+                }
+                reorganiseLibrary = (comapanyname, trainclass, checktype, checkkey) => {
+                    const { filterTotalF, filterTotalS, perPage, data } = this.state;
+                    let library = data;
+                    let librarySecond = data;
+                    librarySecond = _.chunk(librarySecond, perPage);
+                    this.setState({
+                        librarySecond,
+                        currentPage: 1,
+                        maxPage: librarySecond.length === 0 ? 1 : librarySecond.length
+                    })
+
+                    let defaultFilterTotalF = null;
+                    defaultFilterTotalF = filterTotalF
+                        ? (filterTotalF)
+                        : (this.renderMinFilterTotal(librarySecond));
+                    let defaultFilterTotalS = null;
+                    defaultFilterTotalS = filterTotalS
+                        ? (filterTotalS)
+                        : (this.renderMaxFilterTotal(librarySecond));
+                    if (filterTotalF !== "" || filterTotalS !== "") {
+                        let lenLibraryDef = library.length
+                        if (lenLibraryDef !== undefined) {
+                            library = library.filter(item =>
+                                item.totalCom >= defaultFilterTotalF && item.totalCom <= defaultFilterTotalS
+                            )
+                            let lenLibrary = library.length
+                            $('.result-count').text(lenLibrary)
+                        }
+                    }
+
+                    if (checktype == 'default') {
+                        library.sort((a, b) => a.totalCom - b.totalCom);
+                        this.setState({ activedefault: "active" })
+                        this.setState({ activeprice: "" })
+                        if (this.state.priceS[0] == true) {
+                            this.setState(prevState => ({
+                                priceS: { ...prevState.priceS, [0]: !prevState.priceS[0] }
+                            }))
+                        }
+
+                    }
+
+                    if (checktype == 'price') {
+                        if (checkkey == 0) {
+                            library.sort((a, b) => b.totalCom - a.totalCom);
+                            this.setState({ checkkeyprice: 1 });
+                        } else {
+                            library.sort((a, b) => a.totalCom - b.totalCom);
+                            this.setState({ checkkeyprice: 0 });
+                        }
+                        this.setState(prevState => ({
+                            priceS: { ...prevState.priceS, [0]: !prevState.priceS[0] }
+                        }))
+                        this.setState({ activeprice: "active" })
+                        this.setState({ activedefault: "" })
+                    }
+                    if (comapanyname !== undefined) {
+                        if (comapanyname !== "") {
+                            comapanyname = comapanyname.split(",");
+                            library = library.filter(item => {
+                                if (comapanyname.includes(item.routeshow.company_name)) return item;
+                            })
+                        }
+                        let lenLibrary = library.length
+                        $('.result-count').text(lenLibrary)
+                    }
+                    if (trainclass !== undefined) {
+                        if (trainclass !== "") {
+                            trainclass = trainclass.split(",");
+                            library = library.filter(item => {
+                                if (trainclass.includes(item.ticketinfooo.name_wagon)) return item;
+                            })
+                        }
+                        let lenLibrary = library.length
+                        $('.result-count').text(lenLibrary)
+                    }
+                    let lenLibrary = library.length
+                    if (lenLibrary == undefined) {
+                        $('.result-count').text(0)
+                    } else {
+                        $('.result-count').text(lenLibrary)
+                    }
+
+                    library = _.chunk(library, perPage);
+                    this.setState({
+                        library,
+                        currentPage: 1,
+                        maxPage: library.length === 0 ? 1 : library.length
+                    })
+
+                }
+
+                renderMinFilterTotal = (librarySecond) => {
+                    return librarySecond.reduce((acc, lib) => {
+                        const libMin = Math.min(...lib.map(item => item.totalCom))
+                        return acc === undefined ? libMin : libMin < acc ? libMin : acc
+                    }, undefined)
+                }
+                renderMaxFilterTotal = (librarySecond) => {
+                    return librarySecond.reduce((acc, lib) => {
+                        const libMax = Math.max(...lib.map(item => item.totalCom))
+                        return libMax > acc ? libMax : acc
+                    }, 0)
+                }
+                renderMinFilterTimeDep = (librarySecond) => {
+                    return librarySecond.reduce((acc, lib) => {
+                        const libMin = Math.min(...lib.map(item => this.renderStoppinfo(item.ticketinfooo.stoppinfoo.showtiming)))
+                        return acc === undefined ? libMin : libMin < acc ? libMin : acc
+                    }, undefined)
+                }
+                renderMaxFilterTimeDep = (librarySecond) => {
+                    return librarySecond.reduce((acc, lib) => {
+                        const libMax = Math.max(...lib.map(item => this.renderStoppinfoS(item.ticketinfooo.stoppinfoo.showtiming)))
+                        return libMax > acc ? libMax : acc
+                    }, 0)
+                }
+                // Previous Page
+                previousPage = event => {
+                    this.handleReset(event);
+                    this.handleClick(event);
+                    this.setState({
+                        currentPage: this.state.currentPage - 1,
+                        currentPage2: this.state.currentPage2 - 1,
+                        currentPage3: this.state.currentPage3 - 1
+                    })
+                }
+                // Next Page 
+                nextPage = event => {
+                    this.handleReset(event);
+                    this.handleClick(event);
+                    this.setState({
+                        currentPage: this.state.currentPage + 1,
+                        currentPage2: this.state.currentPage2 + 1,
+                        currentPage3: this.state.currentPage3 + 1
+                    })
+                }
+
+                // Next Page3
+                nextPage3 = event => {
+                    this.handleReset(event);
+                    this.handleClick(event);
+                    this.setState({
+                        currentPage: this.state.currentPage3,
+                        currentPage2: this.state.currentPage3 + 1,
+                        currentPage3: this.state.currentPage3 + 2
+                    })
+                }
+
+                // start handler filter price
+                handleFilterTotal = event => {
+                    this.handleReset(event);
+                    const { state_comapanyname, state_trainclass, state_checktype, state_checkkey } = this.state;
+                    let renderMax = this.renderMaxTotal()
+                    let key = event.target.getAttribute("data-key")
+                    if (key == '1') {
+                        this.setState(
+                            {
+                                filterTotalF: event.target.value,
+                                rangevalTotalF: event.target.value,
+                            },
+                            () => {
+                                this.reorganiseLibrary(state_comapanyname, state_trainclass, state_checktype, state_checkkey);
+                            }
+                        )
+                    } else if (key == '2') {
+                        event.target.max = renderMax
+                        this.setState(
+                            {
+                                filterTotalS: event.target.value,
+                                rangevalTotalS: event.target.value,
+                            },
+                            () => {
+                                this.reorganiseLibrary(state_comapanyname, state_trainclass, state_checktype, state_checkkey);
+                            }
+                        )
+                    }
+                } // end handler filter price
+                handleMinFilterTotal = event => {
+                    event.target.value = Math.min(event.target.value, event.target.parentNode.childNodes[2].value - 1);
+                    var value = (100 / (parseInt(event.target.max) - parseInt(event.target.min))) * parseInt(event.target.value) - (100 / (parseInt(event.target.max) - parseInt(event.target.min))) * parseInt(event.target.min);
+                    var children = event.target.parentNode.childNodes[0].childNodes;
+                    children[0].style.width = value + '%';
+                    children[2].style.right = value + '%';
+                    children[3].style.right = value + '%';
+                    children[5].childNodes[0].innerHTML = event.target.value;
+                }
+                handleMaxFilterTotal = event => {
+                    event.target.value = Math.max(event.target.value, event.target.parentNode.childNodes[1].value - (-1));
+                    var value = (100 / (parseInt(event.target.max) - parseInt(event.target.min))) * parseInt(event.target.value) - (100 / (parseInt(event.target.max) - parseInt(event.target.min))) * parseInt(event.target.min);
+                    var children = event.target.parentNode.childNodes[0].childNodes;
+                    children[1].style.width = (100 - value) + '%';
+                    children[2].style.left = (100 - value) + '%';
+                    children[4].style.right = value + '%';
+                    children[6].childNodes[0].innerHTML = event.target.value;
+                }
+
+                // handler per page
+                handlePerPage = (evt) =>
+                    this.setState({
+                        perPage: evt.target.value
+                    }, () => this.reorganiseLibrary());
+
+                // handler render of library
+                renderLibrary = () => {
+                    const { library, currentPage } = this.state;
+                    if (!library || (library && library.length === 0)) {
+                        return <div className="message-box-nodata dir-ltr">
+                            <i className="icon-message-box">
+                                <svg width="50pt" height="50pt" fill="#666" version="1.0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                    <g transform="translate(0 512) scale(.1 -.1)">
+                                        <path d="m593 5102c-100-35-171-115-193-216-8-36-10-508-8-1626l3-1575 21-46c28-60 87-119 150-150 47-23 59-24 306-29l257-5-459-430c-252-236-470-448-485-470-62-96-71-231-22-338 92-201 346-279 521-159 33 23 269 267 611 632 306 327 562 599 569 604 9 6 23 2 43-12 96-68 313-155 464-186 454-93 972 35 1285 317l51 46 1058 6 57 28c69 34 121 91 148 164 20 53 20 76 20 1633s0 1580-20 1633c-27 73-79 130-148 164l-57 28-2060 2c-1957 2-2063 2-2112-15zm4142-194c48-22 55-52 55-228v-160h-835c-908 0-877 2-903-55-15-33-15-57 0-90 26-57-5-55 903-55h835v-1296-1296l-68-68h-416-415l56 83c102 149 181 339 220 533 27 134 24 423-5 560-64 299-201 559-406 772-214 222-458 359-759 424-87 19-133 22-307 22s-220-3-307-22c-294-64-523-190-738-406-223-224-359-476-427-790-18-84-22-133-22-291 0-206 14-299 70-462 28-82 110-256 144-303 11-16 20-32 20-37s-20-25-44-46l-45-37h-341-342l-68 68v1296 1296h835c625 0 841 3 860 12 29 13 55 55 55 88s-26 75-55 88c-19 9-235 12-860 12h-835v166 166l68 68h2026c1549 0 2031-3 2051-12zm-1788-1077c282-58 509-182 693-378 454-486 454-1300-1-1787-211-226-500-362-845-396-645-65-1252 396-1381 1047-21 109-24 355-4 463 88 493 456 901 931 1032 190 53 410 59 607 19zm-1304-2478-66-74-168 166 146 134 154-152-66-74zm-293-138 84-85-50-52c-28-29-220-234-428-455-403-431-407-434-488-419-106 20-169 137-123 226 13 26 901 870 915 870 3 0 43-38 90-85z" />
+                                        <path d="m2644 4509c-25-13-54-60-54-89 0-51 49-100 100-100s100 49 100 99c0 73-80 122-146 90z" />
+                                        <path d="m2305 3320c-11-4-101-90-200-189-236-237-234-207-27-414l152-152-140-140c-146-146-176-188-165-233 8-34 338-369 381-388 17-7 42-10 55-7s93 73 177 157l152 151 153-151c83-84 163-154 176-157s35-1 50 4c40 15 379 358 386 391 10 46-19 87-165 233l-140 140 152 152c207 208 210 176-32 418-115 115-194 186-210 190-47 10-83-14-228-158l-142-141-143 141c-169 168-185 178-242 153zm185-384c147-147 174-165 228-151 16 4 85 64 175 153l147 146 87-87 88-87-153-153c-133-135-152-157-152-186 0-18 5-42 11-54s75-86 152-165l142-142-175-175-153 153c-151 149-154 152-197 152s-46-3-197-152l-153-153-174 174 152 155c149 150 152 155 152 197s-3 46-152 196l-152 153 84 85c47 47 87 85 89 85 3 0 71-65 151-144z" />
+                                    </g>
+                                </svg> </i>
+                            <div className="line-one font_20 font-weight text-right">
+                                برای جستجوی شما نتیجه ای یافت نشد
+                            </div>
+                            <div className="line-two text-right">
+                                برای دریافت نتیجه لطفا تاریخ و یا مسیر خود را تغییر دهید
+                            </div>
+                            <a href="[##cms.Host.FA_redirect|(/)##]" className="background-color_1 color_white font_16 border-radius cursor-pointer">صفحه اصلی</a>
+                        </div>
+
+                    }
+                    return library[currentPage - 1].map((item, i) => (
+                        <div className="result-item">
+                            <form method="post" action="/Client_Show_TrainOneway_ver.2.bc" key={item._id}>
+                                <input type="hidden" value="[##cms.form.from##]" name="from" />
+                                <input type="hidden" value="[##cms.form.to##]" name="to" />
+                                <input type="hidden" value="[##cms.form.fdate##]" name="fdate" />
+                                <input type="hidden" value="[##cms.form.adult##]" name="adult" />
+                                <input type="hidden" value="[##cms.form.child##]" name="child" />
+                                <input type="hidden" value="[##cms.form.select-age##]" name="select-age" />
+                                <input type="hidden" value="[##cms.form.CompartmentType##]" name="CompartmentType" />
+                                <input type="hidden" value="[##cms.form.PrivateCompartment|(0)##]" name="PrivateCompartment" />
+                                <input type="hidden" value="Tem3" name="checkpreurl" />
+                                <input type="hidden" value={item.supplier} name="supplier" />
+                                <input type="hidden" value={item._id.value} name="idvalue" />
+                                <input type="hidden" value={item.totalCom} name="amount" />
+                                {this.rendershare(item)}
+                                {this.renderproviderId(item._id)}
+                                {this.renderprovider(item)}
+                                {this.renderid(item)}
+                                {this.renderProductid(item)}
+                                <input type="hidden" value={this.renderChildrenCount(item)} name="childcount" />
+                                <input type="hidden" value={this.renderInfantsCount(item)} name="infants" />
+                                <input type="hidden" value={this.renderAdultsCount(item)} name="adultcount" />
+                                <div className="result-info p-relative">
+                                    <div className="first-col width_74 float-right p-relative">
+                                        <div className="d-flex p-relative flex-justify">
+                                            <div className="img-item float-right text-center">
+                                                <img src={item.ticketinfooo.train_logo} alt={item.routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailstrain} width="50"
+                                                    height="50" />
+                                                <div className="class-item font_10">
+                                                    شماره قطار: {item.routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsroutecode}
+                                                </div>
+                                                <div className="font_10">
+                                                    {item.ticketinfooo.name_wagon}
+                                                </div>
+                                            </div>
+                                            <div className="infoes-item width_100">
+                                                <div className="info-item float-right text-center">
+
+                                                    <div className="font_19 font-weight color_font">{item.infooo.startcity}</div>
+                                                    <p className="city-name font_13">{item.ticketinfooo.exitinfo.shortstart_train_station}</p>
+                                                    <div className="time-item font-weight font_20 color_font">{item.ticketinfooo.exitinfo.showexittime}</div>
+                                                </div>
+                                                <div
+                                                    className="duration-item text-center width_70 p-relative float-right">
+                                                    {this.renderStopinfo(item)}
+
+                                                    <div className="item-hour font_11 p-absolute">
+                                                        <span>زمان سفر: </span>
+                                                        <span className="hour">{item.timing}</span><span className="space">دقیقه</span>
+                                                    </div>
+                                                </div>
+                                                <div className="info-item text-center float-left">
+                                                    <div className="font_19 font-weight color_font">{item.infooo.endcity}</div>
+                                                    <p className="city-name font_13">{item.ticketinfooo.arrivalinfo.shortend_train_station}</p>
+                                                    <div className="time-item font_20 font-weight color_font">{item.ticketinfooo.arrivalinfo.showarrivaltime}</div>
+                                                </div>
+                                                <div className="clr"></div>
+                                            </div>
+
+
+                                        </div>
+                                        <div className="d-row bottom-content">
+                                            {this.renderCommission(item)}
+                                            <div onClick={((e) => this.showAllDetails(e, i))}
+                                                className="details-btn font_12 color_2 text-center cursor-pointer">
+                                                جزییات
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div className="width_25 float-left p-relative">
+                                        {this.renderseatcount(item)}
+                                        <div className="cost-item text-center">
+                                            <div>
+                                                <div className="color_gray font_11 title">قیمت برای هر نفر :</div><span
+                                                    className="item-cost font_20 font-weight">{new
+                                                        Intl.NumberFormat().format(item.total)}</span><span
+                                                            className="color_gray font_11 unit">{item.moneytype}</span></div>
+                                            {this.renderCheckCapacity(item)}
+                                            <div className="clr"></div>
+                                        </div>
+                                    </div>
+                                    <div className="clr"></div>
+                                    <div key={i} className={`details-container text-right ${!this.state.visibleAll[i] ? "unvisible" : "visible"}`}>
+                                        <div className="wrapper-tab-details d-row font_13 ">
+                                            <div className="tab-details train" onClick={((e) => this.showDetails(e, i))}>
+                                                <span className={`with-tab p-relative ${!this.state.activeTab_details[i] ? "" : "active-tab"}`}>جزئیات قطار</span>
+
+                                            </div>
+                                            <div className="tab-details train p-relative" onClick={((e) => this.showStation(e, i))}>
+                                                <span className={`with-tab p-relative ${!this.state.activeTab_station[i] ? "" : "active-tab"}`}>ایستگاه ها</span>
+                                            </div>
+                                            <div className="tab-details train p-relative" onClick={((e) => this.showRule(e, i))}>
+                                                <span className={`with-tab p-relative ${!this.state.activeTab_rule[i] ? "" : "active-tab"}`}>قوانین استرداد</span>
+
+                                            </div>
+
+                                            <div className="clr"></div>
+                                        </div>
+                                        <div key={i} className={`details-content ${!this.state.visibleDetails[i] ? "unvisible" : "visible"}`}>
+                                            {this.renderTrainDetails(item, 'dep')}
+                                            <div className="clr"></div>
+                                        </div>
+                                        <div key={i} className={`details-content ${!this.state.visibleRule[i] ? "unvisible" : "visible"}`}>
+                                            <div className="details-item"> -</div>
+                                        </div>
+                                        <div key={i} className={`details-content ${!this.state.visibleStation[i] ? "unvisible" : "visible"}`}>
+                                            <div className="details-item">
+                                                <div className="stations-content">{this.renderStations(item.stations)}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="clr"></div>
+
+                                </div>
+                            </form>
+                        </div>
+                    ))
+                }
+
+
+                render() {
+                    const { library, currentPage, perPage, maxPage, rangevalTotalF, rangevalTotalS, librarySecond } = this.state;
+                    let defaultRangeTotalF = null;
+                    defaultRangeTotalF = rangevalTotalF
+                        ? (<span>{new Intl.NumberFormat().format(rangevalTotalF)}</span>)
+                        : (<span>{new Intl.NumberFormat().format(this.renderMinTotal())}</span>);
+                    let defaultRangeTotalS = null;
+                    defaultRangeTotalS = rangevalTotalS
+                        ? (<span>{new Intl.NumberFormat().format(rangevalTotalS)}</span>)
+                        : (<span>{new Intl.NumberFormat().format(this.renderMaxTotal())}</span>);
+
+
+                    return (
+                        <div>
+                            <aside className="sidebar-content width_30 float-right">
+                                <div className="filters-container float-right width_95">
+                                    <p><span className="font-weight result-count">{this.renderCount()}</span> بلیط پیدا شد.</p>
+                                    <p className="section-timer">مدت زمان باقی مانده : <span id="timer" className="font-weight EnNum font_20">00:00:00</span></p>
+                                    {this.ShowFilterTrain()}
+                                    <div className="filter-container">
+                                        <p className="filter-head"><span className="font_14 float-right">بازه قیمت</span>
+                                            <div className="clr"></div>
+                                        </p>
+                                        <div className="content-filter p-relative">
+                                            <div className="range-distance">
+                                                <div>
+                                                    <div className="inverse-right"></div>
+                                                    <div className="inverse-left"></div>
+                                                    <div className="range-length background-color_1"></div>
+                                                    <span className="thumb-range thumb-range1"></span>
+                                                    <span className="thumb-range thumb-range2"></span>
+                                                    <div class="rangevalFirst_2 p-absolute font_11">{defaultRangeTotalF}<span class="font_10 unit_content">{this.ShowUnit_filter()}</span></div>
+                                                    <div class="rangevalSecond_2 p-absolute font_11">{defaultRangeTotalS}<span class="font_10 unit_content">{this.ShowUnit_filter()}</span></div>
+                                                </div>
+                                                <input type="range" defaultValue={this.renderMinTotal() || 0} max={this.renderMaxTotal() || 999999999} min={this.renderMinTotal() || 0} step="1" onInput={this.handleMinFilterTotal} onChange={this.handleFilterTotal} data-key="1" data-value="1_T" />
+                                                <input type="range" defaultValue={this.renderMaxTotal() || 999999999} max={this.renderMaxTotal() || 999999999} min={this.renderMinTotal() || 0} step="1" onInput={this.handleMaxFilterTotal} onChange={this.handleFilterTotal} data-key="2" data-value="2_T" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+
+                            <div className="result-content width_70 float-left ">
+                                <div className="sort-box">
+                                    <span className="sort-title font_13 width_15 float-right">مرتب سازی براساس :</span>
+                                    <ul className="sort-items d-flex background-color_white border-radius float-left">
+                                        <li className={`p-relative font_13 cursor-pointer text-center width_20 after-notactive ${this.state.activedefault}`} data-type="default" data-key="0" onClick={((e) => this.handleChange(e))}> پیشفرض</li>
+                                        <li className={`p-relative font_13 cursor-pointer text-center width_20 ${this.state.activeprice} ${!this.state.priceS[0] ? "after-notactive" : "after-active"}`} data-type="price" data-key={this.state.checkkeyprice} onClick={((e) => this.handleChange(e))}> قیمت</li>
+                                    </ul>
+                                    <div className="clr"></div>
+                                </div>
+
+                                <div className="clr"></div>
+                                <div className="result-items">
+                                    {this.renderLibrary()}
+                                    <ul id="page-numbers">
+                                        <li className="nexprev">
+                                            {currentPage !== 1 && (
+                                                <button onClick={this.previousPage}><i className="fa fa-backward"></i></button>
+                                            )}
+                                        </li>
+                                        <li className="controls-active background-color_2 font-weight">{this.state.currentPage}</li>
+                                        {(this.state.currentPage2 < maxPage) && (<li className="controls" onClick={this.nextPage}>{this.state.currentPage2}</li>
+                                        )}
+                                        {(this.state.currentPage3 < maxPage) && (<li className="controls" onClick={this.nextPage3}>{this.state.currentPage3}</li>
+                                        )}
+                                        <li className="restControls">...</li>
+                                        <li className="controls">{this.state.maxPage}</li>
+                                        <li className="nexprev">
+                                            {(this.state.currentPage < maxPage) && (<button onClick={this.nextPage}><i className="fa fa-forward"></i></button>
+                                            )}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    )
+                }
+
+                renderMinTotal = () => {
+                    const { librarySecond } = this.state;
+                    if (!librarySecond || (librarySecond && librarySecond.length === 0)) {
+                        return ''
+                    }
+                    return librarySecond.reduce((acc, lib) => {
+                        const libMin = Math.min(...lib.map(item => item.totalCom))
+                        return acc === undefined ? libMin : libMin < acc ? libMin : acc
+                    }, undefined)
+                }
+                renderMaxTotal = () => {
+                    const { librarySecond } = this.state;
+
+                    if (!librarySecond || (librarySecond && librarySecond.length === 0)) {
+                        return ''
+                    }
+                    return librarySecond.reduce((acc, lib) => {
+                        const libMax = Math.max(...lib.map(item => item.totalCom))
+                        return libMax > acc ? libMax : acc
+                    }, 0)
+                }
+                rendersinglecostFilter(element) {
+                    if (element.special_cost_table) {
+                        return element.special_cost_table.adults[0].unit
+                    } else {
+                        return element.adults.unit
+                    }
+                }
+
+                ShowUnit_filter() {
+                    let element = this.state.data;
+                    if (!element) return null;
+                    if (element.length !== undefined) {
+                        return [...(new Set(element.map(x => x.moneytype)))]
+                    }
+                }
+
+                ShowFilterTrain() {
+                    let element = this.state.data;
+                    if (!element) return null;
+                    return <div><div className="filter-container">
+                        <p className="filter-head"><span className="font_14 float-right">کلاس قطار </span>
+                            <div className="clr"></div>
+                        </p>
+                        <div className="filter-row">
+                            {this.rendertrianClass(element)}
+                            <div className="clr"></div>
+                        </div>
+                    </div><div className="filter-container filter_has_border">
+                            <p className="filter-head"><span className="font_14 float-right">شرکت های ریلی</span>
+                                <div className="clr"></div>
+                            </p>
+                            <div className="filter-row">
+                                {this.rendercomapanyName(element)}
+                                <div className="clr"></div>
+                            </div>
+                        </div></div>
+                }
+                rendertrianClass(element) {
+                    let indents = [];
+                    if (element.length !== undefined) {
+                        let sentences = [...(new Set(element.map(d => d['ticketinfooo']['name_wagon']).flat()))]
+                        for (let i = 0; i < sentences.length; i++) {
+                            let singleSentence = <div className="filter-body"><div className="section-input_list p-relative" data-index="1"><input type="checkbox" value={sentences[i]} className="p-absolute" data-filter="trainclass" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} /><label><span className="checkbox"><div className="text-checkbox">{sentences[i]}</div></span></label></div><div className="clr"></div></div>
+                            let output = singleSentence
+                            indents.push(singleSentence)
+                        }
+
+                        return (
+                            indents
+                        )
+
+                    }
+                }
+                rendercomapanyName(element) {
+                    let indents = [];
+                    if (element.length !== undefined) {
+                        let sentences = [...(new Set(element.map(d => d['routeshow']['company_name']).flat()))]
+                        for (let i = 0; i < sentences.length; i++) {
+                            let singleSentence = <div className="filter-body"><div className="section-input_list p-relative" data-index="1"><input type="checkbox" value={sentences[i]} className="p-absolute" data-filter="comapanyname" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} /><label><span className="checkbox"><div className="text-checkbox">{sentences[i]}</div></span></label></div><div className="clr"></div></div>
+                            let output = singleSentence
+                            indents.push(singleSentence)
+                        }
+
+                        return (
+                            indents
+                        )
+
+                    }
+                }
+                handleChange = (event) => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    this.handleReset(event);
+                    let checktype = event.target.getAttribute("data-type")
+                    let checkkey = event.target.getAttribute("data-key")
+                    let isChecked = event.target.checked
+                    let value = event.target.value
+                    let data_attribute = event.target.getAttribute("data-filter");
+                    switch (data_attribute) {
+                        case 'trainclass':
+                            if (isChecked) {
+                                this.trainclass.push(value + ',')
+                            } else {
+                                this.trainclass.splice(this.trainclass.indexOf(value + ','), 1)
+                            }
+                            break;
+                        case 'comapanyname':
+                            if (isChecked) {
+                                this.comapanyname.push(value + ',')
+                            } else {
+                                this.comapanyname.splice(this.comapanyname.indexOf(value + ','), 1)
+                            }
+                            break;
+
+
+                    }
+                    $(document).trigger('update_result', [this.comapanyname.join(), this.trainclass.join(), checktype, checkkey])
+                    this.setState({
+                        state_trainclass: this.trainclass.join(),
+                        state_comapanyname: this.comapanyname.join(),
+                        state_checktype: checktype,
+                        state_checkkey: checkkey,
+                    })
+                }
+                renderCount(element) {
+                    let maxPage = this.state.maxPage
+                    let len = this.renderLibrary().length
+                    let sum = len * maxPage
+                    sum = sum || 0
+                    if (sum == '0') {
+                        $("#page-numbers").hide()
+                        $(".message-box-nodata").show()
+
+                    } else {
+                        $("#page-numbers").show()
+                        $(".message-box-nodata").hide()
+                    }
+
+                }
+
+                renderid(element) {
+                    let id = element._id
+                    if (typeof id === 'string') {
+                        return <input type="hidden" value={id} name="idnows" className="idws" />
+                    } else if (typeof id === 'object') {
+                        return <input type="hidden" value={JSON.stringify(id)} name="idws" className="idws" />
+                    }
+                }
+                renderProductid(element) {
+                    if (typeof element._id === 'string') {
+                        return <input type="hidden" value={element._id} name="productid" className="productid" />
+                    } else if (typeof element._id === 'object') {
+                        return <input type="hidden" value={element._id.value} name="productid" className="productid" />
+                    }
+                }
+
+                renderChildrenCount(element) {
+                    if (element.special_cost_table) {
+                        let elementAdd = 0;
+                        for (let i = 0; i < element.special_cost_table.childs.length; i++) {
+                            elementAdd += parseInt(element.special_cost_table.childs[i].count)
+                        }
+                        return elementAdd
+                    } else {
+                        return element.childs.count
+                    }
+                }
+                renderInfantsCount(element) {
+                    if (element.special_cost_table) {
+                        let elementAdd = 0;
+                        for (let i = 0; i < element.special_cost_table.infants.length; i++) {
+                            elementAdd += parseInt(element.special_cost_table.infants[i].count)
+                        }
+                        return elementAdd
+                    } else {
+                        return element.infants.count
+                    }
+                }
+                renderAdultsCount(element) {
+                    if (element.special_cost_table) {
+                        let elementAdd = 0;
+                        for (let i = 0; i < element.special_cost_table.adults.length; i++) {
+                            elementAdd += parseInt(element.special_cost_table.adults[i].count)
+                        }
+                        return elementAdd
+                    } else {
+                        return element.adults.count
+                    }
+                }
+                renderprovider(element) {
+                    let provider = element._id.provider
+                    if (provider == undefined) {
+                        return '';
+                    } else {
+                        return <input type="hidden" value={JSON.stringify(provider)} name="mainprovider" />
+                    }
+                }
+                renderproviderId(element) {
+                    let provider = element.provider
+                    if (provider == undefined) {
+                        return <input type="hidden" value="0" name="provider" />;
+                    } else {
+                        let providerId = element.provider.provider_id
+                        return <input type="hidden" value={providerId} name="provider" />;
+                    }
+                }
+                rendershare(element) {
+                    let share = element.share
+                    if (share == undefined) {
+                        return <input type="hidden" value="0" name="share" />;
+                    } else {
+                        return <input type="hidden" value={share} name="share" />;
+                    }
+                }
+                renderCommission(element) {
+                    if (element.commissioncost == 0) {
+                        return ''
+                    } else {
+                        return <div className="commission-content"><div className="cost-item"><span className="font_10"> قیمت کل
+                            :</span><span className="item-cost font_12 font-weight">{new Intl.NumberFormat().format(element.total)}</span><span
+                                className="font_11 unit">{element.moneytype}</span></div>
+                            <div className="cost-item"><span className="font_10">کمیسیون
+                                :</span><span className="item-cost font_12 font-weight">{new Intl.NumberFormat().format(element.commissioncost)}</span><span
+                                    className="font_11 unit">{element.moneytype}</span></div>
+                            <div className="cost-item"><span className="font_10">مبلغ قابل پرداخت
+                                :</span><span className="item-cost font_12 font-weight">{new Intl.NumberFormat().format(element.totalCom)}</span><span
+                                    className="font_11 unit">{element.moneytype}</span></div>
+                        </div>
+                    }
+                }
+
+
+                renderTrainDetails(element, deps) {
+                    let len = element.routeshow.routesinfoo.length
+                    let indents = [];
+                    for (let i = 0; i < len; i++) {
+                        indents.push(<div className="details-item">
+                            <p className="font_14 details-head font-weight">{this.renderDepOrDes(deps)} ({element.routeshow.routesinfoo[i].routesinfoodetails.detailscityinfo.detailsstartcity} - {element.routeshow.routesinfoo[i].routesinfoodetails.detailscityinfo.detailsendcity})</p>
+                            <div className="content d-row font_13 text-center">
+                                <div className="details-col">
+                                    <div className="img float-right">
+                                        <img src={element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailstrainimage} alt={element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailstrain} width="50" height="50" />
+                                        <div className="font_12"><span>نوع کوپه : </span><span> {this.renderCompartmentType(element)} </span></div>
+                                    </div>
+                                    <div className="city_name"><span>{element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsexittimeinfo.detailsexit_train_station_name}</span></div>
+                                    <div><div className="city_hour font_14">{element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsexittimeinfo.detailsexittime}</div><span className="font_12">({element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsexittimeinfo.exit_date.sstring})</span></div>
+                                    <div className="clr"></div>
+                                </div>
+                                <div className="details-col details-circle p-relative">
+                                    <div className="details-row-first"></div>
+                                    <div className="duration-time_text">مدت قطار: {element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailstiming}</div>
+                                    <span className="class-item font_10">{element.ticketinfooo.classes.classname}</span> <span>-</span> <span
+                                        className="code-item font_10"> شماره قطار: {element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsroutecode}</span>
+                                </div>
+                                <div className="details-col">
+                                    <div className="city_name"><span>{element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsarrivaltimeinfo.detailsarrival_train_station_name}</span></div>
+                                    <div><div className="city_hour font_14">{element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsarrivaltimeinfo.detailsarrivaltime}</div><span className="font_12">({element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsarrivaltimeinfo.arrival_date.sstring})</span></div>
+                                </div>
+                            </div>
+                            <div className="details-item">
+                                <p className="title font_14">امکانات قطار:</p>
+                                <p className="text-justify font_13">
+                                    <div dir="auto" dangerouslySetInnerHTML={{ __html: element.services }}></div>
+                                </p>
+                            </div>
+                            <div className="details-item">
+                                <p className="title font_14">امکانات عمومی قطار:</p>
+                                <p className="text-justify font_13">
+                                    <div dir="auto" dangerouslySetInnerHTML={{ __html: element.common_services }}></div>
+                                </p>
+                            </div>
+                        </div>);
+                    }
+                    return (
+                        indents
+                    )
+                }
+                renderDepOrDes(element) {
+                    if (element == 'dep') {
+                        return 'قطار رفت '
+
+
+                    } else {
+                        return 'قطار برگشت '
+                    }
+                }
+                renderStations(element) {
+                    let indents = [];
+                    for (let i = 0; i < element.length; i++) {
+                        indents.push(<span className="station"><span className="name">{element[i]}</span></span>)
+                    }
+                    return (
+                        indents
+                    )
+                }
+                renderCompartmentType(element) {
+                    if ('[##cms.form.CompartmentType##]' == '1') {
+                        return `ویژه خواهران`
+
+                    } else if ('[##cms.form.CompartmentType##]' == '2') {
+                        return `ویژه برادران`
+                    } else if ('[##cms.form.CompartmentType##]' == '3') {
+                        return `مسافر عادی (خانواده)`
+                    }
+
+                }
+
+
+                renderStopinfo(element) {
+                    if (element.ticketinfooo.stoppinfoo.showstopinfo == 0) {
+                        return <div className="duration-line p-relative no-stop">
+                            <i className="fa fa-train p-absolute font_17"></i>
+                            <i
+                                className="flaticon-map-marker p-absolute font_17"></i>
+                        </div>
+                    } else {
+                        return <div className="duration-line p-relative has-stop">
+                            {this.renderCountStop(element)}
+                            <i className="fa fa-train p-absolute font_17"></i>
+                            <i
+                                className="flaticon-map-marker p-absolute font_17"></i>
+                        </div>
+                    }
+                }
+                renderCountStop(element) {
+                    let indents = [];
+                    for (let i = 0; i < element.ticketinfooo.stoppinfoo.showstopinfo; i++) {
+                        indents.push(<div className="flight-duration-stop p-relative"><span className="stop-item p-absolute font_10">{this.renderAbbreviationTrain(element.routeshow.routesinfoo[i].routesinfoodetails.otherdetails.detailsarrivaltimeinfo.detailsarrival_train_station_name)}</span><span className="stop-tooltip p-absolute transition">{element.routeshow.routesinfoo[i].routesinfoodetails.detailscityinfo.detailsendcity}</span>
+                        </div>)
+                    }
+                    return (indents)
+                }
+                renderAbbreviationTrain(element) {
+                    let element_splited = element.split("/")
+                    return element_splited[1]
+                }
+
+                renderProviderName(element) {
+                    if (element._id.provider == undefined) {
+                        const providerName = this.state.data_provider
+                            .filter((x) => x.id === 0)
+                            .map((x) => x.name);
+                        return <div className="provider_name_F color_1 font_11">{providerName}</div>;
+                    } else {
+                        const providerName = this.state.data_provider
+                            .filter((x) => x.id === parseInt(element._id.provider.provider_id))
+                            .map((x) => x.name);
+                        return <div className="provider_name_F color_1 font_11">{providerName}</div>;
+                    }
+
+
+                }
+                renderseatcount(element) {
+                    if (element.ticketinfooo.classes.seatcount !== '-') {
+                        if (element.ticketinfooo.classes.seatcount !== undefined) {
+                            return <div className="seatcount font_10 text-center p-absolute border-radius"><span>{element.ticketinfooo.classes.seatcount}</span><span>صندلی باقیمانده</span></div>
+                        }
+                    }
+                }
+                renderCheckCapacity(element) {
+                    if (element.ticketinfooo.classes.seatcount == 0) {
+                        return <div className="btn-item not-capacity">
+                            تکمیل ظرفیت
+                        </div>
+                    } else {
+                        return <div className="btn-item">
+                            <button type="submit" className="color_white border-radius font_15 cursor-pointer">خرید بلیط </button>
+                        </div>
+                    }
+                }
+
+                showAllDetails = (e, i) => {
+                    this.setState(prevState => ({
+                        visibleAll: { ...prevState.visibleAll, [i]: !prevState.visibleAll[i] },
+                        visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },
+                        activeTab_details: { ...prevState.activeTab_details, [i]: !prevState.activeTab_details[i] }
+                    }));
+
+                }
+                showDetails = (e, i) => {
+                    this.setState(prevState => ({
+                        visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },
+                        activeTab_details: { ...prevState.activeTab_details, [i]: !prevState.activeTab_details[i] }
+                    }))
+
+                    if (this.state.visibleStation[i] == true) {
+                        this.setState(prevState => ({
+                            visibleStation: { ...prevState.visibleStation, [i]: !prevState.visibleStation[i] },
+                            activeTab_station: { ...prevState.activeTab_station, [i]: !prevState.activeTab_station[i] }
+                        }))
+                    }
+                    if (this.state.visibleRule[i] == true) {
+                        this.setState(prevState => ({
+                            visibleRule: { ...prevState.visibleRule, [i]: !prevState.visibleRule[i] },
+                            activeTab_rule: { ...prevState.activeTab_rule, [i]: !prevState.activeTab_rule[i] }
+                        }))
+                    }
+                }
+
+
+                showStation = (e, i) => {
+                    this.setState(prevState => ({
+                        visibleStation: { ...prevState.visibleStation, [i]: !prevState.visibleStation[i] },
+                        activeTab_station: { ...prevState.activeTab_station, [i]: !prevState.activeTab_station[i] }
+                    }))
+                    if (this.state.visibleDetails[i] == true) {
+                        this.setState(prevState => ({
+                            visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },
+                            activeTab_details: { ...prevState.activeTab_details, [i]: !prevState.activeTab_details[i] }
+                        }))
+                    }
+
+                    if (this.state.visibleRule[i] == true) {
+                        this.setState(prevState => ({
+                            visibleRule: { ...prevState.visibleRule, [i]: !prevState.visibleRule[i] },
+                            activeTab_rule: { ...prevState.activeTab_rule, [i]: !prevState.activeTab_rule[i] }
+                        }))
+                    }
+                }
+                showRule = (e, i) => {
+                    this.setState(prevState => ({
+                        visibleRule: { ...prevState.visibleRule, [i]: !prevState.visibleRule[i] },
+                        activeTab_rule: { ...prevState.activeTab_rule, [i]: !prevState.activeTab_rule[i] }
+                    }))
+                    if (this.state.visibleDetails[i] == true) {
+                        this.setState(prevState => ({
+                            visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },
+                            activeTab_details: { ...prevState.activeTab_details, [i]: !prevState.activeTab_details[i] }
+                        }))
+                    }
+
+                    if (this.state.visibleStation[i] == true) {
+                        this.setState(prevState => ({
+                            visibleStation: { ...prevState.visibleStation, [i]: !prevState.visibleStation[i] },
+                            activeTab_station: { ...prevState.activeTab_station, [i]: !prevState.activeTab_station[i] }
+                        }))
+                    }
+                }
+
+                handleClick(event) {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth',
+                    })
+                    this.setState({
+                        currentPage: Number(event.target.id)
+                    })
+                }
+
+                handleReset(event) {
+                    let maxPage = this.state.maxPage
+                    let len = this.renderLibrary().length
+                    let Multi = len * maxPage
+                    for (let i = 0; i <= Multi; i++) {
+                        this.setState(prevState => ({
+                            visibleDetails: { ...prevState.visibleDetails, [i]: "" },
+                            visibleRule: { ...prevState.visibleRule, [i]: "" },
+                            visibleStation: { ...prevState.visibleStation, [i]: "" },
+                            visibleAll: { ...prevState.visibleAll, [i]: "" },
+                            activeTab_details: { ...prevState.activeTab_details, [i]: "" }
+                        }));
+
+                        if (this.state.visibleStation[i] == true) {
+                            this.setState(prevState => ({
+                                visibleStation: { ...prevState.visibleStation, [i]: "" },
+                                activeTab_station: { ...prevState.activeTab_station, [i]: "" }
+                            }))
+                        }
+                        if (this.state.visibleRule[i] == true) {
+                            this.setState(prevState => ({
+                                visibleRule: { ...prevState.visibleRule, [i]: "" },
+                                activeTab_rule: { ...prevState.activeTab_rule, [i]: "" }
+                            }))
+                        }
+                    }
+                }
+            }
+            ReactDOM.render(<App />, document.getElementById('app'))
+        }
+
+    </script>
+</body>
+
+</html>
