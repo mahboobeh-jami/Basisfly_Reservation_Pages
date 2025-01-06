@@ -1,0 +1,930 @@
+<basis core="tracking" name="tracking" source="Monitoring" collectionname="activity" dbname="tracking"
+    addcookie="true" />
+
+<basis core="cookie" name="trackingid" value="[##tracking.inserted.id|(0)##]" />
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Service</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="robots" content="index, nofollow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="[##cms.cms.cdn##]/images/icon-logo.png" />
+    <meta property="og:image:width" content="" />
+    <meta property="og:image:height" content="" />
+    <meta property="og:image:secure_url" content="[##cms.cms.cdn##]/images/icon-logo.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="" />
+    <meta name="author" content="BasisCore" />
+    <!----------------CSS FILE---------------->
+    <!----CSS MAIN STYLE---->
+    <link href="https://cdn.basiscore.net/basisfly.com/css/reservation_tem3_style_res.css" type="text/css"
+        rel="stylesheet" />
+    <link href="[##cms.cms.cdn##]/css/style_tem.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body onload="onloadFunc();">
+
+
+    <main class="dir-rtl touristpanel-search">
+        <basis core="call" file="header.inc" />
+        <section class="content">
+            <section class="loginRegister"></section>
+            <div id="bg-popup" class="unvisible"></div>
+            <div class="message-box unvisible">
+                <i class="icon-message-box">
+                    <svg width="50pt" height="50pt" fill="#666" version="1.0" viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(0 512) scale(.1 -.1)">
+                            <path
+                                d="m1958 5059c-518-43-1e3 -273-1362-649-741-772-795-1960-128-2804 30-39 105-121 166-181 338-337 774-546 1256-605 123-15 398-12 519 5 57 8 105 14 106 12 2-1 15-27 30-57 118-235 344-454 600-582 403-202 889-190 1280 32 141 81 174 132 120 185-32 33-60 31-115-6-25-16-83-50-130-73-388-197-846-171-1215 68-119 77-291 251-363 369-303 490-231 1110 175 1512 101 100 186 160 318 225 404 200 875 163 1242-96 87-62 225-200 286-285 222-314 284-722 166-1089-41-126-140-303-219-394-42-47-51-76-35-114 15-34 48-48 89-38 37 9 162 179 229 313 154 304 186 664 92 999-35 120-140 330-219 435-129 171-323 329-509 415l-85 39 5 170c16 517-142 993-465 1403-92 116-135 155-173 155-21 0-38-7-51-22-34-43-24-72 58-167 144-168 276-388 353-588 88-230 124-429 125-693 1-105-2-194-6-198s-44 0-90 9c-46 8-115 18-154 22l-71 6-6 187c-4 135-11 213-27 286-144 676-673 1185-1350 1302-64 11-153 17-270 17s-206-6-270-17c-683-118-1209-630-1352-1315-30-146-33-456-4-607 25-137 63-256 88-277 28-25 70-22 96 5 28 30 28 48-2 151-71 243-75 531-11 782 195 770 974 1261 1749 1103 144-29 233-60 381-134 414-206 703-586 801-1055 13-62 18-132 19-259v-175l-100-17c-410-73-756-315-963-674-90-157-156-367-169-537-3-47-9-91-12-97-3-5-61-15-129-21-334-31-681 63-976 263-127 85-303 264-396 402-71 104-77 110-112 113-27 2-43-3-57-17-36-36-27-71 48-183 342-509 932-786 1547-725l82 8 7-53c3-29 18-100 31-156 14-57 24-105 22-107-11-11-183-25-311-25-167 0-269 10-422 42-354 72-712 266-975 528-704 700-787 1795-197 2587 568 762 1591 1015 2445 603 119-57 248-136 341-206 26-20 55-34 72-34 39 0 69 32 69 74 0 41-31 71-171 163-307 201-630 311-1004 343-134 11-195 11-337-1z" />
+                            <path
+                                d="m2080 4260c-17-17-20-33-20-105s3-88 20-105c25-25 71-26 99-2 41 33 41 172 0 213-25 25-74 24-99-1z" />
+                            <path
+                                d="m1186 3889c-44-35-36-73 31-141 47-47 63-58 90-58 42 0 73 30 73 72 0 25-12 43-58 90-65 64-92 72-136 37z" />
+                            <path
+                                d="m2938 3852c-46-47-58-65-58-90 0-43 31-72 76-72 29 0 44 9 90 54 63 63 72 106 31 144-40 38-73 29-139-36z" />
+                            <path
+                                d="m2082 3670c-22-20-22-26-22-300 0-154-4-280-8-280s-37 30-72 66c-36 36-76 70-89 75-46 18-101-24-101-78 0-22 275-298 311-314 40-16 84 3 98 43 15 43 15 714 0 757-19 53-77 68-117 31z" />
+                            <path
+                                d="m810 2990c-30-30-27-83 6-109 22-17 41-21 101-21 65 0 77 3 98 25 30 30 32 64 4 99-19 24-26 26-105 26-71 0-87-3-104-20z" />
+                            <path
+                                d="m3245 2985c-14-13-25-36-25-50s11-37 25-50c21-22 33-25 94-25 39 0 81 5 95 11 49 23 53 104 7 128-11 6-54 11-96 11-67 0-79-3-100-25z" />
+                            <path
+                                d="m3653 2359c-48-23-89-67-110-116-10-26-13-136-13-533 0-490 0-501 21-546 35-73 118-124 204-124 81 0 157 47 198 124 22 40 22 48 25 516 2 324 0 491-8 526-13 63-67 129-124 155-56 26-140 25-193-2zm153-150c18-20 19-43 19-501v-480l-24-19c-31-25-69-24-98 3l-23 21v479c0 465 1 479 20 498 27 27 81 26 106-1z" />
+                            <path
+                                d="m1265 2172c-16-11-47-38-67-60-58-64-50-125 20-147 29-8 80 22 127 78 42 49 46 87 10 122-29 30-50 31-90 7z" />
+                            <path
+                                d="m2140 1813c-43-16-50-34-50-123 0-78 2-89 23-108 44-41 107-19 123 43 12 48-1 144-22 164-22 22-53 32-74 24z" />
+                            <path
+                                d="m3653 979c-91-45-123-109-123-249 0-115 20-174 74-215 123-94 281-63 347 68 27 51 36 175 20 245-15 62-69 128-125 153-56 26-140 25-193-2zm153-150c15-17 19-36 19-101 0-72-2-82-24-99-31-25-69-24-98 3-20 19-23 31-23 100 0 65 3 81 20 98 27 27 81 26 106-1z" />
+                        </g>
+                    </svg>
+                </i>
+                <div class="line-one font_20 font-weight">
+                    اعتبار نتایج به پایان رسید
+                </div>
+                <div class="line-two">
+                    برای دریافت آخرین نرخ‌ها لطفا صفحه را مجددا بارگذاری کنید
+                </div>
+                <button class="background-color_2 color_white font_16 border-radius cursor-pointer"
+                    onclick="window.location='[##cms.Host.FA_redirect|(/)##]'">صفحه اصلی</button>
+                <button class="background-color_1 color_white font_16 border-radius cursor-pointer"
+                    onclick=" location.reload()">جستجوی مجدد</button>
+            </div>
+            <section class="searched-container">
+                <div class="bc-main">
+                    <div class="width_85 float-right text-right">
+                        <div class="flight-summary-info">
+                            <div class="item font_16">
+                                <span class="departure"><span class="title">مقصد :
+                                    </span>[##cms.form.coHotel##]</span>
+                            </div>
+                            <div class="item font_15">
+                                <span class="dash"><i class="far fa-calendar-check"></i></span>
+                                <span class="title">تاریخ ورود : </span><span class="persian-date-search">[##cms.form.fdate##]</span>
+                            </div>
+                            <div class="item font_13 cursor-pointer color_white background-color_1 border-radius btn"
+                                onclick="show_research(this,'12')">
+                                <i class="fa fa-search"></i> تغییر جستجو
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                    <div class="width_15 float-left font_13 next-prev-container text-left">
+                        <span class="before-btn cursor-pointer background-color_white"><i
+                                class="fa fa-angle-right color_1"></i>روز
+                            قبل</span>
+                        <span class="after-btn cursor-pointer background-color_white">روز
+                            بعد<i class="fa fa-angle-left color_1"></i></span>
+                        <form method="get" action="/Tem3_TouristPanel_Search.bc" class="form_research_date"><input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent"> <input type="hidden" value="[##cms.form.coHotel##]" name="coHotel"> <input type="hidden" value="[##cms.form.cityid##]" name="cityid"> <input type="hidden" value="[##cms.form.fdate##]" name="fdate" class="departuredate"> <input type="hidden" value="[##cms.form.mstring_fdate##]" name="mstring_fdate" class="departureMdate"> <input type="hidden" value="[##cms.form.adult##]" name="adult"> <input type="hidden" value="[##cms.form.child##]" name="child"> <input type="hidden" value="[##cms.form.select-age##]" name="select-age"> <input type="hidden" value="[##cms.form.share|(0)##]" name="share"></form>
+                    </div>
+                    <div class="clr"></div>
+                    <div class="searched-items-container unvisible" data-load="0" data-from="[##cms.form.coHotel##]"
+                        data-cityid="[##cms.form.cityid##]" data-fdate="[##cms.form.fdate##]"
+                        data-child="[##cms.form.child##]" data-persiancurrent="[##cms.form.persiancurrent##]"
+                        data-selectage="[##cms.form.select-age##]" data-adult="[##cms.form.adult##]">
+                        <div class="text-center">
+                            <div class="lds-ring">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clr"></div>
+
+            </section>
+            <section class="result-search-container">
+                <div class="bc-main">
+                    <div class="waiting-search">
+                        <div class="loading-container">
+                            <div class="loading"></div>
+                            <div class="loading-img"><img src="[##cms.Host.loading-logo|(/images/logo.png)##]" width="" height=""
+                                    alt="logo" /></div>
+                        </div>
+                        <p class="loading-text">در حال جستجوی بهترین سرویس ...</p>
+                        <div class="waiting-content width_30 float-right">
+                            <div class="stract-filters float-right width_95 ">
+                                <div class="stract-filter stract-effect">
+                                    <div class="stract-filter-head"></div>
+                                    <div class="stract-filter-row">
+                                        <div class="stract-filter-item"></div>
+                                        <div class="stract-filter-item"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="waiting-content width_70 float-left ">
+
+                            <div class="stract-result-item stract-effect">
+                                <div class="stract-first-col width_70 float-right p-relative">
+                                    <div class="stract-item float-right width_100"></div>
+                                </div>
+                                <div class="width_30 float-left">
+                                    <div class="stract-cost-item">
+                                        <div class="stract-cost"></div>
+                                        <div class="stract-btn-item"></div>
+                                    </div>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="stract-result-item stract-effect">
+                                <div class="stract-first-col width_70 float-right p-relative">
+                                    <div class="stract-item float-right width_100"></div>
+                                </div>
+                                <div class="width_30 float-left">
+                                    <div class="stract-cost-item">
+                                        <div class="stract-cost"></div>
+                                        <div class="stract-btn-item"></div>
+                                    </div>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="stract-result-item stract-effect">
+                                <div class="stract-first-col width_70 float-right p-relative">
+                                    <div class="stract-item float-right width_100"></div>
+                                </div>
+                                <div class="width_30 float-left">
+                                    <div class="stract-cost-item">
+                                        <div class="stract-cost"></div>
+                                        <div class="stract-btn-item"></div>
+                                    </div>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div id="app" class="unvisible"></div>
+                    <div class="clr"></div>
+                </div>
+            </section>
+        </section>
+        <!----------------JS FILE---------------->
+        <script src="[##cms.cms.cdn##]/_js/jquery/jquery-3.6.3.min.js" type="text/javascript"></script>
+        <basis core="call" file="footer.inc" />
+
+    </main>
+    <script>
+        var JalaliDate={g_days_in_month:[31,28,31,30,31,30,31,31,30,31,30,31],j_days_in_month:[31,31,31,31,31,31,30,30,30,30,30,29]};
+        JalaliDate.jalaliToGregorian = function (j_y, j_m, j_d) {
+              j_y = parseInt(j_y);
+              j_m = parseInt(j_m);
+              j_d = parseInt(j_d);
+              var jy = j_y - 979;
+              var jm = j_m - 1;
+              var jd = j_d - 1;
+              var j_day_no = 365 * jy + parseInt(jy / 33) * 8 + parseInt((jy % 33 + 3) / 4);
+              for (var i = 0; i < jm; ++i) j_day_no += JalaliDate.j_days_in_month[i];
+              j_day_no += jd;
+              var g_day_no = j_day_no + 79;
+              var gy = 1600 + 400 * parseInt(g_day_no / 146097); /* 146097 = 365*400 + 400/4 - 400/100 + 400/400 */
+              g_day_no = g_day_no % 146097;
+              var leap = true;
+              if (g_day_no >= 36525) /* 36525 = 365*100 + 100/4 */ {
+                g_day_no--;
+                gy += 100 * parseInt(g_day_no / 36524); /* 36524 = 365*100 + 100/4 - 100/100 */
+                g_day_no = g_day_no % 36524;
+                if (g_day_no >= 365) g_day_no++;
+                else leap = false;
+              }
+              gy += 4 * parseInt(g_day_no / 1461); /* 1461 = 365*4 + 4/4 */
+              g_day_no %= 1461;
+              if (g_day_no >= 366) {
+                leap = false;
+                g_day_no--;
+                gy += parseInt(g_day_no / 365);
+                g_day_no = g_day_no % 365;
+              }
+              for (var i = 0; g_day_no >= JalaliDate.g_days_in_month[i] + (i == 1 && leap); i++)
+                g_day_no -= JalaliDate.g_days_in_month[i] + (i == 1 && leap);
+              var gm = i + 1;
+              var gd = g_day_no + 1;
+              gm = gm < 10 ? "0" + gm : gm;
+              gd = gd < 10 ? "0" + gd : gd;
+              return [gy, gm, gd];
+            };
+        
+            const persianDates = document.querySelectorAll('.persian-date-search');
+    persianDates.forEach(persianDateElement => {
+        var persian = persianDateElement.innerHTML
+        const check_year = parseInt(persian.split("-")[0]);
+       if(check_year >= 1400 && check_year <= 1499){
+        var gregorian =convert_jalali_toGregorian(persian)
+        const gregorianSpan = document.createElement('span');
+        gregorianSpan.classList.add('gregorian-date-search');
+        gregorianSpan.textContent = ` (${gregorian})`;
+        persianDateElement.after(gregorianSpan);
+       }
+    })
+            function convert_jalali_toGregorian(element) {
+                var date = element;
+                date_splited = date.split("-"),
+                gregorian_date = JalaliDate.jalaliToGregorian(date_splited[0], date_splited[1], date_splited[2]);
+                date_converted = gregorian_date[0] + "-" + gregorian_date[1] + "-" + gregorian_date[2];
+                return date_converted;
+            };
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            fetch("/Client_TouristPanel_Json.bc", {
+                method: "POST",
+                body: 'cityid=[##cms.form.cityid##]&fdate=[##cms.form.fdate##]&adult=[##cms.form.adult##]&child=[##cms.form.child##]&select-age=[##cms.form.select-age##]'
+            })
+                .then((response) => response.text())
+                .then((text) => {
+                    let Maindata = JSON.parse(text.replace(/\'/g, '"'))
+                    let indents = [];
+                    if (Maindata[0] !== undefined) {
+                        if (Maindata[0].service !== undefined) {
+                            let service_items = Maindata[0].service
+                            for (let i = 0; i < service_items.length; i++) {
+                                indents.push(service_items[i])
+                            }
+                        }
+                        if (Maindata[0].transfer !== undefined) {
+                            let transfer_items = Maindata[0].transfer
+                            for (let j = 0; j < transfer_items.length; j++) {
+                                indents.push(transfer_items[j])
+                            }
+                        }
+
+                        if (indents !== undefined) {
+                            indents.sort((a, b) => a.total - b.total);
+                        }
+                    }
+
+                    $('.waiting-search').hide()
+                    $('#app').show()
+                    load_data(indents)
+                })
+                .catch((error) => console.error(error));
+        })
+    </script>
+    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_react.production.min.js"></script>
+    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_react_dom.production.min.js"></script>
+    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_babel.min.js"></script>
+    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_react_paging.js"></script>
+    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_tem3_commonJs.js"
+        type="text/javascript"></script>
+    <script type="text/babel">
+        function load_data(load_data) {
+            class App extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        data: {},
+                        data_currency: {},
+                        library: null,
+                        librarySecond: null,
+                        perPage: 20,
+                        currentPage: 1,
+                        currentPage2: 2,
+                        currentPage3: 3,
+                        maxPage: null,
+                        filterName: "",
+                        adultcount: "",
+                        childcount: "",
+                        servicesid: "",
+                        typeid: "",
+                        infantcount: "",
+                        productid: "",
+                        provider: "",
+                        providerid: "",
+                        state_currency_unit: "",
+                        state_currency_cost: 1,
+                        state_floatdigit: "",
+                        state_fdate: $(".start_date").val(),
+                        state_select_age: $(".select-age-value").val(),
+                        show_options_data: {},
+                        visibleOption: {},
+                        loadingVisible: {},
+                        loadingVisibleBtnClose: {},
+                        state_active_btn: "",
+                        state_category: "",
+                        visibleRules: {}
+                    };
+                    this.services = [];
+                    this.category = [];
+                    this.factortype = [];
+                    this.serviceName = [];
+                    this.serviceSans = [];
+                    this.handleClick = this.handleClick.bind(this);
+                }
+                componentDidMount() {
+                    this.setState(state => ({
+                        ...state,
+                        data: load_data
+                    }), () => {
+                        this.reorganiseLibrary()
+                    })
+
+                    $(document).on('update_result', (event, category) => {
+                        this.reorganiseLibrary(category)
+                    })
+                }
+
+                reorganiseLibrary = (category) => {
+                    const { filterName, perPage, data } = this.state;
+                    let library = data;
+                    let librarySecond = data;
+                    librarySecond = _.chunk(librarySecond, perPage);
+                    this.setState({
+                        librarySecond,
+                        currentPage: 1,
+                        maxPage: librarySecond.length === 0 ? 1 : librarySecond.length
+                    })
+
+                    if (filterName !== "") {
+                        library = library.filter(item => {
+                            if (item.servicename.toLowerCase().includes(filterName))
+                                return item
+
+                        }
+
+                        )
+                        let lenLibrary = library.length
+                        $('.result-count').text(lenLibrary)
+                    }
+                    if (category !== undefined) {
+                        if (category !== "") {
+                            category = category.split(",");
+                            library = library.filter(item => {
+                                if (item.eventCategory) {
+                                    if (category.includes(item.eventCategory)) return item;
+                                }
+
+                            })
+                        }
+                        let lenLibrary = library.length
+                        $('.result-count').text(lenLibrary)
+                    }
+
+                    let lenLibrary = library.length
+                    if (lenLibrary == undefined) {
+                        $('.result-count').text(0)
+                    } else {
+                        $('.result-count').text(lenLibrary)
+                    }
+
+                    library = _.chunk(library, perPage);
+                    this.setState({
+                        library,
+                        currentPage: 1,
+                        maxPage: library.length === 0 ? 1 : library.length
+                    })
+
+                }
+
+
+                // Previous Page
+                previousPage = event => {
+                    this.handleReset(event);
+                    this.handleClick(event);
+                    this.setState({
+                        currentPage: this.state.currentPage - 1,
+                        currentPage2: this.state.currentPage2 - 1,
+                        currentPage3: this.state.currentPage3 - 1
+                    })
+                }
+
+                // Next Page 
+                nextPage = event => {
+                    this.handleReset(event);
+                    this.handleClick(event);
+                    this.setState({
+                        currentPage: this.state.currentPage + 1,
+                        currentPage2: this.state.currentPage2 + 1,
+                        currentPage3: this.state.currentPage3 + 1
+                    })
+                }
+
+                // Next Page3
+                nextPage3 = event => {
+                    this.handleReset(event);
+                    this.handleClick(event);
+                    this.setState({
+                        currentPage: this.state.currentPage3,
+                        currentPage2: this.state.currentPage3 + 1,
+                        currentPage3: this.state.currentPage3 + 2
+                    })
+                }
+
+                // handler per page
+                handlePerPage = (evt) =>
+                    this.setState({
+                        perPage: evt.target.value
+                    }, () => this.reorganiseLibrary());
+
+                // handle filter name
+                handleFilterName = (event) => {
+                    const { state_category } = this.state;
+                    this.handleReset(event);
+                    this.setState(
+                        {
+                            filterName: event.target.value.toLowerCase()
+                        },
+                        () => {
+                            this.reorganiseLibrary(state_category);
+                        }
+                    )
+                }
+
+                // handler render of library
+                renderLibrary = () => {
+                    const { library, currentPage } = this.state;
+                    if (!library || (library && library.length === 0)) {
+                        return <div className="message-box-nodata dir-ltr">
+                            <i className="icon-message-box">
+                                <svg width="50pt" height="50pt" fill="#666" version="1.0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                    <g transform="translate(0 512) scale(.1 -.1)">
+                                        <path d="m593 5102c-100-35-171-115-193-216-8-36-10-508-8-1626l3-1575 21-46c28-60 87-119 150-150 47-23 59-24 306-29l257-5-459-430c-252-236-470-448-485-470-62-96-71-231-22-338 92-201 346-279 521-159 33 23 269 267 611 632 306 327 562 599 569 604 9 6 23 2 43-12 96-68 313-155 464-186 454-93 972 35 1285 317l51 46 1058 6 57 28c69 34 121 91 148 164 20 53 20 76 20 1633s0 1580-20 1633c-27 73-79 130-148 164l-57 28-2060 2c-1957 2-2063 2-2112-15zm4142-194c48-22 55-52 55-228v-160h-835c-908 0-877 2-903-55-15-33-15-57 0-90 26-57-5-55 903-55h835v-1296-1296l-68-68h-416-415l56 83c102 149 181 339 220 533 27 134 24 423-5 560-64 299-201 559-406 772-214 222-458 359-759 424-87 19-133 22-307 22s-220-3-307-22c-294-64-523-190-738-406-223-224-359-476-427-790-18-84-22-133-22-291 0-206 14-299 70-462 28-82 110-256 144-303 11-16 20-32 20-37s-20-25-44-46l-45-37h-341-342l-68 68v1296 1296h835c625 0 841 3 860 12 29 13 55 55 55 88s-26 75-55 88c-19 9-235 12-860 12h-835v166 166l68 68h2026c1549 0 2031-3 2051-12zm-1788-1077c282-58 509-182 693-378 454-486 454-1300-1-1787-211-226-500-362-845-396-645-65-1252 396-1381 1047-21 109-24 355-4 463 88 493 456 901 931 1032 190 53 410 59 607 19zm-1304-2478-66-74-168 166 146 134 154-152-66-74zm-293-138 84-85-50-52c-28-29-220-234-428-455-403-431-407-434-488-419-106 20-169 137-123 226 13 26 901 870 915 870 3 0 43-38 90-85z" />
+                                        <path d="m2644 4509c-25-13-54-60-54-89 0-51 49-100 100-100s100 49 100 99c0 73-80 122-146 90z" />
+                                        <path d="m2305 3320c-11-4-101-90-200-189-236-237-234-207-27-414l152-152-140-140c-146-146-176-188-165-233 8-34 338-369 381-388 17-7 42-10 55-7s93 73 177 157l152 151 153-151c83-84 163-154 176-157s35-1 50 4c40 15 379 358 386 391 10 46-19 87-165 233l-140 140 152 152c207 208 210 176-32 418-115 115-194 186-210 190-47 10-83-14-228-158l-142-141-143 141c-169 168-185 178-242 153zm185-384c147-147 174-165 228-151 16 4 85 64 175 153l147 146 87-87 88-87-153-153c-133-135-152-157-152-186 0-18 5-42 11-54s75-86 152-165l142-142-175-175-153 153c-151 149-154 152-197 152s-46-3-197-152l-153-153-174 174 152 155c149 150 152 155 152 197s-3 46-152 196l-152 153 84 85c47 47 87 85 89 85 3 0 71-65 151-144z" />
+                                    </g>
+                                </svg> </i>
+                            <div className="line-one font_20 font-weight text-right">
+                                برای جستجوی شما نتیجه ای یافت نشد
+                            </div>
+                            <div className="line-two text-right">
+                                برای دریافت نتیجه لطفا تاریخ و یا مسیر خود را تغییر دهید
+                            </div>
+                            <a href="[##cms.Host.FA_redirect|(/)##]" className="background-color_1 color_white font_16 border-radius cursor-pointer">صفحه اصلی</a>
+                        </div>
+
+                    }
+                    return library[currentPage - 1].map((item, i) => (
+                        <div className="list-services">
+                            {this.rendersevice(item, i)}
+                        </div>
+                    ))
+                }
+
+
+                render() {
+                    const { library, currentPage, perPage, maxPage, librarySecond } = this.state;
+                    return (
+                        <div>
+                            <aside className="sidebar-content width_30 float-right">
+                                <div className="filters-container float-right width_95">
+                                    <p><span className="font-weight result-count">{this.renderCount()}</span> سرویس پیدا شد.</p>
+                                    <p className="section-timer">مدت زمان باقی مانده : <span id="timer" className="font-weight EnNum font_20">00:00:00</span></p>
+                                    <div className="filter-container">
+                                        <p className="filter-head"><span className="font_14 float-right">نام سرویس</span>
+                                            <div className="clr"></div>
+                                        </p>
+                                        <div className="filter-row">
+                                            <ul className="filter-body  text-center font_13">
+                                                <li className="width_100">
+                                                    <input value={this.state.filterName} onChange={((e) => this.handleFilterName(e))} placeholder="نام سرویس مورد نظر را وارد نمائید" className="inner  filter-name-service"
+                                                    />
+                                                </li>
+                                                <div className="clr"></div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    {this.ShowFilterService()}
+                                </div>
+                                <div className="filters-container float-right service-basket-cart">
+                                    <p className="filter-head"><span className="font_14 float-right">سرویس های انتخاب شده:</span><i data-index="0" class="fas fa-chevron-down" onClick={(e) => this.showbasket(e)}></i></p>
+                                    <div className="selected-services">{this.renderPrintbasket(this.state.serviceName)}</div>
+                                    <form action="Client_Show_Service_ver.2.bc" method="post" className="service-list-form">
+                                        <input type="hidden" value={this.state.state_currency_unit} name="rate-unit" className="rate-unit" />
+                                        <input type="hidden" value={this.state.state_currency_cost} name="rate-cost" className="rate-cost" />
+                                        <input type="hidden" value={this.state.state_floatdigit} name="rate-floatdigit" className="rate-floatdigit" />
+                                        <input type="hidden" value={this.state.servicesid} name="id" className="servicesid" />
+                                        <input type="hidden" value={this.state.typeid} name="factortype" />
+                                        <input type="hidden" value={this.state.productid} name="productid" />
+                                        <input type="hidden" value={this.state.adultcount} name="adultcount" />
+                                        <input type="hidden" value={this.state.childcount} name="childcount" />
+                                        <input type="hidden" value={this.state.infantcount} name="infants" />
+                                        <input type="hidden" value={this.state.provider} name="mainprovider" />
+                                        <input type="hidden" value={this.state.providerid} name="provider" />
+                                        <input type="hidden" value={this.state.state_select_age} name="select-age" />
+                                        <input type="hidden" value={this.state.state_fdate} name="fdate" />
+                                        <input type="hidden" value="[##cms.form.cityid##]" name="cityid" />
+                                        <input type="hidden" value="[##cms.form.coHotel##]" name="coHotel" />
+                                        <input type="hidden" value="[##cms.form.adult##]" name="adult" />
+                                        <input type="hidden" value="[##cms.form.child##]" name="child" />
+                                        <input type="hidden" value="Tem3" name="checkpreurl" />
+                                        <button type="submit">رزرو کنید</button>
+                                    </form>
+                                </div>
+                            </aside>
+
+                            <div className="result-content width_70 float-left service-result-content">
+                                <div className="result-items service">
+                                    {this.renderLibrary()}
+                                    <ul id="page-numbers">
+                                        <li className="nexprev">
+                                            {currentPage !== 1 && (
+                                                <button onClick={this.previousPage}><i className="fa fa-backward"></i></button>
+                                            )}
+                                        </li>
+                                        <li className="controls-active background-color_2 font-weight">{this.state.currentPage}</li>
+                                        {(this.state.currentPage2 < maxPage) && (<li className="controls" onClick={this.nextPage}>{this.state.currentPage2}</li>
+                                        )}
+                                        {(this.state.currentPage3 < maxPage) && (<li className="controls" onClick={this.nextPage3}>{this.state.currentPage3}</li>
+                                        )}
+                                        <li className="restControls">...</li>
+                                        <li className="controls">{this.state.maxPage}</li>
+                                        <li className="nexprev">
+                                            {(this.state.currentPage < maxPage) && (<button onClick={this.nextPage}><i className="fa fa-forward"></i></button>
+                                            )}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    )
+                }
+
+                ShowFilterService() {
+                    let element = this.state.data;
+                    if (!element) return null;
+                    return <div>
+                        <div className="filter-container service-category">
+                            <p className="filter-head"><span className="font_14 float-right">دسته بندی سرویس ها</span>
+                                <div className="clr"></div>
+                            </p>
+                            <div className="filter-row">
+                                <ul className="filter-body stop-items text-center font_13">
+                                    {this.renderServiceCatFilter(element)}
+                                    <div className="clr"></div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                renderServiceCatFilter(element) {
+                    let indents = [];
+                    if (element.length !== undefined) {
+                        let sentences = [...(new Set(element.map(d => d['eventCategory'])))]
+
+                        for (let i = 0; i < sentences.length; i++) {
+
+                            if (sentences[i] !== undefined) {
+                                let singleSentence = <div className="filter-body"><div className="section-input_list p-relative" data-index="1"><input type="checkbox" value={sentences[i]} className="p-absolute" data-filter="category" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} /><label><span className="checkbox"><div className="text-checkbox">{sentences[i]}</div></span></label></div><div className="clr"></div></div>
+                                let output = singleSentence
+                                indents.push(singleSentence)
+                            }
+
+                        }
+                        return (
+                            indents
+                        )
+
+                    }
+                }
+                handleChange = (event) => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    this.handleReset(event);
+                    let isChecked = event.target.checked
+                    let value = event.target.value
+                    let data_attribute = event.target.getAttribute("data-filter");
+                    switch (data_attribute) {
+                        case 'category':
+                            if (isChecked) {
+                                this.category.push(value + ',')
+                            } else {
+                                this.category.splice(this.category.indexOf(value + ','), 1)
+                            }
+                            break;
+
+
+                    }
+                    $(document).trigger('update_result', [this.category.join()]);
+                    this.setState({
+                        state_category: this.category.join(),
+                    })
+                }
+                renderPrintbasket(element) {
+                    var indents = [];
+                    if (element !== undefined) {
+                        var select_len = element.length
+                        for (let i = 0; i < select_len; i++) {
+                            indents.push(<div className="each-select-item">
+                                <div><span className="font_14 float-right color_font width_100">پکیج</span><span className="font_14 selected-service-name">{element[i].name}</span><span class="fa fa-times cursor-pointer remove-package" onClick={((e) => this.removeselected(element[i].proid))}></span></div>
+                                <div><span className="font_14 float-right color_font width_100">سانس</span><span className="font_14 selected--service-sans">{element[i].sans}</span></div>
+                            </div>)
+                        }
+                        { this.handleHeight() }
+                        return indents
+                    }
+                }
+
+                handleHeight() {
+                    if ($(window).width() > 1200) {
+                        const result_height = $(".service-result-content").height()
+                        $(".sidebar-content").css("height", result_height)
+                    } else {
+                        $(window).on("scroll", function (e) {
+                            if ($(this).scrollTop() > 500) {
+                                $(".service-basket-cart").addClass("service-is-sticky")
+                            } else { $(".service-basket-cart").removeClass("service-is-sticky") }
+                        })
+                    }
+                }
+
+                showbasket = (e) => {
+                    $(".selected-services").slideToggle()
+                }
+
+                rendersevice(element, i) {
+                    let indents = [];
+                    indents.push(<div className="result-item p-relative">
+                        <div className="img-item text-center">{this.renderImgService(element)}</div>
+                        <input type="hidden" value={element.productid} name="productid" />
+                        <div className="title font_18 color_font font-weight service-name">{element.servicename}</div>
+                        <div className="details-btn font_12 color_2 text-center cursor-pointer service-rules-btn" data-active={`${this.state.state_active_btn[i] ? "1" : "0"}`} onClick={e => this.show_rules(e, i)}>قوانین و مقررات</div>
+                        <div className="details-btn font_12 color_2 text-center cursor-pointer service-items-btn" data-active={`${this.state.state_active_btn[i] ? "1" : "0"}`} onClick={e => this.select_options(e, element, i)}>انتخاب سرویس</div>
+                        <div className="clr"></div>
+                        <div key={i} className={`${!this.state.loadingVisible[i] ? "unvisible" : "visible"}`}>
+                            <div id="ballsWaveG">
+                                <div id="ballsWaveG_1" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_2" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_3" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_4" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_5" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_6" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_7" className="ballsWaveG"></div>
+                                <div id="ballsWaveG_8" className="ballsWaveG"></div>
+                            </div>
+                        </div>
+                        <div key={i} className={`rules-container text-right ${!this.state.visibleRules[i] ? "unvisible" : "visible"}`}>
+                            <div className="close-content" onClick={() => this.close_rules(i)}><i className="fa fa-times"></i></div>
+                            <div className="rules-inner">
+                                <p className="text-justify font_13">{element.rule.rule}</p>
+                            </div>
+
+                        </div>
+                        <div key={i} className={`details-row p-relative ${!this.state.visibleOption[i] ? "unvisible" : "visible"}`}>
+                            <div className="details-item backgroud-color" >
+                                <div className="close-btn" onClick={() => this.closeOptions(i)}><span className="fa fa-times cursor-pointer"></span></div>
+                                <div className="clr"></div>
+                                {this.show_options(i, element)}
+                                <div className="clr"></div>
+                            </div>
+                            <div className="clr"></div>
+                        </div>
+                        <div className="clr"></div>
+                    </div>)
+
+                    return (indents)
+
+                }
+
+                handleSelect = (e, element) => {
+                    let item = JSON.parse(element)
+                    let object = JSON.parse(e.target.value)
+                    let isChecked = e.target.checked
+                    let productid = object.productid
+                    let producttype = item.factortype
+                    let productName = item.servicename
+                    let SansName = object.name
+                    let producttransferid = object.transferid
+                    let productprovider = JSON.stringify(item.provider)
+                    let productproviderid = JSON.stringify(item.provider.provider_id)
+                    let productadult = JSON.stringify(item.passengercount.adult1)
+                    let productchild = JSON.stringify(item.passengercount.child1)
+                    let productinfant = JSON.stringify(item.passengercount.infant1)
+                    let checked_json = '{"product":{' + '"productid":"' + productid + '","transferid":"' + producttransferid + '","type":"' + producttype + '","provider":' + productprovider + '}}'
+                    if (isChecked) {
+                        this.services.push(checked_json)
+                        this.factortype.push(producttype)
+                        this.serviceName.push({
+                            "name": productName,
+                            "sans": SansName,
+                            "proid": productid,
+                        })
+                        this.serviceSans.push(SansName)
+                        this.setState({
+                            adultcount: productadult,
+                            childcount: productchild,
+                            infantcount: productinfant,
+                            productid: productid,
+                            provider: productprovider,
+                            providerid: productproviderid,
+                            serviceName: this.serviceName,
+                        })
+                    } else {
+                        let data_new = this.serviceName;
+                        this.serviceName = this.serviceName.filter(item => {
+                            return item.proid !== productid;
+                        })
+                        this.setState({
+                            serviceName: this.serviceName,
+                        })
+                        this.services.splice(this.services.indexOf(checked_json), 1)
+                        this.factortype.splice(this.factortype.indexOf(producttype), 1)
+                        this.serviceSans.splice(this.serviceSans.indexOf(productName), 1)
+                    }
+                    if (this.services.length > 0) {
+                        document.querySelector('.service-list-form button').style.display = 'block';
+                    } else {
+                        document.querySelector('.service-list-form button').style.display = 'none';
+                    }
+                    this.setState({
+                        servicesid: this.services,
+                        typeid: this.factortype,
+                        serviceSans: this.serviceSans,
+                    })
+                }
+
+                removeselected(element) {
+                    var itemDetailsServices = document.querySelectorAll('.item-details-service');
+                    itemDetailsServices.forEach(function (itemDetailsService) {
+                        var productIds = itemDetailsService.querySelectorAll('.productid');
+                        productIds.forEach(function (productId) {
+                            var checked = productId.value;
+                            if (checked === element) {
+                                var checkServiceElement = itemDetailsService.querySelector('.check-service');
+                                checkServiceElement.click();
+                            }
+                        });
+                    });
+                }
+
+                renderCount(element) {
+                    let maxPage = this.state.maxPage
+                    let len = this.renderLibrary().length
+                    let sum = len * maxPage
+                    sum = sum || 0
+                    if (sum == '0') {
+                        $("#page-numbers").hide()
+                        $(".message-box-nodata").show()
+
+                    } else {
+                        $("#page-numbers").show()
+                        $(".message-box-nodata").hide()
+                    }
+                }
+
+                renderImgService(element) {
+                    let imgservice = element.image
+                    return <div className="image-container">
+                        <form method="post" action='/Client_Service_Information.bc' target="_blank">
+                            <button type="submit" className="cursor-pointer" ><img src={imgservice} width="190" height="190" alt={element.servicename} /><div className="overlay p-absolute"><span className="expand p-absolute">+</span></div></button>
+                        </form>
+                    </div>
+                }
+                show_rules = (e, i) => {
+                    $("#bg-popup").show()
+                    this.setState(prevState => ({
+                        visibleRules: { ...prevState.visibleRules, [i]: !prevState.visibleRules[i] }
+                    }));
+                }
+
+                close_rules = (i) => {
+                    $("#bg-popup").hide()
+                    this.setState(prevState => ({
+                        visibleRules: { [i]: !prevState.visibleRules[i] }
+                    }))
+                }
+                select_options = (e, element, i) => {
+                    let active_btn = this.state.state_active_btn[i];
+                    let provider = element.provider
+                    let servicegroupid = element.servicegroupid
+                    let licenseUniqueId = element.licenseUniqueId
+                    if (active_btn == '' || active_btn == undefined) {
+                        this.setState(prevState => ({
+                            state_active_btn: { ...prevState.state_active_btn, [i]: !prevState.state_active_btn[i] },
+                        }))
+                        this.showLoading(e, element, i);
+                        setTimeout(() => {
+                            fetch("/Client_Service_showAllOptions.bc", {
+                                method: "POST",
+                                body: 'provider=' + JSON.stringify(provider) + '&servicegroupid=' + servicegroupid + '&licenseUniqueId=' + licenseUniqueId + ''
+                            })
+                                .then((response) => response.text())
+                                .then(text => {
+                                    let Maindata = JSON.parse(text.replace(/\'/g, '"'))
+                                    this.setState(prevState => ({
+                                        show_options_data: {
+                                            ...prevState.show_options_data,
+                                            [i]: Maindata,
+                                        },
+                                        visibleOption: { ...prevState.visibleOption, [i]: !prevState.visibleOption[i] },
+                                        loadingVisible: { ...prevState.loadingVisible, [i]: "" }
+                                    }))
+                                }).catch(error => console.error(error))
+                        }, 1000);
+                    }
+                }
+
+                show_options(i, item) {
+                    let element = this.state.show_options_data[i];
+                    if (!element) return null;
+                    if (element.serviceItems !== undefined) {
+                        let lenserviceItems = element.serviceItems.length
+                        let indents = [];
+                        for (let i = 0; i < lenserviceItems; i++) {
+                            indents.push(<div className="item-details-service">
+                                <div className="choose-serviceitem"><div className="section-input_2 p-relative" data-index="1"><input type="checkbox" value={JSON.stringify(element.serviceItems[i])} className="check-service p-absolute" onChange={((e) => this.handleSelect(e, JSON.stringify(element)))} /><label><span className="checkbox"></span></label></div><div className="clr"></div></div>
+                                <input type="hidden" value={element.serviceItems[i].productid} name="productid" className="productid" />
+                                <div className="serviceitem-name color_font">{element.serviceItems[i].name}</div>
+                                <div className="serviceitem-price"><span className="item-price font_11 margin-left color_font">قیمت برای هر نفر:</span>
+                                    <span className="item-cost font_14 font-weight">{new Intl.NumberFormat().format(element.serviceItems[i].sellprice.adult1.cost)}</span>
+                                    <span className="item-price font_11 margin-right color_font">{item.moneytype}</span>
+                                </div>
+                                {this.renderCommission(item, element.serviceItems[i])}
+                            </div>)
+                        }
+                        return (
+                            indents
+                        )
+                    }
+
+                    else {
+                        return null
+                    }
+                }
+                renderCommission(item, element) {
+                    if (element.commissioncost == 0) {
+                        return ''
+                    } else {
+                        return <div className="commission-content"><div className="cost-item"><span className="font_10 color_font"> قیمت کل
+                            :</span><span className="item-cost font_12 font-weight">{new Intl.NumberFormat().format(element.total)}</span><span
+                                className="font_11 unit">{item.moneytype}</span></div>
+                            <div className="cost-item"><span className="font_10 color_font">کمیسیون
+                                :</span><span className="item-cost font_12 font-weight">{new Intl.NumberFormat().format(element.commissioncost)}</span><span
+                                    className="font_11 unit">{item.moneytype}</span></div>
+                            <div className="cost-item"><span className="font_10 color_font">مبلغ قابل پرداخت
+                                :</span><span className="item-cost font_12 font-weight">{new Intl.NumberFormat().format(element.totalCom)}</span><span
+                                    className="font_11 unit">{item.moneytype}</span></div>
+                        </div>
+                    }
+                }
+                closeOptions = (elem) => {
+                    this.setState(prevState => ({
+                        visibleOption: { ...prevState.visibleOption, [elem]: "" },
+                        state_active_btn: { ...prevState.state_active_btn, [elem]: "" },
+                    }))
+                }
+                showLoading = (e, elem, val) => {
+                    this.setState(prevState => ({
+                        loadingVisible: { ...prevState.loadingVisible, [val]: !prevState.loadingVisible[val] }
+                    }))
+                };
+                handleClick(event) {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth',
+                    })
+                    this.setState({
+                        currentPage: Number(event.target.id)
+                    })
+                }
+
+                handleReset(event) {
+                    let maxPage = this.state.maxPage
+                    let len = this.renderLibrary().length
+                    let Multi = len * maxPage
+                    for (let i = 0; i <= Multi; i++) {
+                        this.setState(prevState => ({
+                            visibleOption: { ...prevState.visibleOption, [i]: "" },
+                            state_active_btn: { ...prevState.state_active_btn, [i]: "" },
+                        }))
+                    }
+                }
+
+            }
+            ReactDOM.render(<App />, document.getElementById('app'))
+        }
+    </script>
+</body>
+
+</html>
