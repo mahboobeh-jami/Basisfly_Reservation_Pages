@@ -1,0 +1,16 @@
+Tem3_Tour_Search
+Tem3_Tour_Search_AR
+Tem3_Tour_Search_EN
+
+M_Tour_Search
+M_Tour_Search_ar
+M_Tour_Search_en
+
+Tem3_Oneway_Search_AR.bc
+Tem3_Roundtrip_Search_AR.bc
+Tem3_Hotel_Search_AR.bc
+Tem3_FlightHotel_Search_AR.bc
+Tem3_Tour_Search_AR.bc
+Tem3_Multicity_Search_AR.bc
+
+Client_Shopper_Ar_ver.2.bc
