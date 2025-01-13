@@ -3,11 +3,11 @@
 <basis core="cookie" name="trackingid" value="[##tracking.inserted.id|(0)##]" />
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 
 <head>
     <meta charset="UTF-8">
-    <title>Tour</title>
+    <title>جولة</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="robots" content="index, nofollow" />
@@ -22,14 +22,17 @@
     <meta name="author" content="BasisCore" />
     <!----------------CSS FILE---------------->
     <!----CSS MAIN STYLE---->
-    <link href="https://www.basisfly.com/css/reservation_tem3_style_res_en.css" type="text/css" rel="stylesheet" />
-    <link href="[##cms.cms.cdn##]/css/style_tem_en.css" type="text/css" rel="stylesheet" />
+    <link href="https://cdn.basiscore.net/basisfly.com/css/reservation_tem3_style_res.css" type="text/css"
+        rel="stylesheet" />
+    <link href="[##cms.cms.cdn##]/css/style_tem_ar.css" type="text/css" rel="stylesheet" />
+
 </head>
 
 <body onload="onloadFunc();">
-    <main>
-        <basis core="call" lid="2" file="header.inc" />
+    <main class="main-content">
+        <basis core="call" file="header-ar.inc" />
         <section class="content">
+            <section class="loginRegister"></section>
             <div id="bg-popup" class="unvisible"></div>
             <div class="message-box unvisible">
                 <i class="icon-message-box">
@@ -62,170 +65,58 @@
                     </svg>
                 </i>
                 <div class="line-one font_20 font-weight">
-                    Your search has been expired
+                    لقد انتهت صلاحية بحثك
                 </div>
                 <div class="line-two">
-                    Please reload the page to get the latest rates
+                    يرجى إعادة تحميل الصفحة للحصول على أحدث الأسعار
                 </div>
                 <button class="background-color_2 color_white font_16 border-radius cursor-pointer"
-                    onclick="window.location='/EN'">Home</button>
+                    onClick="window.location='[##cms.Host.AR_redirect|(/)##]'">الصفحة الرئيسية</button>
                 <button class="background-color_1 color_white font_16 border-radius cursor-pointer"
-                    onclick=" location.reload()">Search Again</button>
+                    onclick=" location.reload()">إعادة البحث</button>
             </div>
-            <section class="searched-container dir-ltr">
+            <section class="searched-container dir-rtl">
                 <div class="bc-main">
-                    <div class="width_85 float-left text-left">
+                    <div class=" float-right text-right">
                         <div class="flight-summary-info">
                             <div class="item font_16">
-                                <span class="departure"><span class="title">Tour :
+                                <span class="departure"><span class="title">جولة :
                                     </span>[##cms.form.tour-search-text##]</span>
                             </div>
                             <div class="item font_15">
                                 <span class="dash"><i class="far fa-calendar-check"></i></span>
-                                <span class="title">Departure Date : </span><span>[##cms.form.fdate##]</span>
+                                <span class="title">تاريخ المغادرة : </span><span>[##cms.form.fdate##]</span>
                                 <span class="dash"></span>
-                                <span class="title">Arrival Date : </span><span>[##cms.form.tdate##]</span>
+                                <span class="title">تاريخ العودة : </span><span>[##cms.form.tdate##]</span>
                             </div>
                             <div class="item font_13 cursor-pointer color_white background-color_1 border-radius btn"
-                                onclick="show_research(this)">
-                                <i class="fa fa-search"></i>Modify Search
+                                onclick="show_research(this,'4')">
+                                <i class="fa fa-search"></i> تعديل البحث
                             </div>
                             <div class="clr"></div>
                         </div>
                     </div>
-                    <div class="width_15 float-right font_13 next-prev-container text-right">
+                    <div class="width_15 float-left font_13 next-prev-container text-left">
                         <span class="before-btn cursor-pointer background-color_white"><i
-                                class="fa fa-angle-left color_1"></i>Prev Day
-                        </span>
-                        <span class="after-btn cursor-pointer background-color_white">Next Day
-                            <i class="fa fa-angle-right color_1"></i></span>
+                                class="fa fa-angle-right color_1"></i>الیوم السابق</span>
+                        <span class="after-btn cursor-pointer background-color_white">اليوم التالي<i class="fa fa-angle-left color_1"></i></span>
+                        <form method="post" action="/Tem3_Tour_Search_AR.bc" class="form_research_date"><input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent"> <input type="hidden" value="[##cms.form.tourname##]" name="tourname"> <input type="hidden" value="[##cms.form.tour-search-text##]" name="tour-search-text"> <input type="hidden" value="[##cms.form.fdate##]" name="fdate" class="departuredate"> <input type="hidden" value="[##cms.form.tdate##]" name="tdate" class="returndate"> <input type="hidden" value="[##cms.form.mstring_fdate##]" name="mstring_fdate" class="departureMdate"> <input type="hidden" value="[##cms.form.mstring_tdate##]" name="mstring_tdate" class="returnMdate"> <input type="hidden" value='[##cms.json.header|cms.form.roomSearch##]' name="roomSearch"> <input type="hidden" value="[##cms.form.data_type_tour##]" name="data_type_tour"> <input type="hidden" value="[##cms.form.data_type##]" name="data_type"></form>
                     </div>
                     <div class="clr"></div>
-                    <div class="searched-items-container unvisible">
-                        <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
-                        <div class="searched-items width_100 background-color_white">
-                            <form method="post" action="/Tem3_Tour_Search.bc?lid=2" class="form-research has-room"
-                                id="tour-form">
-                                <input type="hidden" value='[##cms.json.header | cms.form.roomSearch##]' class="json" />
-                                <input type="hidden" value="[##cms.form.currentdate##]" class="currentdate"
-                                    name="currentdate" />
-                                <div class="searched-item width_30 float-left has-border">
-                                    <div class="inner width_100 p-relative city">
-                                        <input type="text" onclick="city_search(this)" required data-type="4"
-                                            data-active="0" autocomplete="off" value="[##cms.form.tour-search-text##]"
-                                            name="tour-search-text" class="tour-search-text text-center" />
-                                        <input type="hidden" value="[##cms.form.tourname##]" class="co-id"
-                                            name="tourname">
-                                        <span class="mini-loading p-absolute unvisible"><i
-                                                class="fas fa-spinner fa-spin"></i></span>
-                                        <div class="countryFlight font_12 background-color_white tour-search-content">
-                                        </div>
-                                    </div>
-                                    <div class="clr"></div>
-                                </div>
-                                <div class="searched-item width_30 float-left has-border Basis_Date_Box">
-                                    <div class="inner width_50 float-left p-relative has-border_">
-                                        <input type="text" value="[##cms.form.fdate##]" name="fdate"
-                                            class="Basis_Date start_date"
-                                            onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0"
-                                            data-cache="0" readonly="true" autocomplete="off" required />
-                                        <input value="[##cms.form.mstring_fdate##]" class="mstring_fdate"
-                                            type="hidden" />
-
-                                    </div>
-                                    <div class="inner width_50 float-left p-relative">
-                                        <input type="text" value="[##cms.form.tdate##]" name="tdate" id="inp2"
-                                            class="Basis_Date end_date end_date_filled nextCalOpening"
-                                            onclick="Basis_Calendar(this,'[##cms.cms.date##]', 1)" data-active="0"
-                                            data-cache="0" readonly="true" autocomplete="off" required />
-                                        <input value="[##cms.form.mstring_tdate##]" class="mstring_tdate"
-                                            type="hidden" />
-                                    </div>
-                                    <div class="clr"></div>
-                                </div>
-                                <div class="searched-item p-relative width_20 float-left">
-                                    <div class="Wrapper-CountPassenger font_13 cursor-pointer"
-                                        onclick="show_passengers(this)">
-                                        <span class="count-room">
-                                            <span class="count">1</span>
-                                            <span>Room</span>
-                                        </span>
-                                        <span class="count-adult">
-                                            <span class="count">1</span>
-                                            <span>Adult</span>
-                                        </span>
-                                        <span class="count-child unvisible">
-                                            <span class="count split_num_1"></span>
-                                            <span>Child</span>
-                                        </span>
-                                        <div class="clr"></div>
-                                    </div>
-                                    <div class="CountPassenger room unvisible p-absolute font_11">
-                                        <div class="add-room" onclick="AddRoom(this)">Add Room
-                                        </div>
-                                        <div class="ShowRow">
-                                            <div class="contentRoom">
-                                                <div class="RoomRow">Room 1</div>
-                                                <div class="item-CountPassenger">
-                                                    <div class="first-part-CountPassenger width_50 float-left">Adult
-                                                        (+12)</div>
-                                                    <div class="second-part-CountPassenger width_50 float-right">
-                                                        <div class="passenger-button plus-minus"><span
-                                                                class="plus-btn">+</span>
-                                                        </div>
-                                                        <div class="passenger-button">
-                                                            <input type="text" name="_root.rooms__1.adultcount"
-                                                                class="adult" maxlength="4000" readonly value="1" />
-                                                        </div>
-                                                        <div class="passenger-button plus-minus"><span
-                                                                class="minus-btn">-</span></div>
-                                                    </div>
-                                                    <div class="clr"></div>
-                                                </div>
-                                                <div class="item-CountPassenger">
-                                                    <div class="first-part-CountPassenger width_50 float-left">Child
-                                                        (-12)</div>
-                                                    <div class="second-part-CountPassenger width_50 float-right">
-                                                        <div class="passenger-button plus-minus-ch"><span
-                                                                class="plus-btn">+</span></div>
-                                                        <div class="passenger-button">
-                                                            <input type="text" class="child_1" maxlength="4000" readonly
-                                                                value="0" />
-                                                        </div>
-                                                        <div class="passenger-button plus-minus-ch"><span
-                                                                class=" minus-btn">-</span></div>
-                                                    </div>
-                                                    <input type="hidden" value="0" class="childcountandage"
-                                                        name="_root.rooms__1.childcountandage" />
-                                                    <div class="clr"></div>
-                                                    <div class="section-select-age"></div>
-                                                    <div class="clr"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="confirm background-color_1 color_white text-center border-radius cursor-pointer"
-                                            onclick="confirm_search(this)">Confirm</div>
-                                    </div>
-                                    <i class="icon-passenger p-absolute"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24">
-                                            <rect width="24" height="24" fill="" opacity="0" />
-                                            <path
-                                                d="M18.5,7.355a3.5,3.5,0,1,0-3.893,0,5.347,5.347,0,0,0-1.235.7A3.429,3.429,0,0,0,12.844,8,3.477,3.477,0,0,0,9.755,9.9a4.907,4.907,0,0,0-.923-.518,3.519,3.519,0,1,0-3.9.015A4.786,4.786,0,0,0,2,13.772v7.684a1.5,1.5,0,0,0,1.5,1.5H8.052v0l9.1-.037h3.332a1.5,1.5,0,0,0,1.5-1.5v-8.8A5.653,5.653,0,0,0,18.5,7.355Zm-4.452-2.9a2.5,2.5,0,1,1,2.5,2.5A2.5,2.5,0,0,1,14.05,4.452ZM12.844,9a2.482,2.482,0,1,1-2.485,2.482A2.488,2.488,0,0,1,12.844,9ZM4.351,6.473A2.517,2.517,0,1,1,6.868,8.987,2.518,2.518,0,0,1,4.351,6.473ZM3.507,21.958a.5.5,0,0,1-.5-.5V13.772A3.848,3.848,0,0,1,6.9,9.986a3.95,3.95,0,0,1,2.515.907,3.35,3.35,0,0,0-.06.588,3.476,3.476,0,0,0,1.555,2.894,4.787,4.787,0,0,0-2.862,4.373v3.211Zm5.545-3.211a3.792,3.792,0,0,1,7.584,0v3.176h-.193l-.014,0-7.377.031Zm11.935,2.679a.5.5,0,0,1-.5.5H17.636V18.747a4.784,4.784,0,0,0-2.861-4.372,3.458,3.458,0,0,0-.211-5.9,4.227,4.227,0,0,1,1.988-.5,4.552,4.552,0,0,1,4.435,4.652Z"
-                                                transform="translate(0 0.016)" fill="#000" />
-                                        </svg>
-                                    </i>
-                                </div>
-                                <div class="searched-item width_20 float-left">
-                                    <button type="submit"
-                                        class="submit-form  font_13 cursor-pointer color_white background-color_1 width_100">Search
-                                    </button>
-                                </div>
-                                <div class="clr"></div>
-                            </form>
-                            <div class="clr"></div>
+                    <div class="searched-items-container unvisible" data-load="0"
+                        data-roomSearch='[##cms.json.header | cms.form.roomSearch##]'
+                        data-from="[##cms.form.tour-search-text##]" data-tourname="[##cms.form.tourname##]"
+                        data-typetour="[##cms.form.data_type_tour##]" data-datatype="[##cms.form.data_type##]"
+                        data-fdate="[##cms.form.fdate##]" data-tdate="[##cms.form.tdate##]"
+                        data-persiancurrent="[##cms.form.persiancurrent##]">
+                        <div class="text-center">
+                            <div class="lds-ring">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
                         </div>
-
-
                     </div>
 
                 </div>
@@ -234,15 +125,15 @@
             </section>
             <section class="result-search-container">
                 <div class="bc-main">
-                    <div class="waiting-search hotel_stracture dir-ltr">
+                    <div class="waiting-search hotel_stracture dir-rtl">
                         <div class="loading-container">
                             <div class="loading"></div>
-                            <div class="loading-img"><img src="[##cms.cms.cdn##]/images/logo.png" width="" height=""
+                            <div class="loading-img"><img  src="[##cms.Host.loading-logo|(/images/logo.png)##]" width="" height=""
                                     alt="logo" /></div>
                         </div>
-                        <p class="loading-text">Looking for the best tours ...</p>
-                        <div class="waiting-content width_30 float-left">
-                            <div class="stract-filters float-left width_95 ">
+                        <p class="loading-text">البحث عن أفضل الجولات ...</p>
+                        <div class="waiting-content width_30 float-right">
+                            <div class="stract-filters float-right width_95 ">
                                 <div class="stract-filter stract-effect">
                                     <div class="stract-filter-head"></div>
                                     <div class="stract-filter-row">
@@ -269,7 +160,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="waiting-content width_70 float-right">
+                        <div class="waiting-content width_70 float-left ">
                             <div class="stract-result-items stract-tour">
                                 <div class="stract-result-item stract-effect">
                                     <div class="stract-tour-header"></div>
@@ -319,24 +210,18 @@
             </section>
         </section>
         <!----------------JS FILE---------------->
-        <script src="[##cms.cms.cdn##]/_js/jquery/jquery-3.7.1.min.js" type="text/javascript"></script>
-        <!----------------CSS FILE---------------->
-        <link href="https://www.basisfly.com/css/reservation_tem_calendar_en.css" defer type="text/css"
-            rel="stylesheet" />
-        <basis core="call" lid="2" file="footer.inc" />
-        <basis core="call" lid="2" file="Client_Basis_Calendar.inc" />
+        <script src="[##cms.cms.cdn##]/_js/jquery/jquery-3.6.3.min.js" type="text/javascript"></script>
+        <basis core="call" file="footer-ar.inc" />
     </main>
     <script
-        type="text/javascript">$(document).ready(function () { fetch('/Client_Tour_Json.bc?lid=2', { method: 'POST', body: 'data_type=[##cms.form.data_type##]&data_type_tour=[##cms.form.data_type_tour##]&tourname=[##cms.form.tourname##]&fdate=[##cms.form.fdate##]&tdate=[##cms.form.tdate##]&rooms=[##cms.json.header|cms.form.roomSearch##]&clid=2' }).then(response => response.text()).then(text => { let Maindata = JSON.parse(text.replace(/\'/g, '"')); $('.waiting-search').hide(); $('#app').show(); load_data(Maindata); }).catch(error => console.error(error)) })</script>
+        type="text/javascript">$(document).ready(function () { fetch('/Client_Tour_Json.bc', { method: 'POST', body: 'data_type=[##cms.form.data_type##]&data_type_tour=[##cms.form.data_type_tour##]&tourname=[##cms.form.tourname##]&fdate=[##cms.form.fdate##]&tdate=[##cms.form.tdate##]&rooms=[##cms.json.header|cms.form.roomSearch##]&clid=3' }).then(response => response.text()).then(text => { let Maindata = JSON.parse(text.replace(/\'/g, '"')); $('.waiting-search').hide(); $('#app').show(); load_data(Maindata); }).catch(error => console.error(error)) })</script>
     <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_react.production.min.js"></script>
     <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_react_dom.production.min.js"></script>
     <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_babel.min.js"></script>
     <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_react_paging.js"></script>
-    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_tem3_reSearch_en.js"
+    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_tem3_commonJs_ar.js"
         type="text/javascript"></script>
     <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_owl_carousel_.js"
-        type="text/javascript"></script>
-    <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_Basis_Calendar_en_js.js"
         type="text/javascript"></script>
     <script type="text/babel">
         function load_data(load_data) {
@@ -404,9 +289,9 @@
                         this.reorganiseLibrary()
                     })
 
-                    fetch('/Client_Valid_Tours_Json.bc?lid=2', {
+                    fetch('/Client_Valid_Tours_Json.bc', {
                         method: 'POST',
-                        body: 'tourname=[##cms.form.tourname##]&fdate=[##cms.form.fdate##]&tdate=[##cms.form.tdate##]&rooms=[##cms.json.header|cms.form.roomSearch##]&clid=2'
+                        body: 'tourname=[##cms.form.tourname##]&fdate=[##cms.form.fdate##]&tdate=[##cms.form.tdate##]&rooms=[##cms.json.header|cms.form.roomSearch##]&clid=3'
                     }).then(response => response.text())
                         .then(text => {
                             let Maindata = JSON.parse(text.replace(/\'/g, '"'))
@@ -425,7 +310,6 @@
                     })
                     let getCurrencyObject = localStorage.getItem('currencyObject');
                     let jsonCurrency = JSON.parse(getCurrencyObject);
-                    //bitaa
                     if (jsonCurrency) {
                         if (jsonCurrency.currency_unit !== "IRR") {
                             if (jsonCurrency.floatdigit < 0) {
@@ -448,7 +332,6 @@
                             state_currency_cost: jsonCurrency.currency_cost,
                         })
                     }
-
                 }
                 componentDidUpdate() {
                     if (document.getElementsByClassName("search-item")[0]) {
@@ -469,7 +352,7 @@
                         if ($(this).find(".basiscoreid").val()) {
                             if ($(this).find(".basiscoreid").val() == $(this).closest(".result-item").siblings().find(".basiscoreid").val()) {
                                 if (check_loaded == 0) {
-                                    $.get("/Tem1_Tour_Info.bc?lid=2&id=" + basiscoreid + "", function (data, status) {
+                                    $.get("/Tem1_Tour_Info_AR.bc?id=" + basiscoreid + "", function (data, status) {
                                         self.find(".load_info_tour").empty().append(data)
                                         self.closest(".result-item").siblings().find(".load_info_tour").empty().append(data)
 
@@ -478,7 +361,7 @@
                                     $(this).siblings().attr("date-load-info", "1")
                                 }
                             } else {
-                                $.get("/Tem1_Tour_Info.bc?lid=2&id=" + basiscoreid + "", function (data, status) {
+                                $.get("/Tem1_Tour_Info_AR.bc?id=" + basiscoreid + "", function (data, status) {
                                     self.find(".load_info_tour").empty().append(data)
                                 });
 
@@ -486,8 +369,6 @@
                         }
                     })
                     $(".valid-tours-container").owlCarousel({ autoPlay: 4000, items: 4, loop: true, itemsDesktop: [1199, 3], itemsDesktopSmall: [979, 2], itemsTablet: [768, 2], itemsTablet: [602, 1], itemsMobile: [479, 1], navigation: true, navigationText: ['<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>'] });
-
-
                     if (document.querySelector(".currency-content")) {
                         const fieldTemp = document.querySelector(".currency-content-list");
                         document.querySelector(".currency-content").innerHTML = '';
@@ -495,7 +376,6 @@
                         document.querySelector(".currency-content-list").classList.add('currency-appended');
                         document.querySelector(".currency-appended").classList.remove('unvisible');
                     }
-
                     $(".tour_reserve_btn").each(function () {
                         $(this).click(function(e) {
                             $(this).closest("form").find(".roomid-value").each(function () {
@@ -578,7 +458,6 @@
                         let lenLibrary = library.length
                         $('.result-count').text(lenLibrary)
                     }
-
                     if (filterFlightNumber !== "") {
                         library = library.filter(item => {
                             if (this.renderFilter_search(item, 'flight_number').some(r => r.toLowerCase().includes(filterFlightNumber))) return item;
@@ -587,7 +466,6 @@
                         let lenLibrary = library.length
                         $('.result-count').text(lenLibrary)
                     }
-
                     let lenLibrary = library.length
                     if (lenLibrary == undefined) {
                         $('.result-count').text(0)
@@ -789,40 +667,43 @@
                                     </g>
                                 </svg> </i>
                             <div className="line-one font_20 font-weight text-right">
-                                No results found for your search
+                                لا يوجد نتائج لبحثك
                             </div>
                             <div className="line-two text-right">
-                                To get the result, please change the date or route
+                                للحصول علي النتيجة, يرجي تغيير التاريخ أو الوجه
                             </div>
-                            <button className="background-color_1 color_white font_16 border-radius cursor-pointer" onClick={this.renderhomepage}>Home</button>
+                            <a href="[##cms.Host.AR_redirect|(/)##]" className="background-color_1 color_white font_16 border-radius cursor-pointer">الصفحة الرئيسية</a>
                         </div>
 
                     }
                     return library[currentPage - 1].map((item) => (
-                        <div className="search-item result-item dir-ltr" date-load-info="0" key={item.index}>
-                            <form action="/Client_Show_Tour_ver.2.bc?lid=2" method="post">
+                        <div className="search-item result-item dir-rtl" date-load-info="0" key={item.index}>
+                            <form action="/Client_Show_Tour_Ar_ver.2.bc" method="post">
                                 <input type="hidden" value={this.state.state_currency_unit} name="rate-unit" className="rate-unit" />
                                 <input type="hidden" value={this.state.state_currency_cost} name="rate-cost" className="rate-cost" />
                                 <input type="hidden" value={this.state.state_floatdigit} name="rate-floatdigit" className="rate-floatdigit" />
                                 <input type="hidden" value="[##cms.form.tourname##]" name="tourname" />
                                 <input type="hidden" value="[##cms.form.tour-search-text##]" name="tour-search-text" />
                                 <input type="hidden" value='[##cms.json.header|cms.form.roomSearch##]' name="roomSearch" />
+                                <input type="hidden" value="[##cms.form.data_type_tour##]" name="data_type_tour" />
+                                <input type="hidden" value="[##cms.form.data_type##]" name="data_type" />
                                 <input type="hidden" value="Tem3" name="checkpreurl" />
                                 <input type="hidden" value={item.id} name="id" />
                                 <input type="hidden" value={item.supplier} name="supplier" />
-                                <input type="hidden" value={item.dateinfo.begindate.mstring} name="fdate" className="fdate" />
-                                <input type="hidden" value={item.dateinfo.enddate.mstring} name="tdate" className="tdate" />
+                                <input type="hidden" value={item.dateinfo.begindate.sstring} name="fdate" className="fdate" />
+                                <input type="hidden" value={item.dateinfo.enddate.sstring} name="tdate" className="tdate" />
+                                <input type="hidden" value={this.renderTotal(item)} name="amount" />
                                 {this.renderproviderId(item.id)}
                                 {this.renderprovider(item)}
                                 {this.renderNeardate(item)}
                                 {this.renderhotelgroupid(item)}
                                 <div className="tour-header background-color_1 color_white border-radius font_13">
-                                    <span>Tour:</span>
+                                    <span>جولة:</span>
                                     <span className="tour-name">{item.name}</span>
-                                    <span>Date :</span>
-                                    <span className="font_12 ">({item.dateinfo.begindate.mstring})</span>
-                                    <span>To</span>
-                                    <span className="font_12 ">({item.dateinfo.enddate.mstring})</span>
+                                    <span>تاریخ :</span>
+                                    <span className="font_12 EnNum">{item.dateinfo.begindate.mstring}</span>
+                                    <span>الی</span>
+                                    <span className="font_12 EnNum">{item.dateinfo.enddate.mstring}</span>
                                     {this.renderTime(item)}
                                 </div>
                                 {this.renderhotelinfo_wrapper(item)}
@@ -833,19 +714,19 @@
                                 <div className="row-cost">
                                     <div className="links-content width_50 float-right text-right">
 
-                                        <span className="details-btn font_12 color_2 text-center cursor-pointer" onClick={(e) => this.showCostTable(item.index)}> Price Details
-                                        </span>
-                                        <span className="details-btn font_12 color_2 text-center cursor-pointer" onClick={(e) => this.showTourInfo(item.index)}>Services
+                                        <span className="details-btn font_12 color_2 text-center cursor-pointer" onClick={(e) => this.showCostTable(item.index)}> جدول الأسعار
+                                            </span>
+                                        <span className="details-btn font_12 color_2 text-center cursor-pointer" onClick={(e) => this.showTourInfo(item.index)}>خدمات الجولة
                                         </span></div>
                                     <div className="width_50 float-left  text-left">
                                         <div className="col-cost">
-                                            <span className="color_gray font_11">Price :</span><span
+                                            <span className="color_gray font_11">السعر :</span><span
                                                 className="item-cost color_5 font_20 font-weight">{this.renderTotal_first(item)}</span><span
                                                     className="color_gray font_11 unit">{this.renderUnit(item.unit, this.state.state_currency_unit)}</span></div>
 
                                         <div className="btn-item">
                                             <button type="submit"
-                                                className="color_white border-radius font_15 cursor-pointer tour_reserve_btn"> Buy Tour </button>
+                                                className="color_white border-radius font_15 cursor-pointer tour_reserve_btn">شراء جولة</button>
                                         </div>
                                     </div>
 
@@ -877,15 +758,15 @@
                 }
                 render() {
                     const { library, currentPage, perPage, maxPage } = this.state
-                    return (<div>
+                    return (<div className="list-container">
                         <div className="currency-content-list unvisible">
                             <div className="currency-selected cursor-pointer" data-active="0" onClick={() => this.currency_selected_list()}><span>{this.localStorage_getCurrency()}{this.localStorage_expire()}</span></div>
                             {this.renderCurrencyRate()}
                         </div>
                         {this.ShowValidTours()}
-                        <aside className="sidebar-content width_30 float-left dir-ltr">
-                            <div className="filters-container float-left width_95 ">
-                                <form method="post" action="/Client_Tour_Cost_Details.bc?lid=2" target="_blank" className="cost-details-form unvisible">
+                        <aside className="sidebar-content width_30 float-right dir-rtl">
+                            <div className="filters-container float-right width_95 ">
+                                <form method="post" action="/Client_Tour_Cost_Details_ar.bc" target="_blank" className="cost-details-form unvisible">
                                     <input type="hidden" value="[##cms.form.tourname##]" name="tourname" />
                                     <input type="hidden" value="[##cms.form.tour-search-text##]" name="tour-search-text" />
                                     <input type="hidden" value="" name="tour-name-details" className="tour-name-details" />
@@ -895,18 +776,21 @@
                                     <input type="hidden" value='[##cms.json.header|cms.form.roomSearch##]' name="roomSearch" />
                                     <input type="hidden" value="[##cms.form.fdate##]" name="fdate" />
                                     <input type="hidden" value="[##cms.form.tdate##]" name="tdate" />
-                                    <button className="background-color_1 color_white border-radius cursor-pointer" type="submit">View Tour Package</button>
+                                    <button className="background-color_1 color_white border-radius cursor-pointer" type="submit">مشاهدة الحزمة</button>
                                 </form>
-                                <p><span className="font-weight result-count">{this.renderCount()}</span> tours has been found.</p>
-                                <p className="section-timer">Left Time : <span id="timer" className="font-weight  font_20">00:00:00</span></p>
+                                <p>
+                                    تم العثور  <span className="font-weight result-count">{this.renderCount()}</span> من الجولات
+                                </p>
+                                <p className="section-timer ">الوقت المتبقي : <span id="timer" className="font-weight EnNum font_20">00:00:00</span></p>
+
                                 <div className="filter-container">
-                                    <p className="filter-head"><span className="font_14 float-left">Hotel Name</span>
+                                    <p className="filter-head"><span className="font_14 float-right">اسم الفندق</span>
                                         <div className="clr"></div>
                                     </p>
                                     <div className="filter-row">
-                                        <ul className="filter-body text-center font_13">
+                                        <ul className="filter-body  text-center font_13">
                                             <li className="width_100">
-                                                <input value={this.state.filterName} onChange={((e) => this.handleFilterName(e))} placeholder="Enter Hotel Name" className="inner  filter-name-hotel"
+                                                <input value={this.state.filterName} onChange={((e) => this.handleFilterName(e))} placeholder="أدخل اسم الفندق المطلوب" className="inner  filter-name-hotel"
                                                 />
                                             </li>
                                             <div className="clr"></div>
@@ -914,51 +798,51 @@
                                     </div>
                                 </div>
                                 <div className="filter-container filter-star">
-                                    <p className="filter-head"><span className="font_14 float-left">Hotel Rate</span>
+                                    <p className="filter-head"><span className="font_14 float-right">درجة الفندق</span>
                                         <div className="clr"></div>
                                     </p>
                                     <div className="filter-row">
                                         <ul className="filter-body text-center font_13">
-                                            <li className="width_50 float-left">
+                                            <li className="width_50 float-right">
                                                 <div className="inner p-relative">
                                                     <input type="checkbox" value="0,1,2" className="checkbox-click" data-filter="stars" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} />
                                                     <label>
                                                         <div className="icon"><i className="fa fa-star"></i><i className="fa fa-star"></i></div>
                                                         <div className="text">
-                                                            <p> 3 Star Or Less</p>
+                                                            <p>أقل من 3 درجات</p>
                                                         </div>
                                                     </label>
                                                 </div>
                                             </li>
-                                            <li className="width_50 float-left">
+                                            <li className="width_50 float-right">
                                                 <div className="inner p-relative">
                                                     <input type="checkbox" value="3" className="checkbox-click" data-filter="stars" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} />
                                                     <label>
                                                         <div className="icon"><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i></div>
                                                         <div className="text">
-                                                            <p> 3 Satr</p>
+                                                            <p>  3 درجة</p>
                                                         </div>
                                                     </label>
                                                 </div>
                                             </li>
-                                            <li className="width_50 float-left">
+                                            <li className="width_50 float-right">
                                                 <div className="inner p-relative">
                                                     <input type="checkbox" value="4" className="checkbox-click" data-filter="stars" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} />
                                                     <label>
                                                         <div className="icon"><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i></div>
                                                         <div className="text">
-                                                            <p>  4 Star</p>
+                                                            <p>  4 درجة</p>
                                                         </div>
                                                     </label>
                                                 </div>
                                             </li>
-                                            <li className="width_50 float-left">
+                                            <li className="width_50 float-right">
                                                 <div className="inner p-relative">
                                                     <input type="checkbox" value="5" className="checkbox-click" data-filter="stars" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} />
                                                     <label>
                                                         <div className="icon"><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i></div>
                                                         <div className="text">
-                                                            <p>  5 Star</p>
+                                                            <p>  5 درجة</p>
                                                         </div>
                                                     </label>
                                                 </div>
@@ -969,17 +853,17 @@
                                 </div>
                                 {this.ShowFilterTour()}
                                 <div className="filter-container">
-                                    <p className="filter-head"><span className="font_14 float-left">Stop</span>
+                                    <p className="filter-head"><span className="font_14 float-right">توقف</span>
                                         <div className="clr"></div>
                                     </p>
                                     <div className="filter-row">
                                         <ul className="filter-body text-center font_13">
-                                            <li className="width_50 float-left">
+                                            <li className="width_50 float-right">
                                                 <div className="inner p-relative">
                                                     <input type="checkbox" value="0" className="checkbox-click" data-filter="stops" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} />
                                                     <label>
                                                         <div className="text">
-                                                            <p>Non-Stop</p>
+                                                            <p>بدون توقف</p>
 
                                                         </div>
                                                     </label>
@@ -987,24 +871,24 @@
                                                 </div>
 
                                             </li>
-                                            <li className="width_50 float-left">
+                                            <li className="width_50 float-right">
                                                 <div className="inner p-relative">
                                                     <input type="checkbox" value="1" className="checkbox-click" data-filter="stops" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} />
                                                     <label>
                                                         <div className="text">
-                                                            <p>1 Stop </p>
+                                                            <p>توقف واحد </p>
 
                                                         </div>
                                                     </label>
                                                 </div>
 
                                             </li>
-                                            <li className="width_50 float-left">
+                                            <li className="width_50 float-right">
                                                 <div className="inner p-relative">
                                                     <input type="checkbox" value="2,3,4,5" className="checkbox-click" data-filter="stops" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} />
                                                     <label>
                                                         <div className="text">
-                                                            <p>2 Stops And More</p>
+                                                            <p>2 توقف و أكثر</p>
 
                                                         </div>
                                                     </label>
@@ -1017,10 +901,12 @@
                                         </ul>
                                     </div>
                                 </div>
+
+
                             </div>
                         </aside>
-                        <div className="result-content width_70 float-right dir-ltr">
-                            <div className="neardate unvisible font_12 text-center"><span>The tour is not available on the date you want! The nearest available date is displayed .</span></div>
+                        <div className="result-content width_70 float-left dir-rtl">
+                            <div className="neardate unvisible font_12 text-center"><span>في التاريخ المذکور الجولة غير متوفرة ! سوف يتم عرض أقرب تاريخ متاح.</span></div>
                             <div className="result-items tour">
                                 {this.renderLibrary()}
                                 <ul id="page-numbers">
@@ -1055,16 +941,18 @@
                 renderValidTours(element) {
                     return element.map((item, i) => (
                         <section className="item-tour">
-                            <form method="post" action="/Tem3_Tour_Search.bc?lid=2">
+                            <form method="post" action="/Tem3_Tour_Search_AR.bc">
                                 <p className="name-tour">{item.name}</p>
-                                <p className="dateinfo-tour"><span>From </span><span className="dateinfo">{item.dateinfo.begindate.mstring}</span><span>To </span><span className="dateinfo">{item.dateinfo.enddate.mstring}</span></p>
+                                <p className="dateinfo-tour"><span>من </span><span className="dateinfo">{item.dateinfo.begindate.mstring}</span><span>ل </span><span className="dateinfo">{item.dateinfo.enddate.mstring}</span></p>
                                 <input type="hidden" value='[##cms.json.header|cms.form.roomSearch##]' name="roomSearch" />
                                 <input type="hidden" value='[##cms.form.tourname##]' name="tourname" />
+                                <input type="hidden" value="[##cms.form.data_type_tour##]" name="data_type_tour" />
+                                <input type="hidden" value="[##cms.form.data_type##]" name="data_type" />
                                 <input type="hidden" value="[##cms.form.tour-search-text##]" name="tour-search-text" />
-                                <input type="hidden" value={item.dateinfo.begindate.mstring} name="fdate" />
-                                <input type="hidden" value={item.dateinfo.enddate.mstring} name="tdate" />
-                                <input type="hidden" value="[##cms.form.currentdate##]" class="currentdate" name="currentdate" />
-                                <button type="submit" ></button>
+                                <input type="hidden" value={item.dateinfo.begindate.sstring} name="fdate" />
+                                <input type="hidden" value={item.dateinfo.enddate.sstring} name="tdate" />
+                                <input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent" />
+                                <button type="submit" className=""></button>
                             </form>
                         </section>
                     ))
@@ -1072,31 +960,30 @@
                 ShowFilterTour() {
                     let element = this.state.data;
                     if (!element) return null;
-                    return <div><div className="filter-container filter-service">
-                        <p className="filter-head"><span className="font_14 float-left">Service Hotel</span>
+                    return <div> <div className="filter-container">
+                        <p className="filter-head"><span className="font_14 float-right">خدمة الفندق</span>
                             <div className="clr"></div>
                         </p>
                         <div className="filter-row">
-                            <ul className="filter-body text-center font_13">
+                            <ul className="filter-body stop-items text-center font_13">
                                 {this.renderservice(element)}
                                 <div className="clr"></div>
                             </ul>
                         </div>
-
                     </div>
                         <div className="filter-container">
-                            <p className="filter-head"><span className="font_14 float-left">Status Hotel</span>
+                            <p className="filter-head"><span className="font_14 float-right">حالة الفندق</span>
                                 <div className="clr"></div>
                             </p>
                             <div className="filter-row">
-                                <ul className="filter-body text-center font_13">
+                                <ul className="filter-body stop-items text-center font_13">
                                     {this.renderallavailability(element)}
                                     <div className="clr"></div>
                                 </ul>
                             </div>
                         </div>
                         <div className="filter-container">
-                            <p className="filter-head"><span className="font_14 float-left">Airlines Comapany</span>
+                            <p className="filter-head"><span className="font_14 float-right">الخطوط الجوية</span>
                                 <div className="clr"></div>
                             </p>
                             <div className="filter-row airline_results">
@@ -1105,13 +992,13 @@
                             </div>
                         </div>
                         <div className="filter-container">
-                            <p className="filter-head"><span className="font_14 float-left">Flight Number</span>
+                            <p className="filter-head"><span className="font_14 float-right">رقم التذکره(الرحله) </span>
                                 <div className="clr"></div>
                             </p>
                             <div className="filter-row">
                                 <ul className="filter-body text-center font_13">
                                     <li className="width_100">
-                                        <input value={this.state.filterFlightNumber} onChange={((e) => this.handleFilterFlightNumber(e))} placeholder="Flight Number" className="inner filter-flight-number"
+                                        <input value={this.state.filterFlightNumber} onChange={((e) => this.handleFilterFlightNumber(e))} placeholder="رقم التذکره(الرحله)" className="inner filter-flight-number"
                                         />
                                     </li>
                                     <div className="clr"></div>
@@ -1193,7 +1080,7 @@
                         let sentencesimg = imgDep.concat(imgDes.filter((item) => imgDep.indexOf(item) < 0))
 
                         for (let i = 0; i < sentences.length; i++) {
-                            let singleSentence = <div className="filter-body airline_filter"><div className="section-input_list p-relative" data-index="1"><input type="checkbox" value={sentences[i]} className="p-absolute" data-filter="startairline" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} /><label><img src={sentencesimg[i]} alt={sentences[i]} width="50" height="20" className="img_airline p-absolute" /><span className="checkbox "><div className="name_airline text-checkbox float_left">{sentences[i]}</div></span><span className="total_content font_11 float-right ">From <span className="min_total">{new Intl.NumberFormat().format(this.min_totalByAirline(element, sentences[i]))}</span><span className="unit_content">{[...(new Set(element.map(x => this.renderUnit(x.unit, this.state.state_currency_unit))))]}</span></span></label></div><div className="clr"></div></div>
+                            let singleSentence = <div className="filter-body airline_filter"><div className="section-input_list p-relative" data-index="1"><input type="checkbox" value={sentences[i]} className="p-absolute" data-filter="startairline" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} /><label><img src={sentencesimg[i]} alt={sentences[i]} width="50" height="20" className="img_airline" /><span className="checkbox "><div className="name_airline text-checkbox float_right">{sentences[i]}</div></span><span className="total_content font_11 float-left ">من <span className="min_total">{new Intl.NumberFormat().format(this.min_totalByAirline(element, sentences[i]))}</span><span className="unit_content">{[...(new Set(element.map(x => this.renderUnit(x.unit, this.state.state_currency_unit))))]}</span></span></label></div><div className="clr"></div></div>
                             indents.push(singleSentence)
                         }
 
@@ -1203,7 +1090,6 @@
 
                     }
                 }
-
 
                 min_totalByAirline = (data, name) => {
                     const { state_currency_cost, state_floatdigit } = this.state;
@@ -1268,7 +1154,6 @@
                     return Math.min(...new_totalsBack, ...new_totalsOne);
                 }
 
-
                 min_totalByGrade = (data, name) => {
                     const totals = data.filter(x =>
                         x.hotelinfo.flatMap(z => z.hotel).find(
@@ -1283,7 +1168,7 @@
                     if (element.length !== undefined) {
                         let sentences = [...(new Set(element.map(d => d['hotelinfo']).flat().map(a => a['hotel']).flat().map((elem) => { if (elem['hotelinfo']) { return elem['hotelinfo']['hotelsearch']['services'] } }).flat()))]
                         let singleSentence = sentences.map(s => <React.Fragment>
-                            <li className="width_50 float-left">
+                            <li className="width_50 float-right">
                                 <div className="inner p-relative">
                                     <input type="checkbox" value={s} className="checkbox-click" data-filter="services" onChange={(e) => this.handleChange(e)} defaultChecked={this.props.defaultChecked} />
                                     <label><div className="text"> {this.renderserviceNameFilter(s)}</div> </label> </div> </li></React.Fragment>);
@@ -1295,11 +1180,11 @@
                 }
                 renderserviceNameFilter(element) {
                     if (element == 'R.O' || element == 'RO') {
-                        return <p className="has-not"><div className="icon"><i className="fa fa-coffee"></i><i className="far fa-spoon"></i></div>No Meal</p>
+                        return <p className="has-not"><div className="icon"><i className="fa fa-coffee"></i><i className="far fa-spoon"></i></div>غرفة فقط</p>
                     } else if (element == 'B.B' || element == 'BB') {
-                        return <p><div className="icon"><i className="fa fa-coffee"></i></div>With Breakfast</p>
+                        return <p><div className="icon"><i className="fa fa-coffee"></i></div>مع الإفطار</p>
                     } else if (element == 'H.B' || element == 'HB') {
-                        return <p><div className="icon"><i className="fa fa-coffee"></i><i className="far fa-spoon"></i></div>With Breakfast & Lunch </p>
+                        return <p><div className="icon"><i className="fa fa-coffee"></i><i className="far fa-spoon"></i></div>مع الإفطار والغداء </p>
                     } else {
                         return <p><div className="icon"><i className="fa fa-hotel"></i></div>{element}</p>
 
@@ -1329,12 +1214,12 @@
                         ))]
                         let singleSentence = sentences.map((s) => {
                             if (s == 'onrequest') {
-                                return <React.Fragment><li className="width_50 float-left">
+                                return <React.Fragment><li className="width_50 float-right">
                                     <div className="inner p-relative">
                                         <input type="checkbox" value={s} className="checkbox-click" data-filter="all_availability" onChange={(e) => this.handleChange(e)} defaultChecked={this.props.defaultChecked} />
                                         <label><div className="text"><p>On Request</p></div> </label> </div> </li> </React.Fragment>
                             } else {
-                                return <React.Fragment><li className="width_50 float-left">
+                                return <React.Fragment><li className="width_50 float-right">
                                     <div className="inner p-relative">
                                         <input type="checkbox" value={s} className="checkbox-click" data-filter="all_availability" onChange={(e) => this.handleChange(e)} defaultChecked={this.props.defaultChecked} />
                                         <label><div className="text"><p>Available</p></div> </label> </div> </li> </React.Fragment>
@@ -1429,10 +1314,6 @@
                     }
 
                 }
-
-                renderhomepage = event => {
-                    return window.location = '/EN'
-                }
                 renderResearch = event => {
                     return location.reload()
                 }
@@ -1490,27 +1371,27 @@
                         index = stinglen + stingCounter
                         indents.push(<div className="flight-part-item">
                             <div className="d-flex p-relative flex-justify">
-                                <div className="img-item float-left text-center">
+                                <div className="img-item float-right text-center">
                                     <img src={element.mainflights[len].ticketinfooo.showstartairline} alt={element.mainflights[len].routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsairline} width="80"
                                         height="32" />
                                     <div className="class-item font_10">
-                                        Flight Number: {element.mainflights[len].routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsroutecode}
+                                        رقم التذکره(الرحله): {element.mainflights[len].routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsroutecode}
                                     </div>
                                     {this.renderAllDetails(index, lenmainflights)}
                                 </div>
                                 <div className="infoes-item width_100">
-                                    <div className="info-item float-left text-center">
+                                    <div className="info-item float-right text-center">
 
                                         <div className="airport-item font_19 font-weight color_font">{element.mainflights[len].infoo.showstartcity}</div>
                                         <p className="city-name font_13">{element.mainflights[len].ticketinfooo.exitinfo.shortstartairport}</p>
                                         <div className="time-item font-weight font_20 color_font">{element.mainflights[len].ticketinfooo.exitinfo.showexittime}</div>
                                     </div>
                                     <div
-                                        className="duration-item text-center width_70 p-relative float-left">
+                                        className="duration-item text-center width_70 p-relative float-right">
                                         {this.renderStopinfo(element.mainflights[len])}
 
                                         <div className="item-hour font_11 p-absolute">
-                                            <span>Travel Duration: </span>
+                                            <span>مدة السفر: </span>
                                             <span className="hour">{element.mainflights[len].ticketinfooo.stoppinfoo.showtiming}</span>
                                         </div>
                                     </div>
@@ -1589,7 +1470,7 @@
                     let index = stinglen + stingCounter
                     return <div onClick={((e) => this.showAllDetails(e, index))}
                         className="details-btn font_12 color_2 text-center cursor-pointer">
-                        Details
+                        تفاصيل
                     </div>
 
 
@@ -1603,15 +1484,15 @@
                     return <div key={index} className={`details-container text-right ${!this.state.visibleAll[index] ? "unvisible" : "visible"}`}>
                         <div className="wrapper-tab-details d-row font_13 ">
                             <div className="tab-details tour" onClick={((e) => this.showDetails(e, index))}>
-                                <span className={`with-tab p-relative ${!this.state.activeTab_details[index] ? "" : "active-tab"}`}>Flight Details</span>
+                                <span className={`with-tab p-relative ${!this.state.activeTab_details[index] ? "" : "active-tab"}`}>تفاصيل الرحلة</span>
 
                             </div>
                             <div className="tab-details tour" onClick={(e) => this.showBar(e, index)}>
-                                <span className={`with-tab p-relative ${!this.state.activeTab_bar[index] ? "" : "active-tab"}`}>Baggage Rules </span>
+                                <span className={`with-tab p-relative ${!this.state.activeTab_bar[index] ? "" : "active-tab"}`}>قوانین الحقائب</span>
 
                             </div>
                             <div className="tab-details tour p-relative" onClick={((e) => this.showRule(e, index))}>
-                                <span className={`with-tab p-relative ${!this.state.activeTab_rule[index] ? "" : "active-tab"}`}>Flight Rules </span>
+                                <span className={`with-tab p-relative ${!this.state.activeTab_rule[index] ? "" : "active-tab"}`}>قوانين الرحلة</span>
 
                             </div>
                             <div className="clr"></div>
@@ -1632,7 +1513,7 @@
                         if (typeof element.routeshow.description === 'string') {
                             return <div className="details-item">
                                 <input type="hidden" value="string" name="type-description" />
-                                <div className="title font_14" onClick={e => this.ruleDep(e, element, i, len, 'string')}><span className="clicked font-weight cursor-pointer">Click</span> to view flight rules</div>
+                                <div className="title font_14" onClick={e => this.ruleDep(e, element, i, len, 'string')}>لمعرفة قوانين رحلة <span className="clicked font-weight cursor-pointer">اضغط هنا</span></div>
                                 <div dir="auto" className={`text-justify max-height font_13 info-loaded ruleDepTxt-${i}-${len}`}>{this.state.ruleDepTxt[i]}</div>
                             </div>
                         }
@@ -1640,7 +1521,7 @@
                 renderBar(element, i, len) {
                         if (typeof element.routeshow.description === 'string') {
                             return <div className="details-item">
-                                <div className="title font_14" onClick={e => this.bardep(e, element, i, len, 'string')}><span className="clicked font-weight cursor-pointer">Click</span> to view baggage rules</div>
+                                <div className="title font_14" onClick={e => this.bardep(e, element, i, len, 'string')}>لمعرفة قوانین الحقائب <span className="clicked font-weight cursor-pointer">اضغط هنا</span></div>
                                 <div dir="auto" className={`text-justify max-height font_13 info-loaded barDepTxt-${i}-${len}`}>{this.state.barDepTxt[i]}</div>
                             </div>
 
@@ -1654,8 +1535,8 @@
                     bardep = (e, element, i, len, type) => {
                        
                         if (type == 'string') {
-                            document.querySelector(`.barDepTxt-${i}-${len}`).innerHTML = `<div><span className="text-color">Cabin: </span><span>${element.barinfo.bar}</span></div>
-                                    <div><span className="text-color">Allowable: </span><span>${element.barinfo.bar1}</span></div>`
+                            document.querySelector(`.barDepTxt-${i}-${len}`).innerHTML = `<div><span className="text-color">حمولة المقصورة: </span><span>${element.barinfo.bar}</span></div>
+                                    <div><span className="text-color">الحمل المسموح به: </span><span>${element.barinfo.bar1}</span></div>`
                         }
                     };
                 renderFlightDetails(element, deps) {
@@ -1708,9 +1589,9 @@
                                 let stinglen = numlen.toString()
                                 let stingCounter = numCounter.toString()
                                 index = stinglen + stingCounter
-                                indents.push(<div className="flight-part"><p className="font_13 title-items"> One-Way Flight</p>
+                                indents.push(<div className="flight-part"><p className="font_13 title-items"> رحلة داخلية</p>
                                     <div className="width_100  p-relative">
-                                        <div className="d-row top-row p-relative"><div className="item-img"><img src={element.onewayflights[len].ticketinfooo.showstartairline} alt={element.onewayflights[len].routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsairline} width="60" height="24" /><span className="code-item font_10"> شماره پرواز: {element.onewayflights[len].routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsroutecode}</span></div><div className="item-info float-right text-center"><div className="item-time font_18 font-weight text-left">{element.onewayflights[len].ticketinfooo.exitinfo.showexittime}</div><div className="item-airport font_12 text-left">{element.onewayflights[len].infoo.showstartcity} ({element.onewayflights[len].ticketinfooo.exitinfo.shortstartairport})</div></div><div className="item-duration float-right text-center width_50"><div className="item-hour font_12"><span>زمان سفر: </span><span className="hour font_11">{element.onewayflights[len].ticketinfooo.stoppinfoo.showtiming}</span></div><div className="trip-flight-duration-line d-flex p-relative color_1">{this.renderStopinfo_shape(element.onewayflights[len].ticketinfooo.stoppinfoo.showstopinfo)}<svg height="15" viewBox="0 0 16 15" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m13.8508482 10.0932087c.0944518-.0734069.1491518-.18223445.1491518-.29712002v-.70693105c0-.12647612-.0662419-.24491613-.1773617-.31717936l-5.16402687-3.35662434.11379855-3.04003223c.00033071-.00883973.00033071-.01764855 0-.02648828-.03700685-1.028623-.45149022-1.59900187-.79268745-1.89633821-.41071323-.35791629-.85052926-.45249521-1.02574133-.45249521-.19908959 0-.63513548.13197777-1.02041684.49555026-.32777026.30929779-.71635875.8847765-.70620584 1.87003538.00003307.00327626.00009921.00652162.0002315.00979788l.11383162 3.04003223-5.16405993 3.35665524c-.1110867.07220142-.17736171.19070324-.17736171.31717936v.70690014c0 .11482376.05466696.22368221.14915184.29708911.09448488.0734068.21903162.1037277.33980823.0827411l4.99814092-.86861158.11459226 3.06043158-1.812509 1.1781257c-.11111978.0722014-.17736171.1907033-.17736171.3171794v.3192811c0 .213328.18506733.3863518.41339201.3863518h1.9615947c.24261151.2609574.58923244.4182181.96604753.4304886.01597346.0005563.03194693.0007727.04778811.0007727.3905397 0 .76054209-.1609387 1.01363721-.4313231h1.96043721c.22829159 0 .41339199-.1730238.41339199-.3863518v-.3192811c0-.1264762-.0662419-.244978-.1773617-.3171794l-1.812509-1.1781257.11459227-3.06040069 4.99814093.86864249c.1208097.0209248.2453564-.0093652.3398744-.082772zm-.6776653-.76191668-4.98110916-.86567527c-.11829626-.02052301-.24036265.00809793-.3341861.07847578-.09392267.07034693-.15030934.17549643-.1545094.28787844l-.13919736 3.71917683c-.00492763.131236.06174423.2557649.17706407.3306862l1.40632655.9141393h-1.34256497c-.14670456 0-.28239635.0726341-.35660848.1908887-.09299667.1483282-.26457089.2404344-.44775316.2404344-.00621741 0-.01250097 0-.01885067-.0003091-.17729557-.0058416-.3376586-.0958152-.42893556-.2406817-.07431134-.1179454-.20980471-.1903323-.35621162-.1903323h-1.34421854l1.40632655-.9141393c.11531984-.0749213.18202477-.199512.17709714-.3306862l-.13923043-3.71917683c-.00420006-.11241292-.0606198-.21753151-.15447633-.28787844-.09388959-.07037785-.21592291-.09899879-.33421917-.07847578l-4.98114224.86567527v-.04021149l5.17169942-3.36160055c.11531984-.07495225.1819917-.19951206.17709714-.33068622l-.12150418-3.24544775c-.01091355-1.25057437.76487443-1.53523837.90800728-1.57662437.15044163.03300989.93115724.2687463.98350921 1.58515502l-.12117347 3.23694801c-.00489456.13120506.06174423.25573397.17706407.33068622l5.17169941 3.36163145z" transform="matrix(0 -1 1 0 .5 14.5)" /></svg><span className="item-stop p-absolute font_10">{this.renderStopinfo(element.onewayflights[len].ticketinfooo.stoppinfoo.showstopinfo)}</span><div className="provider_name_F p-absolute font_11 color_1"></div><span className="duration-line-city-r p-absolute font_11">(1399-11-21)<br /><span >2021-02-09</span> </span><span className="duration-line-city-l p-absolute font_11">(1399-11-21)<br /><span >2021-02-09</span></span></div></div><div className="item-info text-center float-left"><div className="item-time font_18 font-weight text-right">{element.onewayflights[len].ticketinfooo.arrivalinfo.showarrivaltime}</div><div className="item-airport font_12 text-right">{element.onewayflights[len].infoo.showendcity} ({element.onewayflights[len].ticketinfooo.arrivalinfo.shortendairport})</div></div></div>
+                                        <div className="d-row top-row p-relative"><div className="item-img"><img src={element.onewayflights[len].ticketinfooo.showstartairline} alt={element.onewayflights[len].routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsairline} width="60" height="24" /><span className="code-item font_10"> رقم التذکره(الرحله): {element.onewayflights[len].routeshow.routesinfoo[0].routesinfoodetails.otherdetails.detailsroutecode}</span></div><div className="item-info float-right text-center"><div className="item-time font_18 font-weight text-left">{element.onewayflights[len].ticketinfooo.exitinfo.showexittime}</div><div className="item-airport font_12 text-left">{element.onewayflights[len].infoo.showstartcity} ({element.onewayflights[len].ticketinfooo.exitinfo.shortstartairport})</div></div><div className="item-duration float-right text-center width_50"><div className="item-hour font_12"><span>مدة السفر: </span><span className="hour font_11">{element.onewayflights[len].ticketinfooo.stoppinfoo.showtiming}</span></div><div className="trip-flight-duration-line d-flex p-relative color_1">{this.renderStopinfo_shape(element.onewayflights[len].ticketinfooo.stoppinfoo.showstopinfo)}<svg height="15" viewBox="0 0 16 15" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m13.8508482 10.0932087c.0944518-.0734069.1491518-.18223445.1491518-.29712002v-.70693105c0-.12647612-.0662419-.24491613-.1773617-.31717936l-5.16402687-3.35662434.11379855-3.04003223c.00033071-.00883973.00033071-.01764855 0-.02648828-.03700685-1.028623-.45149022-1.59900187-.79268745-1.89633821-.41071323-.35791629-.85052926-.45249521-1.02574133-.45249521-.19908959 0-.63513548.13197777-1.02041684.49555026-.32777026.30929779-.71635875.8847765-.70620584 1.87003538.00003307.00327626.00009921.00652162.0002315.00979788l.11383162 3.04003223-5.16405993 3.35665524c-.1110867.07220142-.17736171.19070324-.17736171.31717936v.70690014c0 .11482376.05466696.22368221.14915184.29708911.09448488.0734068.21903162.1037277.33980823.0827411l4.99814092-.86861158.11459226 3.06043158-1.812509 1.1781257c-.11111978.0722014-.17736171.1907033-.17736171.3171794v.3192811c0 .213328.18506733.3863518.41339201.3863518h1.9615947c.24261151.2609574.58923244.4182181.96604753.4304886.01597346.0005563.03194693.0007727.04778811.0007727.3905397 0 .76054209-.1609387 1.01363721-.4313231h1.96043721c.22829159 0 .41339199-.1730238.41339199-.3863518v-.3192811c0-.1264762-.0662419-.244978-.1773617-.3171794l-1.812509-1.1781257.11459227-3.06040069 4.99814093.86864249c.1208097.0209248.2453564-.0093652.3398744-.082772zm-.6776653-.76191668-4.98110916-.86567527c-.11829626-.02052301-.24036265.00809793-.3341861.07847578-.09392267.07034693-.15030934.17549643-.1545094.28787844l-.13919736 3.71917683c-.00492763.131236.06174423.2557649.17706407.3306862l1.40632655.9141393h-1.34256497c-.14670456 0-.28239635.0726341-.35660848.1908887-.09299667.1483282-.26457089.2404344-.44775316.2404344-.00621741 0-.01250097 0-.01885067-.0003091-.17729557-.0058416-.3376586-.0958152-.42893556-.2406817-.07431134-.1179454-.20980471-.1903323-.35621162-.1903323h-1.34421854l1.40632655-.9141393c.11531984-.0749213.18202477-.199512.17709714-.3306862l-.13923043-3.71917683c-.00420006-.11241292-.0606198-.21753151-.15447633-.28787844-.09388959-.07037785-.21592291-.09899879-.33421917-.07847578l-4.98114224.86567527v-.04021149l5.17169942-3.36160055c.11531984-.07495225.1819917-.19951206.17709714-.33068622l-.12150418-3.24544775c-.01091355-1.25057437.76487443-1.53523837.90800728-1.57662437.15044163.03300989.93115724.2687463.98350921 1.58515502l-.12117347 3.23694801c-.00489456.13120506.06174423.25573397.17706407.33068622l5.17169941 3.36163145z" transform="matrix(0 -1 1 0 .5 14.5)" /></svg><span className="item-stop p-absolute font_10">{this.renderStopinfo(element.onewayflights[len].ticketinfooo.stoppinfoo.showstopinfo)}</span><div className="provider_name_F p-absolute font_11 color_1"></div><span className="duration-line-city-r p-absolute font_11">(1399-11-21)<br /><span className="EnNum">2021-02-09</span> </span><span className="duration-line-city-l p-absolute font_11">(1399-11-21)<br /><span className="EnNum">2021-02-09</span></span></div></div><div className="item-info text-center float-left"><div className="item-time font_18 font-weight text-right">{element.onewayflights[len].ticketinfooo.arrivalinfo.showarrivaltime}</div><div className="item-airport font_12 text-right">{element.onewayflights[len].infoo.showendcity} ({element.onewayflights[len].ticketinfooo.arrivalinfo.shortendairport})</div></div></div>
                                         <div className="clr"></div>
                                         {this.renderAllDetails(index, lenonewayflights)}
                                         <div className="clr"></div>
@@ -1753,16 +1634,16 @@
                                         <span className="title font_18 color_font font-weight">{element.hotelinfo[i].hotel[j].hotelinfo.name}</span>
                                         <img src={(`https://cdn.basiscore.net/basisfly.com/images/${element.hotelinfo[i].hotel[j].hotelinfo.hotelsearch.star}-rate.png`)} className="hotel-rate" width="80" height="16" alt="rate" />
                                         <ul className="font_12 brief-info">
-                                            <li><span className="question-info ">Check In:</span><span >{element.hotelinfo[i].hotel[j].hotelinfo.validatedate.fdate.mstring}</span></li>
-                                            <li><span className="question-info">Check Out :</span><span >{element.hotelinfo[i].hotel[j].hotelinfo.validatedate.tdate.mstring}</span></li>
-                                            <li><span className="question-info">Nights :</span><span>{element.hotelinfo[i].hotel[j].nights}</span></li>
+                                            <li><span className="question-info ">الدخول إلى الفندق:</span><span> <span><span className="EnNum">{element.hotelinfo[i].hotel[j].hotelinfo.validatedate.fdate.mstring}</span></span></span></li>
+                                            <li><span className="question-info">الخروج من الفندق :</span><span><span><span className="EnNum">{element.hotelinfo[i].hotel[j].hotelinfo.validatedate.tdate.mstring}</span></span></span></li>
+                                            <li><span className="question-info">فترة الإقامة :</span><span>{element.hotelinfo[i].hotel[j].nights} الليل</span></li>
                                             <li><span>{element.hotelinfo[i].hotel[j].hotelinfo.hotelsearch.cityname} / {element.hotelinfo[i].hotel[j].hotelinfo.hotelsearch.countryname}</span></li>
                                         </ul>
                                         <table className="details-tbl font_12">
                                             <tr>
-                                                <th>Room</th>
-                                                <th>Status</th>
-                                                <th>View - Service</th>
+                                                <th>الغرفة</th>
+                                                <th>حالة</th>
+                                                <th>منظر - خدمة</th>
                                             </tr>
                                             {this.renderInfoFamily(element.hotelinfo[i].hotel[j], j, element, index, element.hotelinfo[i].hotel.length)}
                                         </table>
@@ -1784,8 +1665,8 @@
                             }
                             for (let j = 0; j < element.hotelinfo[i].hotel.length; j++) {
                                 let night = j + 1
-                                indents.push(<div><div className="item_hotel font_13 d-row"><div className="section_tour_img float-right p-relative">{this.render_img_hotel(element.hotelinfo[i].hotel[j])}</div><div className="section_tour_night float-right"><span> {this.render_nights(element, j)} </span><span className="Qu-info-hotel ">night</span></div><div className="section_tour_name float-right"><span className="Qu-info-hotel ">Hotel accommodation: </span><span>{this.render_name_hotel(element.hotelinfo[i].hotel[j])}</span></div><div className="section_tour_date float-right"><span className="Qu-info-hotel ">date :</span>{this.render_date_hotel(element, j)}</div>{this.render_room_hotel(element.hotelinfo[i].hotel[j], j + '-' + index)}
-                                    <div className="clr"></div></div><div key={j + '-' + index} className={` ${!this.state.Visible_rooms[j + '-' + index] ? "unvisible" : "visible"}`}>{this.render_show_rooms(element.hotelinfo[i].hotel[j], j, element, index, element.hotelinfo[i].hotel.length)}<div className="clr"></div></div></div>)
+                                indents.push(<div><div className="item_hotel d-flex font_13"><div className="section_tour_img  p-relative">{this.render_img_hotel(element.hotelinfo[i].hotel[j])}</div><div className="section_tour_night"><span> {this.render_nights(element, j)} </span><span className="Qu-info-hotel ">الليل</span></div><div className="section_tour_name"><span className="Qu-info-hotel ">البقاء في الفندق : </span><span className="color_gray">{this.render_name_hotel(element.hotelinfo[i].hotel[j])}</span></div><div className="section_tour_date"><span className="Qu-info-hotel ">تاریخ :</span>{this.render_date_hotel(element, j)}</div>{this.render_room_hotel(element.hotelinfo[i].hotel[j], j + '-' + index)}
+                                </div><div key={j + '-' + index} className={` ${!this.state.Visible_rooms[j + '-' + index] ? "unvisible" : "visible"}`}>{this.render_show_rooms(element.hotelinfo[i].hotel[j], j, element, index, element.hotelinfo[i].hotel.length)}<div className="clr"></div></div></div>)
                             }
                             return (
                                 indents
@@ -1796,9 +1677,11 @@
                 }
                 render_room_hotel(element, index) {
                     if (element.hotelinfo == undefined) {
-                        return <div className="section_tour_room float-right not_active_room"><span>Room</span></div>
+                        return <div class="btn-item"><button type="button" class="color_white border-radius font_15 cursor-pointer not_active_room"> الغرف </button></div>
+
                     } else {
-                        return <div className="section_tour_room float-right active_room"><span onClick={() => this.onclick_render_rooms(index)}>Room</span></div>
+                        return <div class="btn-item"><button type="button" onClick={() => this.onclick_render_rooms(index)} class="color_white border-radius font_15 cursor-pointer"> الغرف </button></div>
+
                     }
                 }
 
@@ -1810,9 +1693,9 @@
                         return <div className="item-info-module width_100">
                             <table className={`details-tbl details-city-tbl font_12 details-tbl-${j}`}>
                                 <tr>
-                                    <th>Room</th>
-                                    <th>Status</th>
-                                    <th>View - Service</th>
+                                    <th>الغرفة</th>
+                                    <th>حالة</th>
+                                    <th>منظر - خدمة</th>
                                 </tr>
                                 {this.renderInfoFamily(element, j, ItemElement, index, len)}
                             </table>
@@ -1822,13 +1705,13 @@
                 }
                 render_name_hotel(element) {
                     if (element.hotelinfo == undefined) {
-                        return '-'
+                        return 'ليس لديه'
                     } else {
                         return element.hotelinfo.name
                     }
                 }
                 render_date_hotel(element, index) {
-                    return <span className="date_hotel font_11 color_gray"><span>({element.nights[index].fdate.mstring})</span>  / <span>({element.nights[index].tdate.mstring})</span> </span>
+                    return <span className="date_hotel font_11 color_gray"><span> <span className="EnNum">{element.nights[index].fdate.mstring}</span></span>  / <span> <span className="EnNum">{element.nights[index].tdate.mstring}</span></span> </span>
 
                 }
                 render_nights(element, index) {
@@ -1849,7 +1732,7 @@
 
                 renderHotelid(element) {
                     let hotelId = element.hotelid
-                    return '/hotel.bc?lid=2&id=' + hotelId
+                    return '/hotel_ar.bc?id=' + hotelId
                 }
 
                 renderInfoFamily(element, j, ItemElement, index, len) {
@@ -1884,13 +1767,13 @@
 
                             let ages2 = ""
                             for (let i = 1; i < sp.length; i++) {
-                                age = age + sp[i] + " Year "
+                                age = age + sp[i] + " سنة "
                                 ages2 = ages2 + sp[i] + ','
                             }
-                            return <span>First Room ({ad} Adult / {sp[0]} Child / {age})</span>
+                            return <span>الغرفة الأولى({ad} بالغ / {sp[0]} طفل / {age})</span>
                         }
                         else {
-                            return <span>First Room ({ad} Adult )</span>
+                            return <span>الغرفة الأولى({ad} بالغ )</span>
 
                         }
                     }
@@ -1903,14 +1786,14 @@
 
                             let ages2 = ""
                             for (let i = 1; i < sp.length; i++) {
-                                age = age + sp[i] + " Year "
+                                age = age + sp[i] + " سنة "
                                 ages2 = ages2 + sp[i] + ','
                             }
-                            return <span>Second Room ({ad} Adult / {sp[0]} Child {age})</span>
+                            return <span>الغرفة ثانية ({ad} بالغ / {sp[0]} طفل {age})</span>
 
                         }
                         else {
-                            return <span>Second Room ({ad} Adult )</span>
+                            return <span>الغرفة ثانية ({ad} بالغ )</span>
 
                         }
                     }
@@ -1923,13 +1806,13 @@
 
                             let ages2 = ""
                             for (let i = 1; i < sp.length; i++) {
-                                age = age + sp[i] + " Year "
+                                age = age + sp[i] + " سنة "
                                 ages2 = ages2 + sp[i] + ','
                             }
-                            return <span>Third Room ({ad} Adult / {sp[0]} Child {age})</span>
+                            return <span>الغرفة ثالث ({ad} بالغ / {sp[0]} طفل {age})</span>
                         }
                         else {
-                            return <span>Third Room ({ad} Adult )</span>
+                            return <span>الغرفة ثالث ({ad} بالغ )</span>
 
                         }
                     }
@@ -1942,18 +1825,17 @@
 
                             let ages2 = ""
                             for (let i = 1; i < sp.length; i++) {
-                                age = age + sp[i] + " Year "
+                                age = age + sp[i] + " سنة "
                                 ages2 = ages2 + sp[i] + ','
                             }
-                            return <span>Fourth Room ({ad} Adult / {sp[0]} Child {age})</span>
+                            return <span>الغرفة الرابع ({ad} بالغ / {sp[0]} طفل {age})</span>
                         }
                         else {
-                            return <span>Fourth Room ({ad} Adult )</span>
+                            return <span>الغرفة الرابع ({ad} بالغ )</span>
 
                         }
                     }
                 }
-
 
                 renderavailablerooms(element, item, idjx, x, ItemElement, index, j, nights, len) {
                     const hasPkg = 
@@ -1978,7 +1860,7 @@
                         indents
                     )
                     } else {
-                        let lenavailablerooms = element.availablerooms.length
+                    let lenavailablerooms = element.availablerooms.length
                     let indents = []
                     for (let i = 0; i < lenavailablerooms; i++) {
                         let idx = i + x
@@ -2017,11 +1899,11 @@
                 }
                 renderserviceName(element) {
                     if (element == 'R.O' || element == 'RO') {
-                        return 'No Meal'
+                        return 'غرفة فقط'
                     } else if (element == 'B.B' || element == 'BB') {
-                        return 'With Breakfast'
+                        return 'مع الإفطار'
                     } else if (element == 'H.B' || element == 'HB') {
-                        return 'With Breakfast & Lunch'
+                        return 'مع الإفطار والغداء'
                     } else {
                         return element
                     }
@@ -2148,7 +2030,7 @@
                 render_inputs(nights, idx, idj, element, len, j, hasPkg) {
                     let indents = []
                     for (let m = 0; m < nights; m++) {
-if(hasPkg){
+                        if(hasPkg){
                             indents.push(<div><input className="roomid-value" type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.roomid`} key={idj} data-value={element.info.roomid} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.adultcount`} value={element.info.adults} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.childwithbed`} value={element.info.withbed} />
@@ -2156,13 +2038,13 @@ if(hasPkg){
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.infant`} value={element.info.infants} />
                         </div>)
                         }else {
-                        indents.push(<div><input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.roomid`} key={idj} defaultValue={this.state.roomids[idj] || element.info.roomid} />
+                            indents.push(<div><input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.roomid`} key={idj} defaultValue={this.state.roomids[idj] || element.info.roomid} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.adultcount`} value={element.info.adults} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.childwithbed`} value={element.info.withbed} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.childwithoutbed`} value={element.info.withoutbed} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.infant`} value={element.info.infants} />
                         </div>)
-}
+                        }
                     }
                     return indents
                 }
@@ -2177,7 +2059,7 @@ if(hasPkg){
                             radioButtons.forEach((ele) => {
                                 if (ele.getAttribute("data-index") === e.target.getAttribute("data-index") && family_index=== ele.closest("tbody").getAttribute("data-family")) {
                                     ele.checked = true;
-ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
+                                    ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                                         id.removeAttribute("value");
                                         id.value = ele.value;
                                     })
@@ -2529,8 +2411,8 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
 
                                 <table className="details-tbl font_13">
                                     <tr>
-                                        <th>Room</th>
-                                        <th>Passegers - Total</th>
+                                        <th>الغرفة</th>
+                                        <th>الركاب - السعر الکلي</th>
 
                                     </tr>
                                     <tr>
@@ -2550,8 +2432,8 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                             indents.push(<div className="details-item">
                                 <table className="details-tbl font_13">
                                     <tr>
-                                        <th>Room</th>
-                                        <th>Passegers - Total</th>
+                                        <th>الغرفة</th>
+                                        <th>الركاب - السعر الکلي</th>
                                     </tr>
                                     <tr>
                                         <td>{this.renderroomname(element, i)}</td>
@@ -2566,7 +2448,6 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                         )
                     }
                 }
-
                 renderFamilycost(element, item, lenc) {
                     let lenFamilycost = element.family.length
                     let indents = [];
@@ -2586,7 +2467,7 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                         if (element.insuranceinfo == 0) {
                             return ''
                         } else {
-                            return <div className="with-50 float-left"><input type="hidden" value={JSON.stringify(element.insuranceinfo)} name="insuranceinfo" /><span className="font_13 question-info">بیمه :</span><span className="font_12">{element.insuranceinfo.insurancename}</span></div>
+                            return <div className="with-50 float-right"><input type="hidden" value={JSON.stringify(element.insuranceinfo)} name="insuranceinfo" /><span className="font_13 question-info">التأمين :</span><span className="font_12">{element.insuranceinfo.insurancename}</span></div>
                         }
                     }
 
@@ -2597,7 +2478,7 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                         if (lenvisa == 0) {
                             return ''
                         } else {
-                            return <div className="with-50 float-left"><span className="font_13 question-info">Visa :</span><span className="font_12">{element.visa[0].name}</span></div>
+                            return <div className="with-50 float-left"><span className="font_13 question-info">فيزا :</span><span className="font_12">{element.visa[0].name}</span></div>
                         }
                     }
 
@@ -2612,7 +2493,7 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                         return ''
                     } else {
                         let lenserviceType = element.type.length
-                        let indents = [<div className="font_13 question-info"><span>Tour Type:</span></div>]
+                        let indents = [<div className="font_13 question-info"><span>نوع الجولة:</span></div>]
                         for (let i = 0; i < lenserviceType; i++) {
                             if (element.type[i].servicename == '' || element.type[i].servicename == undefined) {
                                 indents.push('')
@@ -2631,7 +2512,7 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                         return ''
                     } else {
                         let lenserviceappropriate = element.appropriate.length
-                        let indents = [<div className="font_13 question-info"><span>Appropriate For :</span></div>]
+                        let indents = [<div className="font_13 question-info"><span>مناسبة ل :</span></div>]
                         for (let i = 0; i < lenserviceappropriate; i++) {
                             if (element.appropriate[i].servicename == '' || element.appropriate[i].servicename == undefined) {
                                 indents.push('')
@@ -2650,9 +2531,9 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                         return ''
                     } else {
                         let lenservicediff = element.diff.length
-                        let indents = [<ul><li className="font_13 question-info">Difficulty State :</li></ul>]
+                        let indents = [<ul><li className="font_13 question-info">مستوى الصعوبة :</li></ul>]
                         for (let i = 0; i < lenservicediff; i++) {
-                            if (element.diff[i].servicename == 'لطفا یکی از موارد را انتخاب نمایید') {
+                            if (element.diff[i].servicename == 'الرجاء اختيار أحد العناصر') {
                                 indents.push('')
                             } else {
                                 indents.push(<li className="font_12"><span>{element.diff[i].servicename}</span></li>)
@@ -2669,7 +2550,7 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                         return ''
                     } else {
                         let lenservicedesc = element.description.length
-                        let indents = [<ul><li className="font_13 question-info">Description :</li></ul>]
+                        let indents = [<ul><li className="font_13 question-info">وصف :</li></ul>]
                         for (let i = 0; i < lenservicedesc; i++) {
                             let text = element.description[i].decs
                             if (text == '') {
@@ -2689,7 +2570,7 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                         return ''
                     } else {
                         let lenservicejourney = element.journey.length
-                        let indents = [<ul><li className="font_13 question-info">Journey Plane :</li></ul>]
+                        let indents = [<ul><li className="font_13 question-info">برنامج السفر :</li></ul>]
                         for (let i = 0; i < lenservicejourney; i++) {
                             if (element.journey[i].journeytitle == '') {
                                 indents.push('')
@@ -2738,7 +2619,6 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                     return new Intl.NumberFormat().format(this.renderTotal(total, this.state.state_currency_cost, this.state.state_floatdigit))
 
                 }
-
                 renderTotal_first(element) {
                     let total = element.totalcostmin
                     let total2 = 0
@@ -2756,7 +2636,6 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                     return new Intl.NumberFormat().format(this.renderTotal(total2 + total, this.state.state_currency_cost, this.state.state_floatdigit))
 
                 }
-                //bitaa
                 renderTotal(element, currency_cost, floatdigit) {
                     if (floatdigit == '') {
                         return element * currency_cost;
@@ -2789,7 +2668,6 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                     }
 
                 }
-
                 renderCommission(element) {
                     if (element.commissioncost == 0) {
                         return '';
@@ -2809,7 +2687,6 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                                 total2 += json[tour][room]["total_diff"]
                             }
                         }
-
                         let finalcommission = 0;
                         let commissioncost = 0;
                         if (typeof com === 'object') {
@@ -2819,19 +2696,19 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                             finalcommission = parseInt(total2 + total) * com
                             commissioncost = parseInt(total2 + total) * com
                         }
+
                         let finaltotalcom = parseInt((total2 + total) - commissioncost)
-                        return <div class="commission-content"><div className="cost-item"><span className="font_10"> Price :</span><span className="item-cost font_12 font-weight">{new Intl.NumberFormat().format(this.renderTotal(total, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
+                        return <div class="commission-content"><div className="cost-item"><span className="font_10"> السعر الکلي :</span><span className="item-cost font_12 font-weight">{new Intl.NumberFormat().format(this.renderTotal(total, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
                             className="font_11 unit">{this.renderUnit(element.unit, this.state.state_currency_unit)}</span></div>
-                            <div className="cost-item"><span className="font_10">Commission
+                            <div className="cost-item"><span className="font_10">عمولة
                                 :</span><span className="item-cost font_12 font-weight"> {new Intl.NumberFormat().format(this.renderTotal(finalcommission, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
                                     className="font_11 unit">{this.renderUnit(element.unit, this.state.state_currency_unit)}</span></div>
-                            <div className="cost-item"><span className="font_10">Total
+                            <div className="cost-item"><span className="font_10">المبلغ المستحق
                                 :</span><span className="item-cost font_12 font-weight">{new Intl.NumberFormat().format(this.renderTotal(finaltotalcom, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
                                     className="font_11 unit">{this.renderUnit(element.unit, this.state.state_currency_unit)}</span></div>
                         </div>
                     }
                 }
-
 
                 showAllDetails = (e, i) => {
                     this.setState(prevState => ({
@@ -2961,14 +2838,13 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                         }
                     }
                 }
-
                 localStorage_getCurrency = () => {
                     let getCurrencyObject = localStorage.getItem('currencyObject');
                     let jsonCurrency = JSON.parse(getCurrencyObject);
                     if (jsonCurrency) {
                         return jsonCurrency.currency_unit
                     } else {
-                        return '--Currency--'
+                        return '--العمله--'
                     }
                 }
                 localStorage_expire = () => {
@@ -2979,7 +2855,7 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                         var timer = setInterval(() => {
                             if (new Date().getTime() - jsonCurrency.time >= jsonCurrency.expire) {
                                 localStorage.removeItem('currencyObject');
-                                document.querySelector(".currency-selected").innerText = '--Currency--';
+                                document.querySelector(".currency-selected").innerText = '--العمله--';
                                 document.querySelector(".currency-selected").setAttribute("data-active", 0);
                                 clearInterval(timer);
                                 this.setState({
@@ -2996,7 +2872,7 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                 currency_selected_list = () => {
                     if (document.querySelector(".currency-selected").getAttribute("data-active") == 0) {
                         document.querySelector(".currency-loading").classList.toggle("unvisible");
-                        fetch('/Client_Currency_Rate.bc?lid=2')
+                        fetch('/Client_Currency_Rate.bc')
                             .then(response => response.text())
                             .then(text => {
                                 this.setState({ data_currency: JSON.parse(text.replace(/\'/g, '"')) });
@@ -3026,8 +2902,6 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                         )
                     }
                 }
-
-                //bitaa
                 select_currency_list = (e, element, floatdigit) => {
                     if (element.rate_unit !== "IRR") {
                         if (floatdigit < 0) {
@@ -3054,10 +2928,11 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                     localStorage_setCurrency(element.rate_unit, element.rate_cost, floatdigit) //-----THIS FUNCTION IS WRITTEN IN CORE.MIN.JS
 
                 }
-
             }
             ReactDOM.render(<App />, document.getElementById('app'))
         }
+
+
     </script>
 </body>
 

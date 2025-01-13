@@ -460,6 +460,18 @@
                         document.querySelector(".currency-content-list").classList.add('currency-appended');
                         document.querySelector(".currency-appended").classList.remove('unvisible');
                     }
+$(".tour_reserve_btn").each(function () {
+                        $(this).click(function(e) {
+                            $(this).closest("form").find(".roomid-value").each(function () {
+                                if($(this).val()==""){
+                                    var data_value = $(this).attr("data-value");
+                                    $(this).val(data_value);
+                                }
+                            })
+                        })
+                    })
+          
+        
                 }
                 reorganiseLibrary = (service, stars, availability, airlines, stops) => {
                     const { filterFlightNumber, filterName, perPage, data } = this.state
@@ -802,7 +814,7 @@
 
                                         <div className="btn-item">
                                             <button type="submit"
-                                                className="color_white border-radius font_15 cursor-pointer">خرید تور </button>
+                                                className="color_white border-radius font_15 cursor-pointer tour_reserve_btn">خرید تور </button>
                                         </div>
                                     </div>
 
@@ -2029,7 +2041,7 @@
                                     </td>
                                 } else {
                                     return <td className="section-input p-relative">
-                                        {this.render_inputs(nights, idx, idj, element, len, j)}
+                                        {this.render_inputs(nights, idx, idj, element, len, pkg_j, hasPkg)}
                                         <input type="hidden" name={`_root.rooms__${idx}.adultcount`} value={this.rendervalueAdult(element, i, idx, idj, x)} />
                                         <input type="hidden" name={`_root.rooms__${idx}.childcountandage`} value={this.rendervalueChild(element, i, idx, idj, x)} />
                                         <input type="radio" value={element.info.roomid} data-index={i} onChange={((e) => this.handleCheck(e, i, idj, x, ItemElement, j, element.info.adults, element.info.withbed, element.info.withoutbed, element.info.infants, hasPkg))} name={`element${idj + '-' + pkg_j + j + '-' + index}`} defaultChecked={this.state.chkbox} className="radioButton p-absolute" />
@@ -2107,18 +2119,28 @@
                     }
                 }
 
-                render_inputs(nights, idx, idj, element, len, j) {
+                render_inputs(nights, idx, idj, element, len, j, hasPkg) {
                     let indents = []
                     for (let m = 0; m < nights; m++) {
+if(hasPkg){
+                            indents.push(<div><input className="roomid-value" type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.roomid`} key={idj} data-value={element.info.roomid} />
+                            <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.adultcount`} value={element.info.adults} />
+                            <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.childwithbed`} value={element.info.withbed} />
+                            <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.childwithoutbed`} value={element.info.withoutbed} />
+                            <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.infant`} value={element.info.infants} />
+                        </div>)
+                        }else {
                         indents.push(<div><input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.roomid`} key={idj} defaultValue={this.state.roomids[idj] || element.info.roomid} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.adultcount`} value={element.info.adults} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.childwithbed`} value={element.info.withbed} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.childwithoutbed`} value={element.info.withoutbed} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.infant`} value={element.info.infants} />
                         </div>)
+}
                     }
                     return indents
                 }
+
                 handlePkgChange = (e, i, idj, x, ItemElement, j, ad, ch1, ch2, inf, hasPkg) => {
                     const isChecked = e.target.checked;
                     if (isChecked) {
@@ -2130,6 +2152,10 @@
                             radioButtons.forEach((ele) => {
                                 if (ele.getAttribute("data-index") === e.target.getAttribute("data-index") && family_index === ele.closest("tbody").getAttribute("data-family")) {
                                     ele.checked = true;
+ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
+                                        id.removeAttribute("value");
+                                        id.value = ele.value;
+                                    })
                                 }
                                 else if (ele.getAttribute("data-index") !== e.target.getAttribute("data-index") && family_index === ele.closest("tbody").getAttribute("data-family")) {
                                     ele.checked = false;
@@ -2358,10 +2384,10 @@
                         jsonbackup: this.state.jsonbackup
                     });
 
-
                     return this.setState(prevState => ({
                         roomids: { ...prevState.roomids, [idj]: value }
                     }))
+
                 }
 
                 rendervalueAdult(element, i, idx, idj, x) {

@@ -28,8 +28,9 @@
 
 <body onload="onloadFunc();">
     <main>
-        <basis core="call" lid="2" file="header.inc" />
+        <basis core="call" file="header-en.inc" />
         <section class="content">
+            <section class="loginRegister"></section>
             <div id="bg-popup" class="unvisible"></div>
             <div class="message-box unvisible">
                 <i class="icon-message-box">
@@ -104,7 +105,7 @@
                     <div class="searched-items-container unvisible">
                         <i class="fa fa-times close-research cursor-pointer" onclick="close_research(this)"></i>
                         <div class="searched-items width_100 background-color_white">
-                            <form method="post" action="/Tem3_Tour_Search.bc?lid=2" class="form-research has-room"
+                            <form method="post" action="/Tem3_Tour_Search_EN.bc" class="form-research has-room"
                                 id="tour-form">
                                 <input type="hidden" value='[##cms.json.header | cms.form.roomSearch##]' class="json" />
                                 <input type="hidden" value="[##cms.form.currentdate##]" class="currentdate"
@@ -319,15 +320,15 @@
             </section>
         </section>
         <!----------------JS FILE---------------->
-        <script src="[##cms.cms.cdn##]/_js/jquery/jquery-3.7.1.min.js" type="text/javascript"></script>
+        <script src="[##cms.cms.cdn##]/_js/jquery/jquery-3.6.3.min.js" type="text/javascript"></script>
         <!----------------CSS FILE---------------->
         <link href="https://www.basisfly.com/css/reservation_tem_calendar_en.css" defer type="text/css"
             rel="stylesheet" />
-        <basis core="call" lid="2" file="footer.inc" />
-        <basis core="call" lid="2" file="Client_Basis_Calendar.inc" />
+        <basis core="call" file="footer-en.inc" />
+        <basis core="call" file="Client_Basis_Calendar_EN.inc" />
     </main>
     <script
-        type="text/javascript">$(document).ready(function () { fetch('/Client_Tour_Json.bc?lid=2', { method: 'POST', body: 'data_type=[##cms.form.data_type##]&data_type_tour=[##cms.form.data_type_tour##]&tourname=[##cms.form.tourname##]&fdate=[##cms.form.fdate##]&tdate=[##cms.form.tdate##]&rooms=[##cms.json.header|cms.form.roomSearch##]&clid=2' }).then(response => response.text()).then(text => { let Maindata = JSON.parse(text.replace(/\'/g, '"')); $('.waiting-search').hide(); $('#app').show(); load_data(Maindata); }).catch(error => console.error(error)) })</script>
+        type="text/javascript">$(document).ready(function () { fetch('/Client_Tour_Json.bc', { method: 'POST', body: 'data_type=[##cms.form.data_type##]&data_type_tour=[##cms.form.data_type_tour##]&tourname=[##cms.form.tourname##]&fdate=[##cms.form.fdate##]&tdate=[##cms.form.tdate##]&rooms=[##cms.json.header|cms.form.roomSearch##]&clid=2' }).then(response => response.text()).then(text => { let Maindata = JSON.parse(text.replace(/\'/g, '"')); $('.waiting-search').hide(); $('#app').show(); load_data(Maindata); }).catch(error => console.error(error)) })</script>
     <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_react.production.min.js"></script>
     <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_react_dom.production.min.js"></script>
     <script defer src="https://cdn.basiscore.net/basisfly.com/js/reservation_babel.min.js"></script>
@@ -404,7 +405,7 @@
                         this.reorganiseLibrary()
                     })
 
-                    fetch('/Client_Valid_Tours_Json.bc?lid=2', {
+                    fetch('/Client_Valid_Tours_Json.bc', {
                         method: 'POST',
                         body: 'tourname=[##cms.form.tourname##]&fdate=[##cms.form.fdate##]&tdate=[##cms.form.tdate##]&rooms=[##cms.json.header|cms.form.roomSearch##]&clid=2'
                     }).then(response => response.text())
@@ -469,7 +470,7 @@
                         if ($(this).find(".basiscoreid").val()) {
                             if ($(this).find(".basiscoreid").val() == $(this).closest(".result-item").siblings().find(".basiscoreid").val()) {
                                 if (check_loaded == 0) {
-                                    $.get("/Tem1_Tour_Info.bc?lid=2&id=" + basiscoreid + "", function (data, status) {
+                                    $.get("/Tem1_Tour_Info_EN.bc?id=" + basiscoreid + "", function (data, status) {
                                         self.find(".load_info_tour").empty().append(data)
                                         self.closest(".result-item").siblings().find(".load_info_tour").empty().append(data)
 
@@ -478,7 +479,7 @@
                                     $(this).siblings().attr("date-load-info", "1")
                                 }
                             } else {
-                                $.get("/Tem1_Tour_Info.bc?lid=2&id=" + basiscoreid + "", function (data, status) {
+                                $.get("/Tem1_Tour_Info_EN.bc?id=" + basiscoreid + "", function (data, status) {
                                     self.find(".load_info_tour").empty().append(data)
                                 });
 
@@ -800,7 +801,7 @@
                     }
                     return library[currentPage - 1].map((item) => (
                         <div className="search-item result-item dir-ltr" date-load-info="0" key={item.index}>
-                            <form action="/Client_Show_Tour_ver.2.bc?lid=2" method="post">
+                            <form action="/Client_Show_Tour_En_ver.2.bc" method="post">
                                 <input type="hidden" value={this.state.state_currency_unit} name="rate-unit" className="rate-unit" />
                                 <input type="hidden" value={this.state.state_currency_cost} name="rate-cost" className="rate-cost" />
                                 <input type="hidden" value={this.state.state_floatdigit} name="rate-floatdigit" className="rate-floatdigit" />
@@ -885,7 +886,7 @@
                         {this.ShowValidTours()}
                         <aside className="sidebar-content width_30 float-left dir-ltr">
                             <div className="filters-container float-left width_95 ">
-                                <form method="post" action="/Client_Tour_Cost_Details.bc?lid=2" target="_blank" className="cost-details-form unvisible">
+                                <form method="post" action="/Client_Tour_Cost_Details_en.bc" target="_blank" className="cost-details-form unvisible">
                                     <input type="hidden" value="[##cms.form.tourname##]" name="tourname" />
                                     <input type="hidden" value="[##cms.form.tour-search-text##]" name="tour-search-text" />
                                     <input type="hidden" value="" name="tour-name-details" className="tour-name-details" />
@@ -1055,7 +1056,7 @@
                 renderValidTours(element) {
                     return element.map((item, i) => (
                         <section className="item-tour">
-                            <form method="post" action="/Tem3_Tour_Search.bc?lid=2">
+                            <form method="post" action="/Tem3_Tour_Search_EN.bc">
                                 <p className="name-tour">{item.name}</p>
                                 <p className="dateinfo-tour"><span>From </span><span className="dateinfo">{item.dateinfo.begindate.mstring}</span><span>To </span><span className="dateinfo">{item.dateinfo.enddate.mstring}</span></p>
                                 <input type="hidden" value='[##cms.json.header|cms.form.roomSearch##]' name="roomSearch" />
@@ -1849,7 +1850,7 @@
 
                 renderHotelid(element) {
                     let hotelId = element.hotelid
-                    return '/hotel.bc?lid=2&id=' + hotelId
+                    return '/hotel_en.bc?id=' + hotelId
                 }
 
                 renderInfoFamily(element, j, ItemElement, index, len) {
@@ -2148,7 +2149,7 @@
                 render_inputs(nights, idx, idj, element, len, j, hasPkg) {
                     let indents = []
                     for (let m = 0; m < nights; m++) {
-if(hasPkg){
+                        if(hasPkg){
                             indents.push(<div><input className="roomid-value" type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.roomid`} key={idj} data-value={element.info.roomid} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.adultcount`} value={element.info.adults} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.childwithbed`} value={element.info.withbed} />
@@ -2156,13 +2157,13 @@ if(hasPkg){
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.infant`} value={element.info.infants} />
                         </div>)
                         }else {
-                        indents.push(<div><input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.roomid`} key={idj} defaultValue={this.state.roomids[idj] || element.info.roomid} />
+                            indents.push(<div><input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.roomid`} key={idj} defaultValue={this.state.roomids[idj] || element.info.roomid} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.adultcount`} value={element.info.adults} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.childwithbed`} value={element.info.withbed} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.childwithoutbed`} value={element.info.withoutbed} />
                             <input type="hidden" name={`_root.rooms__${idx}.roomids__${j}${len}${m}.infant`} value={element.info.infants} />
                         </div>)
-}
+                        }
                     }
                     return indents
                 }
@@ -2177,7 +2178,7 @@ if(hasPkg){
                             radioButtons.forEach((ele) => {
                                 if (ele.getAttribute("data-index") === e.target.getAttribute("data-index") && family_index=== ele.closest("tbody").getAttribute("data-family")) {
                                     ele.checked = true;
-ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
+                                    ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                                         id.removeAttribute("value");
                                         id.value = ele.value;
                                     })
@@ -2996,7 +2997,7 @@ ele.closest("tbody").querySelectorAll(".roomid-value").forEach((id) => {
                 currency_selected_list = () => {
                     if (document.querySelector(".currency-selected").getAttribute("data-active") == 0) {
                         document.querySelector(".currency-loading").classList.toggle("unvisible");
-                        fetch('/Client_Currency_Rate.bc?lid=2')
+                        fetch('/Client_Currency_Rate.bc')
                             .then(response => response.text())
                             .then(text => {
                                 this.setState({ data_currency: JSON.parse(text.replace(/\'/g, '"')) });
