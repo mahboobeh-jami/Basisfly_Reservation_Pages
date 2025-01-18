@@ -1,0 +1,458 @@
+<basis core="group" name="oneway-flight" if="'[##cms.form.type##]' = '1'">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="showdetail" method="flight" query='{
+            "name": "db",
+            "mid": "20",
+            "member": [
+                {
+                    "type": "list",
+                    "name": "q",
+                    "request": "showdetail",
+                    "schemaid": "291",
+                    "id": "[##cms.form.idnows##]",
+                    "id-ws": [##cms.form.idws|("")##],
+                    "childs": "[##cms.form.childcount##]",
+                    "infants": "[##cms.form.infants##]",
+                    "adults": "[##cms.form.adultcount##]",
+                    "classname": "[##cms.form.classname##]",
+                    "userid": "[##cms.form.userid##]",
+                    "supplier": "[##cms.form.supplier##]",
+                    "share": "[##cms.form.share##]",
+                    "trackingNo": "[##cms.cookie.trackingid##]",
+                    "lid": "[##cms.form.lid##]",
+                    "unit": "10"
+                }
+            ]
+        } ' />
+    </basis>
+    <basis core="group" name="Delay">
+        <basis core="inlinesource" name="db">
+            <member name="commission" postsql="select value from [db.commission] where field = 'commissioncost'" format="json" >{"root":[##db.showdetail.result##]}</member>
+            <member name="totalcom" postsql="select value from [db.totalcom] where field = 'totalcom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="firstpay" postsql="select value from [db.firstpay] where field = 'firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json" >{"root":[##db.showdetail.result##]}</member>
+        </basis>
+        <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+    </basis>
+</basis>
+<basis core="group" name="roundtrip-flight" if="'[##cms.form.type##]' = '2'">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="showdetail" method="flight" query='{
+            "name": "db",
+            "mid": "20",
+            "member": [
+                {
+                    "type": "list",
+                    "name": "q",
+                    "request": "showdetail",
+                    "schemaid": "290",
+                    "id": "[##cms.form.idnows##]",
+                    "id-ws": [##cms.form.idws|("")##],
+                    "childs": "[##cms.form.childcount##]",
+                    "infants": "[##cms.form.infants##]",
+                    "adults": "[##cms.form.adultcount##]",
+                    "classname": "[##cms.form.classname##]",
+                    "userid": "[##cms.form.userid##]",
+                    "supplier": "[##cms.form.supplier##]",
+                    "share": "[##cms.form.share##]",
+                    "trackingNo": "[##cms.cookie.trackingid##]",
+                    "lid": "[##cms.form.lid##]",
+                    "unit": "10",
+                    
+                }
+            ]
+        } ' />
+    </basis>
+    <basis core="group" name="Delay">
+        <basis core="inlinesource" name="db">
+            <member name="commission" postsql="select value from [db.commission] where field = 'commissioncost'" format="json" >{"root":[##db.showdetail.result##]}</member>
+            <member name="totalcom" postsql="select value from [db.totalcom] where field = 'totalcom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="firstpay" postsql="select value from [db.firstpay] where field = 'firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+        </basis>
+        <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+    </basis>
+</basis>
+<basis core="group" name="hotel" if="'[##cms.form.type##]' = '3'">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="showdetail" method="hotel" query='{
+            "name": "db",
+            "mid": "20",
+            "member": [
+                {
+                    "type": "list",
+                    "name": "q",
+                    "request": "showdetail",
+                    "schemaid": "251",
+                    "provider_basis": "[##cms.form.provider##]",
+                    "provider_ws":[##cms.form.mainprovider##],
+                    "id": "[##cms.form.productid##]",
+                    "nights": "[##cms.form.nightLink##]",
+                    "rooms":[##cms.form.rooms##],
+                    "optionId": "[##cms.form.optionId##]",
+                     "supplier": "[##cms.form.supplier##]",
+                    "userid": "[##cms.form.userid##]",
+                    "fromdate": "[##cms.form.fdate##]",
+                    "todate": "[##cms.form.tdate##]",
+                    "dmnid": "[##cms.cms.domainid##]",
+                    "trackingNo": "[##cms.cookie.trackingid##]",
+                    "lid": "[##cms.form.lid##]",
+                    "unit": "10",
+                   
+                }
+            ]
+        } ' />
+    </basis>
+    <basis core="group" name="Delay">
+        <basis core="inlinesource" name="db">
+            <member name="commission" postsql="select value from [db.commission] where field = 'costcommission'" format="json" >{"root":[##db.showdetail.result##]}</member>
+            <member name="totalcom" postsql="select value from [db.totalcom] where field = 'totalcom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="firstpay" postsql="select value from [db.firstpay] where field = 'firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json" >{"root":[##db.showdetail.result##]}</member>
+        </basis>
+        <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+    </basis>
+</basis>
+<basis core="group" name="flight-hotel" if="'[##cms.form.type##]' = '6'">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="showdetail" method="flighthotel" query='{
+            "name": "db",
+            "mid": "20",
+            "schemabase": "true",
+            "schema":"schema",
+            "member": [{
+                    "type": "list",
+                    "name": "q",
+                    "request": "showdetail",
+                    "userid": "[##cms.form.userid##]",
+                    "hotel": {
+                        "schemaid": "251",
+                        "hotel_supplier": "[##cms.form.hsupplier##]",
+                        "id": "[##cms.form.productid##]",
+                        "provider_basis": "[##cms.form.provider##]",
+                        "provider_ws": [##cms.form.mainprovider|("")##],
+                        "optionId": "[##cms.form.optionId##]"
+                    },
+                    "flight": {
+                        "schemaid": "290",
+                        "flight_supplier": "[##cms.form.fsupplier##]",
+                        "id": "[##cms.form.idnows##]",
+                        "id-ws": [##cms.form.idws|("")##]
+                    },
+                    "nights": "[##cms.form.nights##]",
+                    "rooms": [##cms.form.rooms##],
+                    "trackingNo": "[##cms.cookie.trackingid##]",
+                    "dmnid": [##cms.cms.domainid##],
+                    "unit": "10",
+                    "lid":"[##cms.form.lid##]"
+                    
+                  
+                   
+                }
+            ]
+        } ' />
+    </basis>
+    <basis core="group" name="Delay">
+        <basis core="inlinesource" name="db">
+            <member name="commission" postsql="select value from [db.commission] where field = 'Commissioncost'" format="json" >{"root":[##db.showdetail.result##]}</member>
+            <member name="totalcom" postsql="select value from [db.totalcom] where field = 'Totalcom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="firstpay" postsql="select value from [db.firstpay] where field = 'Firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+        </basis>
+        <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+    </basis>
+</basis>
+<basis core="group" name="tour" if="'[##cms.form.type##]' = '4'">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="showdetail" method="tour_final" query='{
+            "name": "db",
+            "mid": "20",
+            "schemabase": "[##cms.query.schemabase|(true)##]",
+            "schema": "schema",
+            "member": [
+                {
+                    "type": "list",
+                    "name": "q",
+                    "request": "showdetailfinal",
+                    "schemaid": "249",
+                    "hotelgroupid": "[##cms.form.hotelgroupid##]",
+                    "id": "[##cms.form.id##]",
+                    "rooms": [##cms.form.rooms##],
+                    "userid": "[##cms.form.userid##]",
+                    "supplier": "[##cms.form.supplier##]",
+                    "trackingNo": "[##cms.cookie.trackingid##]",
+                    "insuranceinfo": [##cms.form.insuranceinfo##],
+                    "lid": "[##cms.form.lid##]",
+                    "unit": "10"
+                }
+            ]
+        }'  ></member>
+    </basis>
+    <basis core="group" name="Delay">
+        <basis core="inlinesource" name="db">
+            <member name="commission" postsql="select value from [db.commission] where field = 'commissioncost'" format="json" >{"root":[##db.showdetail.result##]}</member>
+            <member name="totalcom" postsql="select value from [db.totalcom] where field = 'totalcom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="firstpay" postsql="select value from [db.firstpay] where field = 'firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+        </basis>
+        <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+    </basis>
+</basis>
+<basis core="group" name="insurance" if="'[##cms.form.type##]' = '5'">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="showdetail" method="insurance" query='{
+            "name": "db",
+            "mid": "20",
+            "member": [
+                {
+                    "type": "list",
+                    "name": "q",
+                    "request": "showdetail",
+                    "provider": [##cms.form.insmainprovider##],
+                    "total": "[##cms.form.Maintotal##]",
+                    "commission": [##cms.form.commissionn##],
+                    "userid": "[##cms.form.userid##]",
+                    "passenger_count": "[##cms.form.passengercount##]",
+                    "countryid": "[##cms.form.countryid##]",
+                    "zone": [##cms.form.zone##],
+                    "trackingNo": "[##cms.cookie.trackingid##]",
+                    "lid": "[##cms.form.lid##]"
+                }
+            ]
+        }'  ></member>
+    </basis>
+    <basis core="group" name="Delay">
+        <basis core="inlinesource" name="db">
+            <member name="commission" postsql="select value from [db.commission] where field = 'commissioncost'" format="json" >{"root":[##db.showdetail.result##]}</member>
+            <member name="totalcom" postsql="select value from [db.totalcom] where field = 'totalcom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="firstpay" postsql="select value from [db.firstpay] where field = 'firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+        </basis>
+        <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+    </basis>
+</basis>
+<basis core="group" name="visa" if="'[##cms.form.type##]' = '13'">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="showdetail" method="visa" query='{
+            "name": "db",
+            "mid": "20",
+            "schemabase": "false",
+            "member": [
+                {
+                    "type": "list",
+                    "name": "q",
+                    "request": "showdetail",
+                    "schemaid": "250",
+                    "id": "[##cms.form.id##]",
+                    "dmnid": "[##cms.cms.domainid##]",
+                    "provider": "[##cms.form.provider##]",
+                    "userid": "[##cms.form.userid##]",
+                    "supplier": "[##cms.form.supplier##]",
+                    "share": "[##cms.form.share##]",
+                    "trackingNo": "[##cms.cookie.trackingid##]",
+                    "lid": "[##cms.form.lid##]",
+                    "unit": "10"
+                }
+            ]
+        }'  ></member>
+    </basis>
+    <basis core="group" name="Delay">
+        <basis core="inlinesource" name="db">
+            <member name="commission" postsql="select value from [db.commission] where field = 'costcommission'" format="json" >{"root":[##db.showdetail.result##]}</member>
+            <member name="totalcom" postsql="select value from [db.totalcom] where field = 'totalcom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="firstpay" postsql="select value from [db.firstpay] where field = 'firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+        </basis>
+        <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+    </basis>
+</basis>
+<basis core="group" name="cip" if="'[##cms.form.type##]' = '11'">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="showdetail" method="cip" query='{
+            "name": "db",
+            "mid": "20",
+            "member": [
+                {
+                    "type": "list",
+                    "name": "q",
+                    "request": "showdetail",
+                    "schemaid": "500",
+                    "id": "[##cms.form.id##]",
+                    "childs": "[##cms.form.childs##]",
+                    "infants": "[##cms.form.infants##]",
+                    "adults": "[##cms.form.adults##]",
+                    "dmnid": "[##cms.cms.domainid##]",
+                    "provider": [##cms.form.provider##],
+                    "supplier": "[##cms.form.supplier##]",
+                    "share": "[##cms.form.share##]",
+                    "flighttype": "[##cms.form.flighttype##]",
+                    "traveltype": "[##cms.form.traveltype##]",
+                    "userid": "[##cms.form.userid##]",
+                    "trackingNo": "[##cms.cookie.trackingid##]",
+                    "unit": "10"
+                }
+            ]
+        }'  ></member>
+    </basis>
+    <basis core="group" name="Delay">
+        <basis core="inlinesource" name="db">
+            <member name="commission" postsql="select value from [db.commission] where field = 'costcommission'" format="json" >{"root":[##db.showdetail.result##]}</member>
+            <member name="totalcom" postsql="select value from [db.totalcom] where field = 'totalcom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="firstpay" postsql="select value from [db.firstpay] where field = 'firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+        </basis>
+        <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+    </basis>
+</basis>
+<basis core="group" name="oneway-train" if="'[##cms.form.type##]' = '8'">
+    <basis core="external.fly.ws" source="cmsDbService5" procedurename="dbsource" name="db">
+        <member name="showdetail" method="train" query='{
+            "name": "db",
+            "mid": "20",
+            "schemabase": "false",
+            "member": [
+                {
+                    "type": "list",
+                    "name": "q",
+                    "request": "showdetail",
+                    "schemaid": "401",
+                    "id": "[##cms.form.idnows##]",
+                    "id-ws": [##cms.form.idws|("")##],
+                    "childs": "[##cms.form.childcount##]",
+                    "infants": "[##cms.form.infants##]",
+                    "adults": "[##cms.form.adultcount##]",
+                    "provider": "[##cms.form.provider##]",
+                    "userid": "[##cms.form.userid##]",
+                    "supplier": "[##cms.form.supplier##]",
+                    "share": "[##cms.form.share##]",
+                    "trackingNo": "[##cms.cookie.trackingid##]",
+                    "dmnid": "[##cms.cms.domainid##]",
+                    "lid": "1",
+                    "unit": "10"
+                }
+            ]
+        }'  ></member>
+    </basis>
+    <basis core="group" name="Delay">
+        <basis core="inlinesource" name="db">
+            <member name="commission" postsql="select value from [db.commission] where field = 'commissioncost'" format="json" >{"root":[##db.showdetail.result##]}</member>
+            <member name="totalcom" postsql="select value from [db.totalcom] where field = 'totalcom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="firstpay" postsql="select value from [db.firstpay] where field = 'firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+        </basis>
+        <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+    </basis>
+</basis>
+<basis core="group" name="roundtrip-train" if="'[##cms.form.type##]' = '9'">
+    <basis core="external.fly.ws" source="cmsDbService5" procedurename="dbsource" name="db">
+        <member name="showdetail" method="train" query='{
+            "name": "db",
+            "mid": "20",
+            "schemabase": "false",
+            "member": [
+                {
+                    "type": "list",
+                    "name": "q",
+                    "request": "showdetail",
+                    "schemaid": "402",
+                    "id": "[##cms.form.idnows##]",
+                    "id-ws": {
+                        "value_go": "[##cms.form.value_go##]",
+                        "value_return": "[##cms.form.value_return##]",
+                        "provider" : [##cms.form.mainprovider##]
+                     },
+                    "childs": "[##cms.form.childcount##]",
+                    "infants": "[##cms.form.infants##]",
+                    "adults": "[##cms.form.adultcount##]",
+                    "provider": "[##cms.form.provider##]",
+                    "userid": "[##db.userid.userid##]",
+                    "supplier": "[##cms.form.supplier##]",
+                    "share": "[##cms.form.share##]",
+                    "trackingNo": "[##cms.cookie.trackingid##]",
+                    "dmnid": "[##cms.cms.domainid##]",
+                    "lid": "1",
+                    "unit": "10"
+                }
+            ]
+        }'  ></member>
+    </basis>
+    <basis core="group" name="Delay">
+        <basis core="inlinesource" name="db">
+            <member name="commission" postsql="select value from [db.commission] where field = 'commissioncost'" format="json" >{"root":[##db.showdetail.result##]}</member>
+            <member name="totalcom" postsql="select value from [db.totalcom] where field = 'totalcom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="firstpay" postsql="select value from [db.firstpay] where field = 'firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+        </basis>
+        <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+    </basis>
+</basis>
+<basis core="group" name="multicity-flight" if="'[##cms.form.type##]' = '7'">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="showdetail" method="flight" query='{
+            "name": "db",
+            "mid": "20",
+            "member": [
+                {
+                    "type": "list",
+                    "name": "q",
+                    "request": "showdetail",
+                    "schemaid": "292",
+                    "id": "[##cms.form.idnows##]",
+                    "id-ws": [##cms.form.idws|("")##],
+                    "childs": "[##cms.form.childcount##]",
+                    "infants": "[##cms.form.infants##]",
+                    "adults": "[##cms.form.adultcount##]",
+                    "classname": "[##cms.form.classname##]",
+                    "userid": "[##cms.form.userid##]",
+                    "supplier": "[##cms.form.supplier##]",
+                    "share": "[##cms.form.share##]",
+                    "trackingNo": "[##cms.cookie.trackingid##]",
+                    "lid": "[##cms.form.lid##]",
+                    "unit": "10",
+                    
+                }
+            ]
+        } ' />
+    </basis>
+    <basis core="group" name="Delay">
+        <basis core="inlinesource" name="db">
+            <member name="commission" postsql="select value from [db.commission] where field = 'commissioncost'" format="json" >{"root":[##db.showdetail.result##]}</member>
+            <member name="totalcom" postsql="select value from [db.totalcom] where field = 'totalcom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="firstpay" postsql="select value from [db.firstpay] where field = 'firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+        </basis>
+        <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+    </basis>
+</basis>
+<basis core="group" name="services" if="'[##cms.form.type##]' = '12'">
+    <basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+        <member name="ShowDetail" method="multiproduct" query='{
+            "member": [
+            {
+                "type": "list",
+                "name": "q",
+                "request": "showdetail",
+                "schemaid": "501",
+                "id": [[##cms.form.id##]],
+                "childs": "[##cms.form.childcount##]",
+                "infants": "[##cms.form.infants##]",
+                "adults": "[##cms.form.adultcount##]",
+                "userid": "[##cms.form.userid##]",
+                "supplier": "[##cms.form.supplier##]",
+                "share": "[##cms.form.share##]",
+                "trackingNo": "[##cms.cookie.trackingid##]",
+                "lid": "[##cms.form.lid##]",
+                "unit": "10"
+            }
+        ]}'/> </basis>
+
+        <basis core="group" name="Delay">
+            <basis core="inlinesource" name="db">
+                <member name="commission" postsql="select value from [db.commission] where field = 'commissioncost'" format="json" >{"root":[##db.showdetail.result##]}</member>
+                <member name="totalcom" postsql="select value from [db.totalcom] where field = 'totalCom'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+                <member name="firstpay" postsql="select value from [db.firstpay] where field = 'firstpay'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+                <member name="Credit_payment" postsql="select value from [db.Credit_payment] where field = 'Credit_payment'" format="json"  >{"root":[##db.showdetail.result##]}</member>
+            </basis>
+            <script type="text/javascript">check_price([##db.commission.value##],[##db.totalcom.value##],[##db.firstpay.value##],[##db.Credit_payment.value##]);</script>
+        </basis>
+</basis>

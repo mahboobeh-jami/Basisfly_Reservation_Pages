@@ -1,0 +1,44 @@
+<basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+    <member name="getcreditno" method="cms" query='{
+        " name": "db",
+        "mid": "20",
+        "member": [
+                {
+                        "type": "scalar",
+                        "name": "q",
+                        "request": "getcredit",
+                        "userid": "[##cms.form.userid##]",
+                        "dmnid": "[##cms.cms.domainid##]"
+                }
+        ]
+}' preview="" />
+</basis>
+<basis core="group" name="Delay_1">
+    <basis core="group" name="check-credit" if="[##db.getcreditno.result##] >= [##cms.form.totalcom##]">
+        <div class="invoice-content" data-clicked="0" onclick="check_invoice(this,'creditInvoice')">
+            <ul class="flex-justify">
+                <li class="getcredit-type"></li>
+                <li></li>
+                <li><img src="https://cdn.basiscore.net/basisfly.com/images/reservation-credit-icon.png"
+                        alt="creditlogo" width="50" height="50" /></li>
+                <li><span class="totalcom-price credit-price">[##cms.form.totalcom##]</span><span
+                        class="unit-content">[##cms.form.moneytype##]</span></li>
+                <li><span> اعتبار باقی مانده :</span><span class="price_remaining_of_credit" data-key=""></span><span
+                        class="unit-content">[##cms.form.moneytype##]</span><input type="hidden" value=""
+                        class="price_remaining_of_credit_val" /></li>
+                <li><button type="button" class="btn-item next-btn">تایید و پرداخت</button></li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            if (document.querySelector(".accounttype").value == 3) {
+                document.querySelector(".getcredit-type").textContent = 'پرداخت از طریق کیف پول'
+
+            } else {
+                document.querySelector(".getcredit-type").textContent = 'پرداخت اعتباری'
+            }
+            document.querySelector(".price_remaining_of_credit").innerText = new Intl.NumberFormat().format(parseFloat([##db.getcreditno.result##]) - parseFloat([##cms.form.totalcom##]));
+            document.querySelector(".credit-price").innerText = new Intl.NumberFormat().format(document.querySelector(".credit-price").innerText);
+            document.querySelector(".price_remaining_of_credit").getAttribute("data-key") = parseFloat([##db.getcreditno.result##]) - parseFloat([##cms.form.totalcom##]);
+        </script>
+    </basis>
+</basis>

@@ -1,0 +1,332 @@
+<basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+    <member name="get_price" method="insurance" query='{
+      "name":"db",
+      "mid":"20",
+        "schemabase": "[##cms.query.schemabase|(true)##]",
+        "schema": {
+            "boxinfo": {
+                "action": "create",
+                "childs": [
+                    {
+                        "first": {
+                            "action": "create",
+                            "childs": [
+                                {
+                                    "provider": {
+                                        "action": "find",
+                                        "map": "provider.provider_id"
+                                    }
+                                },
+                                {
+                                    "mainprovider": {
+                                        "action": "find",
+                                        "map": "provider"
+                                    }
+                                },
+                                {
+                                    "zone": {
+                                        "action": "find",
+                                        "map": "zone"
+                                    }
+                                },
+                                {
+                                    "total": {
+                                        "action": "find",
+                                        "map": "total"
+                                    }
+                                },
+                                {
+                                    "commissioncost": {
+                                        "action": "find",
+                                        "map": "commissioncost"
+                                    }
+                                },
+                                {
+                                    "totalCom": {
+                                        "action": "find",
+                                        "map": "totalCom"
+                                    }
+                                },
+                                {
+                                    "duration": {
+                                        "action": "find",
+                                        "map": "duration"
+                                    }
+                                },
+                                {
+                                    "adult": {
+                                        "action": "find",
+                                        "map": "adult"
+                                    }
+                                },
+                                {
+                                    "child": {
+                                        "action": "find",
+                                        "map": "child"
+                                    }
+                                },
+                                {
+                                    "infant": {
+                                        "action": "find",
+                                        "map": "infant"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "obligationp": {
+                            "action": "create",
+                            "childs": [
+                                {
+                                    "obligation": {
+                                        "action": "find",
+                                        "map": "obligation",
+                                        "options": {
+                                            "title": {
+                                                "action": "find",
+                                                "map": "title"
+                                            },
+                                            "limit": {
+                                                "action": "find",
+                                                "map": "limit"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "cancelrule": {
+                            "action": "find",
+                            "map": "cancelrule"
+                        }
+                    },
+                    {
+                        "second": {
+                            "action": "create",
+                            "childs": [
+                                {
+                                    "persons": {
+                                        "action": "find",
+                                        "map": "persons",
+                                        "options": {
+                                            "price": {
+                                                "action": "find",
+                                                "map": "price"
+                                            },
+                                            "tax": {
+                                                "action": "find",
+                                                "map": "tax"
+                                            },
+                                            "markups": {
+                                                "action": "find",
+                                                "map": "markups.totalprovider"
+                                            },
+                                            "markups2": {
+                                                "action": "find",
+                                                "map": "markups.totalmarkup"
+                                            },
+                                            "markupsupplier": {
+                                                "action": "find",
+                                                "map": "markupsupplier.totalmain"
+                                            },
+                                            "markupsupplier2": {
+                                                "action": "find",
+                                                "map": "markupsupplier.totalsupplier"
+                                            },
+                                            "commissioncostPerson": {
+                                                "action": "find",
+                                                "map": "commissioncost"
+                                            },
+                                            "base_price": {
+                                                "action": "find",
+                                                "map": "base_price"
+                                            },
+                                            "price_com": {
+                                                "action": "find",
+                                                "map": "price_com"
+                                            }
+                                        }
+                                    }
+                                },
+                     
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+      "member":[{
+      "type":"list",
+      "name": "q",
+      "request": "get_price",
+      "IP": "[##cms.request.clientip##]",
+      "countryid" : "[##cms.form.inscountry##]",
+      "fromdate":"[##cms.form.fdate##]",
+      "todate":"[##cms.form.tdate##]",
+      "birthday":[[##cms.form.birthdate##]],
+      "userid":"[##cms.form.userid##]",
+      "lid":"2",
+      "trackingNo":"[##cms.cookie.trackingid##]",
+      }]}' postsql="select replace(result,'\x',' ') as 'result' from [db.get_price]" />
+</basis>
+<basis core="group" name="Delay_1">
+    <basis core="inlinesource" name="db">
+        <member name="get_price-Tree" format="json"
+            postsql="select  Id , ParentId , case when trim(Field) is null  then  (select field from [db.get_price-Tree] where id = a.parentid ) else field end as field, value , type , path  from [db.get_price-Tree] as a"
+            >{"root":[##db.get_price.result##]}</member>
+    </basis>
+    <basis core="tree" datamembername="db.get_price-Tree" idcol="id" parentidcol="parentid" nullvalue="null">
+        <else-layout>
+            <div class="insurance-info-content box-content">
+                <input type="radio" name="insurance" class="ins-select" value="false" checked onchange="select_insurance(event,this)" />
+                <label for="insurance">I do not want to receive insurance.</label>
+                <input type="hidden" value="0" class="has_name_ins instotalfinal" data-name="instotalfinal" name="instotalfinal" >
+                <div class="clr"></div>
+            </div> 
+        </else-layout>
+        <layout>
+            <div class="insurance-info-content box-content">
+                <input type="radio" name="insurance" class="ins-select" value="false" checked onchange="select_insurance(event,this)" />
+                <label for="insurance">I do not want to receive insurance.</label>
+                <input type="hidden" value="0" class="has_name_ins instotalfinal" data-name="instotalfinal" name="instotalfinal">
+                <div class="clr"></div>
+            </div>
+            @child
+        </layout>
+        <face filter="field='boxinfo'">
+            <div class="insurance-info-content box-content">
+                <input type="radio" name="insurance" class="ins-select" value="true" onchange="select_insurance(event,this)"/>
+                   @child
+                <div class="clr"></div>
+            </div>
+        </face>
+        <face filter="field='provider' and value='20'">
+            <img src="_images/logo/Pasargad-Ins.png" width="60" height="60" alt="pasargad" />
+        </face>
+        <face filter="field='provider' and value='21'">
+            <img src="_images/logo/Saman-Ins.png" width="60" height="60" alt="saman" />
+        </face>
+        <face filter="field='mainprovider'">
+            <input type="hidden" value='@value' class="has_name_ins" data-name="insmainprovider" />
+        </face>
+        <face filter="field='duration'">
+            <input type="hidden" value='@value' class="has_name_ins" data-name="duration"/>
+        </face>
+        <face filter="field='zone'">
+            @child
+            <input type="hidden" value='@value' class="has_name_ins" data-name="zone"/>
+        </face>
+        <face filter="field='en_name'">
+            <span class="en_name">@value - </span>
+        </face>
+        <face filter="field='fa_name'">
+            <span  class="fa_name">@value</span>
+        </face>
+        <face filter="field='total'">
+            <input type="hidden" value="@value" class="has_name_ins" data-name="instotal" />
+            <input type="hidden" value="@value" class="has_name_ins" data-name="orginal"  />
+        </face>
+        <face filter="field='commissioncost'">
+            <input type="hidden" value="@value" class="has_name_ins inscommission" data-name="inscommission">
+        </face>
+        <face filter="field='totalcom'">
+            <div class="insurance-price">
+                <input type="hidden" value="@value"  class="has_name_ins instotalfinal" data-name="instotalfinal" />
+                <span class="font_14 title">Final amount: </span><span class="insurance-totalcom font-weight font_17">@value</span>
+                    <span  class="unit-content">Rials</span>
+            </div>
+        </face>
+        <face filter="field='price' ">
+           <input type="hidden" value="@value" class="has_name_ins price" data-name="_root.person__@ParentId.price"/>
+        </face>
+        <face filter="field='base_price' ">
+            <input type="hidden" value="@value" class="has_name_ins base_price" data-name="_root.person__@ParentId.base_price" />
+        </face>
+        <face filter="field='price_com' ">
+            <input type="hidden" value="@value" class="has_name_ins price_com" data-name="_root.person__@ParentId.price_com" />
+        </face>
+        <face filter="field='tax' ">
+            <input type="hidden" value="@value" class="has_name_ins tax" data-name="_root.person__@ParentId.tax"/>
+        </face>
+        <face filter="field='markups' ">
+            <input type="hidden" value="@value" class="has_name_ins mtotalprovider" data-name="_root.person__@ParentId.markups.totalprovider"/>
+        </face>
+        <face filter="field='markups2' ">
+            <input type="hidden" value="@value" class="has_name_ins mtotalmarkup" data-name="_root.person__@ParentId.markups.totalmarkup"/>
+        </face>
+        <face filter="field='markupsupplier' ">
+            <input type="hidden" value="@value" class="has_name_ins mtotalmain" data-name="_root.person__@ParentId.markupsupplier.totalmain"/>
+        </face>
+        <face filter="field='markupsupplier2' ">
+            <input type="hidden" value="@value" class="has_name_ins mtotalsupplier" data-name="_root.person__@ParentId.markupsupplier.totalsupplier"/>
+        </face>
+        <face filter="field='commissioncostPerson'">
+            <input type="hidden" value="@value" class="has_name_ins commission" data-name="_root.person__@ParentId.commission"/>
+            <input type="hidden" value="@value" class="has_name_ins commissioncost" data-name="_root.person__@ParentId.commissioncost"/>
+            <input type="hidden" value="1" class="has_name_ins" data-name="_root.person__@ParentId.visatype"  />
+        </face>
+        <face filter="field='obligationp'">
+            <div id="section-obligation" class="section-content">
+                <div class="title font_13 font-weight"><span>Insurer obligations</span></div>
+                <div class="max-height text-justify"> @child </div>
+            </div>
+        </face>
+        <face filter="field='title'">
+            <span>@value :</span>
+        </face>
+        <face filter="field='limit'">
+            <span>@value</span><br>
+        </face>
+        <face filter="field='cancelrule'">
+            <div id="section-cancelrule" class="section-content">
+                <div class="title font_13 font-weight"><span>Cancellation rules</span></div>
+                <div class="max-height text-justify"> @value </div>
+            </div>
+        </face>
+        <face filter="type in ('array','object')">@child</face>
+    </basis>
+ 
+    <script type="text/javascript">
+        for (var i = 0; i < document.getElementsByClassName("insurance-totalcom").length; i++) {
+            document.getElementsByClassName("insurance-totalcom")[i].innerText = new Intl.NumberFormat().format(document.getElementsByClassName("insurance-totalcom")[i].innerText);
+        };
+       
+        function select_insurance(event, element) {
+            for (var i = 0; i < document.getElementsByClassName("insurance-info-content").length; i++) {
+                for (var j = 0; j < document.getElementsByClassName("insurance-info-content")[i].getElementsByClassName("has_name_ins").length; j++) {
+                    document.getElementsByClassName("insurance-info-content")[i].getElementsByClassName("has_name_ins")[j].setAttribute("name","");
+                };
+            };
+            let insurance_price_other = 0;
+            $(element).closest(".insurance-info-content").siblings(".insurance-info-content").each(function () {
+                if ($(this).hasClass("active")) {
+                    insurance_price_other += parseFloat($(this).find(".instotalfinal").val())
+                }
+                $(this).removeClass("active");
+            })
+            let sum = 0;
+            let sum_totalcom = 0;
+            if (event.target.checked) {
+                for (var i = 0; i < element.closest(".insurance-info-content").getElementsByClassName("has_name_ins").length; i++) {
+                    element.closest(".insurance-info-content").getElementsByClassName("has_name_ins")[i].setAttribute("name",element.closest(".insurance-info-content").getElementsByClassName("has_name_ins")[i].getAttribute("data-name"));
+                };
+               
+            }
+            sum = parseFloat(document.querySelector(".firstpay-section").querySelector(".firstpay-price").innerText.replace(/\,/g, '')) + parseFloat(element.closest(".insurance-info-content").querySelector(".instotalfinal").value) - parseFloat(insurance_price_other);
+            for (var i = 0; i < document.getElementsByClassName("firstpay-price").length; i++) {
+                document.getElementsByClassName("firstpay-price")[i].innerText = new Intl.NumberFormat().format(sum);
+            };
+            document.querySelector(".firstpay-section").setAttribute("data-output",sum);
+            element.closest(".insurance-info-content").classList.add("active");
+            if (document.querySelector(".totalcom-section").querySelector(".totalcom-price")) {
+                document.querySelector(".totalcom-section").querySelector(".totalcom-price").innerText = parseFloat(document.querySelector(".totalcom-section").querySelector(".totalcom-price").innerText.replace(/\,/g, ''))+ parseFloat(element.closest(".insurance-info-content").querySelector(".instotalfinal").value) - parseFloat(insurance_price_other);
+                document.querySelector(".totalcom-section").setAttribute("data-output",parseFloat(document.querySelector(".totalcom-section").querySelector(".totalcom-price").innerText.replace(/\,/g, ''))+ parseFloat(element.closest(".insurance-info-content").querySelector(".instotalfinal").value) - parseFloat(insurance_price_other));
+            }
+            currency_rate()
+        }
+       
+    </script>
+</basis>

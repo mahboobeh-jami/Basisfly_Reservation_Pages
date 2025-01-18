@@ -1,0 +1,118 @@
+<basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+    <member name="check_member_point" method="cms" query='{
+        "name": "db",
+        "member": [
+            {
+                "type": "list",
+                "name": "check_member_point",
+                "request": "checkMemberPoint",
+                "dmnid": "[##cms.cms.domainid##]",
+                "ownerid": "[##cms.cms.ownerid##]",
+                "userid": "[##cms.form.userid##]",
+                "product_data": [##cms.form.product_data##],
+                "provider_id": "[##cms.form.provider_id##]",
+                "schemaid": "[##cms.form.schemaid##]"
+            }
+        ]
+    }' />
+</basis>
+<basis core="group" name="Delay_1">
+    <basis core="inlinesource" name="db">
+        <member name="check_member_point-Tree" format="json"
+            postsql="select  Id , ParentId , case when trim(Field) is null  then  (select field from [db.check_member_point-Tree] where id = a.parentid ) else field end as field, value , type , path  from [db.check_member_point-Tree] as a">
+            {"root":[##db.check_member_point.result##]} </member>
+        <member name="total_point" format="json"
+            postsql="select value from [db.total_point] where field = 'total_point'">
+            {"root":[##db.check_member_point.result##]} </member>
+
+    </basis>
+    <basis core="group" name="total_point" if="[##db.total_point.Value##] <> 0">
+        <div class="summary-info box-content has-maring">
+            <div class="box-content-title">
+                <div class="color_1 font_14 inside-title">باشگاه مشتریان </div>
+            </div>
+            <div class="color_gray font_13">
+                جهت اطلاع از امتیاز باشگاه مشتریان <span class="font-weight cursor-pointer"
+                    onclick="show_member_point(this)">کلیک کنید</span>
+            </div>
+            <basis core="tree" datamembername="db.check_member_point-Tree" idcol="id" parentidcol="parentid"
+                nullvalue="null">
+                <layout>
+                    <div class="member-point-content unvisible">
+                        @child
+                        <button type="button" class="btn-item ok" onclick="enable_club_discount(this)">استفاده از
+                            تخفیف</button>
+                        <button type="button" class="btn-item nok" onclick="disable_club_discount(this)">لغو</button>
+                        <div class="action-message"></div>
+                    </div>
+
+                </layout>
+                <face filter="field = 'total_point'">
+                    <div class="item"><span class="title"> امتیاز شما : </span><span
+                            class="total-point-price">@value</span></div>
+                </face>
+                <face filter="field = 'discount'">
+                    <div class="item">@child</div>
+                </face>
+                <face filter="field = 'price'">
+                    <span class="title"> تخفیف : </span><span class="club-discount-price"
+                        data-output="@value">@value</span>
+                </face>
+                <face filter="field = 'discount_rate'">
+                    <span class="title">مبلغ قابل استفاده : </span>
+                    <span class="used-discount" data-output="" data-discount-rate="@value"></span>
+                    <span class="unit-content"> </span>
+                </face>
+                <face filter="field = 'money_type'">
+                    <div class="money-type-value" data-output="@value"></div>
+                </face>
+                <face filter="type in ('object','array')">@child</face>
+            </basis>
+            <div class="clr"></div>
+        </div>
+        <script type="text/javascript">
+            var firstpay_price = document.querySelector(".firstpay-section").querySelector(".firstpay-price").innerText.replace(/\,/g, '');
+            document.querySelector(".total-point-price").innerText = parseFloat(document.querySelector(
+                ".total-point-price").innerText).toFixed(3).toString();
+            document.querySelector(".club-discount-price").innerText = new Intl.NumberFormat().format(document
+                .querySelector(".club-discount-price").innerText);
+            document.querySelector(".used-discount").innerText = new Intl.NumberFormat().format(Math.min(firstpay_price * document.querySelector(".used-discount").getAttribute("data-discount-rate"), document.querySelector(".club-discount-price").getAttribute("data-output")));
+            document.querySelector(".used-discount").setAttribute("data-output", Math.min(firstpay_price * document.querySelector(".used-discount").getAttribute("data-discount-rate"), document.querySelector(".club-discount-price").getAttribute("data-output")));
+
+            for (var i = 0; i < document.querySelector(".member-point-content").getElementsByClassName('unit-content')
+                .length; i++) {
+                document.querySelector(".member-point-content").getElementsByClassName('unit-content')[i].innerText =
+                    document.querySelector(".member-point-content").querySelector(
+                        ".money-type-value").getAttribute("data-output");
+
+            };
+
+            function show_member_point(element) {
+                document.querySelector(".member-point-content").classList.toggle("unvisible");
+            };
+
+            function enable_club_discount(element) {
+                document.querySelector(".summary-invoice").classList.add("unvisible");
+                document.querySelector(".invoice-container").innerHTML = `<div id="ballsWaveG"> <div id="ballsWaveG_1" class="ballsWaveG"></div><div id="ballsWaveG_2" class="ballsWaveG"></div><div id="ballsWaveG_3" class="ballsWaveG"></div><div id="ballsWaveG_4" class="ballsWaveG"></div><div id="ballsWaveG_5" class="ballsWaveG"></div><div id="ballsWaveG_6" class="ballsWaveG"></div> <div id="ballsWaveG_7" class="ballsWaveG"></div><div id="ballsWaveG_8" class="ballsWaveG"></div> </div>`
+                document.querySelector("input[name=club_discount]").value = 1;
+                document.querySelector(".firstpay-price").innerText = new Intl.NumberFormat().format(parseFloat(firstpay_price) - parseFloat(document
+                    .querySelector(".used-discount").getAttribute("data-output")));
+                document.querySelector(".member-point-content").querySelector(".action-message").innerHTML =
+                    `<div class="true">تخفیف باشگاه اعمال شد</div>`;
+
+            };
+
+            function disable_club_discount(element) {
+                document.querySelector(".summary-invoice").classList.add("unvisible");
+                document.querySelector(".invoice-container").innerHTML = `<div id="ballsWaveG"> <div id="ballsWaveG_1" class="ballsWaveG"></div><div id="ballsWaveG_2" class="ballsWaveG"></div><div id="ballsWaveG_3" class="ballsWaveG"></div><div id="ballsWaveG_4" class="ballsWaveG"></div><div id="ballsWaveG_5" class="ballsWaveG"></div><div id="ballsWaveG_6" class="ballsWaveG"></div> <div id="ballsWaveG_7" class="ballsWaveG"></div><div id="ballsWaveG_8" class="ballsWaveG"></div> </div>`
+                document.querySelector("input[name=club_discount]").value = 0;
+                document.querySelector(".firstpay-price").innerText = new Intl.NumberFormat().format(firstpay_price);
+                document.querySelector(".member-point-content").querySelector(".action-message").innerHTML =
+                    `<div class="false">تخفیف باشگاه لغو شد</div>`;
+
+            };
+
+        </script>
+
+    </basis>
+</basis>

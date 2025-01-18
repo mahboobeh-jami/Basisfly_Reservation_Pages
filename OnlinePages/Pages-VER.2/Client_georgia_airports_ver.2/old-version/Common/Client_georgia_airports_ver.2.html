@@ -1,0 +1,160 @@
+<basis core="external.fly.ws" source="cmsDbService2"
+procedurename="dbsource" name="db" > <member name="get_georgia_airports"
+method="hotel" query='{
+        "name": "db",
+        "mid": "20",
+        "member": [
+            {
+                "request": "get_georgia_airports",
+                "trackingNo":"[##cms.cookie.trackingid##]",
+                "dmnid": "[##cms.cms.domainid##]",
+                "params": {"id": {"FareSourceCode": "[##cms.form.FareSourceCode##]", "provider": {"provider_id": [##cms.form.provider_id##], "dmnid": "[##cms.cms.domainid##]"}}}
+            }
+        ]
+    }'/> </basis>
+<basis core="group" name="search_georgia_airports">
+    <basis core="inlinesource" name="db">
+        <member name="georgia_airports_json" format="json" postsql="select  Id , ParentId , case when trim(Field) is null  then  (select field from [db.georgia_airports_json] where id = a.parentid ) else field end as field, value , type , path  from [db.georgia_airports_json] as a">{"root":[##db.get_georgia_airports.result##]}</member>
+    </basis>
+    <div class="select-georgia-airport">
+        <ul>
+            <basis core="tree" datamembername="db.georgia_airports_json" idcol="id" parentidcol="parentid" nullvalue="null">
+                <face filter="type='object'">
+                    <li onclick="select_gairport(this)">@Child</li>
+                </face>
+                <face filter="Field='Code'">
+                    <input type="hidden" value="@value" class="airportCode" />
+                </face>
+                <face filter="Field='Name'">
+                    <span class="txtairport">@value</span>
+                    </span>
+                </face>
+                <face filter="type in ('array','object')">@child</face>
+            </basis>
+        </ul>
+    </div>
+</basis>
+<script type="text/javascript">
+    function select_no_option(element){
+        var parentArrival = $(element).closest(".pass-info-arrival");
+        var parentDeparture = $(element).closest(".pass-info-departure");
+        var departure_price = $(".departure_airport_price").val() || 0;
+        var arrival_price = $(".arrival_airport_price").val() || 0;
+
+            if(parentArrival.length > 0){
+            $(".pass-info-arrival").each(function () {
+                $(this).find(".text-load-georgia-request").text("")
+                $(this).find(".georgia-airport-name").val("")
+                $(this).find(".georgia-airport-code").val("")
+                $(this).find(".georgia-aircode").text('');
+                $(this).find(".georgia-aircode-name").val('');
+                $(this).find(".georgia-aircode-code").val('');
+                $(this).find(".pass-service-codes").removeClass("necessary-item");
+                var finalprice = $(".finalprice").attr("data-price")
+                if(parseFloat(departure_price) == 0){
+                    var sum = parseFloat(parseFloat(finalprice)+parseFloat(arrival_price))
+                    var sum = parseFloat(sum-parseFloat(arrival_price))
+                }else {
+                    var sum = parseFloat(parseFloat(finalprice)+parseFloat(departure_price)-parseFloat(arrival_price))
+                }
+                $(".finalprice").each(function () {
+            $(this).text(sum);
+            $(this).text(new Intl.NumberFormat().format($(this).text()))
+        })
+        $(".finalprice_totalCom").each(function () {
+            $(this).text(sum);
+            $(this).text(new Intl.NumberFormat().format($(this).text()))
+        })
+        $(".price_firstpay").val(sum);
+        if ($('.view-service-price').hasClass('fa-view-service-price')) {
+            console.log("farsi")
+            $('.view-service-price').empty().append('<span>مبلغ سرویس : '+new Intl.NumberFormat().format(departure_price)+'</span>');
+        }else {
+            console.log("english")
+            $('.view-service-price').empty().append('<span>Service price : '+new Intl.NumberFormat().format(departure_price)+'</span>');
+        }
+        $(".arrival_airport_price").val('');
+        })
+        } else if(parentDeparture.length > 0){
+            $(".pass-info-departure").each(function () {
+                $(this).find(".text-load-georgia-request").text("")
+                $(this).find(".georgia-airport-name").val("")
+                $(this).find(".georgia-airport-code").val("")
+                $(this).find(".georgia-aircode").text('');
+                $(this).find(".georgia-aircode-name").val('');
+                $(this).find(".georgia-aircode-code").val('');
+                $(".departure_airport_price").val('');
+                $(this).find(".pass-service-codes").removeClass("necessary-item");
+                var finalprice = $(".finalprice").attr("data-price")
+                var sum = parseFloat(parseFloat(finalprice)+parseFloat(arrival_price))
+                
+                if(parseFloat(arrival_price) == 0){
+                    var sum = parseFloat(parseFloat(finalprice)+parseFloat(departure_price))
+                    var sum = parseFloat(sum-parseFloat(departure_price))
+                }else {
+                    var sum = parseFloat(parseFloat(finalprice)+parseFloat(arrival_price)-parseFloat(departure_price))
+                }
+
+                $(".finalprice").each(function () {
+            $(this).text(sum);
+            $(this).text(new Intl.NumberFormat().format($(this).text()))
+        })
+        $(".finalprice_totalCom").each(function () {
+            $(this).text(sum);
+            $(this).text(new Intl.NumberFormat().format($(this).text()))
+        })
+        $(".price_firstpay").val(sum);
+        
+        if ($('.view-service-price').hasClass('fa-view-service-price')) {
+            $('.view-service-price').empty().append('<span>مبلغ سرویس : '+new Intl.NumberFormat().format(arrival_price)+'</span>');
+        }else {
+            $('.view-service-price').empty().append('<span>Service price : '+new Intl.NumberFormat().format(arrival_price)+'</span>');
+        }
+        })
+        }
+        $(element).closest(".service-info-col-inner").find(".select-georgia-airport ul").slideUp()
+    }
+    function select_gairport(element) {
+        $(element).closest(".service-info-col").find(".georgia-aircode").text('');
+        $(element).closest(".service-info-col").find(".georgia-aircode-name").val('');
+        $(element).closest(".service-info-col").find(".georgia-aircode-code").val('');
+        var parentArrival = $(element).closest(".pass-info-arrival");
+        var parentDeparture = $(element).closest(".pass-info-departure");
+        var selectedAirportText = $(element).find('.txtairport').text();
+        var selectedAirportCode = $(element).find('.airportCode').val();
+        var airport_parent_type;
+        var Arrival_exist_key = "false";
+        var Departure_exist_key = "false";
+        if(parentArrival.length > 0){
+            airport_parent_type = "pass-info-arrival"
+ 
+                if($(".pass-info-departure").find(".georgia-airport-code").val() !== ""){
+                   Departure_exist_key = "true"
+                }
+
+        }else if(parentDeparture.length > 0){
+            airport_parent_type = "pass-info-departure"
+
+                if($(".pass-info-arrival").find(".georgia-airport-code").val() !== ""){
+                  Arrival_exist_key = "true"
+                }
+
+        }
+        $(element).closest(".service-info-col-inner").find(".text-load-georgia-request").text(selectedAirportText)
+        $(element).closest(".service-info-col-inner").find(".georgia-airport-name").val(selectedAirportText)
+        $(element).closest(".service-info-col-inner").find(".georgia-airport-code").val(selectedAirportCode)
+        // var emptyTextLoadGeorgiaRequests = $('.'+airport_parent_type+' .georgia-airport').filter(function() {
+        //     return $(this).text().trim() === '';
+        // });
+        // emptyTextLoadGeorgiaRequests.text(selectedAirportText);
+        // emptyTextLoadGeorgiaRequests.closest(".service-info-col-inner").find(".georgia-airport-name").val(selectedAirportText)
+        // emptyTextLoadGeorgiaRequests.closest(".service-info-col-inner").find(".georgia-airport-code").val(selectedAirportCode)
+        $(element).closest(".service-info-col-inner").find(".select-georgia-airport ul").slideUp()
+        var airporttype = $(element).closest(".service-info-col-inner").find(".text-load-georgia-request").attr("data-type")
+        load_aircode(element,selectedAirportCode,airporttype,Departure_exist_key,Arrival_exist_key)
+    }
+
+</script>
+
+
+

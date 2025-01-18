@@ -1,0 +1,198 @@
+<basis core="group" name="georgia-hotel-services" if="'[##cms.form.airportcode_type##]'='arrival'">
+    <basis core="external.fly.ws" source="cmsDbService2"
+procedurename="dbsource" name="db" > <member name="arrival_transfer"
+method="hotel" query='{
+        "name": "db",
+        "mid": "20",
+        "member": [
+            {
+                "request": "arrival_transfer",
+                "trackingNo":"[##cms.cookie.trackingid##]",
+                "dmnid": "[##cms.cms.domainid##]",
+                "flight_number": "[##cms.form.departure_routeCode##]",
+                "params": {"id": {"FareSourceCode": "[##cms.form.FareSourceCode##]","airport_code":"[##cms.form.airport_code##]","departure_exist":"[##cms.form.departure_key##]", "provider": {"provider_id": [##cms.form.provider_id##], "dmnid": "[##cms.cms.domainid##]"}}}
+            }
+        ]
+    }'/> </basis>
+<basis core="group" name="search_georgia_airports">
+    <basis core="inlinesource" name="db">
+        <member name="georgia_airports_json" format="json" postsql="select  Id , ParentId , case when trim(Field) is null  then  (select field from [db.georgia_airports_json] where id = a.parentid ) else field end as field, value , type , path  from [db.georgia_airports_json] as a">{"root":[##db.arrival_transfer.result##]}</member>
+    </basis>
+    <div class="select-georgia-aircode">
+        <ul>
+            <basis core="tree" datamembername="db.georgia_airports_json" idcol="id" parentidcol="parentid" nullvalue="null">
+                <face filter="type='object'">
+                    <li onclick="select_gairportcode(this)">@Child</li>
+                </face>
+                <face filter="Field='Code'">
+                    <input type="hidden" value="@value" class="airportCode" />
+                </face>
+                <face filter="Field='Name'">
+                    <span class="txtairport">@value</span></span>
+                </face>
+                <face filter="type in ('array','object')">@child</face>
+            </basis>
+        </ul>
+       
+        <basis core="tree" datamembername="db.georgia_airports_json" idcol="id" parentidcol="parentid" nullvalue="null">
+            <face filter="Field='price_transfer_arrival' and Type='Array'"><div class="arrival_airport_details">@child</div></face>
+            <face filter="Field='price_transfer'">
+                <input type="hidden" value="@value" class="airport_price_transfer arrival_airport_price" />
+            </face>
+            <face filter="Field='price_currency'">
+                <input type="hidden" value="@value" class="airport_price_currency arrival_airport_currency" />
+            </face>
+            <face filter="Field='indexes'">
+                <input type="hidden" value="@value" class="airport_indexes arrival_airport_indexes" />
+            </face>
+            <face filter="Field='rooms_number'">
+                <input type="hidden" value="@value" class="airport_rooms_number arrival_airport_rooms_number" />
+            </face>
+            <face filter="type in ('array','object')">@child</face>
+        </basis>
+        <input type="hidden" value="" class="airport_total_price arrival_airport_total_price" />
+ 
+</basis>
+<script type="text/javascript">
+        var service_currency = $(".arrival_airport_currency").val()
+        var arrival_total_price = 0;
+        var arrival_price = 0;
+        $(".selected_parent_section").find('.arrival_airport_price').each(function() {
+            arrival_price = parseFloat($(this).val());
+            arrival_total_price += arrival_price;
+        });
+         var finalprice = $(".firstpay-section").attr("data-price")
+         var sum = parseFloat(parseFloat(finalprice)+parseFloat(arrival_total_price))
+         $(".firstpay-price").each(function () {
+            $(this).text(sum);
+            $(this).text(new Intl.NumberFormat().format($(this).text()))
+        })
+        $(".firstpay-section").attr("data-output", sum);
+        $(".price_firstpay").val(sum);
+        if ($('.view-service-price').hasClass('fa-view-service-price')) {
+            $('.view-service-price').empty().append('<div class="font_14 title float-right">مبلغ سرویس </div><div class="float-left"><span class="font-weight font_17 separate t-firstpay-price">'+new Intl.NumberFormat().format(arrival_total_price)+'</span></div>');
+        }else{
+            $('.view-service-price').empty().append('<div class="font_14 title float-left">Service price : </div><div class="float-right"><span class="font-weight font_17 separate t-firstpay-price">'+new Intl.NumberFormat().format(arrival_total_price)+'</span></div>');
+        }
+        /*------------------START FUNCTION MULTI CURRENCY-----------------------*/
+        currency_rate()
+        /*------------------END FUNCTION MULTI CURRENCY-----------------------*/
+        $(".pass-info-arrival").each(function () {
+            $(this).find(".pass-service-codes").addClass("necessary-item")
+        })
+</script>
+</basis>
+<basis core="group" name="georgia-hotel-services" if="'[##cms.form.airportcode_type##]'='departure'">
+    <basis core="external.fly.ws" source="cmsDbService2"
+procedurename="dbsource" name="db" > <member name="arrival_transfer"
+method="hotel" query='{
+        "name": "db",
+        "mid": "20",
+        "member": [
+            {
+                "request": "departure_transfer",
+                "trackingNo":"[##cms.cookie.trackingid##]",
+                "dmnid": "[##cms.cms.domainid##]",
+                "flight_number": "[##cms.form.return_routeCode##]",
+                "params": {"id": {"FareSourceCode": "[##cms.form.FareSourceCode##]","airport_code":"[##cms.form.airport_code##]","arrival_exist":"[##cms.form.arrival_key##]", "provider": {"provider_id": [##cms.form.provider_id##], "dmnid": "[##cms.cms.domainid##]"}}}
+            }
+        ]
+    }'/> </basis>
+<basis core="group" name="search_georgia_airports">
+    <basis core="inlinesource" name="db">
+        <member name="georgia_airports_json" format="json" postsql="select  Id , ParentId , case when trim(Field) is null  then  (select field from [db.georgia_airports_json] where id = a.parentid ) else field end as field, value , type , path  from [db.georgia_airports_json] as a">{"root":[##db.arrival_transfer.result##]}</member>
+    </basis>
+    <div class="select-georgia-aircode">
+        <ul>
+            <basis core="tree" datamembername="db.georgia_airports_json" idcol="id" parentidcol="parentid" nullvalue="null">
+                <face filter="type='object'">
+                    <li onclick="select_gairportcode(this)">@Child</li>
+                </face>
+                <face filter="Field='Code'">
+                    <input type="hidden" value="@value" class="airportCode" />
+                </face>
+                <face filter="Field='Name'">
+                    <span class="txtairport">@value</span></span>
+                </face>
+                <face filter="type in ('array','object')">@child</face>
+            </basis>
+        </ul>
+        
+        <basis core="tree" datamembername="db.georgia_airports_json" idcol="id" parentidcol="parentid" nullvalue="null">
+            <face filter="field='price_transfer_departure' and Type='Array'"><div class="departure_airport_details">@child</div></face>
+            <face filter="Field='price_transfer'">
+                <input type="hidden" value="@value" class="airport_price_transfer departure_airport_price" />
+            </face>
+            <face filter="Field='price_currency'">
+                <input type="hidden" value="@value" class="airport_price_currency departure_airport_currency" />
+            </face>
+            <face filter="Field='indexes'">
+                <input type="hidden" value="@value" class="airport_indexes departure_airport_indexes" />
+            </face>
+            <face filter="Field='rooms_number'">
+                <input type="hidden" value="@value" class="airport_rooms_number departure_airport_rooms_number" />
+            </face>
+            <face filter="type in ('array','object')">@child</face>
+        </basis>
+        <input type="hidden" value="" class="airport_total_price departure_airport_total_price" />
+  
+    </basis>
+    </div>
+<script type="text/javascript">
+        var service_currency = $(".departure_airport_currency").val()
+        var departure_total_price = 0;
+        var departure_price = 0;
+        $(".selected_parent_section").find('.departure_airport_price').each(function() {
+            departure_price = parseFloat($(this).val());
+            departure_total_price += departure_price;
+        });
+         var finalprice = $(".firstpay-section").attr("data-price")
+         var sum = parseFloat(parseFloat(finalprice)+parseFloat(departure_total_price))
+        $(".firstpay-price").each(function () {
+            $(this).text(sum);
+            $(this).text(new Intl.NumberFormat().format($(this).text()))
+        })
+        $(".firstpay-section").attr("data-output", sum);
+        $(".price_firstpay").val(sum);
+        if ($('.view-service-price').hasClass('fa-view-service-price')) {
+            $('.view-service-price').empty().append('<div class="font_14 title float-right">مبلغ سرویس </div><div class="float-left"><span class="font-weight font_17 separate t-firstpay-price">'+new Intl.NumberFormat().format(departure_total_price)+'</span></div>');
+        }else{
+            $('.view-service-price').empty().append('<div class="font_14 title float-left">Service price : </div><div class="float-right"><span class="font-weight font_17 separate t-firstpay-price">'+new Intl.NumberFormat().format(departure_total_price)+'</span></div>');
+        }
+        /*------------------START FUNCTION MULTI CURRENCY-----------------------*/
+        currency_rate()
+        /*------------------END FUNCTION MULTI CURRENCY-----------------------*/
+        $(".pass-info-departure").each(function () {
+            $(this).find(".pass-service-codes").addClass("necessary-item")
+        })
+</script>
+</basis>
+<script type="text/javascript">
+    function select_gairportcode(element) {
+        var parentArrival = $(element).closest(".pass-info-arrival");
+        var parentDeparture = $(element).closest(".pass-info-departure");
+        var selectedAirportText = $(element).find('.txtairport').text();
+        var selectedAirportCode = $(element).find('.airportCode').val();
+        var airport_parent_type;
+        $(element).closest(".service-info-col-inner").find(".text-load-georgia-request").text(selectedAirportText)
+        $(element).closest(".service-info-col-inner").find(".georgia-aircode-name").val(selectedAirportText)
+        $(element).closest(".service-info-col-inner").find(".georgia-aircode-code").val(selectedAirportCode)
+        if(parentArrival.length > 0){
+            airport_parent_type = "pass-info-arrival"
+        }else if(parentDeparture.length > 0){
+            airport_parent_type = "pass-info-departure"
+        }
+        // var emptyTextLoadGeorgiaRequests = $('.'+airport_parent_type+' .georgia-aircode').filter(function() {
+        //     return $(this).text().trim() === '';
+        // });
+        // emptyTextLoadGeorgiaRequests.text(selectedAirportText);
+        // emptyTextLoadGeorgiaRequests.closest(".service-info-col-inner").find(".georgia-aircode-name").val(selectedAirportText)
+        // emptyTextLoadGeorgiaRequests.closest(".service-info-col-inner").find(".georgia-aircode-code").val(selectedAirportCode)
+
+        $(element).closest(".service-info-col-inner").find(".select-georgia-aircode ul").slideUp()
+    }
+
+</script>
+
+
+

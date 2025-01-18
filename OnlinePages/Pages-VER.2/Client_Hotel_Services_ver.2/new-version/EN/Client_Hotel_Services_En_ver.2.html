@@ -1,0 +1,1109 @@
+<basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+    <member name="hotel_services" method="service" query='{
+   "name": "db",
+   "mid": "20",
+   "member": [
+       {
+           "type": "list",
+           "name": "q",
+           "request": "hotel_services",
+           "providerid": "[##cms.form.provider##]",
+           "hoteldmnid":"[##cms.form.hotel_dmnid##]",
+           "dmnid": "[##cms.cms.domainid##]",
+           "cityid": "[##cms.form.cityid|(0)##]",
+           "airport": "[##cms.form.airport##]",
+           "fromdate": "[##cms.form.fdate##]",
+           "todate": "[##cms.form.tdate##]",
+           "serviceid": "[##cms.form.serviceid##]",
+           "passenger": [##cms.form.passenger##],
+           "trackingNo": "[##cms.cookie.trackingid##]",
+           "userid":"[##cms.form.userid##]",
+           "lid": "2",
+           "unit": "10"
+       }
+   ]
+}' />
+</basis>
+<basis core="group" name="Delay">
+    <basis core="inlinesource" name="db">
+        <member name="hotel_services-Tree" format="json"
+            postsql="select  Id , ParentId , case when trim(Field) is null  then  (select field from [db.hotel_services-Tree] where id = a.parentid ) else field end as field, value , type , path  from [db.hotel_services-Tree] as a">
+            {"root":[##db.hotel_services.result##]}</member>
+    </basis>
+    <basis core="tree" datamembername="db.hotel_services-Tree" idcol="id" parentidcol="parentid" nullvalue="null">
+        <face filter="field in ('transfer','passengercount')"></face>
+        <face filter="field in ('service') and type in ('array') and value not in ('[]')">
+            <div class="service-info-content box-content hotel-service-content">
+                <div class="title font_14 font-weight"><span>Service & Transfer</span></div>
+                @child
+            </div>
+        </face>
+        <face filter="field in ('service') and type in ('object')">
+            <div class="service-info-items">@child</div>
+        </face>
+        <face filter="field in ('serviceItems') and type in ('array')">
+            <div class="serviceItems-content unvisible">@child</div>
+        </face>
+        <face filter="field in ('serviceItems') and type in ('object')">
+            <div class="service-info-item" data-index="@id">
+                <input type="hidden" value="12" class="has-name" data-name="_root.products__@id.type" />
+                <input type="hidden" value='' class="has-name check-provider-id"
+                    data-name="_root.products__@id.provider.provider_id" />
+                <input type="hidden" value='' class="has-name check-provider-dmnid"
+                    data-name="_root.products__@id.provider.dmnid" />
+                <input type="hidden" value="" class="has-name check-supplier"
+                    data-name="_root.products__@id.service_supplier" />
+                <input type="hidden" value='' class="has-name check-servicegroupid"
+                    data-name="_root.products__@id.servicegroupid" />
+                <input type="checkbox" class="passengers-list" onchange="passengers_list(event,this)" />
+                @child
+                <div class="clr"></div>
+            </div>
+        </face>
+        <face filter="Field = 'licenseUniqueId'">
+            <input type="hidden" class="licenseUniqueId" value='@value'>
+        </face>
+        <face filter="Field = 'provider_id'">
+            <input type="hidden" class="has-provider-id" value='@value'>
+        </face>
+        <face filter="Field = 'provider_dmnid'">
+            <input type="hidden" class="has-provider-dmnid" value='@value'>
+        </face>
+        <face filter="field in ('servicegroupid')">
+            <input type="hidden" class="has-servicegroupid" value='@value'>
+        </face>
+        <face filter="field in ('service_supplier')">
+            <input type="hidden" value="@value" class="has-supplier" />
+        </face>
+        <face filter="field in ('productid')">
+            <input type="hidden" value="@value" class="has-name" data-name="_root.products__@parentid.productid" />
+        </face>
+        <face filter="field in ('name')">
+            <span class="name color_gray">@value</span>
+        </face>
+        <face filter="field in ('servicename')">
+            <span class="servicename" onclick="toggle_serviceItems(this)"><span class="space">-</span>@value</span>
+        </face>
+        <face filter="field in ('sellprice')">
+            <div class="clr"></div>
+            <div class="package-info-item has-select-input unvisible">
+                <div class="inner-item"><input type="text" class="cursor-pointer" onclick="show_passengers(this)"
+                        data-open="0" readonly placeholder="Passenger" /></div>
+                <ul class="drop-item wide" data-parentid="@parentid"></ul>
+                @child
+            </div>
+        </face>
+        <face filter="field in ('adult1')">
+            <span class="service-item-adult1 unvisible">@child</span>
+        </face>
+        <face filter="field in ('child1')">
+            <span class="service-item-child1 unvisible">@child</span>
+        </face>
+        <face filter="field in ('infant1')">
+            <span class="service-item-infant1 unvisible">@child</span>
+        </face>
+        <face filter="field in ('cost')">
+            <input type="hidden" value="@value" />
+        </face>
+        <face filter="field in ('moneytype')">
+            <input type="hidden" value="@value" class="service-item-unit" />
+        </face>
+        <face filter="type in ('object','array')">@child</face>
+    </basis>
+    <basis core="tree" datamembername="db.hotel_services-Tree" idcol="id" parentidcol="parentid" nullvalue="null">
+        <face filter="field in ('service','paasengerCost')"></face>
+        <face filter="field in ('transfer') and type in ('array') and value not in ('[]')">
+            <div class="service-info-content box-content transfer-hotel-content"
+                data-service-type="[##cms.form.hotel_service_type##]">
+                <div class="title font_14 font-weight"><span>Transfer</span></div>
+                <div class="service-info-items">
+                    <div class="service-info-item">
+                        <input type="radio" class="transfer" name="transfer" onchange="show_transfer_data(this)"
+                            value="0" checked />
+                        <input type="hidden" value="0" class="transfer-item-sellprice">
+                        <label>none</label>
+                    </div>
+                </div>
+                @child
+                <div class="transfer-info-container_ unvisible">
+                    <div class="package-info-item has-select-input"><label>Transfer Count </label>
+                        <div class="inner-item">
+                            <input class="transfercount" onclick="show_transfer_count(this)" readonly type="text"
+                                value="1" />
+                        </div>
+                        <ul class="drop-item wide">
+                            <li onclick="select_transfer_count(this)" class="li-item">1</li>
+                            <li onclick="select_transfer_count(this)" class="li-item">2</li>
+                            <li onclick="select_transfer_count(this)" class="li-item">3</li>
+                            <li onclick="select_transfer_count(this)" class="li-item">4</li>
+                            <li onclick="select_transfer_count(this)" class="li-item">5</li>
+                            <li onclick="select_transfer_count(this)" class="li-item">6</li>
+                            <li onclick="select_transfer_count(this)" class="li-item">7</li>
+                            <li onclick="select_transfer_count(this)" class="li-item">8</li>
+                            <li onclick="select_transfer_count(this)" class="li-item">9</li>
+                            <li onclick="select_transfer_count(this)" class="li-item">10</li>
+                        </ul>
+                    </div>
+                    <div class="clr"></div>
+                    <div class="departure">
+                        <div class="title font_13 font-weight"><span>Departure Transfer</span></div>
+                        <div class="package-info-item c-infoo">
+                            <label>Departure Airline</label>
+                            <div class="inner-item"><input data-value="[##cms.form.flight_airline_dep##]"
+                                    data-name="_root.products__0.departure.airlinename" data-type="airline"
+                                    oninput="autocomplete_search_service(this)" class="has-name input-autocomplete"
+                                    type="text" autocomplete="off">
+                                <span class="mini-loading"><i class="fas fa-spinner fa-spin"></i></span>
+                            </div>
+                            <input type="hidden" class="has-name input-id"
+                                data-name="_root.products__0.departure.airlineid" />
+                            <div class="clr"></div>
+                            <div class="co"></div>
+                        </div>
+                        <div class="package-info-item">
+                            <label>Departure flight number</label>
+                            <div class="inner-item"><input data-value="[##cms.form.flight_routCode_dep##]"
+                                    data-name="_root.products__0.departure.routecode" class="has-name" type="text"
+                                    autocomplete="off"></div>
+                        </div>
+                        <div class="package-info-item">
+                            <label>Departure flighte time</label>
+                            <div class="inner-item"><input data-value="[##cms.form.flight_time_dep##]"
+                                    data-name="_root.products__0.departure.hour" class="has-name clockpicker"
+                                    type="text" readonly></div>
+                        </div>
+                        <div class="package-info-item service-date-items" data-type="departure"
+                            data-mainDate="[##cms.form.fdate##]" data-date="[##cms.form.flight_mstring_dep##]">
+                            <label>Departure flighte date</label>
+
+                        </div>
+
+                        <div class="clr"></div>
+                    </div>
+                    <div class="return">
+                        <div class="title font_13 font-weight"><span>Return Transfer</span></div>
+                        <div class="package-info-item c-infoo">
+                            <label>Return airline</label>
+                            <div class="inner-item"><input data-value="[##cms.form.flight_airline_des##]"
+                                    data-name="_root.products__0.return.airlinename" data-type="airline"
+                                    oninput="autocomplete_search_service(this)" class="has-name input-autocomplete"
+                                    type="text" autocomplete="off">
+                                <span class="mini-loading"><i class="fas fa-spinner fa-spin"></i></span>
+                            </div>
+                            <input type="hidden" class="has-name input-id"
+                                data-name="_root.products__0.return.airlineid" />
+                            <div class="clr"></div>
+                            <div class="co"></div>
+                        </div>
+                        <div class="package-info-item">
+                            <label>Return flight number</label>
+                            <div class="inner-item"><input data-value="[##cms.form.flight_routCode_des##]"
+                                    data-name="_root.products__0.return.routecode" class="has-name" type="text"
+                                    autocomplete="off"></div>
+                        </div>
+                        <div class="package-info-item">
+                            <label>Return flighte time</label>
+                            <div class="inner-item"><input data-value="[##cms.form.flight_time_des##]"
+                                    data-name="_root.products__0.return.hour" class="has-name clockpicker" type="text"
+                                    readonly></div>
+                        </div>
+                        <div class="package-info-item service-date-items" data-type="return"
+                            data-mainDate="[##cms.form.tdate##]" data-date="[##cms.form.flight_mstring_des##]">
+                            <label>Return flighte date</label>
+                        </div>
+
+                        <div class="clr"></div>
+                    </div>
+                    <div class="package-info-item">
+                        <label>Hotel accommodation</label>
+                        <div class="inner-item"><input value="[##cms.form.real_name##]" type="text" readonly></div>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </face>
+        <face filter="field in ('transfer') and type in ('object')">
+            <div class="service-info-items">@child</div>
+        </face>
+        <face filter="field in ('serviceItems') and type in ('array')">
+            <div class="serviceItems-content unvisible">@child</div>
+        </face>
+        <face filter="field in ('serviceItems') and type in ('object')">
+            <div class="service-info-item">
+                <input type="hidden" value="14" class="has-name" data-name="_root.products__@id.type" />
+                <input type="hidden" value='' class="has-name check-provider-id"
+                    data-name="_root.products__@id.provider.provider_id" />
+                <input type="hidden" value='' class="has-name check-provider-dmnid"
+                    data-name="_root.products__@id.provider.dmnid" />
+                <input type="hidden" value="" class="has-name check-supplier"
+                    data-name="_root.products__@id.transfer_supplier" />
+                <input type="hidden" value='' class="has-name check-servicegroupid"
+                    data-name="_root.products__@id.servicegroupid" />
+                <input type="radio" class="transfer" name="transfer" onchange="show_transfer_data(this)" value="1"
+                    data-parentid="@id" />
+                @child
+                <div class="clr"></div>
+            </div>
+        </face>
+        <face filter="Field = 'provider_id'">
+            <input type="hidden" class="has-provider-id" value='@value'>
+        </face>
+        <face filter="Field = 'provider_dmnid'">
+            <input type="hidden" class="has-provider-dmnid" value='@value'>
+        </face>
+        <face filter="field in ('servicegroupid')">
+            <input type="hidden" class="has-servicegroupid" value='@value'>
+        </face>
+        <face filter="field in ('transfer_supplier')">
+            <input type="hidden" value="@value" class="has-supplier" />
+        </face>
+        <face filter="field in ('transferCount')">
+            <input type="hidden" value="@value" class="transfercount-value has-name"
+                data-name="_root.products__@parentid.transfercount" />
+        </face>
+        <face filter="field in ('productid')">
+            <input type="hidden" value="@value" class="has-name" data-name="_root.products__@parentid.productid" />
+        </face>
+        <face filter="field in ('servicegroupid')">
+            <input type="hidden" value="@value" class="has-name" data-name="_root.products__@parentid.servicegroupid" />
+        </face>
+        <face filter="field in ('transferid')">
+            <input type="hidden" value="@value" class="has-name" data-name="_root.products__@parentid.transferid" />
+        </face>
+        <face filter="field in ('servicename')">
+            <span class="servicename" onclick="toggle_serviceItems(this)"><span class="space">-</span>@value</span>
+        </face>
+        <face filter="field in ('name')">
+            <span class="name color_gray">@value</span><span class="space">-</span>
+        </face>
+        <face filter="field in ('transfer_name')">
+            <span class="transfer_name">@value</span><span class="space">-</span>
+        </face>
+        <face filter="field in ('transroute')">
+            <span>@child</span><span class="space">-</span>
+        </face>
+        <face filter="field in ('routename')">
+            <span class="routename">@value</span>
+        </face>
+        <face filter="field in ('routeid')">
+            <input type="hidden" value="@value" class="routeid" />
+        </face>
+        <face filter="field in ('airport')">
+            <span class="airport">@value</span>
+        </face>
+        <face filter="field in ('sellprice')">
+            <span class="info">@child</span>
+        </face>
+        <face filter="field in ('cost')">
+            <input type="hidden" value="@value" class="transfer-item-sellprice" />
+            <span class="transfer-cost">@value</span><span class="unit-content"></span><span class="space">-</span>
+        </face>
+        <face filter="field in ('moneytype')">
+            <input type="hidden" value="@value" class="transfer-item-unit" />
+        </face>
+        <face filter="field in ('transferid')">
+            <input type="hidden" value="@value" class="transferid has-name" data-name="_root.products__0.transferid" />
+        </face>
+        <face filter="Field = 'start_time'">
+            <input type="hidden" class="start_time" value="@value" />
+        </face>
+        <face filter="Field = 'start_timeid'">
+            <input type="hidden" class="start_timeid" value="@value" />
+        </face>
+        <face filter="Field = 'end_time'">
+            <input type="hidden" class="end_time" value="@value" />
+        </face>
+        <face filter="Field = 'end_timeid'">
+            <input type="hidden" class="end_timeid" value="@value" />
+        </face>
+        <face filter="type in ('object','array')">@child</face>
+    </basis>
+    <script type="text/javascript">
+        /*-------------------START JS SRVICE LIST----------------------*/
+        function toggle_serviceItems(element) {
+            element.closest(".service-info-items").querySelector(".serviceItems-content").classList.toggle("unvisible");
+            if (element.closest(".service-info-items").querySelector(".has-provider-id").value == 72) {
+                if (!element.closest(".service-info-items").querySelector(".serviceItems-content").getAttribute(
+                    "data-clicked")) {
+                    element.closest(".service-info-items").querySelector(".serviceItems-content").innerHTML =
+                        `<div id="ballsWaveG"> <div id="ballsWaveG_1" class="ballsWaveG"></div><div id="ballsWaveG_2" class="ballsWaveG"></div><div id="ballsWaveG_3" class="ballsWaveG"></div><div id="ballsWaveG_4" class="ballsWaveG"></div><div id="ballsWaveG_5" class="ballsWaveG"></div><div id="ballsWaveG_6" class="ballsWaveG"></div> <div id="ballsWaveG_7" class="ballsWaveG"></div><div id="ballsWaveG_8" class="ballsWaveG"></div> </div>`;
+                    element.closest(".service-info-items").querySelector(".serviceItems-content").setAttribute(
+                        "data-clicked", 0);
+                    $.post(`/Client_Service_showAllOptions.bc?lid=2`, {
+                        provider: `{"provider_id":"${element.closest(".service-info-items").querySelector(".has-provider-id").value}","provider_dmnid":${element.closest(".service-info-items").querySelector(".has-provider-dmnid").value}}`,
+                        userid: "[##cms.form.userid##]",
+                        servicegroupid: element.closest(".service-info-items").querySelector(
+                            ".has-servicegroupid")
+                            .value,
+                        licenseUniqueId: element.closest(".service-info-items").querySelector(
+                            ".licenseUniqueId")
+                            .value
+                    }, function (response) {
+                        element.closest(".service-info-items").querySelector(".serviceItems-content")
+                            .setAttribute("data-clicked", 1);
+                        element.closest(".service-info-items").querySelector(".serviceItems-content")
+                            .innerHTML = ``;
+                        const data = JSON.parse(response.replace(/\'/g, '"'));
+                        let index = '1' + $(element).closest(".service-info-items").index();
+                        for (const item of data.serviceItems) {
+                            $(element).closest(".service-info-items").find(".serviceItems-content").append(`
+<div class="service-info-item" data-index="${index}">
+        <input type="hidden" value="12" class="has-name" data-name="_root.products__${index}.type" />
+        <input type="hidden" value='' class="has-name check-provider-id"
+        data-name="_root.products__${index}.provider.provider_id" />
+        <input type="hidden" value='' class="has-name check-provider-dmnid"
+        data-name="_root.products__${index}.provider.dmnid" />
+        <input type="hidden" value="" class="has-name check-supplier"
+        data-name="_root.products__${index}.service_supplier" />
+        <input type="hidden" value='' class="has-name check-servicegroupid"
+        data-name="_root.products__${index}.servicegroupid" />
+        <input type="checkbox" class="passengers-list" onchange="passengers_list(event,this)" />
+        <input type="hidden" value="${item.productid}" class="has-name" data-name="_root.products__${index}.productid" />
+        <span class="name color_gray">${item.name}</span>
+        <div class="clr"></div>
+        <div class="package-info-item has-select-input unvisible">
+        <div class="inner-item"><input type="text" class="cursor-pointer" onclick="show_passengers(this)" data-open="0" readonly placeholder="مسافران" /></div>
+        <ul class="drop-item wide" data-parentid="${index}"></ul>
+        <span class="service-item-adult1 unvisible">
+        <input type="hidden" value="${item.sellprice.adult1.cost}">
+    </span>
+    <span class="service-item-child1 unvisible">
+        <input type="hidden" value="${item.sellprice.child1.cost}">
+    </span>
+    <span class="service-item-infant1 unvisible">
+        <input type="hidden" value="${item.sellprice.infant1.cost}">
+    </span>
+      </div>
+        <div class="clr"></div>
+    </div>`);
+                            index++;
+                        }
+
+                        set_service_value();
+                    });
+
+                }
+            }
+
+        };
+        set_service_value();
+
+        function set_service_value() {
+            for (var i = 0; i < document.getElementsByClassName("service-info-item").length; i++) {
+                if (document.getElementsByClassName("service-info-item")[i].querySelector(".check-provider-id")) {
+                    document.getElementsByClassName("service-info-item")[i].querySelector(".check-provider-id").value =
+                        document.getElementsByClassName("service-info-item")[i].closest(".service-info-items")
+                            .querySelector(".has-provider-id").value
+                };
+                if (document.getElementsByClassName("service-info-item")[i].querySelector(".check-provider-dmnid")) {
+                    document.getElementsByClassName("service-info-item")[i].querySelector(".check-provider-dmnid")
+                        .value =
+                        document.getElementsByClassName("service-info-item")[i].closest(".service-info-items")
+                            .querySelector(".has-provider-dmnid").value
+                };
+                if (document.getElementsByClassName("service-info-item")[i].querySelector(".check-servicegroupid")) {
+                    document.getElementsByClassName("service-info-item")[i].querySelector(".check-servicegroupid")
+                        .value =
+                        document.getElementsByClassName("service-info-item")[i].closest(".service-info-items")
+                            .querySelector(".has-servicegroupid").value
+                };
+                if (document.getElementsByClassName("service-info-item")[i].querySelector(".check-supplier")) {
+                    document.getElementsByClassName("service-info-item")[i].querySelector(".check-supplier").value =
+                        document.getElementsByClassName("service-info-item")[i].closest(".service-info-items")
+                            .querySelector(".has-supplier").value
+                };
+            };
+        }
+
+
+        function passengers_list(event, element) {
+            if (event.target.checked) {
+                element.closest(".service-info-item").querySelector(".package-info-item").classList.remove("unvisible");
+            } else {
+                element.closest(".service-info-item").querySelector(".package-info-item").classList.add("unvisible");
+            }
+        };
+
+        function show_passengers(element) {
+            if (element.getAttribute("data-open") == 0) {
+                insert_name_family(element);
+                element.setAttribute("data-open", 1)
+            } else {
+                check_name_family(element);
+            }
+            element.closest(".service-info-item").querySelector(".drop-item").classList.toggle("drop-item-toggle");
+        };
+        /*-------------------UPDATE PASENGERS NAME IN SRVICE LIST----------------------*/
+        function insert_name_family(element) {
+            const data_passengers = new Array();
+            for (var i = 0; i < document.getElementsByClassName("passenger-info-content").length; i++) {
+                for (var s = 0; s < document.getElementsByClassName("passenger-info-content")[i].getElementsByClassName(
+                    "passenger").length; s++) {
+                    const data_passenger = new Object();
+                    data_passenger["type"] = document.getElementsByClassName("passenger-info-content")[i]
+                        .getElementsByClassName("passenger")[s].querySelector(".type").value
+                    if (document.getElementsByClassName("passenger-info-content")[i].getElementsByClassName(
+                        "passenger")[s].querySelector(".type").value == 2) {
+                        data_passenger["sellprice"] = element.closest(".service-info-item").querySelector(
+                            ".service-item-adult1").querySelector("input").value;
+                    } else if (document.getElementsByClassName("passenger-info-content")[i].getElementsByClassName(
+                        "passenger")[s].querySelector(".type").value == 1) {
+                        data_passenger["sellprice"] = element.closest(".service-info-item").querySelector(
+                            ".service-item-child1").querySelector("input").value;
+                    } else if (document.getElementsByClassName("passenger-info-content")[i].getElementsByClassName(
+                        "passenger")[s].querySelector(".type").value == 0) {
+                        data_passenger["sellprice"] = element.closest(".service-info-item").querySelector(
+                            ".service-item-infant1").querySelector("input").value;
+                    }
+
+                    for (var j = 0; j < document.getElementsByClassName("passenger-info-content")[i]
+                        .getElementsByClassName("passenger")[s].getElementsByClassName("package-info-item").length; j++
+                    ) {
+                        if (document.getElementsByClassName("passenger-info-content")[i].getElementsByClassName(
+                            "passenger")[
+                            s].getElementsByClassName("package-info-item")[j].querySelector("input[type=text]")) {
+                            if (document.getElementsByClassName("passenger-info-content")[i].getElementsByClassName(
+                                "passenger")[
+                                s].getElementsByClassName("package-info-item")[j].querySelector("input[type=text]")
+                                .getAttribute("name")) {
+                                if (document.getElementsByClassName("passenger-info-content")[i].getElementsByClassName(
+                                    "passenger")[
+                                    s].getElementsByClassName("package-info-item")[j].querySelector(
+                                        "input[type=text]")
+                                    .getAttribute("name").indexOf('firstname') > -1) {
+                                    data_passenger["firstname"] = document.getElementsByClassName(
+                                        "passenger-info-content")[i]
+                                        .getElementsByClassName("passenger")[s].getElementsByClassName(
+                                            "package-info-item")[j]
+                                        .querySelector("input[type=text]").value;
+                                } else if (document.getElementsByClassName("passenger-info-content")[i]
+                                    .getElementsByClassName(
+                                        "passenger")[s].getElementsByClassName("package-info-item")[j].querySelector(
+                                            "input[type=text]").getAttribute("name").indexOf('lastname') > -1) {
+                                    data_passenger["lastname"] = document.getElementsByClassName(
+                                        "passenger-info-content")[i]
+                                        .getElementsByClassName("passenger")[s].getElementsByClassName(
+                                            "package-info-item")[j]
+                                        .querySelector("input[type=text]").value
+                                }
+
+                                data_passenger["index"] = s;
+                            }
+
+
+
+                        }
+
+                    }
+                    data_passengers.push(data_passenger);
+                }
+            };
+            for (const item of data_passengers) {
+                $(element).closest(".service-info-item").find(".drop-item").append(`
+    <li class="li-item"><input type="checkbox" class="select-service" onchange="select_service(event,this)" />
+                   <input type="hidden" value="${item.type}" class="has-name" data-name="_root.products__${element.closest(".service-info-item").querySelector(".drop-item").getAttribute("data-parentid")}.service_passengerlist__${item.index}.type"/>
+                   <input type="hidden" value="${item.sellprice}" class="service-item-sellprice" />
+                   <input type="hidden" value="${item.firstname}" class="service-item-firstname has-name"  data-name="_root.products__${element.closest(".service-info-item").querySelector(".drop-item").getAttribute("data-parentid")}.service_passengerlist__${item.index}.firstname"/>
+                   <input type="hidden" value="${item.lastname}"  class="service-item-lastname has-name"  data-name="_root.products__${element.closest(".service-info-item").querySelector(".drop-item").getAttribute("data-parentid")}.service_passengerlist__${item.index}.lastname"/>
+                   <span class="info"><span class="first-name">${item.firstname}</span><span class="space"></span><span class="last-name"> ${item.lastname}</span></span>
+                   <span class="space">-</span>
+                   <span class="info"><span>${new Intl.NumberFormat().format(item.sellprice)} </span><span class="unit-content">${element.closest(".service-info-items").querySelector(".service-item-unit").value}</span></span>
+               </li>`);
+
+            }
+
+
+
+        };
+
+        function check_name_family(element) {
+            const data_passengers = new Array();
+            for (var i = 0; i < document.getElementsByClassName("passenger-info-content").length; i++) {
+                for (var s = 0; s < document.getElementsByClassName("passenger-info-content")[i].getElementsByClassName(
+                    "passenger").length; s++) {
+                    const data_passenger = new Object();
+                    for (var j = 0; j < document.getElementsByClassName("passenger-info-content")[i]
+                        .getElementsByClassName("passenger")[s].getElementsByClassName("package-info-item").length; j++
+                    ) {
+                        if (document.getElementsByClassName("passenger-info-content")[i].getElementsByClassName(
+                            "passenger")[
+                            s].getElementsByClassName("package-info-item")[j].querySelector("input[type=text]")) {
+                            if (document.getElementsByClassName("passenger-info-content")[i].getElementsByClassName(
+                                "passenger")[
+                                s].getElementsByClassName("package-info-item")[j].querySelector("input[type=text]")
+                                .getAttribute("name")) {
+                                if (document.getElementsByClassName("passenger-info-content")[i].getElementsByClassName(
+                                    "passenger")[
+                                    s].getElementsByClassName("package-info-item")[j].querySelector(
+                                        "input[type=text]")
+                                    .getAttribute("name").indexOf('firstname') > -1) {
+                                    data_passenger["firstname"] = document.getElementsByClassName(
+                                        "passenger-info-content")[i]
+                                        .getElementsByClassName("passenger")[s].getElementsByClassName(
+                                            "package-info-item")[j]
+                                        .querySelector("input[type=text]").value;
+                                } else if (document.getElementsByClassName("passenger-info-content")[i]
+                                    .getElementsByClassName(
+                                        "passenger")[s].getElementsByClassName("package-info-item")[j].querySelector(
+                                            "input[type=text]").getAttribute("name").indexOf('lastname') > -1) {
+                                    data_passenger["lastname"] = document.getElementsByClassName(
+                                        "passenger-info-content")[i]
+                                        .getElementsByClassName("passenger")[s].getElementsByClassName(
+                                            "package-info-item")[j]
+                                        .querySelector("input[type=text]").value
+                                }
+                            }
+                        }
+
+                    };
+                    data_passengers.push(data_passenger);
+                }
+            };
+            for (var i = 0; i < data_passengers.length; i++) {
+                element.closest(".service-info-content").getElementsByClassName("li-item")[i].querySelector(
+                    ".service-item-firstname").value = data_passengers[i].firstname;
+                element.closest(".service-info-content").getElementsByClassName("li-item")[i].querySelector(
+                    ".first-name").innerText = data_passengers[i].firstname;
+                element.closest(".service-info-content").getElementsByClassName("li-item")[i].querySelector(
+                    ".service-item-lastname").value = data_passengers[i].lastname;
+                element.closest(".service-info-content").getElementsByClassName("li-item")[i].querySelector(
+                    ".last-name").innerText = data_passengers[i].lastname;
+            }
+
+        };
+        /*-------------------SHOW A PASENGER FROM PASSENGERS LIST IN SRVICE LIST----------------------*/
+        function select_service(event, element) {
+            let sum = 0;
+            if (event.target.checked) {
+                for (var i = 0; i < element.closest("li").getElementsByClassName("has-name").length; i++) {
+                    element.closest("li").getElementsByClassName("has-name")[i].setAttribute("name", element.closest(
+                        "li").getElementsByClassName("has-name")[i].getAttribute("data-name"));
+                };
+                for (var i = 0; i < element.closest(".service-info-item").getElementsByClassName("has-name")
+                    .length; i++) {
+                    element.closest(".service-info-item").getElementsByClassName("has-name")[i].setAttribute("name",
+                        element.closest(".service-info-item").getElementsByClassName("has-name")[i].getAttribute(
+                            "data-name"));
+                };
+                element.closest(".service-info-item").querySelector(".passengers-list").setAttribute("disabled", true);
+                element.closest(".service-info-item").querySelector(".passengers-list").checked = true;
+                if (document.querySelector(".firstpay-section").getAttribute("data-step") == 1) {
+                    let division = parseFloat(element.closest("li").querySelector(".service-item-sellprice").value) / 2;
+                    sum = parseFloat(document.querySelector(".firstpay-section").querySelector(".firstpay-price")
+                        .innerText.replace(/\,/g, '')) + parseFloat(division);
+                } else {
+                    sum = parseFloat(document.querySelector(".firstpay-section").querySelector(".firstpay-price")
+                        .innerText.replace(/\,/g, '')) + parseFloat(element.closest("li").querySelector(
+                            ".service-item-sellprice").value);
+                }
+
+            } else {
+                for (var i = 0; i < element.closest("li").getElementsByClassName("has-name").length; i++) {
+                    element.closest("li").getElementsByClassName("has-name")[i].setAttribute("name", "");
+                };
+                if ($(element).closest("li").siblings("li").find(".select-service").is(':checked')) {
+                    element.closest(".service-info-item").querySelector(".passengers-list").setAttribute("disabled",
+                        true);
+                    element.closest(".service-info-item").querySelector(".passengers-list").checked = true;
+                } else {
+                    for (var i = 0; i < element.closest(".service-info-item").getElementsByClassName("has-name")
+                        .length; i++) {
+                        element.closest(".service-info-item").getElementsByClassName("has-name")[i].setAttribute("name",
+                            "");
+                    };
+                    element.closest(".service-info-item").querySelector(".passengers-list").removeAttribute("disabled");
+                    element.closest(".service-info-item").querySelector(".passengers-list").checked = false;
+                }
+                if (document.querySelector(".firstpay-section").getAttribute("data-step") == 1) {
+                    let division = parseFloat(element.closest("li").querySelector(".service-item-sellprice").value) / 2;
+                    sum = parseFloat(document.querySelector(".firstpay-section").querySelector(".firstpay-price")
+                        .innerText.replace(/\,/g, '')) - parseFloat(division);
+
+                } else {
+                    sum = parseFloat(document.querySelector(".firstpay-section").querySelector(".firstpay-price")
+                        .innerText.replace(/\,/g, '')) - parseFloat(element.closest("li").querySelector(
+                            ".service-item-sellprice").value);
+                }
+
+            }
+            for (var i = 0; i < document.getElementsByClassName("firstpay-price").length; i++) {
+                document.getElementsByClassName("firstpay-price")[i].innerText = new Intl.NumberFormat().format(sum);
+            };
+            document.querySelector(".firstpay-section").setAttribute("data-output", sum);
+
+
+
+        };
+        /*-------------------END JS SRVICE LIST----------------------*/
+        /*-------------------START JS TRANSFER LIST----------------------*/
+        function show_transfer_data(element) {
+            let index_child = element.getAttribute("data-parentid");
+            for (var i = 0; i < element.closest(".service-info-content").getElementsByClassName("has-name")
+                .length; i++) {
+                element.closest(".service-info-content").getElementsByClassName("has-name")[i].setAttribute("name", "");
+                if (element.closest(".service-info-content").getElementsByClassName("has-name")[i].classList
+                    .contains("necessary")) {
+                    element.closest(".service-info-content").getElementsByClassName("has-name")[i].classList.remove(
+                        "necessary");
+                }
+            };
+
+            for (var i = 0; i < element.closest(".service-info-content").getElementsByClassName("package-info-item")
+                .length; i++) {
+                if (element.closest(".service-info-content").getElementsByClassName("package-info-item")[i]
+                    .querySelector(".description")) {
+                    element.closest(".service-info-content").getElementsByClassName("package-info-item")[i]
+                        .querySelector(".description").remove();
+                    element.closest(".service-info-content").getElementsByClassName("package-info-item")[i]
+                        .querySelector("input").classList.remove("invalid");
+                };
+
+                for (var j = 0; j < element.closest(".service-info-content").getElementsByClassName(
+                    "package-info-item")[i].getElementsByClassName("passenger-date-item").length; j++) {
+                    element.closest(".service-info-content").getElementsByClassName("package-info-item")[i]
+                        .getElementsByClassName("passenger-date-item")[j].querySelector("input").classList.remove(
+                            "invalid");
+                };
+
+
+
+            };
+
+
+            if (element.value == 1) {
+                element.closest(".service-info-content").querySelector(".transfer-info-container_").classList.remove(
+                    "unvisible");
+                if (element.closest(".service-info-item").querySelector(".transfercount-value")) {
+                    element.closest(".service-info-content").querySelector(".transfer-info-container_").querySelector(
+                        ".has-select-input").classList.remove("unvisible");
+                } else {
+                    element.closest(".service-info-content").querySelector(".transfer-info-container_").querySelector(
+                        ".has-select-input").classList.add("unvisible");
+                };
+                for (var i = 0; i < element.closest(".service-info-item").getElementsByClassName("has-name")
+                    .length; i++) {
+                    element.closest(".service-info-item").getElementsByClassName("has-name")[i].setAttribute("name",
+                        element.closest(".service-info-item").getElementsByClassName("has-name")[i].getAttribute(
+                            "data-name").replace('products__0', `products__${index_child}`));
+
+                };
+
+                if (element.closest(".service-info-item").querySelector(".routeid").value == 1) {
+                    element.closest(".service-info-content").querySelector(".return").classList.add("unvisible");
+                    for (var i = 0; i < element.closest(".service-info-content").querySelector(".return")
+                        .getElementsByClassName("has-name").length; i++) {
+                        element.closest(".service-info-content").querySelector(".return").getElementsByClassName(
+                            "has-name")[i].value = "";
+                        if (element.closest(".service-info-content").querySelector(".return").getElementsByClassName(
+                            "has-name")[i].classList
+                            .contains("necessary")) {
+                            element.closest(".service-info-content").querySelector(".return").getElementsByClassName(
+                                "has-name")[i].classList.remove("necessary");
+                        }
+                    };
+                    element.closest(".service-info-content").querySelector(".departure").classList.remove("unvisible");
+                    for (var i = 0; i < element.closest(".service-info-content").querySelector(".departure")
+                        .getElementsByClassName("has-name").length; i++) {
+                        element.closest(".service-info-content").querySelector(".departure").getElementsByClassName(
+                            "has-name")[i].value = element.closest(".service-info-content").querySelector(
+                                ".departure").getElementsByClassName("has-name")[i].getAttribute("data-value");
+                        if (!element.closest(".service-info-content").querySelector(".departure")
+                            .getElementsByClassName("has-name")[i].classList
+                            .contains("necessary")) {
+                            element.closest(".service-info-content").querySelector(".departure").getElementsByClassName(
+                                "has-name")[i].classList.add("necessary");
+                        }
+                        element.closest(".service-info-content").querySelector(".departure").getElementsByClassName(
+                            "has-name")[i].setAttribute("name", element.closest(".service-info-content")
+                                .querySelector(".departure").getElementsByClassName("has-name")[i].getAttribute(
+                                    "data-name").replace('products__0', `products__${index_child}`));
+
+                    };
+
+
+
+                } else if ($(element).closest(".service-info-item").find(".routeid").val() == 2) {
+                    element.closest(".service-info-content").querySelector(".departure").classList.add("unvisible");
+                    for (var i = 0; i < element.closest(".service-info-content").querySelector(".departure")
+                        .getElementsByClassName("has-name").length; i++) {
+                        element.closest(".service-info-content").querySelector(".departure").getElementsByClassName(
+                            "has-name")[i].value = "";
+                        if (element.closest(".service-info-content").querySelector(".departure").getElementsByClassName(
+                            "has-name")[i].classList
+                            .contains("necessary")) {
+                            element.closest(".service-info-content").querySelector(".departure").getElementsByClassName(
+                                "has-name")[i].classList.remove("necessary");
+                        }
+
+                    };
+
+                    element.closest(".service-info-content").querySelector(".return").classList.remove("unvisible");
+                    for (var i = 0; i < element.closest(".service-info-content").querySelector(".return")
+                        .getElementsByClassName("has-name").length; i++) {
+                        element.closest(".service-info-content").querySelector(".return").getElementsByClassName(
+                            "has-name")[i].value = element.closest(".service-info-content").querySelector(
+                                ".return").getElementsByClassName("has-name")[i].getAttribute("data-value");
+                        if (!element.closest(".service-info-content").querySelector(".return").getElementsByClassName(
+                            "has-name")[i].classList
+                            .contains("necessary")) {
+                            element.closest(".service-info-content").querySelector(".return").getElementsByClassName(
+                                "has-name")[i].classList.add("necessary");
+                        }
+                        element.closest(".service-info-content").querySelector(".return").getElementsByClassName(
+                            "has-name")[i].setAttribute("name", element.closest(".service-info-content")
+                                .querySelector(".return").getElementsByClassName("has-name")[i].getAttribute(
+                                    "data-name").replace('products__0', `products__${index_child}`));
+                    };
+
+                } else {
+                    element.closest(".service-info-content").querySelector(".return").classList.remove("unvisible");
+                    for (var i = 0; i < element.closest(".service-info-content").querySelector(".return")
+                        .getElementsByClassName("has-name").length; i++) {
+                        element.closest(".service-info-content").querySelector(".return").getElementsByClassName(
+                            "has-name")[i].value = element.closest(".service-info-content").querySelector(
+                                ".return").getElementsByClassName("has-name")[i].getAttribute("data-value");
+                        if (!element.closest(".service-info-content").querySelector(".return").getElementsByClassName(
+                            "has-name")[i].classList
+                            .contains("necessary")) {
+                            element.closest(".service-info-content").querySelector(".return").getElementsByClassName(
+                                "has-name")[i].classList.add("necessary");
+                        }
+                        element.closest(".service-info-content").querySelector(".return").getElementsByClassName(
+                            "has-name")[i].setAttribute("name", element.closest(".service-info-content")
+                                .querySelector(".return").getElementsByClassName("has-name")[i].getAttribute(
+                                    "data-name").replace('products__0', `products__${index_child}`));
+
+                    };
+
+                    element.closest(".service-info-content").querySelector(".departure").classList.remove("unvisible");
+                    for (var i = 0; i < element.closest(".service-info-content").querySelector(".departure")
+                        .getElementsByClassName("has-name").length; i++) {
+                        element.closest(".service-info-content").querySelector(".departure").getElementsByClassName(
+                            "has-name")[i].value = element.closest(".service-info-content").querySelector(
+                                ".departure").getElementsByClassName("has-name")[i].getAttribute("data-value");
+                        if (!element.closest(".service-info-content").querySelector(".departure")
+                            .getElementsByClassName("has-name")[i].classList
+                            .contains("necessary")) {
+                            element.closest(".service-info-content").querySelector(".departure").getElementsByClassName(
+                                "has-name")[i].classList.add("necessary");
+                        }
+                        element.closest(".service-info-content").querySelector(".departure").getElementsByClassName(
+                            "has-name")[i].setAttribute("name", element.closest(".service-info-content")
+                                .querySelector(".departure").getElementsByClassName("has-name")[i].getAttribute(
+                                    "data-name").replace('products__0', `products__${index_child}`));
+
+                    };
+
+                }
+
+
+            } else {
+                element.closest(".service-info-content").querySelector(".transfer-info-container_").classList.add(
+                    "unvisible");
+            }
+
+
+
+            let transfer_item_sellprice = parseFloat(element.closest(".service-info-item").querySelector(
+                ".transfer-item-sellprice")
+                .value)
+            let transfer_item_sellprice_other = 0;
+            $(element).closest(".service-info-content").find(".service-info-items").each(function () {
+                $(this).find(".service-info-item").each(function () {
+                    if ($(this).hasClass("active")) {
+                        if ($(".transfer-info-container_").find(".transfercount").val() == 1) {
+                            transfer_item_sellprice_other += parseFloat($(this).find(
+                                ".transfer-item-sellprice")
+                                .val())
+                        } else {
+                            var multiple = parseFloat($(this).find(".transfer-item-sellprice").val()) *
+                                (
+                                    parseFloat(
+                                        $(
+                                            ".transfer-info-container_").find(".transfercount").val()))
+                            transfer_item_sellprice_other += parseFloat(multiple)
+                        }
+
+                    }
+                    $(this).removeClass("active");
+                })
+
+            })
+            let sum = 0;
+            if (document.querySelector(".firstpay-section").getAttribute("data-step") == 1) {
+                let division_1 = parseFloat(transfer_item_sellprice) / 2
+                let division_2 = parseFloat(transfer_item_sellprice_other) / 2
+                sum = parseFloat(document.querySelector(".firstpay-section").querySelector(".firstpay-price").innerText
+                    .replace(/\,/g, '')) + parseFloat(division_1) - parseFloat(division_2);
+            } else {
+                sum = parseFloat(document.querySelector(".firstpay-section").querySelector(".firstpay-price").innerText
+                    .replace(/\,/g, '')) + parseFloat(transfer_item_sellprice) - parseFloat(
+                        transfer_item_sellprice_other);
+            }
+            for (var i = 0; i < document.getElementsByClassName("firstpay-price").length; i++) {
+                document.getElementsByClassName("firstpay-price")[i].innerText = new Intl.NumberFormat().format(sum);
+            };
+            document.querySelector(".firstpay-section").setAttribute("data-output", sum);
+            element.closest(".service-info-item").classList.add("active");
+            element.closest(".service-info-content").querySelector(".transfer-info-container_").querySelector(
+                ".transfercount").value = 1;
+
+
+        };
+
+        function show_transfer_count(element) {
+            element.closest(".package-info-item").querySelector(".drop-item").classList.toggle("drop-item-toggle");
+        };
+        // /*-------------------CALCULATE  TRANSFER BY COUNT----------------------*/
+        function select_transfer_count(element) {
+            for (var i = 0; i < element.closest(".service-info-content").getElementsByClassName("service-info-item")
+                .length; i++) {
+                if (element.closest(".service-info-content").getElementsByClassName("service-info-item")[i]
+                    .querySelector(".transfer").checked) {
+                    let plusOrMinus = parseFloat(element.innerText) - parseFloat(element.closest(".package-info-item")
+                        .querySelector(".transfercount").value);
+                    let sum = 0;
+                    let multiple = parseFloat(element.closest(".service-info-content").getElementsByClassName(
+                        "service-info-item")[i].querySelector(".transfer-item-sellprice").value) * Math.abs(
+                            plusOrMinus);
+                    if (plusOrMinus > 0) {
+                        if (document.querySelector(".firstpay-section").getAttribute("data-step") == 1) {
+                            let division = parseFloat(multiple) / 2
+                            sum = parseFloat(document.querySelector(".firstpay-section").querySelector(
+                                ".firstpay-price").innerText.replace(/\,/g, '')) + parseFloat(division);
+                        } else {
+                            sum = parseFloat(document.querySelector(".firstpay-section").querySelector(
+                                ".firstpay-price").innerText.replace(/\,/g, '')) + parseFloat(multiple);
+                        }
+                    } else {
+                        if (document.querySelector(".firstpay-section").getAttribute("data-step") == 1) {
+                            var division = parseFloat(multiple) / 2
+                            sum = parseFloat(document.querySelector(".firstpay-section").querySelector(
+                                ".firstpay-price").innerText.replace(/\,/g, '')) - parseFloat(division);
+                        } else {
+                            sum = parseFloat(document.querySelector(".firstpay-section").querySelector(
+                                ".firstpay-price").innerText.replace(/\,/g, '')) - parseFloat(multiple);
+                        }
+                    }
+                    for (var j = 0; j < document.getElementsByClassName("firstpay-price").length; j++) {
+                        document.getElementsByClassName("firstpay-price")[j].innerText = new Intl.NumberFormat().format(
+                            sum);
+                    };
+                    document.querySelector(".firstpay-section").setAttribute("data-output", sum);
+                    if (element.closest(".service-info-content").getElementsByClassName("service-info-item")[i]
+                        .querySelector(".transfercount-value")) {
+                        element.closest(".service-info-content").getElementsByClassName("service-info-item")[i]
+                            .querySelector(".transfercount-value").value = element.innerText;
+                    };
+
+                }
+
+            }
+            element.closest(".package-info-item").querySelector(".transfercount").value = element.innerText;
+            element.closest(".package-info-item").querySelector(".drop-item").classList.toggle("drop-item-toggle");
+
+
+        };
+        for (var i = 0; i < document.getElementsByClassName('transfer-cost').length; i++) {
+            document.getElementsByClassName('transfer-cost')[i].innerText = new Intl.NumberFormat().format(document
+                .getElementsByClassName('transfer-cost')[i]
+                .innerText);
+            document.getElementsByClassName('transfer-cost')[i].closest(".info").querySelector(".unit-content")
+                .innerHTML = document.getElementsByClassName('transfer-cost')[i].closest(".service-info-items")
+                    .querySelector(".transfer-item-unit").value;
+
+        };
+
+        function autocomplete_search_service(element) {
+            if (element.which !== 0 && !element.ctrlKey && !element.metaKey && !element.altKey) {
+                upper_case =
+                    $(element).val().substr(0, 1).toUpperCase() +
+                    $(element).val().substr(1).toLowerCase();
+                $(element).val(upper_case);
+                if ($(element).val().length > 2) {
+                    $(element).closest(".c-infoo").find(".mini-loading").show();
+                    if ($(element).attr("data-type") == "airport") {
+                        $.ajax({
+                            url: "/Client_Spelist_Airport.bc?lid=2",
+                            type: "get",
+                            data: {
+                                term: $(element).val(),
+                            },
+                            success: function (response) {
+                                $(element).closest(".c-infoo").find(".mini-loading").hide();
+                                $(element).closest(".c-infoo").find(".co").empty().html(response);
+                            },
+                        });
+                    } else if ($(element).attr("data-type") == "city") {
+                        $.ajax({
+                            url: "/Client_Spelist_City.bc?lid=2",
+                            type: "get",
+                            data: {
+                                term: $(element).val(),
+                            },
+                            success: function (response) {
+                                $(element).closest(".c-infoo").find(".mini-loading").hide();
+                                $(element).closest(".c-infoo").find(".co").empty().html(response);
+                            },
+                        });
+                    } else if ($(element).attr("data-type") == "airline") {
+                        $.ajax({
+                            url: "/Client_Spelist_Airline.bc?lid=2",
+                            type: "get",
+                            data: {
+                                term: $(element).val(),
+                            },
+                            success: function (response) {
+                                $(element).closest(".c-infoo").find(".mini-loading").hide();
+                                $(element).closest(".c-infoo").find(".co").empty().html(response);
+                            },
+                        });
+                    }
+                } else $(element).closest(".c-infoo").find(".co").empty();
+            }
+        };
+        for (var i = 0; i < document.getElementsByClassName("service-date-items").length; i++) {
+            var date = document.getElementsByClassName("service-date-items")[i].getAttribute("data-date")
+            if (date == "") {
+                date = document.getElementsByClassName("service-date-items")[i].getAttribute("data-mainDate")
+            }
+          
+            var dateSplited = date.split("-");
+            document.getElementsByClassName("service-date-items")[i].insertAdjacentHTML('beforeend',
+                `<div class="passenger-date-items"> <div class="passenger-date-item has-select"
+>
+<div class="inner-item"><input type="text" onclick="toggle_date(this,'day-service')" placeholder="day" data-name="" class="day  has-name" oninput="autoComplete_search(event,this,'day-service')"  onkeyup="this.value=this.value.replace(/[^0-9]/g, ''),tab_key(event,this,'date');"  data-id="${dateSplited[2]}" data-value="${dateSplited[2]}"/></div>
+<ul class="drop-item">
+<li onclick="select_date_val(this)" class="li-item" data-id="01" data-value="1">1</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="02" data-value="2">2</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="03" data-value="3">3</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="04" data-value="4">4</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="05" data-value="5">5</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="06" data-value="6">6</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="07" data-value="7">7</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="08" data-value="8">8</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="09" data-value="9">9</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="10" data-value="10">10</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="11" data-value="11">11</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="12" data-value="12">12</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="13" data-value="13">13</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="14" data-value="14">14</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="15" data-value="15">15</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="16" data-value="16">16</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="17" data-value="17">17</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="18" data-value="18">18</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="19" data-value="19">19</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="20" data-value="20">20</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="21" data-value="21">21</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="22" data-value="22">22</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="23" data-value="23">23</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="24" data-value="24">24</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="25" data-value="25">25</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="26" data-value="26">26</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="27" data-value="27">27</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="28" data-value="28">28</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="29" data-value="30">30</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="30" data-value="30">30</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="31" data-value="31">31</li>
+</ul>
+
+</div>
+<div class="passenger-date-item has-select"
+>
+<div class="inner-item"><input type="text"  onclick="toggle_date(this,'month-service')" placeholder="month" data-name="" class="month  has-name"   oninput="autoComplete_search(event,this,'month-service')"  onkeyup="tab_key(event,this,'date');" data-id="${dateSplited[1]}" data-value="${dateSplited[1]}" /></div>
+<ul class="drop-item">
+<li onclick="select_date_val(this)" class="li-item" data-id="01" data-value="January">
+January
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="02" data-value="February">
+February
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="03" data-value="March">March
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="04" data-value="April">April
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="05" data-value="May">May
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="06" data-value="June">June
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="07" data-value="July">July
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="08" data-value="August">
+August</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="09" data-value="September">
+September
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="10" data-value="October">
+October
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="11" data-value="November">
+November
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="12" data-value="December">
+December
+</li>
+</ul>
+</div>
+<div class="passenger-date-item has-select"
+>
+<div class="inner-item"><input type="text"  onclick="toggle_date(this,'year-service')"  placeholder="year" data-name="" class="year  has-name" oninput="autoComplete_search(event,this,'year-service')"  onkeyup="this.value=this.value.replace(/[^0-9]/g, ''),tab_key(event,this,'date');" data-id="${dateSplited[0]}" data-value="${dateSplited[0]}" /></div>
+<ul class="drop-item">
+<li onclick="select_date_val(this)" class="li-item" data-id="2023" data-value="2023">2023
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2024" data-value="2024">2024
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2025" data-value="2025">2025
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2026" data-value="2026">2026
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2027" data-value="2027">2027
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2028" data-value="2028">2028
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2029" data-value="2029">2029
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2030" data-value="2030">2030
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2031" data-value="2031">2031
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2032" data-value="2032">2032
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2033" data-value="2033">2033
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2034" data-value="2034">2034
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2035" data-value="2035">2035
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2036" data-value="2036">2036
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2037" data-value="2037">2037
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2038" data-value="2038">2038
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2039" data-value="2039">2039
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2040" data-value="2040">2040
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2041" data-value="2041">2041
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2042" data-value="2042">2042
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2043" data-value="2043">2043
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2044" data-value="2044">2044
+</li>
+<li onclick="select_date_val(this)" class="li-item" data-id="2045" data-value="2045">2045
+</li>
+</ul>
+</div><input type="hidden" class="has-name datepicker" data-name="_root.products__0.${document.getElementsByClassName("service-date-items")[i].getAttribute("data-type")}.date" data-value="${date}" /></div>`
+            )
+        };
+        $('.clockpicker').clockpicker({
+            placement: 'bottom',
+            align: 'left',
+            autoclose: true,
+            'default': 'now'
+        });
+        /*-------------------START JS TRANSFER LIST----------------------*/
+    </script>
+</basis>

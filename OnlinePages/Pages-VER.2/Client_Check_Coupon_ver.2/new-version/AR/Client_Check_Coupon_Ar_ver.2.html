@@ -1,0 +1,93 @@
+<basis core="external.fly.ws" source="cmsDbService2" procedurename="dbsource" name="db">
+    <member name="checkcoupon" method="site" query='{
+        "name": "db",
+        "mid": "20",
+        "member": [
+            {
+                "name": "q",
+                "type": "scalar",
+                "request": "checkcoupon",
+                "accounttype": "[##cms.form.accounttype##]",
+                "code": "[##cms.form.code##]",
+                "price": "[##cms.form.totalcom##]",
+                "firstpay": "[##cms.form.firstpay##]",
+                "trackingNo": "[##cms.cookie.trackingid##]",
+                "schemaid": ["[##cms.form.schemaid##]"],
+                "provider": ["[##cms.form.provider##]"],
+                "coupondata": [##cms.form.coupondata##],
+                "dmnid": "[##cms.cms.domainid##]",
+                "userid": "[##cms.form.userid##]"
+            }
+        ]
+    }' />
+</basis>
+<basis core="group" name="Delay_1">
+    <basis core="inlinesource" name="db">
+        <member name="checkcoupon-Tree" format="json" postsql="select * from [db.checkcoupon-Tree]">
+            {"root":[##db.checkcoupon.result##]}</member>
+    </basis>
+    <basis core="tree" datamembername="db.checkcoupon-Tree" idcol="id" parentidcol="parentid" nullvalue="null">
+        <face filter="Field in('code') and Value in('4')">
+            <div class="response-code false" data-code="@value">تم استخدام رمز القسيمة!</div>
+        </face>
+        <face filter="Field in('code') and Value in('3')">
+            <div class="response-code false" data-code="@value">لا يوجد قسيمة بهذه المعلومات!</div>
+        </face>
+        <face filter="Field in('code') and Value in('2')">
+            <div class="response-code false" data-code="@value">رمز القسيمة الخاص بك غير موجود لهذا المنتج!</div>
+        </face>
+        <face filter="Field in('code') and Value in('1')">
+            <div class="response-code false" data-code="@value">كمية المنتج أقل من مبلغ القسيمة!</div>
+        </face>
+        <face filter="Field in('coupon_price')">
+            <div class="response-code true" data-code="0">رمز القسيمة نشط!</div>
+            <div><span class="title">تخفيض :</span>@child</div>
+        </face>
+        <face filter="Field in('cost') and Path in('.root.coupon_price.cost')">
+            <span class="coupon-price">@value</span>
+        </face>
+        <face filter="Field in('unit') and Path in('.root.coupon_price.unit')">
+            <span class="coupon-price-unit" data-key="@value">@value</span>
+        </face>
+        <face filter="Field in('buy_price')">
+            <div>@child</div>
+        </face>
+        <face filter="Field in('firstpay') and Path in('.root.buy_price.firstpay')">
+            <span class="title">المبلغ المستحق بعد خصم الخصم:</span><span
+                class="buy-price-firstpay">@value</span>
+            <!-- <input type="hidden" value="[##cms.form.transfer_for_coupon##]" class="check-transfer" /> -->
+        </face>
+        <face filter="Field in('unit') and Path in('.root.buy_price.unit')">
+            <span class="unit-content">@value</span>
+        </face>
+        <face filter="Field in('cost') and Path in('.root.buy_price.cost')">
+            <!-- <input type="hidden" value="@value" class="totalcom_by_coupon_value" /> -->
+        </face>
+        <face filter="type in ('array','object')">@child</face>
+    </basis>
+    <script type="text/javascript">
+        if (document.querySelector(".coupon-price-unit")){
+            if (document.querySelector(".coupon-price-unit").getAttribute("data-key") !== 'نسبة مئوية' || document.querySelector(
+                ".coupon-price-unit").getAttribute("data-key") !== 'percent') {
+            document.querySelector(".coupon-price").innerText = new Intl.NumberFormat().format(document.querySelector(
+                ".coupon-price").innerText);
+        };
+        document.querySelector(".buy-price-firstpay").innerText = new Intl.NumberFormat().format(document.querySelector(
+            ".buy-price-firstpay").innerText);
+        }
+        if (document.querySelector(".coupon-form").querySelector(".response-code").getAttribute("data-code") == 0) {
+            document.querySelector("input[name=c_code]").value = "[##cms.form.code##]";
+            for (var i = 0; i < document.getElementsByClassName("firstpay-price").length; i++) {
+                document.getElementsByClassName("firstpay-price")[i].innerText = new Intl.NumberFormat().format(document
+                    .querySelector(".buy-price-firstpay").innerText.replace(/,/g, ''));
+            };
+
+        } else {
+            document.querySelector("input[name=c_code]").value = 0;
+            for (var i = 0; i < document.getElementsByClassName("firstpay-price").length; i++) {
+                document.getElementsByClassName("firstpay-price")[i].innerText = new Intl.NumberFormat().format(document.querySelector(".firstpay-section").getAttribute("data-output"));
+            };
+        }
+
+    </script>
+</basis>
