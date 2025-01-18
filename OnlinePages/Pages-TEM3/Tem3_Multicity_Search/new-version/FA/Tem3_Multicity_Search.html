@@ -105,7 +105,8 @@
                         </face>
                         <face filter="Field in ('departuredate')">
                             <div class="item font_14"><span class="dash"><i
-                                        class="far fa-calendar-check"></i></span><span class="persian-date-search">@value</span></div>
+                                        class="far fa-calendar-check"></i></span><span
+                                    class="persian-date-search">@value</span></div>
                         </face>
                         <face filter="type in ('object','array')">@child</face>
                         </basis>
@@ -147,8 +148,8 @@
                     <div class="waiting-search">
                         <div class="loading-container">
                             <div class="loading"></div>
-                            <div class="loading-img"><img src="[##cms.Host.loading-logo|(/images/logo.png)##]" width="" height=""
-                                    alt="logo" />
+                            <div class="loading-img"><img src="[##cms.Host.loading-logo|(/images/logo.png)##]" width=""
+                                    height="" alt="logo" />
                             </div>
                         </div>
                         <p class="loading-text">در حال جستجوی بهترین پروازها ...</p>
@@ -278,64 +279,64 @@
 
     </main>
     <script>
-        var JalaliDate={g_days_in_month:[31,28,31,30,31,30,31,31,30,31,30,31],j_days_in_month:[31,31,31,31,31,31,30,30,30,30,30,29]};
+        var JalaliDate = { g_days_in_month: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], j_days_in_month: [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29] };
         JalaliDate.jalaliToGregorian = function (j_y, j_m, j_d) {
-              j_y = parseInt(j_y);
-              j_m = parseInt(j_m);
-              j_d = parseInt(j_d);
-              var jy = j_y - 979;
-              var jm = j_m - 1;
-              var jd = j_d - 1;
-              var j_day_no = 365 * jy + parseInt(jy / 33) * 8 + parseInt((jy % 33 + 3) / 4);
-              for (var i = 0; i < jm; ++i) j_day_no += JalaliDate.j_days_in_month[i];
-              j_day_no += jd;
-              var g_day_no = j_day_no + 79;
-              var gy = 1600 + 400 * parseInt(g_day_no / 146097); /* 146097 = 365*400 + 400/4 - 400/100 + 400/400 */
-              g_day_no = g_day_no % 146097;
-              var leap = true;
-              if (g_day_no >= 36525) /* 36525 = 365*100 + 100/4 */ {
+            j_y = parseInt(j_y);
+            j_m = parseInt(j_m);
+            j_d = parseInt(j_d);
+            var jy = j_y - 979;
+            var jm = j_m - 1;
+            var jd = j_d - 1;
+            var j_day_no = 365 * jy + parseInt(jy / 33) * 8 + parseInt((jy % 33 + 3) / 4);
+            for (var i = 0; i < jm; ++i) j_day_no += JalaliDate.j_days_in_month[i];
+            j_day_no += jd;
+            var g_day_no = j_day_no + 79;
+            var gy = 1600 + 400 * parseInt(g_day_no / 146097); /* 146097 = 365*400 + 400/4 - 400/100 + 400/400 */
+            g_day_no = g_day_no % 146097;
+            var leap = true;
+            if (g_day_no >= 36525) /* 36525 = 365*100 + 100/4 */ {
                 g_day_no--;
                 gy += 100 * parseInt(g_day_no / 36524); /* 36524 = 365*100 + 100/4 - 100/100 */
                 g_day_no = g_day_no % 36524;
                 if (g_day_no >= 365) g_day_no++;
                 else leap = false;
-              }
-              gy += 4 * parseInt(g_day_no / 1461); /* 1461 = 365*4 + 4/4 */
-              g_day_no %= 1461;
-              if (g_day_no >= 366) {
+            }
+            gy += 4 * parseInt(g_day_no / 1461); /* 1461 = 365*4 + 4/4 */
+            g_day_no %= 1461;
+            if (g_day_no >= 366) {
                 leap = false;
                 g_day_no--;
                 gy += parseInt(g_day_no / 365);
                 g_day_no = g_day_no % 365;
-              }
-              for (var i = 0; g_day_no >= JalaliDate.g_days_in_month[i] + (i == 1 && leap); i++)
+            }
+            for (var i = 0; g_day_no >= JalaliDate.g_days_in_month[i] + (i == 1 && leap); i++)
                 g_day_no -= JalaliDate.g_days_in_month[i] + (i == 1 && leap);
-              var gm = i + 1;
-              var gd = g_day_no + 1;
-              gm = gm < 10 ? "0" + gm : gm;
-              gd = gd < 10 ? "0" + gd : gd;
-              return [gy, gm, gd];
-            };
-            const persianDates = document.querySelectorAll('.persian-date-search');
-    persianDates.forEach(persianDateElement => {
-        var persian = persianDateElement.innerHTML
-        const check_year = parseInt(persian.split("-")[0]);
-       if(check_year >= 1400 && check_year <= 1499){
-        var gregorian =convert_jalali_toGregorian(persian)
-        const gregorianSpan = document.createElement('span');
-        gregorianSpan.classList.add('gregorian-date-search');
-        gregorianSpan.textContent = ` (${gregorian})`;
-        persianDateElement.after(gregorianSpan);
-       }
-    })
-            function convert_jalali_toGregorian(element) {
-                var date = element;
-                date_splited = date.split("-"),
+            var gm = i + 1;
+            var gd = g_day_no + 1;
+            gm = gm < 10 ? "0" + gm : gm;
+            gd = gd < 10 ? "0" + gd : gd;
+            return [gy, gm, gd];
+        };
+        const persianDates = document.querySelectorAll('.persian-date-search');
+        persianDates.forEach(persianDateElement => {
+            var persian = persianDateElement.innerHTML
+            const check_year = parseInt(persian.split("-")[0]);
+            if (check_year >= 1400 && check_year <= 1499) {
+                var gregorian = convert_jalali_toGregorian(persian)
+                const gregorianSpan = document.createElement('span');
+                gregorianSpan.classList.add('gregorian-date-search');
+                gregorianSpan.textContent = ` (${gregorian})`;
+                persianDateElement.after(gregorianSpan);
+            }
+        })
+        function convert_jalali_toGregorian(element) {
+            var date = element;
+            date_splited = date.split("-"),
                 gregorian_date = JalaliDate.jalaliToGregorian(date_splited[0], date_splited[1], date_splited[2]);
-                date_converted = gregorian_date[0] + "-" + gregorian_date[1] + "-" + gregorian_date[2];
-                return date_converted;
-            };
-                </script>
+            date_converted = gregorian_date[0] + "-" + gregorian_date[1] + "-" + gregorian_date[2];
+            return date_converted;
+        };
+    </script>
     <script type="text/javascript">$(document).ready(function () {
             const jsonTripGroup = JSON.parse('[##cms.json.header|cms.form.tripgroup##]');
             const newArray = jsonTripGroup.route.map(({ fromcityname, tocityname, index, ...rest }) => rest);
@@ -539,10 +540,10 @@
                         maxPage: librarySecond.length === 0 ? isSelectedPage : librarySecond.length
                     })
                     let lenLibraryDef = library.length
-                        if (lenLibraryDef !== undefined) {
-                            library = library.filter(item => { item.isSelected = false; item.isScrolled = false; return item; });
-                            librarySecond = librarySecond.filter(item => { item.isSelected = false; item.isScrolled = false; return item; });
-                        };
+                    if (lenLibraryDef !== undefined) {
+                        library = library.filter(item => { item.isSelected = false; item.isScrolled = false; return item; });
+                        librarySecond = librarySecond.filter(item => { item.isSelected = false; item.isScrolled = false; return item; });
+                    };
 
 
                     let defaultFilterTimeDepF = null;
@@ -1206,6 +1207,7 @@
                                     </div>
                                     <div className="width_25 float-left">
                                         {this.renderseatcount(item.info[0])}
+                                        {this.renderEnablePoint(item)}
                                         <div className="cost-item text-center p-relative">
                                             <div>
                                                 <div className="color_gray font_11 title">قیمت برای هر نفر :</div><span
@@ -2399,6 +2401,11 @@
                         }
                     }
                 }
+                renderEnablePoint(element) {
+                    if (element.enable_point == '1') {
+                        return <div className="club_point font_10 text-center p-absolute border-radius"><span>{element.club_point}</span><span>امتیاز باشگاه</span></div>
+                    }
+                }
                 renderairbaggage(element) {
                     if (element.airbaggage !== '-') {
                         if (element.airbaggage !== undefined) {
@@ -2455,11 +2462,11 @@
                                 <div dir="auto" className={`text-justify max-height font_13 info-loaded ruleDepTxt-${index}`}>{this.state.ruleDepTxt[i]}</div>
                             </div>
                         }
-                    } 
                     }
-                    renderBar(element, i, index) {
-                        for (let j = 0; j < element.info.length; j++) {
-                            if (typeof element.info[j].routeshow.description === 'string') {
+                }
+                renderBar(element, i, index) {
+                    for (let j = 0; j < element.info.length; j++) {
+                        if (typeof element.info[j].routeshow.description === 'string') {
                             return <div className="details-item">
                                 <div className="title font_14" onClick={e => this.bardep(e, element.info[j], i, index, 'string')}>برای مشاهده قوانین بار رفت <span className="clicked font-weight cursor-pointer">کلیک</span> کنید</div>
                                 <div dir="auto" className={`text-justify max-height font_13 info-loaded barDepTxt-${index}`}>{this.state.barDepTxt[i]}</div>
@@ -2484,63 +2491,63 @@
                                 <div dir="auto" className={`text-justify max-height font_13 info-loaded barDepTxt-${index}`}>{this.state.barDepTxt[i]}</div>
                             </div>
                         }
-                        }
                     }
+                }
 
                 ruleDep = (e, element, i, index, type) => {
-                        if (type == 'string') {
-                            document.querySelector(`.ruleDepTxt-${index}`).innerHTML = element.routeshow.description
-                        } else {
-                            this.showloadingRuleDep(e, i);
-                            const obj = new Object();
-                            obj["id"] = element._id
-                            obj["adults"] = element.adults.count
-                            obj["childs"] = element.childs.count
-                            obj["infant"] = element.infants.count
-                            delete obj["bar_info"];
+                    if (type == 'string') {
+                        document.querySelector(`.ruleDepTxt-${index}`).innerHTML = element.routeshow.description
+                    } else {
+                        this.showloadingRuleDep(e, i);
+                        const obj = new Object();
+                        obj["id"] = element._id
+                        obj["adults"] = element.adults.count
+                        obj["childs"] = element.childs.count
+                        obj["infant"] = element.infants.count
+                        delete obj["bar_info"];
                             fetch("/Client_Flight_Rule.bc?lid=1", {
-                                method: "POST",
-                                body: `id=${JSON.stringify(obj)}`
-                            }).then(response => response.text()).then(text => {
-                                document.querySelector(`.ruleDepTxt-${index}`).innerHTML = text
-                                this.setState(prevState => ({
+                            method: "POST",
+                            body: `id=${JSON.stringify(obj)}`
+                        }).then(response => response.text()).then(text => {
+                            document.querySelector(`.ruleDepTxt-${index}`).innerHTML = text
+                            this.setState(prevState => ({
 
-                                    loadingRuleDep: { ...prevState.loadingRuleDep, [i]: "" }
-                                }))
-                            }).catch(error => console.error(error))
-                        }
+                                loadingRuleDep: { ...prevState.loadingRuleDep, [i]: "" }
+                            }))
+                        }).catch(error => console.error(error))
                     }
+                }
 
-                    bardep = (e, element, i, index, type) => {
-                        if (type == 'string') {
-                            document.querySelector(`.barDepTxt-${index}`).innerHTML = `<div><span className="text-color">بار کابین: </span><span>${element.bar.bar1}</span></div>
+                bardep = (e, element, i, index, type) => {
+                    if (type == 'string') {
+                        document.querySelector(`.barDepTxt-${index}`).innerHTML = `<div><span className="text-color">بار کابین: </span><span>${element.bar.bar1}</span></div>
                                     <div><span className="text-color">بار مجاز: </span><span>${element.bar.bar2}</span></div>`
-                        } else {
-                            this.showloadingBarDep(e, i);
+                    } else {
+                        this.showloadingBarDep(e, i);
                             fetch("/Client_Baggage_Rule.bc?lid=1", {
-                                method: "POST",
-                                body: `id=${JSON.stringify(element.routeshow.description)}`
-                            }).then(response => response.text()).then(text => {
-                                document.querySelector(`.barDepTxt-${index}`).innerHTML = text
-                                this.setState(prevState => ({
+                            method: "POST",
+                            body: `id=${JSON.stringify(element.routeshow.description)}`
+                        }).then(response => response.text()).then(text => {
+                            document.querySelector(`.barDepTxt-${index}`).innerHTML = text
+                            this.setState(prevState => ({
 
-                                    loadingBarDep: { ...prevState.loadingBarDep, [i]: "" }
-                                }))
-                            }).catch(error => console.error(error))
-                        }
-                    };
-
-                    showAllDetails = (e, i, index) => {
-                        document.getElementById(`item-${index}`).classList.remove("isSelected");
-                        document.getElementById(`item-${index}`).setAttribute("data-scrolled", "false");
-                        this.setState(prevState => ({
-                            visibleAll: { ...prevState.visibleAll, [i]: !prevState.visibleAll[i] },
-                            visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },
-                            activeTab_details: { ...prevState.activeTab_details, [i]: !prevState.activeTab_details[i] }
-                        }));
-
+                                loadingBarDep: { ...prevState.loadingBarDep, [i]: "" }
+                            }))
+                        }).catch(error => console.error(error))
                     }
-                    
+                };
+
+                showAllDetails = (e, i, index) => {
+                    document.getElementById(`item-${index}`).classList.remove("isSelected");
+                    document.getElementById(`item-${index}`).setAttribute("data-scrolled", "false");
+                    this.setState(prevState => ({
+                        visibleAll: { ...prevState.visibleAll, [i]: !prevState.visibleAll[i] },
+                        visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },
+                        activeTab_details: { ...prevState.activeTab_details, [i]: !prevState.activeTab_details[i] }
+                    }));
+
+                }
+
                 showDetails = (e, i) => {
                     this.setState(prevState => ({
                         visibleDetails: { ...prevState.visibleDetails, [i]: !prevState.visibleDetails[i] },

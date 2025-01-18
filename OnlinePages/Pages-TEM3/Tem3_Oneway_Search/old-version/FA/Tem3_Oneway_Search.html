@@ -83,7 +83,8 @@
                     <div class="line-two">
                         برای دریافت آخرین نرخ‌ها لطفا صفحه را مجددا بارگذاری کنید
                     </div>
-                    <a href="[##cms.Host.FA_redirect|(/)##]" class="background-color_2 color_white font_16 border-radius cursor-pointer">صفحه اصلی</a>
+                    <a href="[##cms.Host.FA_redirect|(/)##]"
+                        class="background-color_2 color_white font_16 border-radius cursor-pointer">صفحه اصلی</a>
                     <button class="background-color_1 color_white font_16 border-radius cursor-pointer"
                         onclick=" location.reload()">جستجوی مجدد</button>
                 </div>
@@ -108,7 +109,8 @@
                                 </div>
                                 <div class="item font_15">
                                     <span class="dash"><i class="far fa-calendar-check"></i></span>
-                                    <span class="title">تاریخ رفت : </span><span class="persian-date-search">[##cms.query.fdate##]</span>
+                                    <span class="title">تاریخ رفت : </span><span
+                                        class="persian-date-search">[##cms.query.fdate##]</span>
                                 </div>
                                 <div class="item font_13 cursor-pointer color_white background-color_1 border-radius btn"
                                     onclick="show_research(this,'1')">
@@ -123,7 +125,21 @@
                             </span>
                             <span class="after-btn cursor-pointer background-color_white">روز بعد
                                 <i class="fa fa-angle-left color_1"></i></span>
-                            <form method="get" action="/Tem3_Oneway_Search.bc" class="form_research_date"><input type="hidden" value="[##cms.query.persiancurrent##]" class="persiancurrent" name="persiancurrent"> <input type="hidden" value="[##cms.query.from##]" name="from"> <input type="hidden" value="[##cms.query.to##]" name="to"> <input type="hidden" value="[##cms.query.fdate##]" name="fdate" class="departuredate"> <input type="hidden" value="[##cms.query.tdate##]" name="tdate" class="returndate"> <input type="hidden" value="[##cms.query.mstring_fdate##]" name="mstring_fdate" class="departureMdate"> <input type="hidden" value="[##cms.query.mstring_tdate##]" name="mstring_tdate" class="returnMdate"> <input type="hidden" value="[##cms.query.adult##]" name="adult"> <input type="hidden" value="[##cms.query.child##]" name="child"> <input type="hidden" value="[##cms.query.select-age##]" name="select-age"> <input type="hidden" value="[##cms.query.share|(0)##]" name="share"> <input type="hidden" value="[##cms.query.FlightClass##]" name="FlightClass"></form>
+                            <form method="get" action="/Tem3_Oneway_Search.bc" class="form_research_date"><input
+                                    type="hidden" value="[##cms.query.persiancurrent##]" class="persiancurrent"
+                                    name="persiancurrent"> <input type="hidden" value="[##cms.query.from##]"
+                                    name="from"> <input type="hidden" value="[##cms.query.to##]" name="to"> <input
+                                    type="hidden" value="[##cms.query.fdate##]" name="fdate" class="departuredate">
+                                <input type="hidden" value="[##cms.query.tdate##]" name="tdate" class="returndate">
+                                <input type="hidden" value="[##cms.query.mstring_fdate##]" name="mstring_fdate"
+                                    class="departureMdate"> <input type="hidden" value="[##cms.query.mstring_tdate##]"
+                                    name="mstring_tdate" class="returnMdate"> <input type="hidden"
+                                    value="[##cms.query.adult##]" name="adult"> <input type="hidden"
+                                    value="[##cms.query.child##]" name="child"> <input type="hidden"
+                                    value="[##cms.query.select-age##]" name="select-age"> <input type="hidden"
+                                    value="[##cms.query.share|(0)##]" name="share"> <input type="hidden"
+                                    value="[##cms.query.FlightClass##]" name="FlightClass">
+                            </form>
                         </div>
                         <div class="clr"></div>
                         <div class="searched-items-container unvisible" data-load="0" data-from="[##cms.query.from##]"
@@ -148,8 +164,8 @@
                         <div class="waiting-search">
                             <div class="loading-container">
                                 <div class="loading"></div>
-                                <div class="loading-img"><img src="[##cms.Host.loading-logo|(/images/logo.png)##]" width="" height=""
-                                        alt="logo" /></div>
+                                <div class="loading-img"><img src="[##cms.Host.loading-logo|(/images/logo.png)##]"
+                                        width="" height="" alt="logo" /></div>
                             </div>
                             <p class="loading-text">در حال جستجوی بهترین پروازها ...</p>
                             <div class="waiting-content width_30 float-right">
@@ -278,64 +294,64 @@
 
         </main>
         <script>
-var JalaliDate={g_days_in_month:[31,28,31,30,31,30,31,31,30,31,30,31],j_days_in_month:[31,31,31,31,31,31,30,30,30,30,30,29]};
-JalaliDate.jalaliToGregorian = function (j_y, j_m, j_d) {
-      j_y = parseInt(j_y);
-      j_m = parseInt(j_m);
-      j_d = parseInt(j_d);
-      var jy = j_y - 979;
-      var jm = j_m - 1;
-      var jd = j_d - 1;
-      var j_day_no = 365 * jy + parseInt(jy / 33) * 8 + parseInt((jy % 33 + 3) / 4);
-      for (var i = 0; i < jm; ++i) j_day_no += JalaliDate.j_days_in_month[i];
-      j_day_no += jd;
-      var g_day_no = j_day_no + 79;
-      var gy = 1600 + 400 * parseInt(g_day_no / 146097); /* 146097 = 365*400 + 400/4 - 400/100 + 400/400 */
-      g_day_no = g_day_no % 146097;
-      var leap = true;
-      if (g_day_no >= 36525) /* 36525 = 365*100 + 100/4 */ {
-        g_day_no--;
-        gy += 100 * parseInt(g_day_no / 36524); /* 36524 = 365*100 + 100/4 - 100/100 */
-        g_day_no = g_day_no % 36524;
-        if (g_day_no >= 365) g_day_no++;
-        else leap = false;
-      }
-      gy += 4 * parseInt(g_day_no / 1461); /* 1461 = 365*4 + 4/4 */
-      g_day_no %= 1461;
-      if (g_day_no >= 366) {
-        leap = false;
-        g_day_no--;
-        gy += parseInt(g_day_no / 365);
-        g_day_no = g_day_no % 365;
-      }
-      for (var i = 0; g_day_no >= JalaliDate.g_days_in_month[i] + (i == 1 && leap); i++)
-        g_day_no -= JalaliDate.g_days_in_month[i] + (i == 1 && leap);
-      var gm = i + 1;
-      var gd = g_day_no + 1;
-      gm = gm < 10 ? "0" + gm : gm;
-      gd = gd < 10 ? "0" + gd : gd;
-      return [gy, gm, gd];
-    };
+            var JalaliDate = { g_days_in_month: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], j_days_in_month: [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29] };
+            JalaliDate.jalaliToGregorian = function (j_y, j_m, j_d) {
+                j_y = parseInt(j_y);
+                j_m = parseInt(j_m);
+                j_d = parseInt(j_d);
+                var jy = j_y - 979;
+                var jm = j_m - 1;
+                var jd = j_d - 1;
+                var j_day_no = 365 * jy + parseInt(jy / 33) * 8 + parseInt((jy % 33 + 3) / 4);
+                for (var i = 0; i < jm; ++i) j_day_no += JalaliDate.j_days_in_month[i];
+                j_day_no += jd;
+                var g_day_no = j_day_no + 79;
+                var gy = 1600 + 400 * parseInt(g_day_no / 146097); /* 146097 = 365*400 + 400/4 - 400/100 + 400/400 */
+                g_day_no = g_day_no % 146097;
+                var leap = true;
+                if (g_day_no >= 36525) /* 36525 = 365*100 + 100/4 */ {
+                    g_day_no--;
+                    gy += 100 * parseInt(g_day_no / 36524); /* 36524 = 365*100 + 100/4 - 100/100 */
+                    g_day_no = g_day_no % 36524;
+                    if (g_day_no >= 365) g_day_no++;
+                    else leap = false;
+                }
+                gy += 4 * parseInt(g_day_no / 1461); /* 1461 = 365*4 + 4/4 */
+                g_day_no %= 1461;
+                if (g_day_no >= 366) {
+                    leap = false;
+                    g_day_no--;
+                    gy += parseInt(g_day_no / 365);
+                    g_day_no = g_day_no % 365;
+                }
+                for (var i = 0; g_day_no >= JalaliDate.g_days_in_month[i] + (i == 1 && leap); i++)
+                    g_day_no -= JalaliDate.g_days_in_month[i] + (i == 1 && leap);
+                var gm = i + 1;
+                var gd = g_day_no + 1;
+                gm = gm < 10 ? "0" + gm : gm;
+                gd = gd < 10 ? "0" + gd : gd;
+                return [gy, gm, gd];
+            };
 
-    const persianDates = document.querySelectorAll('.persian-date-search');
-    persianDates.forEach(persianDateElement => {
-        var persian = persianDateElement.innerHTML
-        const check_year = parseInt(persian.split("-")[0]);
-       if(check_year >= 1400 && check_year <= 1499){
-        var gregorian =convert_jalali_toGregorian(persian)
-        const gregorianSpan = document.createElement('span');
-        gregorianSpan.classList.add('gregorian-date-search');
-        gregorianSpan.textContent = ` (${gregorian})`;
-        persianDateElement.after(gregorianSpan);
-       }
-    })
-    function convert_jalali_toGregorian(element) {
-        var date = element;
-        date_splited = date.split("-"),
-        gregorian_date = JalaliDate.jalaliToGregorian(date_splited[0], date_splited[1], date_splited[2]);
-        date_converted = gregorian_date[0] + "-" + gregorian_date[1] + "-" + gregorian_date[2];
-        return date_converted;
-    };
+            const persianDates = document.querySelectorAll('.persian-date-search');
+            persianDates.forEach(persianDateElement => {
+                var persian = persianDateElement.innerHTML
+                const check_year = parseInt(persian.split("-")[0]);
+                if (check_year >= 1400 && check_year <= 1499) {
+                    var gregorian = convert_jalali_toGregorian(persian)
+                    const gregorianSpan = document.createElement('span');
+                    gregorianSpan.classList.add('gregorian-date-search');
+                    gregorianSpan.textContent = ` (${gregorian})`;
+                    persianDateElement.after(gregorianSpan);
+                }
+            })
+            function convert_jalali_toGregorian(element) {
+                var date = element;
+                date_splited = date.split("-"),
+                    gregorian_date = JalaliDate.jalaliToGregorian(date_splited[0], date_splited[1], date_splited[2]);
+                date_converted = gregorian_date[0] + "-" + gregorian_date[1] + "-" + gregorian_date[2];
+                return date_converted;
+            };
         </script>
         <script type="text/javascript">
             $(document).ready(function () {
@@ -1200,6 +1216,7 @@ JalaliDate.jalaliToGregorian = function (j_y, j_m, j_d) {
                                         </div>
                                         <div className="width_25 float-left p-relative">
                                             {this.renderseatcount(item)}
+                                            {this.renderEnablePoint(item)}
                                             <div className="cost-item text-center">
                                                 <div>
                                                     <div className="color_gray font_11 title">قیمت برای هر نفر :</div><span
@@ -1765,7 +1782,9 @@ JalaliDate.jalaliToGregorian = function (j_y, j_m, j_d) {
                         let indents = [];
                         if (element.length !== undefined) {
                             let sentences = [...(new Set(element.map(d => d['routeshow']['routesinfoo']).flat().map(info => info['routesinfoodetails']['otherdetails']['detailsairline'])))]
+                            console.log(sentences)
                             let sentencesimg = [...(new Set(element.map(d => d['routeshow']['routesinfoo']).flat().map(info => info['routesinfoodetails']['otherdetails']['detailsairlineimage'])))]
+                            console.log(sentencesimg)
                             for (let i = 0; i < sentences.length; i++) {
                                 let singleSentence = <div className="filter-body airline_filter"><div className="section-input_list p-relative" data-index="1"><input type="checkbox" value={sentences[i]} className="p-absolute" data-filter="startairline" onChange={((e) => this.handleChange(e))} defaultChecked={this.props.defaultChecked} /><label><img src={sentencesimg[i]} alt={sentences[i]} width="50" height="20" className="img_airline" /><span className="checkbox "><div className="float-right">{sentences[i]}</div></span><span className="total_content font_11 float-left">از<span className="min_total">{new Intl.NumberFormat().format(this.min_totalByAirline(element, sentences[i]))}</span><span className="unit_content">{[...(new Set(element.map(x => this.renderUnit(x.moneytype, this.state.state_currency_unit))))]}</span></span></label></div><div className="clr"></div></div>
                                 let output = singleSentence
@@ -2411,6 +2430,11 @@ JalaliDate.jalaliToGregorian = function (j_y, j_m, j_d) {
                             if (element.ticketinfooo.classes.seatcount !== undefined) {
                                 return <div className="seatcount font_10 text-center p-absolute border-radius"><span>{element.ticketinfooo.classes.seatcount}</span><span>صندلی باقیمانده</span></div>
                             }
+                        }
+                    }
+                    renderEnablePoint(element) {
+                        if (element.enable_point == '1') {
+                            return <div className="club_point font_10 text-center p-absolute border-radius"><span>{element.club_point}</span><span>امتیاز باشگاه</span></div>
                         }
                     }
                     renderairbaggage(element) {

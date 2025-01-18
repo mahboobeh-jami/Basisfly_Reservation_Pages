@@ -32,6 +32,7 @@
     <main class="dir-rtl main-content">
         <basis core="call" file="header.inc" />
         <section class="content">
+            <section class="loginRegister"></section>
             <div id="bg-popup" class="unvisible"></div>
             <div class="message-box unvisible">
                 <i class="icon-message-box">
@@ -84,9 +85,11 @@
                             </div>
                             <div class="item font_15">
                                 <span class="dash"><i class="far fa-calendar-check"></i></span>
-                                <span class="title">تاریخ ورود : </span><span class="persian-date-search">[##cms.form.fdate##]</span>
+                                <span class="title">تاریخ ورود : </span><span
+                                    class="persian-date-search">[##cms.form.fdate##]</span>
                                 <span class="dash"></span>
-                                <span class="title">تاریخ خروج : </span><span class="persian-date-search">[##cms.form.tdate##]</span>
+                                <span class="title">تاریخ خروج : </span><span
+                                    class="persian-date-search">[##cms.form.tdate##]</span>
                             </div>
                             <div class="item font_13 cursor-pointer color_white background-color_1 border-radius btn"
                                 onclick="show_research(this,'3')">
@@ -101,7 +104,16 @@
                             قبل</span>
                         <span class="after-btn cursor-pointer background-color_white">روز
                             بعد<i class="fa fa-angle-left color_1"></i></span>
-                        <form method="post" action="/Tem3_Hotel_Search.bc" class="form_research_date"><input type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent" name="persiancurrent"> <input type="hidden" value="[##cms.form.cityid##]" name="cityid"> <input type="hidden" value="[##cms.form.fdate##]" name="fdate" class="departuredate"> <input type="hidden" value="[##cms.form.tdate##]" name="tdate" class="returndate"> <input type="hidden" value="[##cms.form.mstring_fdate##]" name="mstring_fdate" class="departureMdate"> <input type="hidden" value="[##cms.form.mstring_tdate##]" name="mstring_tdate" class="returnMdate"> <input type="hidden" value="[##cms.form.coHotel##]" name="coHotel"> <input type="hidden" value='[##cms.json.header|cms.form.roomSearch##]' name="roomSearch"></form>
+                        <form method="post" action="/Tem3_Hotel_Search.bc" class="form_research_date"><input
+                                type="hidden" value="[##cms.form.persiancurrent##]" class="persiancurrent"
+                                name="persiancurrent"> <input type="hidden" value="[##cms.form.cityid##]" name="cityid">
+                            <input type="hidden" value="[##cms.form.fdate##]" name="fdate" class="departuredate"> <input
+                                type="hidden" value="[##cms.form.tdate##]" name="tdate" class="returndate"> <input
+                                type="hidden" value="[##cms.form.mstring_fdate##]" name="mstring_fdate"
+                                class="departureMdate"> <input type="hidden" value="[##cms.form.mstring_tdate##]"
+                                name="mstring_tdate" class="returnMdate"> <input type="hidden"
+                                value="[##cms.form.coHotel##]" name="coHotel"> <input type="hidden"
+                                value='[##cms.json.header|cms.form.roomSearch##]' name="roomSearch"></form>
                     </div>
                     <div class="clr"></div>
                     <div class="searched-items-container unvisible" data-load="0"
@@ -128,8 +140,8 @@
                     <div class="waiting-search hotel_stracture">
                         <div class="loading-container">
                             <div class="loading"></div>
-                            <div class="loading-img"><img  src="[##cms.Host.loading-logo|(/images/logo.png)##]" width="" height=""
-                                    alt="logo" /></div>
+                            <div class="loading-img"><img src="[##cms.Host.loading-logo|(/images/logo.png)##]" width=""
+                                    height="" alt="logo" /></div>
                         </div>
                         <p class="loading-text">در حال جستجوی بهترین هتل ها ...</p>
                         <div class="waiting-content width_30 float-right">
@@ -262,65 +274,65 @@
 
     </main>
     <script>
-        var JalaliDate={g_days_in_month:[31,28,31,30,31,30,31,31,30,31,30,31],j_days_in_month:[31,31,31,31,31,31,30,30,30,30,30,29]};
+        var JalaliDate = { g_days_in_month: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], j_days_in_month: [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29] };
         JalaliDate.jalaliToGregorian = function (j_y, j_m, j_d) {
-              j_y = parseInt(j_y);
-              j_m = parseInt(j_m);
-              j_d = parseInt(j_d);
-              var jy = j_y - 979;
-              var jm = j_m - 1;
-              var jd = j_d - 1;
-              var j_day_no = 365 * jy + parseInt(jy / 33) * 8 + parseInt((jy % 33 + 3) / 4);
-              for (var i = 0; i < jm; ++i) j_day_no += JalaliDate.j_days_in_month[i];
-              j_day_no += jd;
-              var g_day_no = j_day_no + 79;
-              var gy = 1600 + 400 * parseInt(g_day_no / 146097); /* 146097 = 365*400 + 400/4 - 400/100 + 400/400 */
-              g_day_no = g_day_no % 146097;
-              var leap = true;
-              if (g_day_no >= 36525) /* 36525 = 365*100 + 100/4 */ {
+            j_y = parseInt(j_y);
+            j_m = parseInt(j_m);
+            j_d = parseInt(j_d);
+            var jy = j_y - 979;
+            var jm = j_m - 1;
+            var jd = j_d - 1;
+            var j_day_no = 365 * jy + parseInt(jy / 33) * 8 + parseInt((jy % 33 + 3) / 4);
+            for (var i = 0; i < jm; ++i) j_day_no += JalaliDate.j_days_in_month[i];
+            j_day_no += jd;
+            var g_day_no = j_day_no + 79;
+            var gy = 1600 + 400 * parseInt(g_day_no / 146097); /* 146097 = 365*400 + 400/4 - 400/100 + 400/400 */
+            g_day_no = g_day_no % 146097;
+            var leap = true;
+            if (g_day_no >= 36525) /* 36525 = 365*100 + 100/4 */ {
                 g_day_no--;
                 gy += 100 * parseInt(g_day_no / 36524); /* 36524 = 365*100 + 100/4 - 100/100 */
                 g_day_no = g_day_no % 36524;
                 if (g_day_no >= 365) g_day_no++;
                 else leap = false;
-              }
-              gy += 4 * parseInt(g_day_no / 1461); /* 1461 = 365*4 + 4/4 */
-              g_day_no %= 1461;
-              if (g_day_no >= 366) {
+            }
+            gy += 4 * parseInt(g_day_no / 1461); /* 1461 = 365*4 + 4/4 */
+            g_day_no %= 1461;
+            if (g_day_no >= 366) {
                 leap = false;
                 g_day_no--;
                 gy += parseInt(g_day_no / 365);
                 g_day_no = g_day_no % 365;
-              }
-              for (var i = 0; g_day_no >= JalaliDate.g_days_in_month[i] + (i == 1 && leap); i++)
+            }
+            for (var i = 0; g_day_no >= JalaliDate.g_days_in_month[i] + (i == 1 && leap); i++)
                 g_day_no -= JalaliDate.g_days_in_month[i] + (i == 1 && leap);
-              var gm = i + 1;
-              var gd = g_day_no + 1;
-              gm = gm < 10 ? "0" + gm : gm;
-              gd = gd < 10 ? "0" + gd : gd;
-              return [gy, gm, gd];
-            };
-        
-            const persianDates = document.querySelectorAll('.persian-date-search');
-    persianDates.forEach(persianDateElement => {
-        var persian = persianDateElement.innerHTML
-        const check_year = parseInt(persian.split("-")[0]);
-       if(check_year >= 1400 && check_year <= 1499){
-        var gregorian =convert_jalali_toGregorian(persian)
-        const gregorianSpan = document.createElement('span');
-        gregorianSpan.classList.add('gregorian-date-search');
-        gregorianSpan.textContent = ` (${gregorian})`;
-        persianDateElement.after(gregorianSpan);
-       }
-    })
-            function convert_jalali_toGregorian(element) {
-                var date = element;
-                date_splited = date.split("-"),
+            var gm = i + 1;
+            var gd = g_day_no + 1;
+            gm = gm < 10 ? "0" + gm : gm;
+            gd = gd < 10 ? "0" + gd : gd;
+            return [gy, gm, gd];
+        };
+
+        const persianDates = document.querySelectorAll('.persian-date-search');
+        persianDates.forEach(persianDateElement => {
+            var persian = persianDateElement.innerHTML
+            const check_year = parseInt(persian.split("-")[0]);
+            if (check_year >= 1400 && check_year <= 1499) {
+                var gregorian = convert_jalali_toGregorian(persian)
+                const gregorianSpan = document.createElement('span');
+                gregorianSpan.classList.add('gregorian-date-search');
+                gregorianSpan.textContent = ` (${gregorian})`;
+                persianDateElement.after(gregorianSpan);
+            }
+        })
+        function convert_jalali_toGregorian(element) {
+            var date = element;
+            date_splited = date.split("-"),
                 gregorian_date = JalaliDate.jalaliToGregorian(date_splited[0], date_splited[1], date_splited[2]);
-                date_converted = gregorian_date[0] + "-" + gregorian_date[1] + "-" + gregorian_date[2];
-                return date_converted;
-            };
-                </script>
+            date_converted = gregorian_date[0] + "-" + gregorian_date[1] + "-" + gregorian_date[2];
+            return date_converted;
+        };
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
             fetch("/Client_Hotel_Json.bc", {
@@ -865,8 +877,9 @@
                                         </div>
                                     </div>
 
-                                    <div className="width_30 float-left">
+                                    <div className="width_30 float-left p-relative">
                                         {this.renderCommission(item, i)}
+                                        {this.renderEnablePoint(item)}
                                     </div>
                                     <div className="clr"></div>
                                     <div key={i} className={`room-loading ${!this.state.loadingVisible[i] ? "unvisible" : "visible"}`}>
@@ -1352,7 +1365,7 @@
                             let stingF = numF.toString();
                             let stingS = numS.toString();
                             index = stingF + stingS
-                            indents.push(<div className="item-details-hotel"><form  method="post" action="/Client_Show_Hotel_ver.2.bc">
+                            indents.push(<div className="item-details-hotel"><form method="post" action="/Client_Show_Hotel_ver.2.bc">
                                 <input type="hidden" value={this.state.state_currency_unit} name="rate-unit" className="rate-unit" />
                                 <input type="hidden" value={this.state.state_currency_cost} name="rate-cost" className="rate-cost" />
                                 <input type="hidden" value={this.state.state_floatdigit} name="rate-floatdigit" className="rate-floatdigit" />
@@ -1377,31 +1390,31 @@
                                 <input type="hidden" value={element[j].totalPrice} name="amount" />
                                 <div className="d-flex">
                                     <div className="col-details-row width_40 font_12">
-                                    <ul>
-                                        <li>{this.renderRoomtype(element[j])}<span className="answer-services">({this.renderserviceName(element[j].services)})</span></li>
-                                        <li>{this.renderavailability(element[j])}</li>
-                                        {this.renderviewnameRooms(element[j])}
-                                        {this.renderProviderName(element[j])}
-                                        {this.renderSupplierNameRooms(element[j])}
-                                    </ul>
-                                </div>
-                                <div className="col-details-row width_20 font_13 text-center">
-                                    <p><span className="details-btn color_1 cursor-pointer btn-rule" key={index} onClick={e => this.handleruleRoom(e, element[j], index)}>شرایط و قوانین</span></p>
-                                </div>
-                                <div className="col-details-row width_40 text-left cost-item">
-                                    <p className="btn-item">{this.renderBtn(j)}</p>
-                                </div>
+                                        <ul>
+                                            <li>{this.renderRoomtype(element[j])}<span className="answer-services">({this.renderserviceName(element[j].services)})</span></li>
+                                            <li>{this.renderavailability(element[j])}</li>
+                                            {this.renderviewnameRooms(element[j])}
+                                            {this.renderProviderName(element[j])}
+                                            {this.renderSupplierNameRooms(element[j])}
+                                        </ul>
+                                    </div>
+                                    <div className="col-details-row width_20 font_13 text-center">
+                                        <p><span className="details-btn color_1 cursor-pointer btn-rule" key={index} onClick={e => this.handleruleRoom(e, element[j], index)}>شرایط و قوانین</span></p>
+                                    </div>
+                                    <div className="col-details-row width_40 text-left cost-item">
+                                        <p className="btn-item">{this.renderBtn(j)}</p>
+                                    </div>
                                 </div>
                                 <div className="cost-info d-flex flex-justify">
-                                    <div>{this.renderCommissionRooms(element[j],item.moneytype)}</div>
+                                    <div>{this.renderCommissionRooms(element[j], item.moneytype)}</div>
                                     <div><span className="color_gray font_12">مبلغ قابل پرداخت:</span>
-                                    <span className="font_18">{new Intl.NumberFormat().format(this.renderTotal(element[j].totalCom, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
+                                        <span className="font_18">{new Intl.NumberFormat().format(this.renderTotal(element[j].totalCom, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
                                             className="color_gray font_11 unit">{this.renderUnit(item.moneytype, this.state.state_currency_unit)}</span></div>
-                                  
+
                                 </div>
-                            
-                             
-                               
+
+
+
                             </form>
                                 <div className="clr"></div>
                                 <div key={index} className={`${!this.state.loadingVisible[index] ? "unvisible" : "visible"}`}>
@@ -1595,16 +1608,16 @@
                         }
                     }
                 }
-                renderCommissionRooms(element,moneytype) {
+                renderCommissionRooms(element, moneytype) {
                     if (element.commissioncost !== 0) {
                         return <span><span className="commission-rooms"><span className="color_gray font_12">قیمت برای {element.nights} شب اقامت :</span>
-                                    <span className="font_14">{new Intl.NumberFormat().format(this.renderTotal(element.totalPrice, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
-                                            className="color_gray font_11 unit">{this.renderUnit(moneytype, this.state.state_currency_unit)}</span></span><span className="commission-rooms">-</span><span className="commission-rooms"><span className="color_gray font_12">کمیسیون :</span>
-                                    <span className="font_14">{new Intl.NumberFormat().format(this.renderTotal(element.commissioncost, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
-                                            className="color_gray font_11 unit">{this.renderUnit(moneytype, this.state.state_currency_unit)}</span></span></span>;
-                    } 
+                            <span className="font_14">{new Intl.NumberFormat().format(this.renderTotal(element.totalPrice, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
+                                className="color_gray font_11 unit">{this.renderUnit(moneytype, this.state.state_currency_unit)}</span></span><span className="commission-rooms">-</span><span className="commission-rooms"><span className="color_gray font_12">کمیسیون :</span>
+                                <span className="font_14">{new Intl.NumberFormat().format(this.renderTotal(element.commissioncost, this.state.state_currency_cost, this.state.state_floatdigit))}</span><span
+                                    className="color_gray font_11 unit">{this.renderUnit(moneytype, this.state.state_currency_unit)}</span></span></span>;
+                    }
                 }
-                
+
                 renderOptionId(element) {
                     return <input type="hidden" value={element.optionId} name="optionId" />
                 }
@@ -1837,17 +1850,17 @@
                     this.showLoading(e, element, index);
 
                     fetch("/Client_Room_Rule.bc", {
-                                method: "POST",
-                                body: `sid=[##cms.query.sid##]&mainprovider=${JSON.stringify(mainprovider)}&optionId=${encodeURIComponent(optionId)}&supplier=${supplier}`
-                            }).then(response => response.text()).then(text => {
-                                document.querySelector(`.roomRule-${index}`).innerHTML = text
-                                this.setState(prevState => ({
-                                    loadingVisible: { ...prevState.loadingVisible, [index]: "" },
-                                    loadingVisibleBtnClose: { ...prevState.loadingVisibleBtnClose, [index]: !prevState.loadingVisibleBtnClose[index] }
-                                }))
-                            }).catch(error => console.error(error))
+                        method: "POST",
+                        body: `sid=[##cms.query.sid##]&mainprovider=${JSON.stringify(mainprovider)}&optionId=${encodeURIComponent(optionId)}&supplier=${supplier}`
+                    }).then(response => response.text()).then(text => {
+                        document.querySelector(`.roomRule-${index}`).innerHTML = text
+                        this.setState(prevState => ({
+                            loadingVisible: { ...prevState.loadingVisible, [index]: "" },
+                            loadingVisibleBtnClose: { ...prevState.loadingVisibleBtnClose, [index]: !prevState.loadingVisibleBtnClose[index] }
+                        }))
+                    }).catch(error => console.error(error))
                 }
-                
+
                 CloseRuleRoom = (index) => {
                     this.setState(prevState => ({
                         roomRule: { ...prevState.roomRule, [index]: '' },
@@ -1952,6 +1965,11 @@
                             </div>
                             <div className="clr"></div>
                         </div>;
+                    }
+                }
+                renderEnablePoint(element) {
+                    if (element.enable_point == '1') {
+                        return <div className="club_point font_10 text-center p-absolute border-radius"><span>{element.club_point}</span><span>امتیاز باشگاه</span></div>
                     }
                 }
                 handleClick(event) {

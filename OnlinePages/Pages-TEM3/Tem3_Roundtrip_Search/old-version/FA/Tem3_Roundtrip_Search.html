@@ -1461,6 +1461,7 @@
                                         </div>
                                         <div className="width_25 float-left">
                                             {this.renderseatcount(item)}
+                                            {this.renderEnablePoint(item)}
                                             <div className="cost-item text-center p-relative b2b">
                                                 <div>
                                                     <div className="color_gray font_11 title">قیمت برای هر نفر :</div><span
@@ -3016,6 +3017,11 @@
                                     <span>صندلی باقیمانده</span>
                                 </div>
                             }
+                        }
+                    }
+                    renderEnablePoint(element) {
+                        if (element.enable_point == '1') {
+                            return <div className="club_point font_10 text-center p-absolute border-radius"><span>{element.club_point}</span><span>امتیاز باشگاه</span></div>
                         }
                     }
                     renderairbaggage(element) {
